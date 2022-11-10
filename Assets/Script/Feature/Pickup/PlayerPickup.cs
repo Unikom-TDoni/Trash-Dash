@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 namespace Group8.TrashDash.Player.Pickup
 {
+    using Module.Detector;
+
     public class PlayerPickup : MonoBehaviour
     {
         public PlayerAction playerInput;
@@ -26,28 +28,6 @@ namespace Group8.TrashDash.Player.Pickup
             InitializeCallback();
         }
 
-        public Vector3 DirectionFromAngle(float angle, bool globalAngle)
-        {
-            if (!globalAngle) angle += transform.eulerAngles.y;
-            return new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
-        }
-
-        private void FindTargets()
-        {
-            takenObjects.Clear();
-            Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, pickUpRadius, targetMask);
-
-            foreach (Collider targetCollider in targetsInRadius)
-            {
-                Transform target = targetCollider.transform;
-                Vector3 directionToTarget = (target.position - transform.position).normalized;
-                if (Vector3.Angle(transform.forward, directionToTarget) < (pickUpAngle / 2))
-                {
-                    takenObjects.Add(target.gameObject);
-                }
-            }
-        }
-
         #region Callback
         private void InitializeCallback()
         {
@@ -57,7 +37,7 @@ namespace Group8.TrashDash.Player.Pickup
 
         private void OnPickup(InputAction.CallbackContext context)
         {
-            FindTargets();
+            takenObjects = ColliderDetector.Find<GameObject>(transform.position, pickUpRadius, targetMask, transform.forward, pickUpAngle);
         }
         #endregion
 
