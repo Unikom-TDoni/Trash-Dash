@@ -14,6 +14,9 @@ namespace Group8.TrashDash.Inventory
         private Toggle _inventoryToggle = default;
 
         [SerializeField]
+        private CanvasGroup _canvasGroup = default;
+
+        [SerializeField]
         private List<TrashContentInfo> _trashes = new();
 
         [SerializeField]
@@ -28,16 +31,21 @@ namespace Group8.TrashDash.Inventory
             _inventoryLayoutController.InitInventoryLayout(_inventory.MaxCapacity);
             _inventoryToggle.onValueChanged.AddListener((value) =>
             {
-                if(value)
+                if (value)
                     _inventoryLayoutController.TryRefreshContent(_inventory.GetItems());
                 _inventoryLayoutController.SetActiveLayout(value);
             });
         }
 
-        public void StoreItem(TrashContentInfo trashContentInfo)
+        public bool StoreItem(TrashContentInfo trashContentInfo)
         {
             if (!_inventory.TryAdd(trashContentInfo))
+            {
                 Debug.Log("Inventory Have Max Capacity");
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class TrashContentInfo 
+[CreateAssetMenu(fileName = "New Trash Info", menuName = "Item/Trash")]
+public class TrashContentInfo : ScriptableObject
 {
+    public string Name;
     public Sprite Sprite = default;
 }

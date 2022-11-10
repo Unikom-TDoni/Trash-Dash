@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 namespace Group8.TrashDash.Player.Pickup
 {
     using Module.Detector;
+    using Inventory;
+    using Item.Trash;
 
     public class PlayerPickup : MonoBehaviour
     {
@@ -17,10 +19,7 @@ namespace Group8.TrashDash.Player.Pickup
         public LayerMask targetMask;
         public List<GameObject> takenObjects;
 
-        private void Awake()
-        {
-            targetMask = LayerMask.GetMask("Pickup");
-        }
+        [SerializeField] InventoryHandler inventory;
 
         private void Start()
         {
@@ -38,6 +37,22 @@ namespace Group8.TrashDash.Player.Pickup
         private void OnPickup(InputAction.CallbackContext context)
         {
             takenObjects = ColliderDetector.Find<GameObject>(transform.position, pickUpRadius, targetMask, transform.forward, pickUpAngle);
+
+            foreach (GameObject obj in takenObjects.ToArray())
+            {
+                TrashInfo trashInfo = obj.GetComponent<TrashInfo>();
+                if (trashInfo == null)
+                {
+                    Debug.Log(obj.name + " does not contain TrashInfo.");
+                    continue;
+                }
+
+                if (inventory.StoreItem(trashInfo.trashContentInfo))
+                {
+                    Destroy(obj);
+                    takenObjects.Remove(obj);
+                }
+            }
         }
         #endregion
 
