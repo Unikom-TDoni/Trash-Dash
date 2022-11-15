@@ -12,7 +12,7 @@ namespace Group8.TrashDash.Player.Controller
         public float gravity = -9.8f;
         public float turnSmoothTime = 0.1f;
 
-        public PlayerAction playerInput;
+        private PlayerAction playerControls;
 
         CharacterController controller;
 
@@ -29,15 +29,23 @@ namespace Group8.TrashDash.Player.Controller
         void Awake()
         {
             controller = GetComponent<CharacterController>();
-
-            playerInput = new PlayerAction();
-
-            InitializePlayerInputCallbacks();
         }
 
         void Start()
         {
             speed = moveSpeed;
+            playerControls = InputManager.playerAction;
+            RegisterInputCallbacks();
+        }
+
+        private void OnEnable()
+        {
+            RegisterInputCallbacks();
+        }
+
+        private void OnDisable()
+        {
+            UnregisterInputCallbacks();
         }
 
         void Update()
@@ -57,16 +65,25 @@ namespace Group8.TrashDash.Player.Controller
         }
 
         #region Callbacks
-        private void InitializePlayerInputCallbacks()
+        private void RegisterInputCallbacks()
         {
-            playerInput.Gameplay.Enable();
-            playerInput.Gameplay.Move.performed += OnMove;
-            playerInput.Gameplay.Move.canceled += OnMoveCanceled;
-            playerInput.Gameplay.Sprint.performed += OnSprint;
-            playerInput.Gameplay.Sprint.canceled += OnSprintCanceled;
-            playerInput.Gameplay.Interact.performed += OnInteract;
-            playerInput.Gameplay.Inventory.performed += OnInventory;
-            playerInput.Gameplay.Pause.performed += OnPause;
+            if (playerControls == null) return;
+
+            playerControls.Gameplay.Move.performed += OnMove;
+            playerControls.Gameplay.Move.canceled += OnMoveCanceled;
+            playerControls.Gameplay.Sprint.performed += OnSprint;
+            playerControls.Gameplay.Sprint.canceled += OnSprintCanceled;
+            playerControls.Gameplay.Pause.performed += OnPause;
+        }
+        private void UnregisterInputCallbacks()
+        {
+            if (playerControls == null) return;
+
+            playerControls.Gameplay.Move.performed -= OnMove;
+            playerControls.Gameplay.Move.canceled -= OnMoveCanceled;
+            playerControls.Gameplay.Sprint.performed -= OnSprint;
+            playerControls.Gameplay.Sprint.canceled -= OnSprintCanceled;
+            playerControls.Gameplay.Pause.performed -= OnPause;
         }
         #endregion
 
@@ -118,10 +135,6 @@ namespace Group8.TrashDash.Player.Controller
         public void OnInteract(InputAction.CallbackContext context)
         {
             Debug.Log("Interact Button pressed");
-        }
-        public void OnInventory(InputAction.CallbackContext context)
-        {
-            Debug.Log("Inventory Button pressed");
         }
         public void OnPause(InputAction.CallbackContext context)
         {

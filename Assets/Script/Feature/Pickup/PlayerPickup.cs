@@ -10,7 +10,7 @@ namespace Group8.TrashDash.Player.Pickup
 
     public class PlayerPickup : MonoBehaviour
     {
-        public PlayerAction playerInput;
+        private PlayerAction playerControls;
 
         [Header("Parameters")]
         public float pickUpRadius = 5;
@@ -23,15 +23,30 @@ namespace Group8.TrashDash.Player.Pickup
 
         private void Start()
         {
-            playerInput = new PlayerAction();
-            InitializeCallback();
+            playerControls = InputManager.playerAction;
+            RegisterInputCallback();
         }
 
-        #region Callback
-        private void InitializeCallback()
+        private void OnEnable()
         {
-            playerInput.Gameplay.Enable();
-            playerInput.Gameplay.Pickup.performed += OnPickup;
+            RegisterInputCallback();
+        }
+
+        private void OnDisable()
+        {
+            UnregisterInputCallback();
+        }
+
+        #region Callbacks
+        private void RegisterInputCallback()
+        {
+            if (playerControls == null) return;
+            playerControls.Gameplay.Pickup.performed += OnPickup;
+        }
+        private void UnregisterInputCallback()
+        {
+            if (playerControls == null) return;
+            playerControls.Gameplay.Pickup.performed -= OnPickup;
         }
 
         private void OnPickup(InputAction.CallbackContext context)
