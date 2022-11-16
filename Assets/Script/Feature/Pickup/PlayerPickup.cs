@@ -4,9 +4,13 @@ using UnityEngine.InputSystem;
 
 namespace Group8.TrashDash.Player.Pickup
 {
+    using Module.Detector;
+    using Inventory;
+    using Item.Trash;
+
     public class PlayerPickup : MonoBehaviour
     {
-        public PlayerAction playerInput;
+        private PlayerAction playerControls;
 
         [Header("Parameters")]
         public float pickUpRadius = 5;
@@ -15,49 +19,55 @@ namespace Group8.TrashDash.Player.Pickup
         public LayerMask targetMask;
         public List<GameObject> takenObjects;
 
-        private void Awake()
-        {
-            targetMask = LayerMask.GetMask("Pickup");
-        }
+        [SerializeField] InventoryHandler inventory;
 
         private void Start()
         {
-            playerInput = new PlayerAction();
-            InitializeCallback();
+            playerControls = InputManager.playerAction;
+            RegisterInputCallback();
         }
 
-        public Vector3 DirectionFromAngle(float angle, bool globalAngle)
+        private void OnEnable()
         {
-            if (!globalAngle) angle += transform.eulerAngles.y;
-            return new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
+            RegisterInputCallback();
         }
 
-        private void FindTargets()
+        private void OnDisable()
         {
-            takenObjects.Clear();
-            Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, pickUpRadius, targetMask);
-
-            foreach (Collider targetCollider in targetsInRadius)
-            {
-                Transform target = targetCollider.transform;
-                Vector3 directionToTarget = (target.position - transform.position).normalized;
-                if (Vector3.Angle(transform.forward, directionToTarget) < (pickUpAngle / 2))
-                {
-                    takenObjects.Add(target.gameObject);
-                }
-            }
+            UnregisterInputCallback();
         }
 
-        #region Callback
-        private void InitializeCallback()
+        #region Callbacks
+        private void RegisterInputCallback()
         {
-            playerInput.Gameplay.Enable();
-            playerInput.Gameplay.Pickup.performed += OnPickup;
+            if (playerControls == null) return;
+            playerControls.Gameplay.Pickup.performed += OnPickup;
+        }
+        private void UnregisterInputCallback()
+        {
+            if (playerControls == null) return;
+            playerControls.Gameplay.Pickup.performed -= OnPickup;
         }
 
         private void OnPickup(InputAction.CallbackContext context)
         {
-            FindTargets();
+            takenObjects = ColliderDetector.Find<GameObject>(transform.position, pickUpRadius, targetMask, transform.forward, pickUpAngle);
+
+            foreach (GameObject obj in takenObjects.ToArray())
+            {
+                TrashInfo trashInfo = obj.GetComponent<TrashInfo>();
+                if (trashInfo == null)
+                {
+                    Debug.Log(obj.name + " does not contain TrashInfo.");
+                    continue;
+                }
+
+                if (inventory.StoreItem(trashInfo.trashContentInfo))
+                {
+                    trashInfo.Release();
+                    takenObjects.Remove(obj);
+                }
+            }
         }
         #endregion
 
