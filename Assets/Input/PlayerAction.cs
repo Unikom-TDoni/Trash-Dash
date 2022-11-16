@@ -436,6 +436,34 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Inventory"",
+            ""id"": ""6f3cd402-06f6-4aae-ab67-d3c6a9c7067a"",
+            ""actions"": [
+                {
+                    ""name"": ""Drag"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce34a4f1-152e-4bae-aeb0-e840973e5497"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""760a66e8-f1bd-4ad2-bca4-671a751e55d7"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -482,6 +510,9 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         m_Panel_Confirm = m_Panel.FindAction("Confirm", throwIfNotFound: true);
         m_Panel_Cancel = m_Panel.FindAction("Cancel", throwIfNotFound: true);
         m_Panel_Select = m_Panel.FindAction("Select", throwIfNotFound: true);
+        // Inventory
+        m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
+        m_Inventory_Drag = m_Inventory.FindAction("Drag", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -667,6 +698,39 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         }
     }
     public PanelActions @Panel => new PanelActions(this);
+
+    // Inventory
+    private readonly InputActionMap m_Inventory;
+    private IInventoryActions m_InventoryActionsCallbackInterface;
+    private readonly InputAction m_Inventory_Drag;
+    public struct InventoryActions
+    {
+        private @PlayerAction m_Wrapper;
+        public InventoryActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Drag => m_Wrapper.m_Inventory_Drag;
+        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
+        public void SetCallbacks(IInventoryActions instance)
+        {
+            if (m_Wrapper.m_InventoryActionsCallbackInterface != null)
+            {
+                @Drag.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDrag;
+                @Drag.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDrag;
+                @Drag.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDrag;
+            }
+            m_Wrapper.m_InventoryActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Drag.started += instance.OnDrag;
+                @Drag.performed += instance.OnDrag;
+                @Drag.canceled += instance.OnDrag;
+            }
+        }
+    }
+    public InventoryActions @Inventory => new InventoryActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -700,5 +764,9 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         void OnConfirm(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+    }
+    public interface IInventoryActions
+    {
+        void OnDrag(InputAction.CallbackContext context);
     }
 }

@@ -414,6 +414,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Inventory",
+            "id": "6f3cd402-06f6-4aae-ab67-d3c6a9c7067a",
+            "actions": [
+                {
+                    "name": "Drag",
+                    "type": "Button",
+                    "id": "ce34a4f1-152e-4bae-aeb0-e840973e5497",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "760a66e8-f1bd-4ad2-bca4-671a751e55d7",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
