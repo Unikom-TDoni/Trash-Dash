@@ -1,3 +1,4 @@
+using Group8.TrashDash.TrashBin;
 using System;
 using UnityEngine;
 
@@ -6,4 +7,5 @@ public class TrashContentInfo : ScriptableObject
 {
     public string Name;
     public Sprite Sprite = default;
+    public TrashBinTypes TrashBinType = default;
 }
