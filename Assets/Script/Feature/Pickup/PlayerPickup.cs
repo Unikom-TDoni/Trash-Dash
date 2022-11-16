@@ -64,7 +64,7 @@ namespace Group8.TrashDash.Player.Pickup
 
                 if (inventory.StoreItem(trashInfo.trashContentInfo))
                 {
-                    Destroy(obj);
+                    trashInfo.Release();
                     takenObjects.Remove(obj);
                 }
             }

@@ -86,6 +86,15 @@ namespace Group8.TrashDash.Player.Interaction
                 nearestInteractable = detectedInteractables.OrderBy(
                     obj => (transform.position - obj.transform.position).sqrMagnitude).ToArray()[0];
 
+                IInteractable interactable = nearestInteractable.GetComponent<IInteractable>();
+                if (interactable == null)
+                {
+                    Debug.Log(gameObject.name + " does not contain IInteractable interface.");
+                    return;
+                }
+
+                interactable.Interact();
+
                 StopAllCoroutines();
                 StartCoroutine(FaceTarget(nearestInteractable.transform.position));
             }
@@ -94,7 +103,7 @@ namespace Group8.TrashDash.Player.Interaction
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, interactRadius);
         }
     }

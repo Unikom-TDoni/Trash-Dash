@@ -38,7 +38,12 @@ namespace Group8.TrashDash.Inventory
             _inventoryToggle.onValueChanged.AddListener((value) =>
             {
                 if (value)
+                {
                     _inventoryLayoutController.TryRefreshContent(_inventory.GetItems());
+                    InputManager.ToggleActionMap(InputManager.playerAction.Panel);
+                }
+                else
+                    InputManager.ToggleActionMap(InputManager.playerAction.Gameplay);
                 _inventoryLayoutController.SetActiveLayout(value);
             });
         }
@@ -88,13 +93,11 @@ namespace Group8.TrashDash.Inventory
 
         private void OnInventory(InputAction.CallbackContext context)
         {
-            _inventoryToggle.isOn = !_inventoryToggle.isOn;
-            InputManager.ToggleActionMap(InputManager.playerAction.Panel);
+            _inventoryToggle.isOn = true;
         }
         private void OnInventoryPanel(InputAction.CallbackContext context)
         {
-            _inventoryToggle.isOn = !_inventoryToggle.isOn;
-            InputManager.ToggleActionMap(InputManager.playerAction.Gameplay);
+            _inventoryToggle.isOn = false;
         }
         #endregion
         }

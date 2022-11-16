@@ -291,6 +291,15 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a58b1fe-0062-4486-a2f9-9e51a8a82d46"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -403,6 +412,28 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a40acdbc-be21-4865-a05d-5ae6721f59ef"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c16fc82f-b4f5-4194-a0f3-bb31b381a03d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -450,6 +481,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         m_Panel_Navigate = m_Panel.FindAction("Navigate", throwIfNotFound: true);
         m_Panel_Confirm = m_Panel.FindAction("Confirm", throwIfNotFound: true);
         m_Panel_Cancel = m_Panel.FindAction("Cancel", throwIfNotFound: true);
+        m_Panel_Select = m_Panel.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -585,6 +617,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Panel_Navigate;
     private readonly InputAction m_Panel_Confirm;
     private readonly InputAction m_Panel_Cancel;
+    private readonly InputAction m_Panel_Select;
     public struct PanelActions
     {
         private @PlayerAction m_Wrapper;
@@ -592,6 +625,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         public InputAction @Navigate => m_Wrapper.m_Panel_Navigate;
         public InputAction @Confirm => m_Wrapper.m_Panel_Confirm;
         public InputAction @Cancel => m_Wrapper.m_Panel_Cancel;
+        public InputAction @Select => m_Wrapper.m_Panel_Select;
         public InputActionMap Get() { return m_Wrapper.m_Panel; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -610,6 +644,9 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @Cancel.started -= m_Wrapper.m_PanelActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_PanelActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_PanelActionsCallbackInterface.OnCancel;
+                @Select.started -= m_Wrapper.m_PanelActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_PanelActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_PanelActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_PanelActionsCallbackInterface = instance;
             if (instance != null)
@@ -623,6 +660,9 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -659,5 +699,6 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         void OnNavigate(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }
