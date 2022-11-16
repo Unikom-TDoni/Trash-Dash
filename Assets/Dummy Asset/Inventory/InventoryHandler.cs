@@ -20,7 +20,7 @@ namespace Group8.TrashDash.Inventory
         private Inventory<TrashContentInfo> _inventory = default;
 
         [SerializeField]
-        private InventoryLayoutController _inventoryLayoutController = default;
+        private InventoryLayoutGroupController _inventoryLayoutController = default;
 
         private void Awake()
         {

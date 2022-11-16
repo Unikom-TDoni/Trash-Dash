@@ -10,35 +10,34 @@ using System.Collections.ObjectModel;
 namespace Lnco.Unity.Module.Layout
 {
     [RequireComponent(typeof(LayoutGroup))]
-    public abstract class LayoutGroupController<TViewHolder, TContent> : MonoBehaviour where TViewHolder : ViewHolder<TContent>
+    public abstract class LayoutGroupController<TGroupItem, TContent> : MonoBehaviour where TGroupItem : LayoutGroupItem<TContent>
     {
         [SerializeField]
-        protected TViewHolder ViewHolder = default;
+        protected TGroupItem GroupItem = default;
 
-        protected readonly Collection<TViewHolder> GeneratedViewHolders = new();
+        protected readonly Collection<TGroupItem> GeneratedGroupItems = new();
 
-        protected abstract TViewHolder InstatiateViewHolder();
+        protected abstract TGroupItem InstatiateGroupItem();
 
-        public IReadOnlyCollection<TViewHolder> GetViewHolders() =>
-            GeneratedViewHolders;
+        public IReadOnlyCollection<TGroupItem> GetGroupItems() =>
+            GeneratedGroupItems;
 
         public void Create()
         {
-            var obj = InstatiateViewHolder();
-            GeneratedViewHolders.Add(obj);
-            obj.transform.SetParent(transform, default);
+            var obj = InstatiateGroupItem();
+            GeneratedGroupItems.Add(obj);
         }
 
         public void Remove(int index)
         {
-            Destroy(GeneratedViewHolders[index]);
-            GeneratedViewHolders.RemoveAt(index);
+            Destroy(GeneratedGroupItems[index]);
+            GeneratedGroupItems.RemoveAt(index);
         }
 
         public void Clear()
         {
-            foreach (var item in GeneratedViewHolders) Destroy(item);
-            GeneratedViewHolders.Clear();
+            foreach (var item in GeneratedGroupItems) Destroy(item);
+            GeneratedGroupItems.Clear();
         }
 
         public bool TryRefreshContent(IEnumerable<TContent> content)
@@ -46,8 +45,8 @@ namespace Lnco.Unity.Module.Layout
             var index = 0;
             foreach (var item in content)
             {
-                if (index >= GeneratedViewHolders.Count) return false;
-                GeneratedViewHolders[index].UpdateContent(item);
+                if (index >= GeneratedGroupItems.Count) return false;
+                GeneratedGroupItems[index].UpdateContent(item);
                 index++;
             }
             return true;
@@ -55,14 +54,14 @@ namespace Lnco.Unity.Module.Layout
 
         public bool TryUpdateContent(TContent content, int index)
         {
-            if (index >= GeneratedViewHolders.Count) return false;
-            GeneratedViewHolders[index].UpdateContent(content);
+            if (index >= GeneratedGroupItems.Count) return false;
+            GeneratedGroupItems[index].UpdateContent(content);
             return true;
         }
 
-        public bool TryUpdateContent(TContent content, TViewHolder viewHolder)
+        public bool TryUpdateContent(TContent content, TGroupItem groupItem)
         {
-            var instance = GeneratedViewHolders.FirstOrDefault((item) => item.Equals(viewHolder));
+            var instance = GeneratedGroupItems.FirstOrDefault((item) => item.Equals(groupItem));
             if (instance is null) return false;
             instance.UpdateContent(content);
             return true;
