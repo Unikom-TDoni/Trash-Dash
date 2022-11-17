@@ -39,7 +39,8 @@ namespace Group8.TrashDash.Module.Spawner
                 Quaternion rotation = Quaternion.identity;
 
                 obj[i] = PoolManager.Instance.pools[prefab].Spawn(position, rotation);
-                obj[i].transform.SetParent(transform);
+                //obj[i].transform.SetParent(transform);
+                obj[i].GetComponent<SpawnObject>().spawner = this;
             }
 
             yield return new WaitForSeconds(interval);

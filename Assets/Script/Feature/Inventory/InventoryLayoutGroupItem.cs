@@ -15,7 +15,7 @@ namespace Group8.TrashDash.Inventory
         private Image _imgBackground = default;
 
         [SerializeField]
-        [Range(100, 1000)]
+        [Range(100, 2000)]
         private float _lerpSpeed = default;
 
         private TrashBinTypes _trashBinTypes = default;
@@ -75,6 +75,11 @@ namespace Group8.TrashDash.Inventory
         {
             _trashBinTypes = default;
             _imgIcon.sprite = default;
+        }
+
+        private void OnDisable()
+        {
+            _imgIcon.rectTransform.anchoredPosition = _originalImageIconPosition;
         }
 
         public TrashBinTypes GetTrashBinTypes() =>

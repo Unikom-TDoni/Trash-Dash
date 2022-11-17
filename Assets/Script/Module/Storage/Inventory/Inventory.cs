@@ -19,7 +19,7 @@ namespace Lnco.Unity.Module.Storage
             Items.Count != default;
 
         public bool IsFull() =>
-            Items.Count == MaxCapacity;
+            Items.Count >= MaxCapacity;
 
         public IEnumerable<T> GetItems() =>
             Items;

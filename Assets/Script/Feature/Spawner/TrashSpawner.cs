@@ -15,6 +15,8 @@ namespace Group8.TrashDash.Spawner
             StartCoroutine(base.Spawn());
             foreach(GameObject go in obj)
             {
+                if (go == null) continue;
+
                 TrashInfo trashInfo = go.GetComponent<TrashInfo>();
 
                 if (trashInfo == null)
