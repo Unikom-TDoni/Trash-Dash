@@ -24,6 +24,8 @@ namespace Group8.TrashDash.Inventory
 
         private Vector2 _originalImageIconPosition = default;
 
+        private TrashBinLayoutController trashBinLayoutController;
+
         private bool IsInTheOriginalPositionRange
         {
             get => Vector2.Distance(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition) < 1;
@@ -32,6 +34,9 @@ namespace Group8.TrashDash.Inventory
         private void Awake()
         {
             _topParent = transform.parent.parent;
+
+            GameObject trashBin = GameObject.Find("IMG_Trash-Bin");
+            trashBinLayoutController = trashBin.GetComponent<TrashBinLayoutController>();
         }
 
         private void Update()
@@ -53,6 +58,7 @@ namespace Group8.TrashDash.Inventory
             _imgIcon.transform.SetParent(_topParent);
             _imgIcon.raycastTarget = default;
             _originalImageIconPosition = _imgIcon.rectTransform.anchoredPosition;
+            trashBinLayoutController.dragTrash = true;
         }
 
         public void OnDrag(PointerEventData eventData)
