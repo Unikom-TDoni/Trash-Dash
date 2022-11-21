@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Group8.TrashDash.Item.Trash
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class TrashInfo : SpawnObject
+    public class Trash : SpawnObject
     {
         public TrashContentInfo trashContentInfo;
 
@@ -11,6 +11,7 @@ namespace Group8.TrashDash.Item.Trash
         {
             base.Release();
             GetComponent<Rigidbody>().velocity = Vector3.zero;
+            transform.rotation = Quaternion.identity;
         }
     }
 }

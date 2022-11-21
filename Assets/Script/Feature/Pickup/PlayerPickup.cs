@@ -64,16 +64,16 @@ namespace Group8.TrashDash.Player.Pickup
             foreach (GameObject obj in takenObjects.OrderBy(
                     obj => (transform.position - obj.transform.position).sqrMagnitude).ToArray())
             {
-                TrashInfo trashInfo = obj.GetComponent<TrashInfo>();
-                if (trashInfo == null)
+                Trash trash = obj.GetComponent<Trash>();
+                if (trash == null)
                 {
                     Debug.Log(obj.name + " does not contain TrashInfo.");
                     continue;
                 }
 
-                if (inventory.StoreItem(trashInfo.trashContentInfo))
+                if (inventory.StoreItem(trash.trashContentInfo))
                 {
-                    trashInfo.Release();
+                    trash.Release();
                     takenObjects.Remove(obj);
                 }
             }

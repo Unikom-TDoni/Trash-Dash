@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
+  m_Name: Milk Jug
+  m_EditorClassIdentifier: 
+  Name: Milk Jug
+  Sprite: {fileID: 0}
+  TrashBinType: 1
+  Mesh: {fileID: 4088564196865844098, guid: 8bd09e00531a681438d1b0c086d4f05b, type: 3}
+  Materials:
+  - {fileID: 6394798501168575904, guid: 8bd09e00531a681438d1b0c086d4f05b, type: 3}
