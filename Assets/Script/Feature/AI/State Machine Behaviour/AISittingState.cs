@@ -1,11 +1,15 @@
 using UnityEngine;
 
 public class AISittingState : StateBehaviour {
-    Vector3 lookAtPos;
     Transform transform;
+    Animator animator;
+
+    float duration;
+    Vector3 lookAtPos;
 
     public override void Start(Transform transform) {
         this.transform = transform;
+        animator = transform.GetComponent<Animator>();
     }
 
     public override void OnStateEnter() {
@@ -19,11 +23,18 @@ public class AISittingState : StateBehaviour {
                 break;
             }
         }
+
+        duration = 0f;
     }
 
     public override void OnStateFixedUpdate() {
         base.OnStateFixedUpdate();
 
         Utility.LerpLookTowardsTarget(transform, lookAtPos);
+        
+        duration -= Time.fixedDeltaTime;
+        if (duration <= 0) {
+            animator.CrossFade("Sitting Stand Up", .25f);
+        }
     }
 }

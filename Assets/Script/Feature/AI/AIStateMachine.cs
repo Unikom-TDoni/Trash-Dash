@@ -15,6 +15,7 @@ public class AIStateMachine {
             {AIState.OrderingFood, new AIOrderingState()},
             {AIState.MovingToSeat, new AIMovingToSeatState()},
             {AIState.Sitting, new AISittingState()},
+            {AIState.WalkingAway, new AIWalkingAwayState()},
         };
         foreach (KeyValuePair<AIState, StateBehaviour> state in stateDictionary) {
             state.Value.Start(transform);
