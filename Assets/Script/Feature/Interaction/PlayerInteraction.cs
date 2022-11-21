@@ -24,6 +24,13 @@ namespace Group8.TrashDash.Player.Interaction
 
         private List<GameObject> detectedInteractables;
 
+        Animator playerAnimator;
+
+        private void Awake()
+        {
+            playerAnimator = GetComponent<Animator>();
+        }
+
         private void Start()
         {
             playerControls = InputManager.playerAction;

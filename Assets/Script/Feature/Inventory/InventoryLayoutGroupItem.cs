@@ -15,7 +15,7 @@ namespace Group8.TrashDash.Inventory
         private Image _imgBackground = default;
 
         [SerializeField]
-        [Range(100, 1000)]
+        [Range(100, 2000)]
         private float _lerpSpeed = default;
 
         private TrashBinTypes _trashBinTypes = default;
@@ -23,6 +23,8 @@ namespace Group8.TrashDash.Inventory
         private Transform _topParent = default;
 
         private Vector2 _originalImageIconPosition = default;
+
+        private TrashBinLayoutController trashBinLayoutController;
 
         private bool IsInTheOriginalPositionRange
         {
@@ -32,6 +34,9 @@ namespace Group8.TrashDash.Inventory
         private void Awake()
         {
             _topParent = transform.parent.parent;
+
+            GameObject trashBin = GameObject.Find("IMG_Trash-Bin");
+            trashBinLayoutController = trashBin.GetComponent<TrashBinLayoutController>();
         }
 
         private void Update()
@@ -53,6 +58,7 @@ namespace Group8.TrashDash.Inventory
             _imgIcon.transform.SetParent(_topParent);
             _imgIcon.raycastTarget = default;
             _originalImageIconPosition = _imgIcon.rectTransform.anchoredPosition;
+            trashBinLayoutController.dragTrash = true;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -75,6 +81,11 @@ namespace Group8.TrashDash.Inventory
         {
             _trashBinTypes = default;
             _imgIcon.sprite = default;
+        }
+
+        private void OnDisable()
+        {
+            _imgIcon.rectTransform.anchoredPosition = _originalImageIconPosition;
         }
 
         public TrashBinTypes GetTrashBinTypes() =>

@@ -20,12 +20,6 @@ namespace Group8.TrashDash.Inventory
         private Toggle _inventoryToggle = default;
 
         [SerializeField]
-        private CanvasGroup _canvasGroup = default;
-
-        [SerializeField]
-        private List<TrashContentInfo> _trashes = new();
-
-        [SerializeField]
         private Inventory<TrashContentInfo> _inventory = default;
 
         [SerializeField]
@@ -33,7 +27,7 @@ namespace Group8.TrashDash.Inventory
 
         private void Awake()
         {
-            _inventory.Init(_trashes);
+            _inventory.Init(new List<TrashContentInfo>());
             _inventoryLayoutController.InitInventoryLayout(_inventory.MaxCapacity);
             _inventoryToggle.onValueChanged.AddListener((value) =>
             {
