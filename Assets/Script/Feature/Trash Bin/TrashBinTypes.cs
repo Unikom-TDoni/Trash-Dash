@@ -1,5 +1,4 @@
-﻿
-namespace Group8.TrashDash.TrashBin
+﻿namespace Group8.TrashDash.TrashBin
 {
     public enum TrashBinTypes
     {

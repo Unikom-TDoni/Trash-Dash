@@ -1,22 +1,20 @@
+using System;
 using UnityEngine;
+using Group8.TrashDash.Event;
 using UnityEngine.EventSystems;
-using Group8.TrashDash.Inventory;
+using Lnco.Unity.Module.EventSystems;
 
 namespace Group8.TrashDash.TrashBin
 {
     public sealed class TrashBinLayoutController : MonoBehaviour, IDropHandler
     {
-        private TrashBinTypes _trashBinType = default;
+        public event Action<DropableData> OnDrop = default;
 
-        public void OnDrop(PointerEventData eventData)
+        void IDropHandler.OnDrop(PointerEventData eventData)
         {
             var selectedObj = eventData.selectedObject;
-            if (!selectedObj.TryGetComponent<InventoryLayoutGroupItem>(out var item)) return;
-            if (_trashBinType != item.GetTrashBinTypes()) return;
-            item.Reset();
+            if (!selectedObj.TryGetComponent<IDropable<DropableData>>(out var item)) return;
+            OnDrop?.Invoke(item.Data);
         }
-
-        public void SetTrashBinType(TrashBinTypes type) =>
-            _trashBinType = type;
     }
 }

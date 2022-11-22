@@ -7,5 +7,5 @@ public class TrashContentInfo : ScriptableObject
 {
     public string Name;
     public Sprite Sprite = default;
-    public TrashBinTypes TrashBinType = default;
+    public Group8.TrashDash.TrashBin.TrashBinTypes TrashBinType = default;
 }

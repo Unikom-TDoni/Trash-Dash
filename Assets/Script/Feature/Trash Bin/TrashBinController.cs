@@ -1,12 +1,19 @@
+using System;
 using UnityEngine;
+using Group8.TrashDash.Player.Interaction;
 
 namespace Group8.TrashDash.TrashBin
 {
-    public sealed class TrashBinController : MonoBehaviour
+    public sealed class TrashBinController : MonoBehaviour, IInteractable
     {
-        private void Update()
+        public event Action<TrashBinTypes> OnInteract = default;
+
+        [SerializeField]
+        private TrashBinTypes Types = default;
+
+        public void Interact()
         {
-            
+            OnInteract(Types);
         }
     }
 }

@@ -1,33 +1,29 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Group8.TrashDash.Event;
 using Lnco.Unity.Module.Layout;
 using UnityEngine.EventSystems;
-using Group8.TrashDash.TrashBin;
+using Lnco.Unity.Module.EventSystems;
 
 namespace Group8.TrashDash.Inventory
 {
-    public sealed class InventoryLayoutGroupItem : LayoutGroupItem<TrashContentInfo>, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public sealed class InventoryLayoutGroupItem : LayoutGroupItem<TrashContentInfo>, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropable<DropableData>
     {
         [SerializeField]
-        private Image _imgIcon = default;
-
-        [SerializeField]
-        private Image _imgBackground = default;
-
-        [SerializeField]
         [Range(100, 1000)]
-        private float _lerpSpeed = default;
+        private float _speed = default;
 
-        private TrashBinTypes _trashBinTypes = default;
+        [SerializeField]
+        private Image _imgIcon = default;
 
         private Transform _topParent = default;
 
         private Vector2 _originalImageIconPosition = default;
 
-        private bool IsInTheOriginalPositionRange
-        {
-            get => Vector2.Distance(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition) < 1;
-        }
+        private bool IsInTheOriginalPositionRange => Vector2.Distance(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition) < 1;
+
+        public DropableData Data { get; private set; } = default;
 
         private void Awake()
         {
@@ -37,18 +33,13 @@ namespace Group8.TrashDash.Inventory
         private void Update()
         {
             if (!_imgIcon.raycastTarget) return;
-            if (!IsInTheOriginalPositionRange)
-                MoveToTheOriginalPosition();
-            else
-            {
-                _imgIcon.transform.SetParent(transform);
-                _imgIcon.rectTransform.anchoredPosition = default;
-                _originalImageIconPosition = default;
-            }
+            if (!IsInTheOriginalPositionRange) MoveToTheOriginalPosition();
+            else SnapToPosition();
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (eventData.button is not PointerEventData.InputButton.Left) return;
             if (eventData.pointerPressRaycast.gameObject != _imgIcon.gameObject) return;
             _imgIcon.transform.SetParent(_topParent);
             _imgIcon.raycastTarget = default;
@@ -61,26 +52,27 @@ namespace Group8.TrashDash.Inventory
             _imgIcon.transform.position = eventData.position;
         }
 
-        public void OnEndDrag(PointerEventData eventData) =>
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            if (_imgIcon.raycastTarget) return;
             _imgIcon.raycastTarget = true;
-
-        public override void UpdateContent(TrashContentInfo data)
-        {
-            if (data is null) return;
-            _imgIcon.sprite = data.Sprite;
-            _trashBinTypes = data.TrashBinType;
         }
 
-        public void Reset()
+        public override void UpdateContent(TrashContentInfo content)
         {
-            _trashBinTypes = default;
-            _imgIcon.sprite = default;
+            _imgIcon.sprite = content.Sprite;
+            Data = new DropableData(content, this);
         }
 
-        public TrashBinTypes GetTrashBinTypes() =>
-            _trashBinTypes;
+        private void SnapToPosition()
+        {
+            if (_imgIcon.transform.parent == transform) return;
+            _imgIcon.transform.SetParent(transform);
+            _imgIcon.rectTransform.anchoredPosition = default;
+            _originalImageIconPosition = default;
+        }
 
         private void MoveToTheOriginalPosition() =>
-            _imgIcon.rectTransform.anchoredPosition = Vector2.MoveTowards(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition, _lerpSpeed * Time.deltaTime);
+            _imgIcon.rectTransform.anchoredPosition = Vector2.MoveTowards(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition, _speed * Time.deltaTime);
     }
 }
