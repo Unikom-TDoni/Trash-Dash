@@ -15,7 +15,7 @@ namespace Group8.TrashDash.Module.Detector
             {
                 Transform target = targetCollider.transform;
                 Vector3 directionToTarget = (target.position - axis).normalized;
-                if (Vector3.Angle(forward, directionToTarget) < (angle / 2))
+                if (Vector3.Angle(forward, directionToTarget) <= (angle / 2))
                 {
                     if (typeof(T) == typeof(GameObject))
                     {

@@ -2,6 +2,10 @@
 {
     public enum TrashBinTypes
     {
-        Default,
+		Organic,
+		NonOrganic,
+		Residu,
+		B3,
+		Kertas
     }
 }

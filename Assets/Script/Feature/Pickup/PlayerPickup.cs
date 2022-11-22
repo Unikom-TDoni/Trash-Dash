@@ -7,6 +7,7 @@ namespace Group8.TrashDash.Player.Pickup
     using Module.Detector;
     using Inventory;
     using Item.Trash;
+    using System.Linq;
 
     public class PlayerPickup : MonoBehaviour
     {
@@ -20,6 +21,13 @@ namespace Group8.TrashDash.Player.Pickup
         public List<GameObject> takenObjects;
 
         [SerializeField] InventoryHandler inventory;
+
+        Animator playerAnimator;
+
+        private void Awake()
+        {
+            playerAnimator = GetComponent<Animator>();
+        }
 
         private void Start()
         {
@@ -53,17 +61,18 @@ namespace Group8.TrashDash.Player.Pickup
         {
             takenObjects = ColliderDetector.Find<GameObject>(transform.position, pickUpRadius, targetMask, transform.forward, pickUpAngle);
 
-            foreach (GameObject obj in takenObjects.ToArray())
+            foreach (GameObject obj in takenObjects.OrderBy(
+                    obj => (transform.position - obj.transform.position).sqrMagnitude).ToArray())
             {
-                TrashInfo trashInfo = obj.GetComponent<TrashInfo>();
-                if (trashInfo == null)
+                Trash trash = obj.GetComponent<Trash>();
+                if (trash == null)
                 {
                     Debug.Log(obj.name + " does not contain TrashInfo.");
                     continue;
                 }
 
-                inventory.AddItem(trashInfo.trashContentInfo);
-                trashInfo.Release();
+                inventory.AddItem(trash.trashContentInfo);
+                trash.Release();
                 takenObjects.Remove(obj);
             }
         }

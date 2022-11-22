@@ -1,0 +1,10 @@
+Low Poly Garbage pack.
+Great quality Low polygon models with great quality textures.
+The pack consist of 11 beautiful assets ,
+ready to  be useb for all major platforms like : mobile , Oculus , PC and more...
+Features: 
+-Low poly Count i.e. 2749 tris for  the whole scene.
+-Hand painted textures.
+
+Demo scene included with all prefabs.
+also a Script "Rotator" is used in the demo scene to rotate the base .

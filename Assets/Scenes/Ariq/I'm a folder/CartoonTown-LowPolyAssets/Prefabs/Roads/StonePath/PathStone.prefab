@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 439198}
   - component: {fileID: 3357546}
   - component: {fileID: 2374466}
+  - component: {fileID: 7135088585181445313}
   m_Layer: 0
   m_Name: PathStone
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7135088585181445313
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 69b30fbe9889b4430b3a30ae67f0a464, type: 3}

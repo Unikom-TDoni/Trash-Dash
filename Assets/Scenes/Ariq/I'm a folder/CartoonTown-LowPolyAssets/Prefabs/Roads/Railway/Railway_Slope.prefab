@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 482400}
   - component: {fileID: 3356080}
   - component: {fileID: 2365930}
+  - component: {fileID: -9031720163205474696}
   m_Layer: 0
   m_Name: Railway_Slope
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-9031720163205474696
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147532}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 9fb11cf8e4a2b49c6945dcc83524d527, type: 3}

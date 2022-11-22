@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 409016}
   - component: {fileID: 3357480}
   - component: {fileID: 2324374}
+  - component: {fileID: 3915735919530452741}
   m_Layer: 0
   m_Name: Stone_LowFlat_3
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3915735919530452741
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 38239bde8feeb44bd8e0c93a2f3dc4cb, type: 3}

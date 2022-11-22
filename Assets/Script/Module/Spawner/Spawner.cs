@@ -9,19 +9,22 @@ namespace Group8.TrashDash.Module.Spawner
     {
         public Action<SpawnObject> OnRelease;
 
-        [SerializeField] private GameObject prefab;
+        [SerializeField] private SpawnPrefab spawnPrefab;
         [SerializeField] private Vector3 size;
         [SerializeField] private Vector3 offset;
         [SerializeField] private int amount = 3;
         [SerializeField] private float interval = 5f;
-        [SerializeField] private int maxSpawnedObject = 10;
+        [SerializeField] private int maxSpawnedObject = 1;
+        [SerializeField] private bool randomizeRotation;
+
+        private int countObject = 0;
 
         protected GameObject[] obj;
         private void Start()
         {
             obj = new GameObject[amount];
             OnRelease += Release;
-            PoolManager.Instance.Add(prefab);
+            PoolManager.Instance.Add(spawnPrefab.prefab);
 
             StartCoroutine(Spawn());
         }
@@ -30,32 +33,40 @@ namespace Group8.TrashDash.Module.Spawner
         {
             for (int i = 0; i < amount; i++)
             {
-                if (PoolManager.Instance.pools[prefab].Count >= maxSpawnedObject) break;
+                if (countObject >= maxSpawnedObject) break;
+                if (PoolManager.Instance.pools[spawnPrefab.prefab].Count >= spawnPrefab.maxObjectInPool) break;
                 
-                Vector3 position = transform.position + new Vector3(
+                Vector3 position = transform.position + offset + new Vector3(
                     Random.Range(-size.x / 2, size.x / 2),
                     Random.Range(-size.y / 2, size.y / 2),
                     Random.Range(-size.z / 2, size.z / 2));
-                Quaternion rotation = Quaternion.identity;
+                Quaternion rotation = (randomizeRotation) ? Random.rotation : Quaternion.identity;
 
-                obj[i] = PoolManager.Instance.pools[prefab].Spawn(position, rotation);
-                obj[i].transform.SetParent(transform);
+                obj[i] = PoolManager.Instance.pools[spawnPrefab.prefab].Spawn(position, rotation);
+                //obj[i].transform.SetParent(transform);
+                obj[i].GetComponent<SpawnObject>().spawner = this;
+
+                countObject++;
             }
 
             yield return new WaitForSeconds(interval);
+
+            for (int i = 0; i < obj.Length; i++) obj[i] = null;
 
             StartCoroutine(Spawn());
         }
 
         private void Release(SpawnObject obj)
         {
-            PoolManager.Instance.pools[prefab].Release(obj.gameObject);
+            PoolManager.Instance.pools[spawnPrefab.prefab].Release(obj.gameObject);
+
+            countObject--;
         }
 
         private void OnDestroy()
         {
             OnRelease -= Release;
-            PoolManager.Instance.Remove(prefab);
+            PoolManager.Instance.Remove(spawnPrefab.prefab);
 
             StopAllCoroutines();
         }

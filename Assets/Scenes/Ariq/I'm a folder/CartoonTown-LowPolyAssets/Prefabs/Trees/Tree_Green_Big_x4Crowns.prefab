@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 454498}
   - component: {fileID: 3362942}
   - component: {fileID: 2312108}
+  - component: {fileID: -4895437899944147121}
   m_Layer: 0
   m_Name: Tree_Green_Big_x4Crowns
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-4895437899944147121
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134854}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 07d3996fe1ef54197b03358aa3481873, type: 3}

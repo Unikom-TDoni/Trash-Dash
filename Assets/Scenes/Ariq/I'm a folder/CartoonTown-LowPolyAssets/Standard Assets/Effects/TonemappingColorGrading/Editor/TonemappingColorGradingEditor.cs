@@ -242,6 +242,7 @@ namespace UnityStandardAssets.CinematicEffects
                 m_HistogramBuffer.Release();
         }
 
+        [System.Obsolete]
         private void SetLUTImportSettings(TextureImporter importer)
         {
             importer.textureType = TextureImporterType.Default;
@@ -252,6 +253,7 @@ namespace UnityStandardAssets.CinematicEffects
             importer.SaveAndReimport();
         }
 
+        [System.Obsolete]
         private void DrawFields()
         {
             foreach (var group in m_GroupFields)
@@ -335,7 +337,10 @@ namespace UnityStandardAssets.CinematicEffects
             }
         }
 
+        [System.Obsolete]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
         public override void OnInspectorGUI()
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
         {
             if (s_Styles == null)
                 s_Styles = new Styles();

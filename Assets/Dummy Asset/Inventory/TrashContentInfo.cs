@@ -1,11 +1,12 @@
-using Group8.TrashDash.TrashBin;
-using System;
 using UnityEngine;
+using Group8.TrashDash.TrashBin;
 
-[CreateAssetMenu(fileName = "New Trash Info", menuName = "Item/Trash")]
+[CreateAssetMenu(fileName = "New Trash Info", menuName = "Item/Trash Info")]
 public class TrashContentInfo : ScriptableObject
 {
     public string Name;
     public Sprite Sprite = default;
-    public Group8.TrashDash.TrashBin.TrashBinTypes TrashBinType = default;
+    public TrashBinTypes TrashBinType = default;
+    public Mesh Mesh;
+    public Material[] Materials;
 }

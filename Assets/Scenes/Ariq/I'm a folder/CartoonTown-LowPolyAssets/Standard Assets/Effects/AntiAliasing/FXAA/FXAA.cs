@@ -211,6 +211,7 @@ namespace UnityStandardAssets.CinematicEffects
 
         public bool validSourceFormat { get; private set; }
 
+        [Obsolete]
         public void OnEnable(AntiAliasing owner)
         {
             if (!ImageEffectHelper.IsSupported(shader, true, false, owner))

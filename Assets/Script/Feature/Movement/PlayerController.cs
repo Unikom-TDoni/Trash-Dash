@@ -16,7 +16,7 @@ namespace Group8.TrashDash.Player.Controller
 
         CharacterController controller;
 
-        Vector3 rawInputMovement;
+        Vector3 rawInputMovement = Vector3.zero;
         Vector3 velocity;
         Vector3 moveDirection;
 
@@ -26,9 +26,16 @@ namespace Group8.TrashDash.Player.Controller
 
         bool canMove = true;
 
+        Animator animator;
+        public float transitionSpeed = 2f;
+
+        [Header("Force")]
+        public float pushForce;
+
         void Awake()
         {
             controller = GetComponent<CharacterController>();
+            animator = GetComponent<Animator>();
         }
 
         void Start()
@@ -62,6 +69,8 @@ namespace Group8.TrashDash.Player.Controller
 
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
+
+            animator.SetFloat("magnitude", Mathf.MoveTowards(animator.GetFloat("magnitude"), (speed / sprintSpeed) * moveDirection.magnitude, Time.deltaTime * transitionSpeed));
         }
 
         #region Callbacks
@@ -73,7 +82,6 @@ namespace Group8.TrashDash.Player.Controller
             playerControls.Gameplay.Move.canceled += OnMoveCanceled;
             playerControls.Gameplay.Sprint.performed += OnSprint;
             playerControls.Gameplay.Sprint.canceled += OnSprintCanceled;
-            playerControls.Gameplay.Pause.performed += OnPause;
         }
         private void UnregisterInputCallbacks()
         {
@@ -83,7 +91,6 @@ namespace Group8.TrashDash.Player.Controller
             playerControls.Gameplay.Move.canceled -= OnMoveCanceled;
             playerControls.Gameplay.Sprint.performed -= OnSprint;
             playerControls.Gameplay.Sprint.canceled -= OnSprintCanceled;
-            playerControls.Gameplay.Pause.performed -= OnPause;
         }
         #endregion
 
@@ -118,28 +125,37 @@ namespace Group8.TrashDash.Player.Controller
             Vector2 inputMovement = context.ReadValue<Vector2>();
             rawInputMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
         }
+
         public void OnMoveCanceled(InputAction.CallbackContext context)
         {
             rawInputMovement = Vector3.zero;
         }
+
         public void OnSprint(InputAction.CallbackContext context)
         {
             if (!controller.isGrounded) return;
 
             speed = sprintSpeed;
         }
+
         public void OnSprintCanceled(InputAction.CallbackContext context)
         {
             speed = moveSpeed;
         }
+
         public void OnInteract(InputAction.CallbackContext context)
         {
             Debug.Log("Interact Button pressed");
         }
-        public void OnPause(InputAction.CallbackContext context)
-        {
-            Debug.Log("Pause Button pressed");
-        }
         #endregion
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            Rigidbody rb = hit.collider.attachedRigidbody;
+            if (rb && !rb.isKinematic)
+            {
+                rb.velocity = hit.moveDirection * pushForce * (speed / moveSpeed);
+            }
+        }
     }
 }

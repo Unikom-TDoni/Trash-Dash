@@ -27,9 +27,11 @@ public class AIQueueingState : StateBehaviour {
         base.OnStateFixedUpdate();
 
         if (aiManager.customerQueue[0] == customerAI) {
-            transform.position = Vector3.MoveTowards(transform.position, aiManager.stallPosition, Time.fixedDeltaTime * aiManager.speed);
+            transform.position = Vector3.MoveTowards(transform.position, aiManager.queuePosition, Time.fixedDeltaTime * aiManager.speed);
 
-            if (Vector3.SqrMagnitude(aiManager.stallPosition - transform.position) <= Mathf.Epsilon) {
+            Vector3 dir = aiManager.queuePosition - transform.position;
+            dir.y = 0;
+            if (Vector3.SqrMagnitude(dir) <= 0.01f) {
                 animator.CrossFade("Idle", .25f);
             }
         } else {

@@ -60,6 +60,7 @@ namespace UnityStandardAssets.CinematicEffects
             }
         }
 
+        [System.Obsolete]
         private void OnEnable()
         {
             m_SMAA.OnEnable(this);

@@ -4,12 +4,15 @@ using System.Linq;
 
 public class AIManager : MonoBehaviour {
     [SerializeField] CustomerAI prefab;
-    [SerializeField] Vector3 spawnPosition;
-    [SerializeField] Vector3 spawnRotation;
+    [SerializeField] Transform spawnPoint;
+    Vector3 spawnPosition => spawnPoint.position;
+    Vector3 spawnRotation => spawnPoint.rotation.eulerAngles;
 
     [field: SerializeField] public float speed {get; private set;} = 10f;
     [field: SerializeField] public Transform stall {get; private set;}
-    [field: SerializeField] public Vector3 stallPosition {get; private set;}
+    public Vector3 queuePosition => stall.position + queueOffset;
+
+    [SerializeField] private Vector3 queueOffset;
 
     public List<CustomerAI> customerQueue {get; private set;} = new List<CustomerAI>();
     public List<GameObject> seatList {get; private set;}
