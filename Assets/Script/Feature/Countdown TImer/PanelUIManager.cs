@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PanelUIManager : MonoBehaviour
 {
@@ -14,6 +15,16 @@ public class PanelUIManager : MonoBehaviour
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject pausedPanel;
     [SerializeField] GameObject pausedButton;
+
+    private void OnEnable()
+    {
+        InputManager.playerAction.Gameplay.Pause.performed += OnPause;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.playerAction.Gameplay.Pause.performed -= OnPause;
+    }
 
     void Start()
     {
@@ -26,27 +37,37 @@ public class PanelUIManager : MonoBehaviour
         currentTime -= 1 * Time.deltaTime;
         countdownText.text = currentTime.ToString("0");
 
-        if (currentTime <= 0)
-        {
-            currentTime = 0;
-            // Game berhenti dan muncul game over panel
-            Time.timeScale = 0;
-            gameOverPanel.SetActive(true);
-            pausedButton.SetActive(false);
+        if (currentTime > 0) return;
+        if (gameOverPanel.activeSelf) return;
 
-        }
+        currentTime = 0;
+        // Game berhenti dan muncul game over panel
+        Time.timeScale = 0;
+        gameOverPanel.SetActive(true);
+        pausedButton.SetActive(false);
     }
+
+    private void OnPause(InputAction.CallbackContext context)
+    {
+        PauseGame();
+        pausedPanel.SetActive(true);
+        pausedButton.SetActive(false);
+    }
+
     public void PauseGame()
     {
         Time.timeScale = 0;
+        InputManager.ToggleActionMap(InputManager.playerAction.Panel);
     }
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        InputManager.ToggleActionMap(InputManager.playerAction.Gameplay);
     }
 
-    public void ReloadScene(string name)
+    public void ReloadScene()
     {
-        SceneManager.LoadScene(name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
     }
 }
