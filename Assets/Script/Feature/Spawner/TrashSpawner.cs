@@ -33,8 +33,18 @@ namespace Group8.TrashDash.Spawner
                 if(randomTrashInfo.Materials.Length > 0)
                     go.GetComponent<MeshRenderer>().materials = randomTrashInfo.Materials;
 
-                if(go.GetComponent<Collider>()) Destroy(go.GetComponent<Collider>());
-                go.AddComponent<BoxCollider>();
+                if (go.GetComponent<Collider>())
+                {
+                    Collider[] allColliders = go.GetComponents<Collider>();
+                    foreach (Collider c in allColliders)
+                    {
+                        Destroy(c);
+                    }
+                }
+                go.AddComponent<BoxCollider>().enabled = true;
+                Collider trig = go.AddComponent<BoxCollider>();
+                trig.isTrigger = true;
+                trig.enabled = false;
             }
             yield return null;
         }

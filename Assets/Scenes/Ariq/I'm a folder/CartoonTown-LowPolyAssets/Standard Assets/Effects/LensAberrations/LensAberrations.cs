@@ -182,6 +182,7 @@ namespace UnityStandardAssets.CinematicEffects
 
         private RenderTextureUtility m_RTU;
 
+        [Obsolete]
         private void OnEnable()
         {
             if (!ImageEffectHelper.IsSupported(shader, false, false, this))

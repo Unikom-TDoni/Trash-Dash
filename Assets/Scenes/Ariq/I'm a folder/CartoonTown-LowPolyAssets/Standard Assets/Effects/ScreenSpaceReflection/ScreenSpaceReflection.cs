@@ -225,6 +225,7 @@ namespace UnityStandardAssets.CinematicEffects
             PoissonBlur = 8,
         }
 
+        [Obsolete]
         private void OnEnable()
         {
             if (!ImageEffectHelper.IsSupported(shader, false, true, this))

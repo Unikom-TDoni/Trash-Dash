@@ -603,6 +603,7 @@ namespace UnityStandardAssets.CinematicEffects
             m_TonemapperDirty = true;
         }
 
+        [Obsolete]
         private void OnEnable()
         {
             if (!ImageEffectHelper.IsSupported(shader, false, true, this))
@@ -831,6 +832,7 @@ namespace UnityStandardAssets.CinematicEffects
         }
 
         [ImageEffectTransformsToLDR]
+        [Obsolete]
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
 #if UNITY_EDITOR

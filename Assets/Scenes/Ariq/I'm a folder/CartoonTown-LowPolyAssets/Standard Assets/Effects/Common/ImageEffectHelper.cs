@@ -7,6 +7,7 @@ namespace UnityStandardAssets.CinematicEffects
 {
     public static class ImageEffectHelper
     {
+        [System.Obsolete]
         public static bool IsSupported(Shader s, bool needDepth, bool needHdr, MonoBehaviour effect)
         {
 #if UNITY_EDITOR

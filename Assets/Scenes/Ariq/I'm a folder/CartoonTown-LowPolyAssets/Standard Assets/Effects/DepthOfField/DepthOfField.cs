@@ -386,6 +386,7 @@ namespace UnityStandardAssets.CinematicEffects
         private Vector4 m_HexagonalBokehDirection2;
         private Vector4 m_HexagonalBokehDirection3;
 
+        [Obsolete]
         private void OnEnable()
         {
             if (!ImageEffectHelper.IsSupported(filmicDepthOfFieldShader, true, true, this) || !ImageEffectHelper.IsSupported(medianFilterShader, true, true, this))

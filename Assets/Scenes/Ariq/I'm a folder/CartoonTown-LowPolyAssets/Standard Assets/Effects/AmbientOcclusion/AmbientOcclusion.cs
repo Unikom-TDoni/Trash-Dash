@@ -284,6 +284,7 @@ namespace UnityStandardAssets.CinematicEffects
 
         #region MonoBehaviour Functions
 
+        [System.Obsolete]
         void OnEnable()
         {
             // Check if the shader is supported in the current platform.
@@ -316,6 +317,7 @@ namespace UnityStandardAssets.CinematicEffects
             _aoCommands = null;
         }
 
+        [System.Obsolete]
         void Update()
         {
             if (propertyObserver.CheckNeedsReset(settings, targetCamera))
