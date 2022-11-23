@@ -7,6 +7,8 @@ public class AISittingState : StateBehaviour {
     float duration;
     Vector3 lookAtPos;
 
+    bool standingUp;
+
     public override void Start(Transform transform) {
         this.transform = transform;
         animator = transform.GetComponent<Animator>();
@@ -24,17 +26,24 @@ public class AISittingState : StateBehaviour {
             }
         }
 
-        duration = 0f;
+        AIManager manager = GameObject.FindWithTag("Manager").GetComponent<AIManager>();
+        duration = manager.sittingDuration;
+
+        standingUp = false;
     }
 
     public override void OnStateFixedUpdate() {
         base.OnStateFixedUpdate();
 
         Utility.LerpLookTowardsTarget(transform, lookAtPos);
-        
-        duration -= Time.fixedDeltaTime;
-        if (duration <= 0) {
-            animator.CrossFade("Sitting Stand Up", .25f);
+
+        if (!standingUp) {
+            duration -= Time.fixedDeltaTime;
+            if (duration <= 0) {
+                animator.CrossFade("Sitting Stand Up", .25f);
+                standingUp = true;
+            }
         }
+        
     }
 }

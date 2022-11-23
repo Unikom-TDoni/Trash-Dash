@@ -4,21 +4,30 @@ using System.Linq;
 
 public class AIManager : MonoBehaviour {
     [SerializeField] CustomerAI prefab;
+
+    [field: Header("Durations")]
+    [field: SerializeField] public float sittingDuration {get; private set;}
+
+    [Header("Positions")]
+    [SerializeField] Transform stall;
     [SerializeField] Transform spawnPoint;
+    [SerializeField] Transform queuePoint;
+    [SerializeField] Transform exitPoint;
+    
+    public Vector3 stallPosition => stall.position;
+    public Vector3 queuePosition => queuePoint.position;
+    public Vector3 exitPosition => exitPoint.position;
+
     Vector3 spawnPosition => spawnPoint.position;
     Vector3 spawnRotation => spawnPoint.rotation.eulerAngles;
 
-    [field: SerializeField] public float speed {get; private set;} = 10f;
-    [field: SerializeField] public Transform stall {get; private set;}
-    public Vector3 queuePosition => stall.position + queueOffset;
-
-    [SerializeField] private Vector3 queueOffset;
-
-    public List<CustomerAI> customerQueue {get; private set;} = new List<CustomerAI>();
-    public List<GameObject> seatList {get; private set;}
+    public List<CustomerAI> customerQueue;
+    public List<GameObject> seatList;
+    public List<GameObject> targetPointList;
 
     void Start() {
         seatList = GameObject.FindGameObjectsWithTag("Seat").ToList();
+        targetPointList = GameObject.FindGameObjectsWithTag("AITargetPoint").ToList();
     }
 
     public void Spawn() {

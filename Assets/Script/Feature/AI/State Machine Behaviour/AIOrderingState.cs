@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIOrderingState : StateBehaviour {
     Transform transform;
@@ -21,17 +22,29 @@ public class AIOrderingState : StateBehaviour {
     public override void OnStateFixedUpdate() {
         base.OnStateFixedUpdate();
 
-        Utility.LerpLookTowardsTarget(transform, new Vector3(manager.stall.position.x, transform.position.y, manager.stall.position.z));
+        Utility.LerpLookTowardsTarget(transform, new Vector3(manager.stallPosition.x, transform.position.y, manager.stallPosition.z));
         orderTime -= Time.fixedDeltaTime;
 
         if (orderTime <= 0) {
-            animator.CrossFade("Moving To Seat", .25f);
+            if (manager.seatList.Count > 0) {
+                transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(ref manager.seatList));
+                animator.CrossFade("Moving To Seat", .25f);
+            } else if (manager.targetPointList.Count > 0){
+                transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(ref manager.targetPointList));
+                animator.CrossFade("Moving To Point", .25f);
+            }
         }
+    }
+
+    Vector3 GetPoint(ref System.Collections.Generic.List<GameObject> list) {
+        int index = Random.Range(0, list.Count);
+        Transform point = list[index].transform;
+        list.RemoveAt(index);
+        return point.position;
     }
 
     public override void OnStateExit() {
         base.OnStateExit();
-
         manager.customerQueue.RemoveAt(0);
     }
 
