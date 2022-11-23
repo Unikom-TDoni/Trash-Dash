@@ -8,6 +8,7 @@ namespace Group8.TrashDash.Player.Pickup
     using Inventory;
     using Item.Trash;
     using System.Linq;
+    using Group8.TrashDash.Score;
 
     public class PlayerPickup : MonoBehaviour
     {
@@ -21,6 +22,7 @@ namespace Group8.TrashDash.Player.Pickup
         public List<GameObject> takenObjects;
 
         [SerializeField] InventoryHandler inventory;
+        [SerializeField] ScoreManager scoreManager;
 
         Animator playerAnimator;
 
@@ -71,9 +73,11 @@ namespace Group8.TrashDash.Player.Pickup
                     continue;
                 }
 
-                inventory.AddItem(trash.trashContentInfo);
+                inventory?.AddItem(trash.trashContentInfo);
                 trash.Release();
                 takenObjects.Remove(obj);
+
+                scoreManager?.UpdateScore(ScoreState.Collect);
             }
         }
         #endregion

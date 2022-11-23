@@ -18,7 +18,8 @@ public class PanelUIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.playerAction.Gameplay.Pause.performed += OnPause;
+        if(InputManager.playerAction != null)
+            InputManager.playerAction.Gameplay.Pause.performed += OnPause;
     }
 
     private void OnDisable()
@@ -31,6 +32,9 @@ public class PanelUIManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         pausedPanel.SetActive(false);
         currentTime = startingTime;
+
+        if (InputManager.playerAction != null)
+            InputManager.playerAction.Gameplay.Pause.performed += OnPause;
     }
     void Update()
     {
