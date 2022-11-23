@@ -2301,7 +2301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5405285651576074848, guid: b641766b390586147a3d74a71d7e0b91, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5405285651576074848, guid: b641766b390586147a3d74a71d7e0b91, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2309,7 +2309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5405285651576074848, guid: b641766b390586147a3d74a71d7e0b91, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5405285651576074848, guid: b641766b390586147a3d74a71d7e0b91, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2321,7 +2321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5405285651576074848, guid: b641766b390586147a3d74a71d7e0b91, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5405285651576074848, guid: b641766b390586147a3d74a71d7e0b91, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2919,6 +2919,7 @@ GameObject:
   - component: {fileID: 974892426}
   - component: {fileID: 974892425}
   - component: {fileID: 974892424}
+  - component: {fileID: 974892428}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3015,6 +3016,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &974892428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974892423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca1d42ef362ae8439ad79fef43ecea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCAnim: {fileID: 1867339690}
 --- !u!1 &1010778507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,7 +3205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12924d7dc7e3ba42a6688aeb0b1672d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryToggle: {fileID: 1229285402}
+  _inventoryObj: {fileID: 0}
   _inventory:
     <MaxCapacity>k__BackingField: 30
   _inventoryLayoutController: {fileID: 156052996}
@@ -6740,6 +6754,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853732322}
   m_CullTransparentMesh: 1
+--- !u!95 &1867339690 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2885112311006420744, guid: b641766b390586147a3d74a71d7e0b91, type: 3}
+  m_PrefabInstance: {fileID: 642104138}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1895131003
 GameObject:
   m_ObjectHideFlags: 0
