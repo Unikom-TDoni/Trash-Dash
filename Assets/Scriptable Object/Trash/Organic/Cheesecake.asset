@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cheesecake
   m_EditorClassIdentifier: 
   Name: Cheesecake
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 2cfb92696f2fa2a4f955a659da8d9afd, type: 3}
   TrashBinType: 0
   Mesh: {fileID: 1739891802782014235, guid: b65fd74097925ad4abad83ba11c077d9, type: 3}
   Materials:
