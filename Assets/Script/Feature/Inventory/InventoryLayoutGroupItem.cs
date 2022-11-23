@@ -5,6 +5,7 @@ using Group8.TrashDash.Event;
 using Lnco.Unity.Module.Layout;
 using UnityEngine.EventSystems;
 using Lnco.Unity.Module.EventSystems;
+using Group8.TrashDash.TrashBin;
 
 namespace Group8.TrashDash.Inventory
 {
@@ -21,6 +22,8 @@ namespace Group8.TrashDash.Inventory
 
         private Vector2 _originalImageIconPosition = default;
 
+        private TrashBinLayoutController trashBinLayoutController;
+
         private bool IsInTheOriginalPositionRange => Vector2.Distance(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition) < 1;
 
         public DropableData Data { get; private set; } = default;
@@ -28,6 +31,9 @@ namespace Group8.TrashDash.Inventory
         private void Awake()
         {
             _topParent = transform.parent.parent;
+
+            GameObject trashBin = GameObject.Find("IMG_Trash-Bin");
+            trashBinLayoutController = trashBin.GetComponent<TrashBinLayoutController>();
         }
 
         private void Update()
@@ -39,6 +45,7 @@ namespace Group8.TrashDash.Inventory
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            trashBinLayoutController.dragTrash = true;
             if (eventData.button is not PointerEventData.InputButton.Left) return;
             if (eventData.pointerPressRaycast.gameObject != _imgIcon.gameObject) return;
             _imgIcon.transform.SetParent(_topParent);

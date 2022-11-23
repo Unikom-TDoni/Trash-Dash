@@ -6,36 +6,44 @@ using Lnco.Unity.Module.EventSystems;
 
 namespace Group8.TrashDash.TrashBin
 {
-    [RequireComponent(typeof(Animator))]
     public sealed class TrashBinLayoutController : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
         public event Action<DropableData> OnDrop = default;
 
-        private Animator _animator = default;
+        [SerializeField] private Animator trashBinAnim;
+        public bool dragTrash = false;
 
         private readonly int _openAnimParam = Animator.StringToHash("openTrigger");
-
-        private void Awake()
-        {
-            _animator = GetComponent<Animator>();
-        }
 
         void IDropHandler.OnDrop(PointerEventData eventData)
         {
             var selectedObj = eventData.selectedObject;
             if (!selectedObj.TryGetComponent<IDropable<DropableData>>(out var item)) return;
             OnDrop?.Invoke(item.Data);
+            dragTrash = false;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (eventData.pointerEnter is null) return;
-            _animator.SetTrigger(_openAnimParam);
+            if (dragTrash) AnimOpen();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            _animator.SetTrigger(_openAnimParam);
+            AnimClose();
+        }
+
+        public void AnimOpen()
+        {
+            trashBinAnim.SetBool("isOpening", true);
+            trashBinAnim.SetBool("isClosing", false);
+        }
+
+        public void AnimClose()
+        {
+            trashBinAnim.SetBool("isClosing", true);
+            trashBinAnim.SetBool("isOpening", false);
         }
     }
 }
