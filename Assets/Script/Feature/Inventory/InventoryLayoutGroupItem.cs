@@ -17,10 +17,6 @@ namespace Group8.TrashDash.Inventory
         [SerializeField]
         private Image _imgIcon = default;
 
-        [SerializeField]
-        [Range(100, 1000)]
-        private float _lerpSpeed = default;
-
         private Transform _topParent = default;
 
         private Vector2 _originalImageIconPosition = default;

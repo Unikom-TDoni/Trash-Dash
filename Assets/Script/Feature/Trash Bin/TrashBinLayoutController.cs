@@ -6,11 +6,19 @@ using Lnco.Unity.Module.EventSystems;
 
 namespace Group8.TrashDash.TrashBin
 {
+    [RequireComponent(typeof(Animator))]
     public sealed class TrashBinLayoutController : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
         public event Action<DropableData> OnDrop = default;
 
-        [SerializeField] private Animator trashBinAnim;
+        private Animator _animator = default;
+
+        private readonly int _openAnimParam = Animator.StringToHash("openTrigger");
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
 
         void IDropHandler.OnDrop(PointerEventData eventData)
         {
@@ -21,24 +29,13 @@ namespace Group8.TrashDash.TrashBin
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            AnimOpen();
+            if (eventData.pointerEnter is null) return;
+            _animator.SetTrigger(_openAnimParam);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            AnimClose();
-        }
-
-        public void AnimOpen()
-        {
-            trashBinAnim.SetBool("isOpening", true);
-            trashBinAnim.SetBool("isClosing", false);
-        }
-
-        public void AnimClose()
-        {
-            trashBinAnim.SetBool("isClosing", true);
-            trashBinAnim.SetBool("isOpening", false);
+            _animator.SetTrigger(_openAnimParam);
         }
     }
 }
