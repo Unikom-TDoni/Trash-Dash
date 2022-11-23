@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 465372}
   - component: {fileID: 3389186}
   - component: {fileID: 2398318}
+  - component: {fileID: -8014448798617562075}
   m_Layer: 0
   m_Name: Railway_Bridge
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-8014448798617562075
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 1bd6d8a6421f7442ba55f1d8c05c8ba1, type: 3}

@@ -1,33 +1,32 @@
+using System;
 using UnityEngine;
+using Group8.TrashDash.Event;
 using UnityEngine.EventSystems;
-using Group8.TrashDash.Inventory;
+using Lnco.Unity.Module.EventSystems;
 
 namespace Group8.TrashDash.TrashBin
 {
     public sealed class TrashBinLayoutController : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        private TrashBinTypes _trashBinType = default;
+        public event Action<DropableData> OnDrop = default;
+
         [SerializeField] private Animator trashBinAnim;
         public bool dragTrash = false;
 
-        public void OnDrop(PointerEventData eventData)
+        private readonly int _openAnimParam = Animator.StringToHash("openTrigger");
+
+        void IDropHandler.OnDrop(PointerEventData eventData)
         {
             var selectedObj = eventData.selectedObject;
-            if (!selectedObj.TryGetComponent<InventoryLayoutGroupItem>(out var item)) return;
-            if (_trashBinType != item.GetTrashBinTypes()) return;
-            item.Reset();
+            if (!selectedObj.TryGetComponent<IDropable<DropableData>>(out var item)) return;
+            OnDrop?.Invoke(item.Data);
             dragTrash = false;
         }
 
-        public void SetTrashBinType(TrashBinTypes type) =>
-            _trashBinType = type;
-
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (dragTrash)
-            {
-                AnimOpen();
-            }
+            if (eventData.pointerEnter is null) return;
+            if (dragTrash) AnimOpen();
         }
 
         public void OnPointerExit(PointerEventData eventData)

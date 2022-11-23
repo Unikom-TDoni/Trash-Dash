@@ -182,9 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832ed4e2d2f16614491f2ffdd5d0beca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 550
   _imgIcon: {fileID: 1535043165474440623}
-  _imgBackground: {fileID: 1119043786128154719}
-  _lerpSpeed: 1500
 --- !u!1 &8496133764576365884
 GameObject:
   m_ObjectHideFlags: 0

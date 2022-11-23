@@ -33,7 +33,6 @@ public class AIQueueingState : StateBehaviour {
             dir.y = 0;
             if (Vector3.SqrMagnitude(dir) <= 0.01f) {
                 animator.CrossFade("Idle", .25f);
-                Debug.Log("In Position : " + transform.position);
             }
         } else {
             transform.position = Vector3.MoveTowards(transform.position, lastQueue.position - (lastQueue.position - transform.position).normalized * 2f, Time.fixedDeltaTime * 10f);

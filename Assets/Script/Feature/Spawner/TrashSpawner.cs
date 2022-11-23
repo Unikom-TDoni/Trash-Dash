@@ -17,12 +17,34 @@ namespace Group8.TrashDash.Spawner
             {
                 if (go == null) continue;
 
-                TrashInfo trashInfo = go.GetComponent<TrashInfo>();
+                Trash trash = go.GetComponent<Trash>();
 
-                if (trashInfo == null)
-                    trashInfo = go.AddComponent<TrashInfo>();
+                if (trash == null)
+                    trash = go.AddComponent<Trash>();
 
-                trashInfo.trashContentInfo = trashInformations[Random.Range(0, trashInformations.Length)];
+                TrashContentInfo randomTrashInfo = trashInformations[Random.Range(0, trashInformations.Length)];
+
+                if (trash.trashContentInfo == randomTrashInfo) break;
+
+                trash.trashContentInfo = randomTrashInfo;
+
+                if(randomTrashInfo.Mesh)
+                    go.GetComponent<MeshFilter>().mesh = randomTrashInfo.Mesh;
+                if(randomTrashInfo.Materials.Length > 0)
+                    go.GetComponent<MeshRenderer>().materials = randomTrashInfo.Materials;
+
+                if (go.GetComponent<Collider>())
+                {
+                    Collider[] allColliders = go.GetComponents<Collider>();
+                    foreach (Collider c in allColliders)
+                    {
+                        Destroy(c);
+                    }
+                }
+                go.AddComponent<BoxCollider>().enabled = true;
+                Collider trig = go.AddComponent<BoxCollider>();
+                trig.isTrigger = true;
+                trig.enabled = false;
             }
             yield return null;
         }

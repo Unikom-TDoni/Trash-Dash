@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 495550}
   - component: {fileID: 3303418}
   - component: {fileID: 2348998}
+  - component: {fileID: -3100152974223290431}
   m_Layer: 0
   m_Name: StoneLong_x1
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-3100152974223290431
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 8edbabedf37bf4afe830b06d97e327a0, type: 3}

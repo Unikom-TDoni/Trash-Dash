@@ -16,7 +16,7 @@ namespace Group8.TrashDash.Player.Controller
 
         CharacterController controller;
 
-        Vector3 rawInputMovement;
+        Vector3 rawInputMovement = Vector3.zero;
         Vector3 velocity;
         Vector3 moveDirection;
 
@@ -70,7 +70,7 @@ namespace Group8.TrashDash.Player.Controller
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
 
-            animator.SetFloat("magnitude", Mathf.MoveTowards(animator.GetFloat("magnitude"), moveDirection.magnitude, Time.deltaTime * transitionSpeed));
+            animator.SetFloat("magnitude", Mathf.MoveTowards(animator.GetFloat("magnitude"), (speed / sprintSpeed) * moveDirection.magnitude, Time.deltaTime * transitionSpeed));
         }
 
         #region Callbacks
@@ -82,7 +82,6 @@ namespace Group8.TrashDash.Player.Controller
             playerControls.Gameplay.Move.canceled += OnMoveCanceled;
             playerControls.Gameplay.Sprint.performed += OnSprint;
             playerControls.Gameplay.Sprint.canceled += OnSprintCanceled;
-            playerControls.Gameplay.Pause.performed += OnPause;
         }
         private void UnregisterInputCallbacks()
         {
@@ -92,7 +91,6 @@ namespace Group8.TrashDash.Player.Controller
             playerControls.Gameplay.Move.canceled -= OnMoveCanceled;
             playerControls.Gameplay.Sprint.performed -= OnSprint;
             playerControls.Gameplay.Sprint.canceled -= OnSprintCanceled;
-            playerControls.Gameplay.Pause.performed -= OnPause;
         }
         #endregion
 
@@ -148,10 +146,6 @@ namespace Group8.TrashDash.Player.Controller
         public void OnInteract(InputAction.CallbackContext context)
         {
             Debug.Log("Interact Button pressed");
-        }
-        public void OnPause(InputAction.CallbackContext context)
-        {
-            Debug.Log("Pause Button pressed");
         }
         #endregion
 

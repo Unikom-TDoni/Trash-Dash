@@ -110,6 +110,7 @@ namespace UnityStandardAssets.CinematicEffects
         RenderTexture[] m_blurBuffer1 = new RenderTexture[kMaxIterations];
         RenderTexture[] m_blurBuffer2 = new RenderTexture[kMaxIterations];
 
+        [Obsolete]
         private void OnEnable()
         {
             if (!ImageEffectHelper.IsSupported(shader, true, false, this))
