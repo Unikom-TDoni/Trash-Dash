@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Group8.TrashDash.Player.Interaction
 {
+    using Module.TransformMod;
     using Module.Detector;
     using System.Linq;
 
@@ -47,40 +48,29 @@ namespace Group8.TrashDash.Player.Interaction
             UnregisterInputCallback();
         }
 
-        IEnumerator FaceTarget(Vector3 targetPos)
-        {
-            if (!faceInteractable) yield break;
-
-            Vector3 targetDirection;
-            Quaternion lookRotation = new Quaternion();
-            while (Quaternion.Angle(transform.rotation, lookRotation) > 0.01f)
-            {
-                targetDirection = (targetPos - transform.position).normalized;
-                lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0f, targetDirection.z));
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotateSpeed * Time.deltaTime);
-
-                yield return new WaitForEndOfFrame();
-            }
-        }
-
         #region Callbacks
         private void RegisterInputCallback()
         {
             if (playerControls == null) return;
-            playerControls.Gameplay.Move.performed += OnMove;
             playerControls.Gameplay.Interact.performed += OnInteract;
         }
 
         private void UnregisterInputCallback()
         {
             if (playerControls == null) return;
-            playerControls.Gameplay.Move.performed -= OnMove;
             playerControls.Gameplay.Interact.performed -= OnInteract;
         }
 
-        private void OnMove(InputAction.CallbackContext context)
+        private void Update()
         {
-            StopAllCoroutines();
+            if (nearestInteractable == null) return;
+            if (!playerControls.Gameplay.enabled) return;
+
+            if (playerControls.Gameplay.Move.IsPressed())
+            {
+                StopAllCoroutines();
+                CancelInteraction();
+            }
         }
 
         private void OnInteract(InputAction.CallbackContext context)
@@ -96,17 +86,36 @@ namespace Group8.TrashDash.Player.Interaction
                 IInteractable interactable = nearestInteractable.GetComponent<IInteractable>();
                 if (interactable == null)
                 {
-                    Debug.Log(gameObject.name + " does not contain IInteractable interface.");
+                    Debug.Log(nearestInteractable.name + " does not contain IInteractable interface.");
                     return;
                 }
 
-                interactable.Interact();
+                interactable.Interact(gameObject);
 
                 StopAllCoroutines();
-                StartCoroutine(FaceTarget(nearestInteractable.transform.position));
+
+                if (faceInteractable)
+                   StartCoroutine(TransformModule.FaceTarget(transform, nearestInteractable.transform.position, rotateSpeed));
             }
         }
         #endregion
+
+        private void CancelInteraction()
+        {
+            if (nearestInteractable)
+            {
+                IInteractable interactable = nearestInteractable.GetComponent<IInteractable>();
+                if (interactable == null)
+                {
+                    Debug.Log(nearestInteractable.name + " does not contain IInteractable interface.");
+                    return;
+                }
+
+                interactable.ExitInteract();
+            }
+
+            nearestInteractable = null;
+        }
 
         private void OnDrawGizmos()
         {
