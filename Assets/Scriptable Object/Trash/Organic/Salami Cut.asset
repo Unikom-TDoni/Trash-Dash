@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Salami Cut
   m_EditorClassIdentifier: 
   Name: Salami Cut
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 065f1fccbdb4f2b41b55f645fcafbf31, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -6480228251646151280, guid: 601422f08d730974ba9474adf89a2fd5, type: 3}
   Materials:

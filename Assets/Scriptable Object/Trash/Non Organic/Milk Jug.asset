@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Milk Jug
   m_EditorClassIdentifier: 
   Name: Milk Jug
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: f7a8cf3ee69ea3e40bf64d80aa18e179, type: 3}
   TrashBinType: 1
   Mesh: {fileID: 4088564196865844098, guid: 8bd09e00531a681438d1b0c086d4f05b, type: 3}
   Materials:

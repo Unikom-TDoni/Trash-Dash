@@ -16,6 +16,8 @@ namespace Group8.TrashDash.Item.Trash
         bool secondJump;
         bool anotherJump;
 
+        Collider[] colliders;
+ 
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
@@ -23,13 +25,18 @@ namespace Group8.TrashDash.Item.Trash
             playerControls = InputManager.playerAction;
         }
 
+        private void Start()
+        {
+            colliders = GetComponents<Collider>();
+        }
+
         public override void Release()
         {
             if (!moveTowards)
             {
                 initialDistance = Vector3.Distance(player.position, transform.position);
-                var collider = GetComponents<Collider>();
-                collider[0].enabled = false;
+                colliders[0].enabled = false;
+                colliders[1].enabled = false;
                 transform.rotation = Quaternion.identity;
                 rb.AddForce(transform.up * Mathf.Clamp(Vector3.Distance(player.position, transform.position) * 150, 900, 10000));
                 moveTowards = true;
@@ -55,6 +62,7 @@ namespace Group8.TrashDash.Item.Trash
                 }
                 if (secondJump)
                 {
+                    colliders[0].enabled = true;
                     distanceValue *= 2;
                 }
 
@@ -62,9 +70,6 @@ namespace Group8.TrashDash.Item.Trash
 
                 if (secondPhase)
                 {
-                    var collider = GetComponents<Collider>();
-                    collider[0].enabled = true;
-                    collider[1].enabled = true;
                     anotherJump = true;
                     return;
                 }
@@ -88,6 +93,8 @@ namespace Group8.TrashDash.Item.Trash
                 secondPhase = false;
                 secondJump = false;
                 anotherJump = false;
+                colliders[0].enabled = false;
+                colliders[1].enabled = true;
             }
         }
     }

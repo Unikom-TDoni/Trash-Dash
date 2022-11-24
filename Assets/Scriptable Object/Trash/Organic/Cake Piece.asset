@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cake Piece
   m_EditorClassIdentifier: 
   Name: Cake Piece
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a2556a4b30dca224caffc3066c511cb7, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -2820822047222203195, guid: 170013b156b2fec4aa4c3361eb197783, type: 3}
   Materials:

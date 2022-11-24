@@ -36,12 +36,14 @@ namespace Group8.TrashDash.TrashBin
 
         public void AnimOpen()
         {
+            if (trashBinAnim == null) return;
             trashBinAnim.SetBool("isOpening", true);
             trashBinAnim.SetBool("isClosing", false);
         }
 
         public void AnimClose()
         {
+            if (trashBinAnim == null) return;
             trashBinAnim.SetBool("isClosing", true);
             trashBinAnim.SetBool("isOpening", false);
         }

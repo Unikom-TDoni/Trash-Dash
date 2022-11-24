@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pizza Slice
   m_EditorClassIdentifier: 
   Name: Pizza Slice
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 29f85e215e5e72141ae7b8ede018aa4b, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -147083155359850734, guid: 7bede346f9d49684085855be768a2b03, type: 3}
   Materials:

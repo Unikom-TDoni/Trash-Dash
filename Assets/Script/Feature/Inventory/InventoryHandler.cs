@@ -33,6 +33,7 @@ namespace Group8.TrashDash.Inventory
         private void Start()
         {
             playerControls = InputManager.playerAction;
+            RegisterInputCallback();
         }
 
         private void OnDisable()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Coffee Cup
   m_EditorClassIdentifier: 
   Name: Coffee Cup
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 49ac2c423566e3943ba4f7505e9dca3e, type: 3}
   TrashBinType: 1
   Mesh: {fileID: 3291351167468450691, guid: 3c258662faa56ed4e90c2bf720e6f136, type: 3}
   Materials:
