@@ -10,10 +10,9 @@ namespace Group8.TrashDash.Spawner
     {
         [SerializeField] private TrashContentInfo[] trashInformations;
 
-        protected override IEnumerator Spawn()
+        protected override void AfterSpawn()
         {
-            StartCoroutine(base.Spawn());
-            foreach(GameObject go in obj)
+            foreach (GameObject go in obj)
             {
                 if (go == null) continue;
 
@@ -22,29 +21,25 @@ namespace Group8.TrashDash.Spawner
                 if (trash == null)
                     trash = go.AddComponent<Trash>();
 
+                if(trash.trashContentInfo == null)
+                Debug.Log(trash.trashContentInfo);
+
                 TrashContentInfo randomTrashInfo = trashInformations[Random.Range(0, trashInformations.Length)];
 
                 if (trash.trashContentInfo == randomTrashInfo) break;
 
                 trash.trashContentInfo = randomTrashInfo;
 
-                if(randomTrashInfo.Mesh)
+                if (randomTrashInfo.Mesh)
                     go.GetComponent<MeshFilter>().mesh = randomTrashInfo.Mesh;
-                if(randomTrashInfo.Materials.Length > 0)
+                if (randomTrashInfo.Materials.Length > 0)
                     go.GetComponent<MeshRenderer>().materials = randomTrashInfo.Materials;
 
-                //if (go.GetComponent<Collider>())
-                //{
-                //    Collider[] allColliders = go.GetComponents<Collider>();
-                //    foreach (Collider c in allColliders)
-                //    {
-                //        Destroy(c);
-                //    }
-                //}
-                if(go.GetComponents<Collider>().Length == 1)
+                if (go.GetComponents<Collider>().Length == 1)
                     go.AddComponent<BoxCollider>();
             }
-            yield return null;
+
+            base.AfterSpawn();
         }
     }
 }

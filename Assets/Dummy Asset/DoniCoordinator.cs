@@ -9,9 +9,6 @@ namespace Group8.TrashDash.Coordinator
     public sealed class DoniCoordinator : MonoBehaviour
     {
         [SerializeField]
-        private LevelSpawner _levelSpawner = default;
-
-        [SerializeField]
         private TrashBinHandler _trashBinHandler = default;
 
         [SerializeField]

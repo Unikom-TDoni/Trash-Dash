@@ -77,9 +77,9 @@ namespace Group8.TrashDash.Player.Pickup
                 {
                     trash.Release();
                     takenObjects.Remove(obj);
-                }
 
-                scoreManager?.UpdateScore(ScoreState.Collect);
+                    scoreManager?.UpdateScore(ScoreState.Collect);
+                }
             }
         }
         #endregion
