@@ -25,12 +25,14 @@ namespace Group8.TrashDash.Interactable
         public void Interact(GameObject other)
         {
             anim.SetBool("isTalking", true);
+            StopAllCoroutines();
             StartCoroutine(TransformModule.FaceTarget(transform, other.transform.position, rotateSpeed));
         }
 
         public void ExitInteract()
         {
             anim.SetBool("isTalking", false);
+            StopAllCoroutines();
             StartCoroutine(TransformModule.FaceTarget(transform, originalLookPos, rotateSpeed));
         }
     }

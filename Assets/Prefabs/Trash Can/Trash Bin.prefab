@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2420094940529878439}
   - component: {fileID: 2420094940529878438}
-  - component: {fileID: 2235100067532458481}
+  - component: {fileID: 1035306019488661905}
   m_Layer: 7
-  m_Name: Trash Can
+  m_Name: Trash Bin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2235100067532458481
+--- !u!114 &1035306019488661905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,9 +56,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2420094940529878436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e18d33cdf5676a742a8c539a87abc5e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 68c6f42575651754399bd977b7a18857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Types: 0
 --- !u!1 &2420094941078601904
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ namespace Group8.TrashDash.Coordinator
 
         public void OnDrop(DropableData args)
         {
-            if (!_trashBinHandler.ActiveTrashBinType.Equals(args)) return;
+            if (!_trashBinHandler.ActiveTrashBinType.Equals(args.TrashContentInfo.TrashBinType)) return;
             _inventoryHandler.RemoveItem(args.TrashContentInfo, args.InventoryLayoutGroupItem);
         }
 
