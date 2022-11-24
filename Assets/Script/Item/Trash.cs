@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group8.TrashDash.Item.Trash
@@ -25,9 +26,12 @@ namespace Group8.TrashDash.Item.Trash
             playerControls = InputManager.playerAction;
         }
 
-        private void Start()
+        public void Initialize()
         {
             colliders = GetComponents<Collider>();
+            rb.isKinematic = false;
+            colliders[1].enabled = true;
+            gameObject.SetActive(true);
         }
 
         public override void Release()
@@ -38,6 +42,8 @@ namespace Group8.TrashDash.Item.Trash
                 colliders[0].enabled = false;
                 colliders[1].enabled = false;
                 transform.rotation = Quaternion.identity;
+                // Can Trigger Bug
+                rb.velocity = Vector3.zero;
                 rb.AddForce(transform.up * Mathf.Clamp(Vector3.Distance(player.position, transform.position) * 150, 900, 10000));
                 moveTowards = true;
             }
@@ -45,6 +51,7 @@ namespace Group8.TrashDash.Item.Trash
 
         void Update()
         {
+            if (transform.position.y < -10f) Debug.Log("Trash Out of Bound");
             if (moveTowards)
             {
                 transform.rotation = Quaternion.identity;
@@ -86,7 +93,7 @@ namespace Group8.TrashDash.Item.Trash
         {
             if (other.gameObject.tag == "Player")
             {
-                base.Release();
+                rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
                 transform.rotation = Quaternion.identity;
                 moveTowards = false;
@@ -95,6 +102,7 @@ namespace Group8.TrashDash.Item.Trash
                 anotherJump = false;
                 colliders[0].enabled = false;
                 colliders[1].enabled = true;
+                base.Release();
             }
         }
     }

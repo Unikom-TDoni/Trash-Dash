@@ -95,7 +95,7 @@ namespace Group8.TrashDash.Module.Spawner
 
         private void OnGUI()
         {
-            GUILayout.Label("Pool size: " + PoolManager.Instance.pools[spawnPrefab.prefab].CountInactive);
+            GUILayout.Label("Pool size (inactive): " + PoolManager.Instance.pools[spawnPrefab.prefab].CountInactive);
         }
     }
 }
