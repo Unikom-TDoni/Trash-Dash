@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Group8.TrashDash.Event;
-using System.Collections.Generic;
 
 namespace Group8.TrashDash.TrashBin
 {

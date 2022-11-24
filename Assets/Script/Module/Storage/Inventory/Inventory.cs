@@ -15,6 +15,9 @@ namespace Lnco.Unity.Module.Storage
         public void Init(ICollection<T> items) =>
             (Items) = (items);
 
+        public int ItemCount() =>
+            Items.Count;
+
         public bool Any() =>
             Items.Count != default;
 

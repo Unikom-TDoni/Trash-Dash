@@ -4,8 +4,8 @@ using UnityEngine.UI;
 using Group8.TrashDash.Event;
 using Lnco.Unity.Module.Layout;
 using UnityEngine.EventSystems;
-using Lnco.Unity.Module.EventSystems;
 using Group8.TrashDash.TrashBin;
+using Lnco.Unity.Module.EventSystems;
 
 namespace Group8.TrashDash.Inventory
 {
@@ -71,7 +71,7 @@ namespace Group8.TrashDash.Inventory
             Data = new DropableData(content, this);
         }
 
-        private void SnapToPosition()
+        public void SnapToPosition()
         {
             if (_imgIcon.transform.parent == transform) return;
             _imgIcon.transform.SetParent(transform);

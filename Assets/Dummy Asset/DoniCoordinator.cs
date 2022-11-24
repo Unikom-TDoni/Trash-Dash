@@ -2,11 +2,15 @@ using UnityEngine;
 using Group8.TrashDash.Inventory;
 using Group8.TrashDash.TrashBin;
 using Group8.TrashDash.Event;
+using Group8.TrashDash.Level;
 
 namespace Group8.TrashDash.Coordinator
 {
     public sealed class DoniCoordinator : MonoBehaviour
     {
+        [SerializeField]
+        private LevelSpawner _levelSpawner = default;
+
         [SerializeField]
         private TrashBinHandler _trashBinHandler = default;
 
@@ -25,7 +29,7 @@ namespace Group8.TrashDash.Coordinator
 
         public void OnDrop(DropableData args)
         {
-            if (!_trashBinHandler.ActiveTrashBinType.Equals(args)) return;
+            if (!_trashBinHandler.ActiveTrashBinType.Equals(args.TrashContentInfo.TrashBinType)) return;
             _inventoryHandler.RemoveItem(args.TrashContentInfo, args.InventoryLayoutGroupItem);
         }
 

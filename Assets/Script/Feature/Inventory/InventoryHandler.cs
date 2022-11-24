@@ -1,4 +1,5 @@
 using UnityEngine;
+using Group8.TrashDash.Level;
 using UnityEngine.InputSystem;
 using Lnco.Unity.Module.Storage;
 using System.Collections.Generic;
@@ -16,12 +17,12 @@ namespace Group8.TrashDash.Inventory
         private Inventory<TrashContentInfo> _inventory = default;
 
         [SerializeField]
-        private InventoryLayoutGroupController _inventoryLayoutController = default;
+        private InventoryLayoutGroupController _inventoryLayoutGroupController = default;
 
         private void Awake()
         {
             _inventory.Init(new List<TrashContentInfo>());
-            _inventoryLayoutController.InitLayout(_inventory.MaxCapacity);
+            _inventoryLayoutGroupController.InitLayout(_inventory.MaxCapacity);
         }
 
         private void OnEnable()
@@ -39,20 +40,30 @@ namespace Group8.TrashDash.Inventory
             UnregisterInputCallback();
         }
 
-        public void AddItem(TrashContentInfo trashContentInfo)
+        public bool TryAddItem(TrashContentInfo trashContentInfo)
         {
-            if (!_inventory.TryAdd(trashContentInfo)) return;
-            _inventoryLayoutController.TryRefreshContent(_inventory.GetItems());
+            if (!_inventory.TryAdd(trashContentInfo)) return default;
+            var index = _inventory.ItemCount() - 1;
+            _inventoryLayoutGroupController.TryUpdateContent(trashContentInfo, index);
+            _inventoryLayoutGroupController.ActivateGroupItem(index);
+            return true;
         }
 
         public void RemoveItem(TrashContentInfo trashContentInfo, InventoryLayoutGroupItem inventoryLayoutGroupItem)
         {
             if (!_inventory.TryRemove(trashContentInfo)) return;
-            _inventoryLayoutController.TryUpdateContent(default, inventoryLayoutGroupItem);
+            _inventoryLayoutGroupController.TryUpdateContent(new(), inventoryLayoutGroupItem);
+            inventoryLayoutGroupItem.gameObject.SetActive(default);
         }
 
         public void SetActiveInventory(bool value)
         {
+            if (!value)
+            {
+                _inventoryLayoutGroupController.ResetItems();
+                if (_inventoryLayoutGroupController.IsNeedToRefreshLayout(_inventory.ItemCount()))
+                    _inventoryLayoutGroupController.TryRefreshContent(_inventory.GetItems());
+            }
             _inventoryObj.SetActive(value);
             InputManager.ToggleActionMap(value ? InputManager.playerAction.Panel : InputManager.playerAction.Gameplay);
         }

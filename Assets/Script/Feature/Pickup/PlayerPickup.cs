@@ -71,9 +71,11 @@ namespace Group8.TrashDash.Player.Pickup
                     continue;
                 }
 
-                inventory.AddItem(trash.trashContentInfo);
-                trash.Release();
-                takenObjects.Remove(obj);
+                if (!inventory.TryAddItem(trash.trashContentInfo))
+                {
+                    trash.Release();
+                    takenObjects.Remove(obj);
+                }
             }
         }
         #endregion
