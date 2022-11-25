@@ -34,6 +34,8 @@ namespace Group8.TrashDash.Module.Spawner
 
         protected virtual IEnumerator Spawn()
         {
+            yield return new WaitForSeconds(interval);
+
             for (int i = 0; i < amount; i++)
             {
                 if (countObject >= maxSpawnedObject) break;
@@ -58,8 +60,6 @@ namespace Group8.TrashDash.Module.Spawner
             yield return new WaitForFixedUpdate();
 
             AfterSpawn();
-
-            yield return new WaitForSeconds(interval);
 
             RestartSpawn();
         }

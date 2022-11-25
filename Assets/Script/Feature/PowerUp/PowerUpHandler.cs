@@ -14,6 +14,8 @@ public class PowerUpHandler : MonoBehaviour
         powerUps = new PowerUpSO[2];
         playerControls = InputManager.playerAction;
         RegisterInputCallback();
+
+        InitializePowerUpValues();
     }
 
     private void OnEnable()
@@ -55,6 +57,35 @@ public class PowerUpHandler : MonoBehaviour
 
         return result;
     }
+
+    #region PowerUp Values
+
+    // Serializeable (Agar lebih mudah ditrack di setiap script yang pakai)
+    [SerializeField] private PowerUpValue[] powerUpParameters;
+    public Dictionary<string, float> powerUpValues = new Dictionary<string, float>();
+    // Mencegah terubahnya value akibat StopCoroutine()
+    private Dictionary<string, float> initialPowerUpValues = new Dictionary<string, float>();
+
+    public IEnumerator PowerUpMultiply(string parameterName, float multiplier, float duration)
+    {
+        if (powerUpValues[parameterName] != multiplier)
+        initialPowerUpValues[parameterName] = powerUpValues[parameterName];
+
+        powerUpValues[parameterName] = multiplier;
+
+        yield return new WaitForSeconds(duration);
+
+        powerUpValues[parameterName] = initialPowerUpValues[parameterName];
+    }
+
+    private void InitializePowerUpValues()
+    {
+        foreach (PowerUpValue powerUpValue in powerUpParameters)
+        {
+            powerUpValues.Add(powerUpValue.name, powerUpValue.value);
+        }
+    }
+    #endregion
 
     #region Callbacks
     private void OnPowerUp1(InputAction.CallbackContext context)

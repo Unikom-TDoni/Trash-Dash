@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 namespace Group8.TrashDash.Player.Controller
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerController : MonoBehaviour, IPowerUpMultiply
+    public class PlayerController : MonoBehaviour
     {
         [Header("Movement")]
         public float moveSpeed = 5f;
@@ -34,14 +34,14 @@ namespace Group8.TrashDash.Player.Controller
         [Header("Force")]
         public float pushForce;
 
-        [SerializeField] private PowerUpValue[] powerUpParameters;
-        private Dictionary<string, float> powerUpValues = new Dictionary<string, float>();
+        [Header("Modifiers")]
+        [SerializeField] private PowerUpHandler powerUpHandler;
+        [Range(.1f, 10), SerializeField] float speedMultiplier = 1;
 
         void Awake()
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
-            InitializePowerUpValues();
         }
 
         void Start()
@@ -61,20 +61,11 @@ namespace Group8.TrashDash.Player.Controller
             UnregisterInputCallbacks();
         }
 
-        public IEnumerator OnPowerUpMultiply(string parameterName, float multiplier, float duration)
-        {
-            float initialValue = powerUpValues[parameterName];
-            powerUpValues[parameterName] = multiplier;
-
-            yield return new WaitForSeconds(duration);
-
-            powerUpValues[parameterName] = initialValue;
-        }
-
         void Update()
         {
+            speedMultiplier = (powerUpHandler) ? powerUpHandler.powerUpValues["speed"] : speedMultiplier;
             moveDirection = GetMovementInputDirection();
-            velocity = new Vector3(moveDirection.x * speed * powerUpValues["speed"], velocity.y, moveDirection.z * speed * powerUpValues["speed"]);
+            velocity = new Vector3(moveDirection.x * speed * speedMultiplier, velocity.y, moveDirection.z * speed * speedMultiplier);
 
             // Gravity
             if (controller.isGrounded)
@@ -86,15 +77,7 @@ namespace Group8.TrashDash.Player.Controller
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
 
-            animator.SetFloat("magnitude", Mathf.MoveTowards(animator.GetFloat("magnitude"), (speed * powerUpValues["speed"] / sprintSpeed) * moveDirection.magnitude, Time.deltaTime * transitionSpeed));
-        }
-
-        private void InitializePowerUpValues()
-        {
-            foreach(PowerUpValue powerUpValue in powerUpParameters)
-            {
-                powerUpValues.Add(powerUpValue.name, powerUpValue.value);
-            }
+            animator.SetFloat("magnitude", Mathf.MoveTowards(animator.GetFloat("magnitude"), (speed / sprintSpeed) * moveDirection.magnitude, Time.deltaTime * transitionSpeed));
         }
 
         #region Callbacks

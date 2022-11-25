@@ -8,10 +8,9 @@ namespace Group8.TrashDash.Item.Trash
     {
         public TrashContentInfo trashContentInfo;
         Rigidbody rb;
-        Transform player;
+        Transform target;
         MeshRenderer meshRenderer;
         bool moveTowards;
-        Vector3 targetPosition;
         float initialDistance;
         private PlayerAction playerControls;
         bool secondPhase;
@@ -24,7 +23,6 @@ namespace Group8.TrashDash.Item.Trash
         {
             rb = GetComponent<Rigidbody>();
             meshRenderer = GetComponent<MeshRenderer>();
-            player = GameObject.FindWithTag("Player").transform;
             playerControls = InputManager.playerAction;
         }
 
@@ -36,11 +34,12 @@ namespace Group8.TrashDash.Item.Trash
             colliders[1].enabled = true;
         }
 
-        public override void Release()
+        public void MoveToTarget(Transform _target)
         {
             if (!moveTowards)
             {
-                initialDistance = Vector3.Distance(player.position, transform.position);
+                target = _target;
+                initialDistance = Vector3.Distance(target.position, transform.position);
                 colliders[0].enabled = false;
                 colliders[1].enabled = false;
                 transform.rotation = Quaternion.identity;
@@ -50,14 +49,29 @@ namespace Group8.TrashDash.Item.Trash
             }
         }
 
+        public override void Release()
+        {
+            Reset();
+            base.Release();
+        }
+
         void Update()
         {
             if (transform.position.y < -10f) Debug.LogWarning("Trash Out of Bound");
             if (moveTowards)
             {
                 transform.rotation = Quaternion.identity;
-                targetPosition = player.position;
-                var distanceValue = Vector3.Distance(player.position, transform.position);
+
+                if (target == null)
+                {
+                    moveTowards = false;
+                    colliders[0].enabled = false;
+                    colliders[1].enabled = true;
+                    rb.velocity = Vector3.zero;
+                    return;
+                }
+
+                var distanceValue = Vector3.Distance(target.position, transform.position);
                 if (playerControls.Gameplay.Sprint.IsPressed())
                 {
                     distanceValue *= 2;
@@ -74,7 +88,7 @@ namespace Group8.TrashDash.Item.Trash
                     distanceValue *= 2;
                 }
 
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.x, transform.position.y, targetPosition.z), distanceValue * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, transform.position.y, target.position.z), distanceValue * Time.deltaTime);
 
                 if (secondPhase)
                 {
@@ -92,20 +106,24 @@ namespace Group8.TrashDash.Item.Trash
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            if ((other.gameObject.tag == "Player") || (other.GetComponent<DoNotLitterSign>()))
             {
-                rb.isKinematic = true;
-                rb.velocity = Vector3.zero;
-                transform.rotation = Quaternion.identity;
-                moveTowards = false;
-                secondPhase = false;
-                secondJump = false;
-                anotherJump = false;
-                colliders[0].enabled = false;
-                colliders[1].enabled = false;
-                meshRenderer.enabled = false;
-                base.Release();
+                Release();
             }
+        }
+
+        private void Reset()
+        {
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            transform.rotation = Quaternion.identity;
+            moveTowards = false;
+            secondPhase = false;
+            secondJump = false;
+            anotherJump = false;
+            colliders[0].enabled = false;
+            colliders[1].enabled = false;
+            meshRenderer.enabled = false;
         }
     }
 }

@@ -8,6 +8,7 @@ public abstract class PowerUpSO : ScriptableObject
     public Texture Icon;
     public Mesh Mesh;
     public Material[] Materials;
+    public float duration;
 
     public virtual void Initialize(GameObject go) { }
     public abstract void Use();

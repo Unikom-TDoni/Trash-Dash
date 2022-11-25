@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1958fb08cf58243b718c4e9890f237, type: 3}
   m_Name: DoNotLitter
   m_EditorClassIdentifier: 
-  name: 
+  name: Do Not Litter!
   Icon: {fileID: 0}
   Mesh: {fileID: 0}
   Materials: []
-  prefab: {fileID: 0}
+  duration: 15
+  prefab: {fileID: 6621144291756869768, guid: 6ea4effa4975ddf4f8e80f423dc9268f, type: 3}
+  radius: 10
+  interval: 2

@@ -7,20 +7,19 @@ public class MultiplyPower : PowerUpSO
 {
     [SerializeField] private string parameterName;
     [SerializeField] private float multiplier;
-    [SerializeField] private float duration;
 
-    IPowerUpMultiply obj;
+    PowerUpHandler obj;
 
     public override void Initialize(GameObject go)
     {
         if (go == null) return;
 
-        obj = go.GetComponent<IPowerUpMultiply>();
+        obj = go.GetComponentInChildren<PowerUpHandler>();
     }
 
     public override void Use()
     {
         if (obj == null) return;
-        PowerUpManager.Instance.StartPowerUp(name, obj.OnPowerUpMultiply(parameterName, multiplier, duration));
+        PowerUpManager.Instance.StartPowerUp(name, obj.PowerUpMultiply(parameterName, multiplier, duration));
     }
 }
