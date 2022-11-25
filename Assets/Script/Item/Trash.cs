@@ -32,8 +32,8 @@ namespace Group8.TrashDash.Item.Trash
         {
             colliders = GetComponents<Collider>();
             rb.isKinematic = false;
-            colliders[1].enabled = true;
             meshRenderer.enabled = true;
+            colliders[1].enabled = true;
         }
 
         public override void Release()
@@ -44,7 +44,6 @@ namespace Group8.TrashDash.Item.Trash
                 colliders[0].enabled = false;
                 colliders[1].enabled = false;
                 transform.rotation = Quaternion.identity;
-                // Can Trigger Bug
                 rb.velocity = Vector3.zero;
                 rb.AddForce(transform.up * Mathf.Clamp(initialDistance * 150, 900, 10000));
                 moveTowards = true;

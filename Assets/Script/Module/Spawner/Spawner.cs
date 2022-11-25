@@ -54,6 +54,9 @@ namespace Group8.TrashDash.Module.Spawner
                 countObject++;
             }
 
+            // Fix Collider Late Position Change Bug
+            yield return new WaitForFixedUpdate();
+
             AfterSpawn();
 
             yield return new WaitForSeconds(interval);

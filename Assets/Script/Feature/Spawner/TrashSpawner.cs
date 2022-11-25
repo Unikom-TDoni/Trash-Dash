@@ -40,7 +40,7 @@ namespace Group8.TrashDash.Spawner
                 BoxCollider[] colliders = go.GetComponents<BoxCollider>();
                 if (colliders.Length == 1)
                 {
-                    go.AddComponent<BoxCollider>().enabled = true;
+                    go.AddComponent<BoxCollider>();
 
                     trash.Initialize();
                     continue;
