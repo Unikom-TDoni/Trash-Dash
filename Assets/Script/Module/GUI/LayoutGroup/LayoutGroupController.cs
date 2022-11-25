@@ -62,7 +62,7 @@ namespace Lnco.Unity.Module.Layout
         public bool TryUpdateContent(TContent content, TGroupItem groupItem)
         {
             var instance = GeneratedGroupItems.FirstOrDefault((item) => item.Equals(groupItem));
-            if (instance is null) return false;
+            if (instance == null) return false;
             instance.UpdateContent(content);
             return true;
         }

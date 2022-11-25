@@ -18,9 +18,6 @@ namespace Group8.TrashDash.Level
                 item.SnapToPosition();
         }
 
-        public void ActivateGroupItem(int index) =>
-            GeneratedGroupItems[index].gameObject.SetActive(true);
-
         public bool IsNeedToRefreshLayout(int inventoryCount)
         {
             for (int i = 0; i < inventoryCount; i++)

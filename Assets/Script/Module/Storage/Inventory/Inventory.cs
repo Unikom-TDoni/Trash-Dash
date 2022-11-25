@@ -39,7 +39,7 @@ namespace Lnco.Unity.Module.Storage
 
         public bool TryRemove(params T[] items)
         {
-            if (Any()) return false;
+            if (!Any()) return false;
             foreach (var item in items) 
                 Items.Remove(item);
             return true;

@@ -1,12 +1,11 @@
 using UnityEngine;
-using Group8.TrashDash.Inventory;
-using Group8.TrashDash.TrashBin;
 using Group8.TrashDash.Event;
-using Group8.TrashDash.Level;
+using Group8.TrashDash.TrashBin;
+using Group8.TrashDash.Inventory;
 
 namespace Group8.TrashDash.Coordinator
 {
-    public sealed class DoniCoordinator : MonoBehaviour
+    public sealed class TrashBinInventoryEventHub : MonoBehaviour
     {
         [SerializeField]
         private TrashBinHandler _trashBinHandler = default;
