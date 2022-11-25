@@ -6,14 +6,14 @@ using UnityEngine;
 namespace Group8.TrashDash.Spawner
 {
     using Module.Spawner;
+
     public class TrashSpawner : Spawner
     {
         [SerializeField] private TrashContentInfo[] trashInformations;
 
-        protected override IEnumerator Spawn()
+        protected override void AfterSpawn()
         {
-            StartCoroutine(base.Spawn());
-            foreach(GameObject go in obj)
+            foreach (GameObject go in obj)
             {
                 if (go == null) continue;
 
@@ -24,27 +24,35 @@ namespace Group8.TrashDash.Spawner
 
                 TrashContentInfo randomTrashInfo = trashInformations[Random.Range(0, trashInformations.Length)];
 
-                if (trash.trashContentInfo == randomTrashInfo) break;
+                if (trash.trashContentInfo == randomTrashInfo)
+                {
+                    trash.Initialize();
+                    continue;
+                }
 
                 trash.trashContentInfo = randomTrashInfo;
 
-                if(randomTrashInfo.Mesh)
+                if (randomTrashInfo.Mesh)
                     go.GetComponent<MeshFilter>().mesh = randomTrashInfo.Mesh;
-                if(randomTrashInfo.Materials.Length > 0)
+                if (randomTrashInfo.Materials.Length > 0)
                     go.GetComponent<MeshRenderer>().materials = randomTrashInfo.Materials;
 
-                //if (go.GetComponent<Collider>())
-                //{
-                //    Collider[] allColliders = go.GetComponents<Collider>();
-                //    foreach (Collider c in allColliders)
-                //    {
-                //        Destroy(c);
-                //    }
-                //}
-                if(go.GetComponents<Collider>().Length == 1)
+                BoxCollider[] colliders = go.GetComponents<BoxCollider>();
+                if (colliders.Length == 1)
+                {
                     go.AddComponent<BoxCollider>();
+
+                    trash.Initialize();
+                    continue;
+                }
+                // Resize Box Collider
+                colliders[1].size = (randomTrashInfo.Mesh.bounds.size);
+                colliders[1].center = (randomTrashInfo.Mesh.bounds.center);
+
+                trash.Initialize();
             }
-            yield return null;
+
+            base.AfterSpawn();
         }
     }
 }

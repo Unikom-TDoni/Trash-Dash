@@ -67,6 +67,8 @@ namespace Group8.TrashDash.Inventory
 
         public override void UpdateContent(TrashContentInfo content)
         {
+            if(content.Sprite is null) _imgIcon.enabled = default;
+            else _imgIcon.enabled = true;
             _imgIcon.sprite = content.Sprite;
             Data = new DropableData(content, this);
         }
@@ -78,6 +80,9 @@ namespace Group8.TrashDash.Inventory
             _imgIcon.rectTransform.anchoredPosition = default;
             _originalImageIconPosition = default;
         }
+
+        public bool IsImageEnabled() =>
+            _imgIcon.enabled;
 
         private void MoveToTheOriginalPosition() =>
             _imgIcon.rectTransform.anchoredPosition = Vector2.MoveTowards(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition, _speed * Time.deltaTime);

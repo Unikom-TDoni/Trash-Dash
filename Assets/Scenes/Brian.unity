@@ -317,6 +317,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c6f42575651754399bd977b7a18857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &80870891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 80870892}
+  - component: {fileID: 80870893}
+  m_Layer: 0
+  m_Name: Time Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &80870892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80870891}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &80870893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80870891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5976dd41ea705f341b5d62b4f27fa41a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageDuration: 1000
+  startingHour: 7.5
+  endHour: 18
+  panelUIManager: {fileID: 1878666259}
+  updateUIMinute: 10
 --- !u!1 &113670299
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,11 +981,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPrefab: {fileID: 11400000, guid: 2046b9cf86378fb4fabb6bf569e97569, type: 2}
-  size: {x: 20, y: 0, z: 10}
+  size: {x: 5, y: 0, z: 5}
   offset: {x: 0, y: 3, z: 0}
   amount: 3
-  interval: 3
-  maxSpawnedObject: 20
+  interval: 0.1
+  maxSpawnedObject: 100
   randomizeRotation: 1
   trashInformations:
   - {fileID: 11400000, guid: b093b05ac7e6e7f45af43e318c151a99, type: 2}
@@ -1197,8 +1246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryObj: {fileID: 4979309}
   _inventory:
-    <MaxCapacity>k__BackingField: 100
-  _inventoryLayoutController: {fileID: 1049535141}
+    <MaxCapacity>k__BackingField: 2000
+  _inventoryLayoutGroupController: {fileID: 1049535141}
 --- !u!4 &720840008
 Transform:
   m_ObjectHideFlags: 0
@@ -3099,6 +3148,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bf8a67adea5d7d54c83810e1ad5cdf2e, type: 3}
   m_PrefabInstance: {fileID: 1283135801}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1291487464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1291487465}
+  - component: {fileID: 1291487466}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1291487465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291487464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1414733581}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1291487466
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291487464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 1, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1340357072
 GameObject:
   m_ObjectHideFlags: 0
@@ -3263,6 +3357,7 @@ Transform:
   m_Children:
   - {fileID: 467412390}
   - {fileID: 1815196160}
+  - {fileID: 1291487465}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4675,7 +4770,7 @@ MeshCollider:
   m_GameObject: {fileID: 1815196156}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -4774,7 +4869,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3cd8c8c3cceaa14ab106b69d85b8d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingTime: 100
   countdownText: {fileID: 848113184}
   gameOverPanel: {fileID: 1448288504}
   pausedPanel: {fileID: 1474713580}

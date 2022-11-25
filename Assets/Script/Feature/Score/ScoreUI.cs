@@ -22,14 +22,8 @@ public class ScoreUI : MonoBehaviour
         scoreManager.OnScoreChange -= UpdateUI;
     }
 
-    private void Start()
-    {
-        if (scoreManager == null) return;
-        scoreManager.OnScoreChange += UpdateUI;
-    }
-
     private void UpdateUI()
     {
-        Debug.Log("Current Score : " + scoreManager.Score);
+        //Debug.Log("Current Score : " + scoreManager.Score);
     }
 }

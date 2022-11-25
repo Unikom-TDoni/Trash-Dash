@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group8.TrashDash.Item.Trash
@@ -8,6 +9,7 @@ namespace Group8.TrashDash.Item.Trash
         public TrashContentInfo trashContentInfo;
         Rigidbody rb;
         Transform player;
+        MeshRenderer meshRenderer;
         bool moveTowards;
         Vector3 targetPosition;
         float initialDistance;
@@ -21,13 +23,17 @@ namespace Group8.TrashDash.Item.Trash
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
+            meshRenderer = GetComponent<MeshRenderer>();
             player = GameObject.FindWithTag("Player").transform;
             playerControls = InputManager.playerAction;
         }
 
-        private void Start()
+        public void Initialize()
         {
             colliders = GetComponents<Collider>();
+            rb.isKinematic = false;
+            meshRenderer.enabled = true;
+            colliders[1].enabled = true;
         }
 
         public override void Release()
@@ -38,13 +44,15 @@ namespace Group8.TrashDash.Item.Trash
                 colliders[0].enabled = false;
                 colliders[1].enabled = false;
                 transform.rotation = Quaternion.identity;
-                rb.AddForce(transform.up * Mathf.Clamp(Vector3.Distance(player.position, transform.position) * 150, 900, 10000));
+                rb.velocity = Vector3.zero;
+                rb.AddForce(transform.up * Mathf.Clamp(initialDistance * 150, 900, 10000));
                 moveTowards = true;
             }
         }
 
         void Update()
         {
+            if (transform.position.y < -10f) Debug.LogWarning("Trash Out of Bound");
             if (moveTowards)
             {
                 transform.rotation = Quaternion.identity;
@@ -86,7 +94,7 @@ namespace Group8.TrashDash.Item.Trash
         {
             if (other.gameObject.tag == "Player")
             {
-                base.Release();
+                rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
                 transform.rotation = Quaternion.identity;
                 moveTowards = false;
@@ -94,7 +102,9 @@ namespace Group8.TrashDash.Item.Trash
                 secondJump = false;
                 anotherJump = false;
                 colliders[0].enabled = false;
-                colliders[1].enabled = true;
+                colliders[1].enabled = false;
+                meshRenderer.enabled = false;
+                base.Release();
             }
         }
     }

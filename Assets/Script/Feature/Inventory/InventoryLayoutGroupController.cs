@@ -21,20 +21,13 @@ namespace Group8.TrashDash.Level
                 TryRefreshContent(content);
         }
 
-        public void ActivateGroupItem(int index) =>
-            GeneratedGroupItems[index].gameObject.SetActive(true);
-
-        protected override InventoryLayoutGroupItem InstatiateGroupItem()
-        {
-            var obj = Instantiate(GroupItem, transform);
-            obj.gameObject.SetActive(default);
-            return obj;
-        }
+        protected override InventoryLayoutGroupItem InstatiateGroupItem() =>
+            Instantiate(GroupItem, transform);
 
         private bool IsNeedToRefreshLayout(int lastIndex)
         {
             for (int i = 0; i < lastIndex; i++)
-                if (!GeneratedGroupItems[i].gameObject.activeInHierarchy) return true;
+                if (!GeneratedGroupItems[i].IsImageEnabled()) return true;
             return default;
         }
     }

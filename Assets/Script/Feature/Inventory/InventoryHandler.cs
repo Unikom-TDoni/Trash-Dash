@@ -46,14 +46,13 @@ namespace Group8.TrashDash.Inventory
             if (!_inventory.TryAdd(trashContentInfo)) return default;
             var index = _inventory.ItemCount() - 1;
             _inventoryLayoutGroupController.TryUpdateContent(trashContentInfo, index);
-            _inventoryLayoutGroupController.ActivateGroupItem(index);
             return true;
         }
 
         public void RemoveItem(TrashContentInfo trashContentInfo, InventoryLayoutGroupItem inventoryLayoutGroupItem)
         {
             if (!_inventory.TryRemove(trashContentInfo)) return;
-            inventoryLayoutGroupItem.gameObject.SetActive(default);
+            _inventoryLayoutGroupController.TryUpdateContent(new(), inventoryLayoutGroupItem);
         }
 
         public void SetActiveInventory(bool value)
