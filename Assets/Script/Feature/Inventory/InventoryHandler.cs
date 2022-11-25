@@ -58,11 +58,7 @@ namespace Group8.TrashDash.Inventory
         public void SetActiveInventory(bool value)
         {
             if (!value)
-            {
-                _inventoryLayoutGroupController.ResetItems();
-                if (_inventoryLayoutGroupController.IsNeedToRefreshLayout(_inventory.ItemCount()))
-                    _inventoryLayoutGroupController.TryRefreshContent(_inventory.GetItems());
-            }
+                _inventoryLayoutGroupController.ResetItems(new List<TrashContentInfo>(_inventory.GetItems()));
             _inventoryObj.SetActive(value);
             InputManager.ToggleActionMap(value ? InputManager.playerAction.Panel : InputManager.playerAction.Gameplay);
         }

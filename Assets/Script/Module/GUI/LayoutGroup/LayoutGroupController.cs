@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using static UnityEditor.Progress;
 
 /// <summary>
 /// Still can be improved by move the item method
@@ -40,16 +41,17 @@ namespace Lnco.Unity.Module.Layout
             GeneratedGroupItems.Clear();
         }
 
-        public bool TryRefreshContent(IEnumerable<TContent> content)
+        public void RefreshContent(IEnumerable<TContent> content)
         {
             var index = 0;
             foreach (var item in content)
             {
-                if (index >= GeneratedGroupItems.Count) return false;
                 GeneratedGroupItems[index].UpdateContent(item);
                 index++;
             }
-            return true;
+
+            for (int i = index; i < GeneratedGroupItems.Count; i++)
+                GeneratedGroupItems[index].UpdateContent(default);
         }
 
         public bool TryUpdateContent(TContent content, int index)
