@@ -1015,7 +1015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &550680063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1294,7 +1294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryObj: {fileID: 4979309}
   _inventory:
-    <MaxCapacity>k__BackingField: 1000
+    <MaxCapacity>k__BackingField: 32
   _inventoryLayoutGroupController: {fileID: 1049535141}
 --- !u!4 &720840008
 Transform:
@@ -1595,8 +1595,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 720840008}
-  - {fileID: 1191938920295052283}
   - {fileID: 1042042379}
+  - {fileID: 1191938920295052283}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1618,7 +1618,8 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   transitionSpeed: 2
   pushForce: 5
-  powerUpHandler: {fileID: 0}
+  powerUpHandler: {fileID: 1042042380}
+  speedMultiplier: 1
 --- !u!114 &770901868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2467,6 +2468,7 @@ MonoBehaviour:
   randomizeRotation: 0
   powerUps:
   - {fileID: 11400000, guid: 9b39c9446da01d54db9205c6b04b7ee2, type: 2}
+  - {fileID: 11400000, guid: 30aa2d214fec1bb49b31d462c8a88f5e, type: 2}
 --- !u!1 &984793237
 GameObject:
   m_ObjectHideFlags: 0
@@ -2588,7 +2590,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 770901866}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1042042380
 MonoBehaviour:
@@ -2603,7 +2605,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUps: []
-  powerUpParameters: []
+  powerUpParameters:
+  - name: speed
+    value: 1
 --- !u!1 &1049535139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,7 +2760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1129032697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5862,7 +5866,7 @@ Transform:
   - {fileID: 1726937249924825179}
   - {fileID: 514974660008557356}
   m_Father: {fileID: 770901866}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1343522624930287852
 SkinnedMeshRenderer:
@@ -6045,7 +6049,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1191938920295052283}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

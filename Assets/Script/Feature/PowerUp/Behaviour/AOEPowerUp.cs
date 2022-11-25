@@ -30,6 +30,7 @@ public class AOEPowerUp : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (!aoePower) return;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, aoePower.radius);
     }
 }
