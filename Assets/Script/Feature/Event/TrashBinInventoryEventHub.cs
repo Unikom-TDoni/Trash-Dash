@@ -16,6 +16,7 @@ namespace Group8.TrashDash.Coordinator
         private void Awake()
         {
             _trashBinHandler.Subscribe(OnDrop, OnInteract);
+            //Instantiate(GameManager.Instance.LevelInfo.Prefab, Vector3.zero, default);
         }
 
         private void OnDestroy()

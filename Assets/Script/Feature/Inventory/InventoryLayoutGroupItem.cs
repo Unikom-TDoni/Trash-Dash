@@ -81,6 +81,9 @@ namespace Group8.TrashDash.Inventory
             _originalImageIconPosition = default;
         }
 
+        public bool IsImageEnabled() =>
+            _imgIcon.enabled;
+
         private void MoveToTheOriginalPosition() =>
             _imgIcon.rectTransform.anchoredPosition = Vector2.MoveTowards(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition, _speed * Time.deltaTime);
     }

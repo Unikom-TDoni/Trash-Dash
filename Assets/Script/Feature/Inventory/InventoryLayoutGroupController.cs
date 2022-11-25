@@ -1,6 +1,6 @@
 using Lnco.Unity.Module.Layout;
 using Group8.TrashDash.Inventory;
-using UnityEditor;
+using System.Collections.Generic;
 
 namespace Group8.TrashDash.Level
 {
@@ -12,24 +12,23 @@ namespace Group8.TrashDash.Level
                 Create();
         }
 
-        public void ResetItems()
+        public void ResetItems(ICollection<TrashContentInfo> content)
         {
             foreach (var item in GeneratedGroupItems)
                 item.SnapToPosition();
+
+            if(IsNeedToRefreshLayout(content.Count))
+                TryRefreshContent(content);
         }
 
-        public bool IsNeedToRefreshLayout(int inventoryCount)
+        protected override InventoryLayoutGroupItem InstatiateGroupItem() =>
+            Instantiate(GroupItem, transform);
+
+        private bool IsNeedToRefreshLayout(int lastIndex)
         {
-            for (int i = 0; i < inventoryCount; i++)
-                if (!GeneratedGroupItems[i].gameObject.activeInHierarchy) return true;
+            for (int i = 0; i < lastIndex; i++)
+                if (!GeneratedGroupItems[i].IsImageEnabled()) return true;
             return default;
-        }
-
-        protected override InventoryLayoutGroupItem InstatiateGroupItem()
-        {
-            var obj = Instantiate(GroupItem, transform);
-            obj.gameObject.SetActive(default);
-            return obj;
         }
     }
 }
