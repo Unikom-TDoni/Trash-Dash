@@ -8,7 +8,7 @@ namespace Group8.TrashDash.Module.Spawner
 {
     using Pool;
 
-    public abstract class Spawner : MonoBehaviour
+    public class Spawner : MonoBehaviour
     {
         public Action<SpawnObject> OnRelease;
 
@@ -54,12 +54,16 @@ namespace Group8.TrashDash.Module.Spawner
                 countObject++;
             }
 
+            AfterSpawn();
+
             yield return new WaitForSeconds(interval);
 
-            AfterSpawn();
+            RestartSpawn();
         }
 
-        protected virtual void AfterSpawn()
+        protected virtual void AfterSpawn() { }
+
+        protected virtual void RestartSpawn()
         {
             for (int i = 0; i < obj.Length; i++)
             {
@@ -95,7 +99,7 @@ namespace Group8.TrashDash.Module.Spawner
 
         private void OnGUI()
         {
-            GUILayout.Label("Pool size (inactive): " + PoolManager.Instance.pools[spawnPrefab.prefab].CountInactive);
+            GUILayout.Label(spawnPrefab.prefab.name + " pool size (inactive): " + PoolManager.Instance.pools[spawnPrefab.prefab].CountInactive);
         }
     }
 }

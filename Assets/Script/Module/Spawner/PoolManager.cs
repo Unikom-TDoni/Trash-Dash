@@ -32,7 +32,7 @@ namespace Group8.TrashDash.Module.Pool
 
             pools.Add(prefab, new ObjectPool<GameObject>(
                 createFunc: () => Instantiate(prefab),
-                actionOnGet: (obj) => obj.SetActive(false),
+                actionOnGet: (obj) => obj.SetActive(true),
                 actionOnRelease: (obj) => obj.SetActive(false),
                 actionOnDestroy: (obj) => Destroy(obj),
                 collectionCheck: true,

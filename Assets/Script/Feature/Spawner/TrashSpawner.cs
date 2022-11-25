@@ -6,7 +6,6 @@ using UnityEngine;
 namespace Group8.TrashDash.Spawner
 {
     using Module.Spawner;
-    using System.Drawing;
 
     public class TrashSpawner : Spawner
     {
@@ -32,7 +31,6 @@ namespace Group8.TrashDash.Spawner
                 }
 
                 trash.trashContentInfo = randomTrashInfo;
-                go.name = randomTrashInfo.Name;
 
                 if (randomTrashInfo.Mesh)
                     go.GetComponent<MeshFilter>().mesh = randomTrashInfo.Mesh;
