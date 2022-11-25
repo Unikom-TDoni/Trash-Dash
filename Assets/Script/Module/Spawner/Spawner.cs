@@ -54,7 +54,7 @@ namespace Group8.TrashDash.Module.Spawner
                 countObject++;
             }
 
-            // Fix Collider Late Position Change Bug
+            // Fix Trash Collider Late Position Change Bug
             yield return new WaitForFixedUpdate();
 
             AfterSpawn();
@@ -81,6 +81,7 @@ namespace Group8.TrashDash.Module.Spawner
 
         private void Release(SpawnObject obj)
         {
+            if (obj == null) return;
             PoolManager.Instance.pools[spawnPrefab.prefab].Release(obj.gameObject);
 
             countObject--;
@@ -98,11 +99,6 @@ namespace Group8.TrashDash.Module.Spawner
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(transform.position + offset, size);
-        }
-
-        private void OnGUI()
-        {
-            GUILayout.Label(spawnPrefab.prefab.name + " pool size (inactive): " + PoolManager.Instance.pools[spawnPrefab.prefab].CountInactive);
         }
     }
 }
