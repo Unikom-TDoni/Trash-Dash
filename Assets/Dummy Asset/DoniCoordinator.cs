@@ -1,16 +1,15 @@
 using UnityEngine;
-using Group8.TrashDash.Inventory;
-using Group8.TrashDash.TrashBin;
 using Group8.TrashDash.Event;
+using Group8.TrashDash.TrashBin;
+using Group8.TrashDash.Inventory;
+using System.Collections.Generic;
 using Group8.TrashDash.Level;
+using Newtonsoft.Json;
 
 namespace Group8.TrashDash.Coordinator
 {
     public sealed class DoniCoordinator : MonoBehaviour
     {
-        [SerializeField]
-        private LevelSpawner _levelSpawner = default;
-
         [SerializeField]
         private TrashBinHandler _trashBinHandler = default;
 
@@ -20,6 +19,7 @@ namespace Group8.TrashDash.Coordinator
         private void Awake()
         {
             _trashBinHandler.Subscribe(OnDrop, OnInteract);
+            //Instantiate(GameManager.Instance.LevelInfo.Prefab, Vector3.zero, default);
         }
 
         private void OnDestroy()
