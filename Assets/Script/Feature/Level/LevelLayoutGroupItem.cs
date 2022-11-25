@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Group8.TrashDash.Core;
@@ -11,6 +12,9 @@ namespace Group8.TrashDash.Level
     {
         [SerializeField]
         private Image[] _imgStars = default;
+
+        [SerializeField]
+        private TMP_Text _txtLevel = default;
 
         [SerializeField]
         private Image _imgBackground = default;
@@ -34,6 +38,7 @@ namespace Group8.TrashDash.Level
         public override void UpdateContent(LevelScriptableObject content)
         {
             var levelEntity = GameManager.Instance.GetLevelEntity(content.Level);
+            _txtLevel.text = content.Level.ToString();
             UpdateStarLayout(content.ScoreStarLimit, levelEntity.HighScore);
             UpdateLockedLayout(levelEntity.IsOpened);
             _levelInfo = content;
