@@ -58,6 +58,18 @@ public class PowerUpHandler : MonoBehaviour
         return result;
     }
 
+    #region PowerUp Coroutines
+    Dictionary<string, Coroutine> powerUpCoroutines = new Dictionary<string, Coroutine>();
+
+    public void StartPowerUp(string powerUpName, IEnumerator enumerator)
+    {
+        if (!powerUpCoroutines.ContainsKey(powerUpName)) powerUpCoroutines.Add(powerUpName, null);
+        if (powerUpCoroutines[powerUpName] != null) StopCoroutine(powerUpCoroutines[powerUpName]);
+
+        powerUpCoroutines[powerUpName] = StartCoroutine(enumerator);
+    }
+    #endregion
+
     #region PowerUp Values
 
     // Serializeable (Agar lebih mudah ditrack di setiap script yang pakai)

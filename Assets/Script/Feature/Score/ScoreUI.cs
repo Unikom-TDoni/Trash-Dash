@@ -24,6 +24,6 @@ public class ScoreUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        //Debug.Log("Current Score : " + scoreManager.Score);
+        Debug.Log("Current Score : " + scoreManager.Score);
     }
 }

@@ -106,7 +106,7 @@ namespace Group8.TrashDash.Item.Trash
 
         private void OnTriggerEnter(Collider other)
         {
-            if ((other.gameObject.tag == "Player") || (other.GetComponent<DoNotLitterSign>()))
+            if (other.gameObject.tag == "Player")
             {
                 Release();
             }

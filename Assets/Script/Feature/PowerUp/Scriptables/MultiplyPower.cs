@@ -20,6 +20,6 @@ public class MultiplyPower : PowerUpSO
     public override void Use()
     {
         if (obj == null) return;
-        PowerUpManager.Instance.StartPowerUp(name, obj.PowerUpMultiply(parameterName, multiplier, duration));
+        obj.StartPowerUp(name, obj.PowerUpMultiply(parameterName, multiplier, duration));
     }
 }

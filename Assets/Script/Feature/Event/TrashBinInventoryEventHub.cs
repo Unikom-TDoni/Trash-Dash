@@ -2,11 +2,15 @@ using UnityEngine;
 using Group8.TrashDash.Event;
 using Group8.TrashDash.TrashBin;
 using Group8.TrashDash.Inventory;
+using Group8.TrashDash.Score;
 
 namespace Group8.TrashDash.Coordinator
 {
     public sealed class TrashBinInventoryEventHub : MonoBehaviour
     {
+        [SerializeField]
+        private ScoreManager scoreManager;
+
         [SerializeField]
         private TrashBinHandler _trashBinHandler = default;
 
@@ -26,13 +30,17 @@ namespace Group8.TrashDash.Coordinator
 
         public void OnDrop(DropableData args)
         {
-            if (!_trashBinHandler.ActiveTrashBinType.Equals(args.TrashContentInfo.TrashBinType)) return;
+            if (!_trashBinHandler.ActiveTrashBinType.Equals(args.TrashContentInfo.TrashBinType))
+                scoreManager.UpdateScore(ScoreState.Wrong);
+            else
+                scoreManager.UpdateScore(ScoreState.Correct);
             _inventoryHandler.RemoveItem(args.TrashContentInfo, args.InventoryLayoutGroupItem);
         }
 
         public void OnInteract(TrashBinTypes args)
         {
             _inventoryHandler.SetActiveInventory(true);
+            scoreManager.ResetCombo();
         }
     }
 }

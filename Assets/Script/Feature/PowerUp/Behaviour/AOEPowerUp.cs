@@ -7,7 +7,7 @@ public class AOEPowerUp : MonoBehaviour
     public AOEPower aoePower;
     private float timer = 0;
 
-    private void Start()
+    protected virtual void Start()
     {
         StartCoroutine(DoEffect());
     }
