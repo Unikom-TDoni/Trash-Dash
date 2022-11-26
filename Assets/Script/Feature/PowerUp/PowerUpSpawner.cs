@@ -9,6 +9,18 @@ namespace Group8.TrashDash.Spawner
     {
         [SerializeField] private PowerUpSO[] powerUps;
 
+        [SerializeField] private Vector3 size = Vector3.one;
+        [SerializeField] private Vector3 offset = Vector3.zero;
+        [SerializeField] private int amount = 1;
+        [SerializeField] private float interval = 5f;
+        [SerializeField] private bool randomizeRotation;
+
+        protected override void Start()
+        {
+            base.Start();
+            RepeatSpawn(transform, interval, offset, amount, size, randomizeRotation);
+        }
+
         protected override void AfterSpawn()
         {
             foreach (GameObject go in obj)
@@ -29,6 +41,12 @@ namespace Group8.TrashDash.Spawner
             }
 
             base.AfterSpawn();
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(transform.position + offset, size);
         }
     }
 }

@@ -52,7 +52,7 @@ namespace Group8.TrashDash.Inventory
         public void RemoveItem(TrashContentInfo trashContentInfo, InventoryLayoutGroupItem inventoryLayoutGroupItem)
         {
             if (!_inventory.TryRemove(trashContentInfo)) return;
-            _inventoryLayoutGroupController.TryUpdateContent(new(), inventoryLayoutGroupItem);
+            _inventoryLayoutGroupController.TryUpdateContent(default, inventoryLayoutGroupItem);
         }
 
         public void SetActiveInventory(bool value)

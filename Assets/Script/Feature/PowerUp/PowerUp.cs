@@ -6,9 +6,17 @@ public class PowerUp : SpawnObject
 {
     public PowerUpSO powerUpInfo;
 
+    private Collider m_collider;
+
+    private void Awake()
+    {
+        m_collider = GetComponent<Collider>();
+        m_collider.enabled = false;
+    }
+
     public void Initialize()
     {
-        gameObject.SetActive(true);
+        m_collider.enabled = true;
     }
 
     public virtual void Use()
@@ -24,8 +32,9 @@ public class PowerUp : SpawnObject
         if (handler == null) return;
 
         if (!handler.Add(powerUpInfo)) return;
-
         powerUpInfo.Initialize(other.gameObject);
+
+        m_collider.enabled = false;
         base.Release();
     }
 }

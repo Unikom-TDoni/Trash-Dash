@@ -51,7 +51,7 @@ namespace Lnco.Unity.Module.Layout
             }
 
             for (int i = index; i < GeneratedGroupItems.Count; i++)
-                GeneratedGroupItems[index].UpdateContent(default);
+                GeneratedGroupItems[i].UpdateContent(default);
         }
 
         public bool TryUpdateContent(TContent content, int index)
