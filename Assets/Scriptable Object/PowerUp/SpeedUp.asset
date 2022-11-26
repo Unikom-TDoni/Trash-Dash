@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SpeedUp
   m_EditorClassIdentifier: 
   name: Speed Up!
-  Icon: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 4cc0c6160b107904ba228a38c3c9afd3, type: 3}
   Mesh: {fileID: 0}
   Materials: []
+  duration: 5
   parameterName: speed
-  multiplier: 2
-  duration: 10
+  multiplier: 1.4

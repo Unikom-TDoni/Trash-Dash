@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: DoNotLitter
   m_EditorClassIdentifier: 
   name: Do Not Litter!
-  Icon: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a1d0bc4c8e2e8b64a9a533363a80be32, type: 3}
   Mesh: {fileID: 0}
   Materials: []
   duration: 15
   prefab: {fileID: 6621144291756869768, guid: 6ea4effa4975ddf4f8e80f423dc9268f, type: 3}
-  radius: 10
-  interval: 2
+  radius: 8
+  interval: 3

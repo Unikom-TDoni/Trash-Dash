@@ -1,3 +1,5 @@
+using Group8.TrashDash.Level;
+using Lnco.Unity.Module.Storage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +7,21 @@ using UnityEngine.InputSystem;
 
 public class PowerUpHandler : MonoBehaviour
 {
-    [SerializeField] private PowerUpSO[] powerUps = new PowerUpSO[2];
+    [SerializeField] private PowerUpSO[] powerUps;
+    [SerializeField] private int maxSlot = 2;
     private PlayerAction playerControls;
+
+    [SerializeField]
+    private PowerUpLayoutGroupController powerUpLayoutGroupController = default;
+    private void Awake()
+    {
+        powerUpLayoutGroupController.InitLayout(maxSlot);
+    }
 
     #region Input Callbacks
     private void Start()
     {
-        powerUps = new PowerUpSO[2];
+        powerUps = new PowerUpSO[maxSlot];
         playerControls = InputManager.playerAction;
         RegisterInputCallback();
 
@@ -47,10 +57,11 @@ public class PowerUpHandler : MonoBehaviour
     {
         bool result = false;
 
-        for(int i = 0; i < powerUps.Length; i++)
+        for(int i = 0; i < maxSlot; i++)
         {
             if (powerUps[i] != null) continue;
             powerUps[i] = _powerUp;
+            powerUpLayoutGroupController.TryUpdateContent(powerUps[i], i);
             result = true;
             break;
         }
@@ -105,6 +116,7 @@ public class PowerUpHandler : MonoBehaviour
         if (powerUps[0] == null) return;
         powerUps[0].Use();
         powerUps[0] = null;
+        powerUpLayoutGroupController.TryUpdateContent(powerUps[0], 0);
     }
 
     private void OnPowerUp2(InputAction.CallbackContext context)
@@ -112,6 +124,7 @@ public class PowerUpHandler : MonoBehaviour
         if (powerUps[1] == null) return;
         powerUps[1].Use();
         powerUps[1] = null;
+        powerUpLayoutGroupController.TryUpdateContent(powerUps[1], 1);
     }
     #endregion
 }

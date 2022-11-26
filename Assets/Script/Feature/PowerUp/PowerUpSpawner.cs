@@ -35,7 +35,7 @@ namespace Group8.TrashDash.Spawner
                 powerUp.Initialize();
                 if (powerUp.powerUpInfo == randomPowerUp) continue;
 
-                powerUp.powerUpInfo = randomPowerUp;
+                powerUp.SetInfo(randomPowerUp);
                 if (randomPowerUp.Mesh) go.GetComponent<MeshFilter>().mesh = randomPowerUp.Mesh;
                 if (randomPowerUp.Materials.Length > 0) go.GetComponent<MeshRenderer>().materials = randomPowerUp.Materials;
             }
