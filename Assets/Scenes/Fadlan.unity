@@ -309,7 +309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15665248}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 71.03, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -446,6 +446,68 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.008112957, y: 0.020133603, z: 0.006413507}
   m_Center: {x: 0.000043190103, y: -0.00002101811, z: -0.0007392688}
+--- !u!1 &135071445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 135071446}
+  m_Layer: 0
+  m_Name: Point (4)
+  m_TagString: AIPoint
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &135071446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135071445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.47, y: 0, z: -11.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &204162133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204162134}
+  m_Layer: 0
+  m_Name: Point (2)
+  m_TagString: AIPoint
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &204162134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204162133}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.29, y: 0, z: -6.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &347066096
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +898,7 @@ GameObject:
   - component: {fileID: 594834296}
   m_Layer: 0
   m_Name: Cube.004
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1018,7 +1080,7 @@ GameObject:
   - component: {fileID: 636091358}
   m_Layer: 0
   m_Name: Cube.004 (1)
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1101,7 +1163,7 @@ GameObject:
   - component: {fileID: 669773920}
   m_Layer: 0
   m_Name: Cube.004 (1)
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1171,37 +1233,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669773918}
   m_Mesh: {fileID: -5053925668127403250, guid: ce793754e3bed4a1f9b6d8b765654785, type: 3}
---- !u!1 &735983471
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 735983472}
-  m_Layer: 0
-  m_Name: 'Queue '
-  m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &735983472
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735983471}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 0, z: 2.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &735989204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,7 +1246,7 @@ GameObject:
   - component: {fileID: 735989206}
   m_Layer: 0
   m_Name: Cube.004
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1303,7 +1334,7 @@ GameObject:
   - component: {fileID: 807041144}
   m_Layer: 0
   m_Name: Cube.004 (1)
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1373,6 +1404,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807041142}
   m_Mesh: {fileID: -5053925668127403250, guid: ce793754e3bed4a1f9b6d8b765654785, type: 3}
+--- !u!1 &962690282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 962690283}
+  m_Layer: 0
+  m_Name: Point (5)
+  m_TagString: AIPoint
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &962690283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962690282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.2, y: 0, z: -13.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1039252714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,6 +1534,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.008112957, y: 0.020133603, z: 0.006413507}
   m_Center: {x: 0.000043190103, y: -0.00002101811, z: -0.0007392688}
+--- !u!1 &1042280214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1042280215}
+  m_Layer: 0
+  m_Name: Point (1)
+  m_TagString: AIPoint
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1042280215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042280214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.03, y: 0, z: -6.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1066428401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1578,7 @@ GameObject:
   - component: {fileID: 1066428403}
   m_Layer: 0
   m_Name: Cube.004
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1568,7 +1661,7 @@ GameObject:
   - component: {fileID: 1090742581}
   m_Layer: 0
   m_Name: Cube.004 (1)
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1651,7 +1744,7 @@ GameObject:
   - component: {fileID: 1132863506}
   m_Layer: 0
   m_Name: Cube.004
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1797,14 +1890,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280681740}
-  m_LocalRotation: {x: 0.425423, y: -0, z: -0, w: 0.9049946}
-  m_LocalPosition: {x: 0.87, y: 10.06, z: -5.71}
+  m_LocalRotation: {x: 0.5156363, y: 0, z: 0, w: 0.8568076}
+  m_LocalPosition: {x: 0.87, y: 22.36, z: -17.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50.355, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 62.08, y: 0, z: 0}
 --- !u!1 &1533346116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1911,7 @@ GameObject:
   - component: {fileID: 1533346118}
   m_Layer: 0
   m_Name: Cube.004 (1)
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1901,7 +1994,7 @@ GameObject:
   - component: {fileID: 1542992765}
   m_Layer: 0
   m_Name: Cube.004 (1)
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -1971,6 +2064,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542992763}
   m_Mesh: {fileID: -5053925668127403250, guid: ce793754e3bed4a1f9b6d8b765654785, type: 3}
+--- !u!1 &1565854228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1565854229}
+  m_Layer: 0
+  m_Name: Point (3)
+  m_TagString: AIPoint
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1565854229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565854228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.68, y: 0, z: -12.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1599462778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599462779}
+  m_Layer: 0
+  m_Name: Exit
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1599462779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599462778}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -28, y: 0, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1702894795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,8 +2159,10 @@ MonoBehaviour:
   <sittingDuration>k__BackingField: 5
   stall: {fileID: 1942644608}
   spawnPoint: {fileID: 51521000}
-  queuePoint: {fileID: 735983472}
-  exitPoint: {fileID: 735983472}
+  exitPoint: {fileID: 1599462779}
+  queueOffset: {x: 0, y: 0, z: -5}
+  customerQueue: []
+  pointList: []
 --- !u!4 &1702894797
 Transform:
   m_ObjectHideFlags: 0
@@ -2034,7 +2191,7 @@ GameObject:
   - component: {fileID: 1780293576}
   m_Layer: 0
   m_Name: Cube.004
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119
@@ -2128,7 +2285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942644607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 0, z: 2.5}
+  m_LocalPosition: {x: 9, y: 0, z: 6.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2161,7 +2318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 32182c033b87c429291dda684b893c3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.34
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 32182c033b87c429291dda684b893c3e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2169,7 +2326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 32182c033b87c429291dda684b893c3e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.59
+      value: -1.42
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 32182c033b87c429291dda684b893c3e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2220,7 +2377,7 @@ GameObject:
   - component: {fileID: 2094368213}
   m_Layer: 0
   m_Name: Point
-  m_TagString: AITargetPoint
+  m_TagString: AIPoint
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2233,12 +2390,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094368212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.7, y: 0, z: -3.04}
+  m_LocalPosition: {x: -6.7, y: 0, z: -6.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2113621857
 GameObject:
@@ -2253,7 +2410,7 @@ GameObject:
   - component: {fileID: 2113621859}
   m_Layer: 0
   m_Name: Cube.004
-  m_TagString: Seat
+  m_TagString: AIPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 119

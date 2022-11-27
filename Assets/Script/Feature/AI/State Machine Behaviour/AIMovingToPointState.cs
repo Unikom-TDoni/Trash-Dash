@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIMovingToSeatState : StateBehaviour {
+public class AIMovingToPointState : StateBehaviour {
     AIManager manager;
     NavMeshAgent agent;
     Transform transform;
@@ -20,7 +20,15 @@ public class AIMovingToSeatState : StateBehaviour {
         base.OnStateFixedUpdate();
 
         if (Vector3.SqrMagnitude(agent.destination - transform.position) <= Mathf.Epsilon) {
-            transform.GetComponent<Animator>().CrossFade("Sitting", .25f);
+            Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
+            foreach (var col in cols) {
+                if (col.CompareTag("Table")) {
+                    transform.GetComponent<Animator>().CrossFade("Sitting", .25f);
+                    return;
+                }
+            }
+
+            transform.GetComponent<Animator>().CrossFade("Sitting Down", .25f);
         }
     }
 

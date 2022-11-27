@@ -5,7 +5,7 @@ public class AISittingState : StateBehaviour {
     Animator animator;
 
     float duration;
-    Vector3 lookAtPos;
+    Transform lookAtTransform;
 
     bool standingUp;
 
@@ -16,12 +16,11 @@ public class AISittingState : StateBehaviour {
 
     public override void OnStateEnter() {
         base.OnStateEnter();
-
+        lookAtTransform = null;
         Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
         foreach (var col in cols) {
             if (col.CompareTag("Table")) {
-                lookAtPos = col.gameObject.transform.position;
-                lookAtPos.y = transform.position.y;
+                lookAtTransform = col.gameObject.transform;
                 break;
             }
         }
@@ -29,18 +28,20 @@ public class AISittingState : StateBehaviour {
         AIManager manager = GameObject.FindWithTag("Manager").GetComponent<AIManager>();
         duration = manager.sittingDuration;
 
+        animator.SetBool("Stand Up", false);
         standingUp = false;
     }
 
     public override void OnStateFixedUpdate() {
         base.OnStateFixedUpdate();
 
-        Utility.LerpLookTowardsTarget(transform, lookAtPos);
+        if (lookAtTransform) 
+            Utility.LerpLookTowardsTarget(transform, new Vector3(lookAtTransform.position.x, transform.position.y, lookAtTransform.position.z));
 
         if (!standingUp) {
             duration -= Time.fixedDeltaTime;
             if (duration <= 0) {
-                animator.CrossFade("Sitting Stand Up", .25f);
+                animator.SetBool("Stand Up", true);
                 standingUp = true;
             }
         }

@@ -11,23 +11,21 @@ public class AIManager : MonoBehaviour {
     [Header("Positions")]
     [SerializeField] Transform stall;
     [SerializeField] Transform spawnPoint;
-    [SerializeField] Transform queuePoint;
     [SerializeField] Transform exitPoint;
+    [SerializeField] Vector3 queueOffset;
     
     public Vector3 stallPosition => stall.position;
-    public Vector3 queuePosition => queuePoint.position;
+    public Vector3 queuePosition => stall.position + queueOffset;
     public Vector3 exitPosition => exitPoint.position;
 
     Vector3 spawnPosition => spawnPoint.position;
     Vector3 spawnRotation => spawnPoint.rotation.eulerAngles;
 
     public List<CustomerAI> customerQueue;
-    public List<GameObject> seatList;
-    public List<GameObject> targetPointList;
+    public List<GameObject> pointList;
 
     void Start() {
-        seatList = GameObject.FindGameObjectsWithTag("Seat").ToList();
-        targetPointList = GameObject.FindGameObjectsWithTag("AITargetPoint").ToList();
+        pointList = GameObject.FindGameObjectsWithTag("AIPoint").ToList();
     }
 
     public void Spawn() {

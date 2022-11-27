@@ -4,10 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Seat
   - Table
   - Manager
-  - AITargetPoint
+  - AIPoint
   layers:
   - Default
   - TransparentFX

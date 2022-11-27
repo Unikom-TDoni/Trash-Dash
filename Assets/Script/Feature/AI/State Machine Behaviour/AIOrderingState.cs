@@ -25,14 +25,9 @@ public class AIOrderingState : StateBehaviour {
         Utility.LerpLookTowardsTarget(transform, new Vector3(manager.stallPosition.x, transform.position.y, manager.stallPosition.z));
         orderTime -= Time.fixedDeltaTime;
 
-        if (orderTime <= 0) {
-            if (manager.seatList.Count > 0) {
-                transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(ref manager.seatList));
-                animator.CrossFade("Moving To Seat", .25f);
-            } else if (manager.targetPointList.Count > 0){
-                transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(ref manager.targetPointList));
-                animator.CrossFade("Moving To Point", .25f);
-            }
+        if (orderTime <= 0 && manager.pointList.Count > 0) {
+            transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(ref manager.pointList));
+            animator.CrossFade("Moving To Point", .25f);
         }
     }
 
@@ -40,6 +35,7 @@ public class AIOrderingState : StateBehaviour {
         int index = Random.Range(0, list.Count);
         Transform point = list[index].transform;
         list.RemoveAt(index);
+        transform.GetComponent<CustomerAI>().targetPoint = point;
         return point.position;
     }
 

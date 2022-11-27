@@ -12,16 +12,19 @@ public class AIWalkingAwayState : StateBehaviour {
     public override void OnStateEnter() {
         base.OnStateEnter();
 
-        target = GameObject.FindWithTag("Manager").GetComponent<AIManager>().exitPosition;
+        AIManager manager = GameObject.FindWithTag("Manager").GetComponent<AIManager>();
+        target = manager.exitPosition;
 
         NavMeshAgent agent = transform.GetComponent<NavMeshAgent>();
         agent.SetDestination(target);
+
+        manager.pointList.Add(transform.GetComponent<CustomerAI>().targetPoint.gameObject);
     }
 
     public override void OnStateFixedUpdate() {
         base.OnStateFixedUpdate();
 
-        if (Vector3.SqrMagnitude(target - transform.position) <= .01f) {
+        if (Vector3.SqrMagnitude(target - transform.position) <= 1f) {
             GameObject.Destroy(transform.gameObject);
         }
     }

@@ -1,7 +1,7 @@
 public enum AIState {
     InQueue,
     OrderingFood,
-    MovingToSeat,
+    MovingToPoint,
     Sitting,
     WalkingAway
 }

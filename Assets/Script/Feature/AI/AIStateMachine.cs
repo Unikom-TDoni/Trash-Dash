@@ -13,7 +13,7 @@ public class AIStateMachine {
         stateDictionary = new Dictionary<AIState, StateBehaviour>() {
             {AIState.InQueue, new AIQueueingState()},
             {AIState.OrderingFood, new AIOrderingState()},
-            {AIState.MovingToSeat, new AIMovingToSeatState()},
+            {AIState.MovingToPoint, new AIMovingToPointState()},
             {AIState.Sitting, new AISittingState()},
             {AIState.WalkingAway, new AIWalkingAwayState()},
         };

@@ -27,7 +27,7 @@ public class AIQueueingState : StateBehaviour {
         base.OnStateFixedUpdate();
 
         if (aiManager.customerQueue[0] == customerAI) {
-            transform.position = Vector3.MoveTowards(transform.position, aiManager.queuePosition, Time.fixedDeltaTime * 10f);
+            transform.position = Vector3.MoveTowards(transform.position, aiManager.queuePosition, Time.fixedDeltaTime * 5f);
 
             Vector3 dir = aiManager.queuePosition - transform.position;
             dir.y = 0;
@@ -35,7 +35,7 @@ public class AIQueueingState : StateBehaviour {
                 animator.CrossFade("Idle", .25f);
             }
         } else {
-            transform.position = Vector3.MoveTowards(transform.position, lastQueue.position - (lastQueue.position - transform.position).normalized * 2f, Time.fixedDeltaTime * 10f);
+            transform.position = Vector3.MoveTowards(transform.position, lastQueue.position - (lastQueue.position - transform.position).normalized * 2f, Time.fixedDeltaTime * 5f);
         }
     }
 }

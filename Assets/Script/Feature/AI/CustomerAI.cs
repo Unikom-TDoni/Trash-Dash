@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CustomerAI : MonoBehaviour {
     public AIStateMachine stateMachine {get; private set;}
+    public Transform targetPoint;
 
     void Start() {
        stateMachine = new AIStateMachine(transform);
