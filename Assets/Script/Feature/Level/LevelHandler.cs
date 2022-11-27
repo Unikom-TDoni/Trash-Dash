@@ -1,5 +1,4 @@
 using UnityEngine;
-using Group8.TrashDash.Core;
 
 namespace Group8.TrashDash.Level
 {

@@ -45,9 +45,9 @@ namespace Group8.TrashDash.Inventory
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            trashBinLayoutController.dragTrash = true;
             if (eventData.button is not PointerEventData.InputButton.Left) return;
             if (eventData.pointerPressRaycast.gameObject != _imgIcon.gameObject) return;
+            trashBinLayoutController.dragTrash = true;
             _imgIcon.transform.SetParent(_topParent);
             _imgIcon.raycastTarget = default;
             _originalImageIconPosition = _imgIcon.rectTransform.anchoredPosition;
@@ -67,9 +67,8 @@ namespace Group8.TrashDash.Inventory
 
         public override void UpdateContent(TrashContentInfo content)
         {
-            if (content == null) content = new TrashContentInfo();
-            _imgIcon.enabled = content.Sprite is not null;
-            _imgIcon.sprite = content.Sprite;
+            _imgIcon.enabled = content is not null && content.Sprite is not null;
+            _imgIcon.sprite = content is null ? default : content.Sprite;
             Data = new DropableData(content, this);
         }
 
