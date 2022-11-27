@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Group8.TrashDash.Event;
 using Group8.TrashDash.Score;
+using System.Collections.Generic;
 
 namespace Group8.TrashDash.TrashBin
 {
@@ -40,6 +41,17 @@ namespace Group8.TrashDash.TrashBin
 
         public void SetActiveTrashBinLayout(bool value) =>
             _trashBinObj.SetActive(value);
+
+        public TrashBinTypes[] GetActiveTrashBinTypes()
+        {
+            List<TrashBinTypes> activeTrashBinTypes = new List<TrashBinTypes>();
+            foreach (var item in _activeTrashBins)
+            {
+                activeTrashBinTypes.Add(item.GetTrashBinType());
+            }
+
+            return activeTrashBinTypes.ToArray();
+        }
 
         private void OnInteract(TrashBinTypes type)
         {

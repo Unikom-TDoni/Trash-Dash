@@ -1047,6 +1047,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc688297ab2602140b7a1567aebff6e7, type: 2}
   - {fileID: 11400000, guid: 8d2ada30c9bcef748ad5b53d2171a0bc, type: 2}
   - {fileID: 11400000, guid: ed2a3372717e8834087f331e3828301a, type: 2}
+  trashBinHandler: {fileID: 0}
 --- !u!4 &550680064
 Transform:
   m_ObjectHideFlags: 0
@@ -2631,13 +2632,17 @@ MonoBehaviour:
   spawnPrefab:
     prefab: {fileID: 2193157950502936516, guid: 678f3bced9784cb4c8f76a16c2ca76e1, type: 3}
     maxObjectInPool: 10
+  totalSpawnWeight: 3
   powerUps:
-  - {fileID: 11400000, guid: 9b39c9446da01d54db9205c6b04b7ee2, type: 2}
-  - {fileID: 11400000, guid: 30aa2d214fec1bb49b31d462c8a88f5e, type: 2}
+  - Value: {fileID: 11400000, guid: 9b39c9446da01d54db9205c6b04b7ee2, type: 2}
+    Weight: 2
+  - Value: {fileID: 11400000, guid: 30aa2d214fec1bb49b31d462c8a88f5e, type: 2}
+    Weight: 1
   size: {x: 100, y: 0, z: 100}
   offset: {x: 0, y: 1, z: 0}
   amount: 1
-  interval: 5
+  minInterval: 3
+  maxInterval: 5
   randomizeRotation: 0
 --- !u!1 &984793237
 GameObject:
@@ -3169,6 +3174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfe588fe8e3c964ea6bc9e58ec4be66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trashBinObj: {fileID: 0}
   _layoutController: {fileID: 984793239}
   _activeTrashBins:
   - {fileID: 75497831}
@@ -5051,7 +5057,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: -8067726398312463513, guid: ea262f21eb3f1d147a111fb89cb7a5d3, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5571,10 +5577,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: -7366238270790709541, guid: b375131ad3e1c4eeaaddd8123ae5a205, type: 3}
-  spawnPoint: {fileID: 1967421475}
-  <speed>k__BackingField: 10
-  <stall>k__BackingField: {fileID: 1281416085}
-  queueOffset: {x: 0, y: 0, z: -2}
+  <sittingDuration>k__BackingField: 0
+  spawnConfigurations: []
+  exitPoint: {fileID: 0}
+  pointList: []
+  <trashSpawnState>k__BackingField: 
 --- !u!4 &1973113639
 Transform:
   m_ObjectHideFlags: 0

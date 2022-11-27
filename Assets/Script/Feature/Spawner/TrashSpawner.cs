@@ -12,6 +12,7 @@ namespace Group8.TrashDash.Spawner
     public class TrashSpawner : Spawner
     {
         [SerializeField] private TrashContentInfo[] trashInformations;
+        [SerializeField] TrashBinHandler trashBinHandler;
 
         protected override void Start()
         {
@@ -20,8 +21,19 @@ namespace Group8.TrashDash.Spawner
             //RepeatSpawn(new TrashBinTypes[] { TrashBinTypes.Organic }, transform, .1f, amount: 3);
         }
 
+        public override Coroutine InstantSpawn(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        {
+            return InstantSpawn(trashBinHandler.GetActiveTrashBinTypes(), center, offset, amount, areaSize, randomizeRotation);
+        }
+
+        public override Coroutine RepeatSpawn(Transform center, float minInterval, float maxInterval, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        {
+            return RepeatSpawn(trashBinHandler.GetActiveTrashBinTypes(), center, minInterval, maxInterval, offset, amount, areaSize, randomizeRotation);
+        }
+
         public Coroutine InstantSpawn(TrashBinTypes[] trashTypes, Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
         {
+            // Bug-able : when trashTypes sent didnt match sceneTrashTypes
             return StartCoroutine(InstantSpawnCoroutine(trashTypes, center, offset, amount, areaSize, randomizeRotation));
         }
 
@@ -36,6 +48,7 @@ namespace Group8.TrashDash.Spawner
 
         public Coroutine RepeatSpawn(TrashBinTypes[] trashTypes, Transform center, float minInterval, float maxInterval, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
         {
+            // Bug-able : when trashTypes sent didnt match sceneTrashTypes
             return StartCoroutine(RepeatSpawnCoroutine(trashTypes, center, minInterval, maxInterval, offset, amount, areaSize, randomizeRotation));
         }
 

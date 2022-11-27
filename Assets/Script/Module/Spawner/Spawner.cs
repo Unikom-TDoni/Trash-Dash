@@ -23,14 +23,14 @@ namespace Group8.TrashDash.Module.Spawner
             poolManager.Add(spawnPrefab.prefab, spawnPrefab.maxObjectInPool);
         }
 
-        public void InstantSpawn(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        public virtual Coroutine InstantSpawn(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
         {
-            StartCoroutine(InstantSpawnCoroutine(center, offset, amount, areaSize, randomizeRotation));
+            return StartCoroutine(InstantSpawnCoroutine(center, offset, amount, areaSize, randomizeRotation));
         }
 
-        public void RepeatSpawn(Transform center, float interval, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        public virtual Coroutine RepeatSpawn(Transform center, float minInterval, float maxInterval, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
         {
-            StartCoroutine(RepeatSpawnCoroutine(center, interval, offset, amount, areaSize, randomizeRotation));
+            return StartCoroutine(RepeatSpawnCoroutine(center, minInterval, maxInterval, offset, amount, areaSize, randomizeRotation));
         }
 
         protected virtual IEnumerator InstantSpawnCoroutine(Transform center, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
@@ -42,17 +42,18 @@ namespace Group8.TrashDash.Module.Spawner
             AfterSpawn();
         }
 
-        protected virtual IEnumerator RepeatSpawnCoroutine(Transform center, float interval, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
+        protected virtual IEnumerator RepeatSpawnCoroutine(Transform center, float minInterval, float maxInterval, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
         {
-            yield return new WaitForSeconds(interval);
+            while (true)
+            {
+                yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
 
-            SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
+                SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
 
-            yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
 
-            AfterSpawn();
-
-            StartCoroutine(RepeatSpawnCoroutine(center, interval, offset, amount, areaSize, randomizeRotation));
+                AfterSpawn();
+            }
         }
 
         protected void SpawnObjects(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
