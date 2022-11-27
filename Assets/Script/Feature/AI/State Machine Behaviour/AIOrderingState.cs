@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class AIOrderingState : StateBehaviour {
+    CustomerAI customerAI;
     Transform transform;
     AIManager manager;
     Animator animator;
@@ -13,6 +14,7 @@ public class AIOrderingState : StateBehaviour {
         this.transform = transform;
         manager = GameObject.FindObjectOfType<AIManager>();
         animator = transform.GetComponent<Animator>();
+        customerAI = transform.GetComponent<CustomerAI>();
     }
 
     public override void OnStateEnter() {
@@ -22,7 +24,7 @@ public class AIOrderingState : StateBehaviour {
     public override void OnStateFixedUpdate() {
         base.OnStateFixedUpdate();
 
-        Utility.LerpLookTowardsTarget(transform, new Vector3(manager.stallPosition.x, transform.position.y, manager.stallPosition.z));
+        Utility.LerpLookTowardsTarget(transform, new Vector3(customerAI.spawnConfiguration.stallPosition.x, transform.position.y, customerAI.spawnConfiguration.stallPosition.z));
         orderTime -= Time.fixedDeltaTime;
 
         if (orderTime <= 0 && manager.pointList.Count > 0) {
@@ -41,7 +43,7 @@ public class AIOrderingState : StateBehaviour {
 
     public override void OnStateExit() {
         base.OnStateExit();
-        manager.customerQueue.RemoveAt(0);
+        customerAI.spawnConfiguration.customerQueue.RemoveAt(0);
     }
 
     public override void OnGUI() {

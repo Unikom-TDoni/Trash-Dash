@@ -1,3 +1,4 @@
+using Group8.TrashDash.TrashBin;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,7 +30,7 @@ public class AIMovingToPointState : StateBehaviour {
             }
 
             transform.GetComponent<Animator>().CrossFade("Sitting Down", .25f);
-        }
+        }        
     }
 
     public override void OnStateExit() {

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// TODO: Make sit in chair direction and not table.
 public class AISittingState : StateBehaviour {
     Transform transform;
     Animator animator;

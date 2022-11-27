@@ -9,6 +9,8 @@ public class AIStateMachine {
     AIState currentState;
     Dictionary<AIState, StateBehaviour> stateDictionary;
 
+    public System.Action<AIState> OnStateChange;
+
     public AIStateMachine(Transform transform) {
         stateDictionary = new Dictionary<AIState, StateBehaviour>() {
             {AIState.InQueue, new AIQueueingState()},
@@ -48,6 +50,10 @@ public class AIStateMachine {
         currentState = aiState;
 
         currentStateBehaviour.OnStateEnter();
+
+        if (OnStateChange != null) {
+            OnStateChange(aiState);
+        }
     }
 
     public void OnGUI() {

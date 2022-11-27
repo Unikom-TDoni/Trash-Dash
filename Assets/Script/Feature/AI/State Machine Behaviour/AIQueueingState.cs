@@ -5,37 +5,40 @@ public class AIQueueingState : StateBehaviour {
     CustomerAI customerAI;
     Transform transform;
     AIManager aiManager;
-    Animator animator;
-
     Transform lastQueue;
+    NavMeshAgent agent;
 
     public override void Start(Transform transform) {
         base.Start(transform);
         this.transform = transform;
         customerAI = transform.GetComponent<CustomerAI>();
-        animator = transform.GetComponent<Animator>();
         aiManager = GameObject.FindObjectOfType<AIManager>();
+        agent = transform.GetComponent<NavMeshAgent>();
+
+        customerAI.spawnConfiguration = aiManager.GetSpawnConfiguration();
+        transform.position = customerAI.spawnConfiguration.spawnPosition;
+        transform.rotation = customerAI.spawnConfiguration.spawnRotation;
     }
 
     public override void OnStateEnter() {
         base.OnStateEnter();
-        lastQueue = aiManager.customerQueue.Count == 0 ? null : aiManager.customerQueue[aiManager.customerQueue.Count - 1].transform;
-        aiManager.customerQueue.Add(customerAI);
+        lastQueue = customerAI.spawnConfiguration.customerQueue.Count == 0 ? null : customerAI.spawnConfiguration.customerQueue[customerAI.spawnConfiguration.customerQueue.Count - 1].transform;
+        customerAI.spawnConfiguration.customerQueue.Add(customerAI);
     }
 
     public override void OnStateFixedUpdate() {
         base.OnStateFixedUpdate();
 
-        if (aiManager.customerQueue[0] == customerAI) {
-            transform.position = Vector3.MoveTowards(transform.position, aiManager.queuePosition, Time.fixedDeltaTime * 5f);
+        if (customerAI.spawnConfiguration.customerQueue[0] == customerAI) {
+            agent.destination = customerAI.spawnConfiguration.queuePosition;
 
-            Vector3 dir = aiManager.queuePosition - transform.position;
+            Vector3 dir = customerAI.spawnConfiguration.queuePosition - transform.position;
             dir.y = 0;
             if (Vector3.SqrMagnitude(dir) <= 0.01f) {
-                animator.CrossFade("Idle", .25f);
+                transform.GetComponent<Animator>().CrossFade("Idle", .25f);
             }
         } else {
-            transform.position = Vector3.MoveTowards(transform.position, lastQueue.position - (lastQueue.position - transform.position).normalized * 2f, Time.fixedDeltaTime * 5f);
+            agent.destination = lastQueue.position - (lastQueue.position - transform.position).normalized * 2f;
         }
     }
 }
