@@ -80,6 +80,24 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PowerUp1"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5c219aa-e217-44e6-8e44-c4397c445108"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PowerUp2"",
+                    ""type"": ""Button"",
+                    ""id"": ""886df013-0f14-4e53-af7e-ae790b2ea436"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +274,50 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""961a83be-fbff-48d4-b6a8-bf44f06ddfb5"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""PowerUp1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0c9e6f9-f11b-4e24-9319-418f880f5e0e"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PowerUp1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00ff4057-0647-4e7d-87f2-5ec27073439f"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""PowerUp2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e3e2877-a01b-4742-a45f-012db7157d73"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PowerUp2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -436,34 +498,6 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""Inventory"",
-            ""id"": ""6f3cd402-06f6-4aae-ab67-d3c6a9c7067a"",
-            ""actions"": [
-                {
-                    ""name"": ""Drag"",
-                    ""type"": ""Button"",
-                    ""id"": ""ce34a4f1-152e-4bae-aeb0-e840973e5497"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""760a66e8-f1bd-4ad2-bca4-671a751e55d7"",
-                    ""path"": ""<Mouse>/press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Drag"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": [
@@ -504,15 +538,14 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         m_Gameplay_Inventory = m_Gameplay.FindAction("Inventory", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_PowerUp1 = m_Gameplay.FindAction("PowerUp1", throwIfNotFound: true);
+        m_Gameplay_PowerUp2 = m_Gameplay.FindAction("PowerUp2", throwIfNotFound: true);
         // Panel
         m_Panel = asset.FindActionMap("Panel", throwIfNotFound: true);
         m_Panel_Navigate = m_Panel.FindAction("Navigate", throwIfNotFound: true);
         m_Panel_Confirm = m_Panel.FindAction("Confirm", throwIfNotFound: true);
         m_Panel_Cancel = m_Panel.FindAction("Cancel", throwIfNotFound: true);
         m_Panel_Select = m_Panel.FindAction("Select", throwIfNotFound: true);
-        // Inventory
-        m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
-        m_Inventory_Drag = m_Inventory.FindAction("Drag", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -578,6 +611,8 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Inventory;
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_PowerUp1;
+    private readonly InputAction m_Gameplay_PowerUp2;
     public struct GameplayActions
     {
         private @PlayerAction m_Wrapper;
@@ -588,6 +623,8 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         public InputAction @Inventory => m_Wrapper.m_Gameplay_Inventory;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputAction @PowerUp1 => m_Wrapper.m_Gameplay_PowerUp1;
+        public InputAction @PowerUp2 => m_Wrapper.m_Gameplay_PowerUp2;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -615,6 +652,12 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @PowerUp1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPowerUp1;
+                @PowerUp1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPowerUp1;
+                @PowerUp1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPowerUp1;
+                @PowerUp2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPowerUp2;
+                @PowerUp2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPowerUp2;
+                @PowerUp2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPowerUp2;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -637,6 +680,12 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @PowerUp1.started += instance.OnPowerUp1;
+                @PowerUp1.performed += instance.OnPowerUp1;
+                @PowerUp1.canceled += instance.OnPowerUp1;
+                @PowerUp2.started += instance.OnPowerUp2;
+                @PowerUp2.performed += instance.OnPowerUp2;
+                @PowerUp2.canceled += instance.OnPowerUp2;
             }
         }
     }
@@ -698,39 +747,6 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         }
     }
     public PanelActions @Panel => new PanelActions(this);
-
-    // Inventory
-    private readonly InputActionMap m_Inventory;
-    private IInventoryActions m_InventoryActionsCallbackInterface;
-    private readonly InputAction m_Inventory_Drag;
-    public struct InventoryActions
-    {
-        private @PlayerAction m_Wrapper;
-        public InventoryActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Drag => m_Wrapper.m_Inventory_Drag;
-        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
-        public void SetCallbacks(IInventoryActions instance)
-        {
-            if (m_Wrapper.m_InventoryActionsCallbackInterface != null)
-            {
-                @Drag.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDrag;
-                @Drag.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDrag;
-                @Drag.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDrag;
-            }
-            m_Wrapper.m_InventoryActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Drag.started += instance.OnDrag;
-                @Drag.performed += instance.OnDrag;
-                @Drag.canceled += instance.OnDrag;
-            }
-        }
-    }
-    public InventoryActions @Inventory => new InventoryActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -757,6 +773,8 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         void OnInventory(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnPowerUp1(InputAction.CallbackContext context);
+        void OnPowerUp2(InputAction.CallbackContext context);
     }
     public interface IPanelActions
     {
@@ -764,9 +782,5 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         void OnConfirm(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
-    }
-    public interface IInventoryActions
-    {
-        void OnDrag(InputAction.CallbackContext context);
     }
 }

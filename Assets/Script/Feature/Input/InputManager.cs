@@ -18,7 +18,6 @@ public class InputManager : MonoBehaviour
     public static void ToggleActionMap(InputActionMap actionMap)
     {
         if (actionMap.enabled) return;
-
         playerAction.Disable();
         actionMapChange?.Invoke(actionMap);
         actionMap.Enable();

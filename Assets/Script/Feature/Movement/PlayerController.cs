@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,6 +34,10 @@ namespace Group8.TrashDash.Player.Controller
         [Header("Force")]
         public float pushForce;
 
+        [Header("Modifiers")]
+        [SerializeField] private PowerUpHandler powerUpHandler;
+        [Range(.1f, 10), SerializeField] float speedMultiplier = 1;
+
         void Awake()
         {
             controller = GetComponent<CharacterController>();
@@ -57,8 +63,9 @@ namespace Group8.TrashDash.Player.Controller
 
         void Update()
         {
+            speedMultiplier = (powerUpHandler) ? powerUpHandler.powerUpValues["speed"] : speedMultiplier;
             moveDirection = GetMovementInputDirection();
-            velocity = new Vector3(moveDirection.x * speed, velocity.y, moveDirection.z * speed);
+            velocity = new Vector3(moveDirection.x * speed * speedMultiplier, velocity.y, moveDirection.z * speed * speedMultiplier);
 
             // Gravity
             if (controller.isGrounded)

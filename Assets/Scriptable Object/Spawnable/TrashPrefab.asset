@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TrashPrefab
   m_EditorClassIdentifier: 
   prefab: {fileID: 2193157950502936516, guid: 3ecb7d42dc1b1524e90ade55b3760a53, type: 3}
-  maxObjectInPool: 10
+  maxObjectInPool: 100

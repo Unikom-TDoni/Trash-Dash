@@ -15,6 +15,9 @@ namespace Lnco.Unity.Module.Storage
         public void Init(ICollection<T> items) =>
             (Items) = (items);
 
+        public int ItemCount() =>
+            Items.Count;
+
         public bool Any() =>
             Items.Count != default;
 
@@ -36,7 +39,7 @@ namespace Lnco.Unity.Module.Storage
 
         public bool TryRemove(params T[] items)
         {
-            if (Any()) return false;
+            if (!Any()) return false;
             foreach (var item in items) 
                 Items.Remove(item);
             return true;

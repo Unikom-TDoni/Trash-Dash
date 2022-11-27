@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Spawn Prefab", menuName = "Item/Spawn Prefab")]
-public class SpawnPrefab : ScriptableObject
+[Serializable]
+public class SpawnPrefab
 {
     public GameObject prefab;
-    public int maxObjectInPool;
+    public int maxObjectInPool = 100;
 }

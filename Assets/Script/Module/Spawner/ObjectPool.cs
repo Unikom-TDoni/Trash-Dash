@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Group8.TrashDash.Module.Spawner
+namespace Group8.TrashDash.Module.OldPool
 {
     public class ObjectPool
     {
@@ -45,6 +45,7 @@ namespace Group8.TrashDash.Module.Spawner
             if (enabled == false)
             {
                 Object.Destroy(obj);
+                count--;
                 return;
             }
             obj.SetActive(false);

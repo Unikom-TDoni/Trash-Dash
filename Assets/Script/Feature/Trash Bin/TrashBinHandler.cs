@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
 using Group8.TrashDash.Event;
-using System.Collections.Generic;
+using Group8.TrashDash.Score;
 
 namespace Group8.TrashDash.TrashBin
 {
     public sealed class TrashBinHandler : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject _trashBinObj = default;
+
         [SerializeField]
         private TrashBinLayoutController _layoutController = default;
 
@@ -35,7 +38,13 @@ namespace Group8.TrashDash.TrashBin
             }
         }
 
-        private void OnInteract(TrashBinTypes type) =>
+        public void SetActiveTrashBinLayout(bool value) =>
+            _trashBinObj.SetActive(value);
+
+        private void OnInteract(TrashBinTypes type)
+        {
             ActiveTrashBinType = type;
+            SetActiveTrashBinLayout(true);
+        }
     }
 }

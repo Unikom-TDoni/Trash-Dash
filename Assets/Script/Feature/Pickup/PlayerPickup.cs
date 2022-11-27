@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 namespace Group8.TrashDash.Player.Pickup
 {
@@ -8,6 +8,7 @@ namespace Group8.TrashDash.Player.Pickup
     using Inventory;
     using Item.Trash;
     using System.Linq;
+    using Group8.TrashDash.Score;
 
     public class PlayerPickup : MonoBehaviour
     {
@@ -21,6 +22,7 @@ namespace Group8.TrashDash.Player.Pickup
         public List<GameObject> takenObjects;
 
         [SerializeField] InventoryHandler inventory;
+        [SerializeField] ScoreManager scoreManager;
 
         Animator playerAnimator;
 
@@ -71,9 +73,13 @@ namespace Group8.TrashDash.Player.Pickup
                     continue;
                 }
 
-                inventory.AddItem(trash.trashContentInfo);
-                trash.Release();
-                takenObjects.Remove(obj);
+                if (inventory.TryAddItem(trash.trashContentInfo))
+                {
+                    trash.MoveToTarget(transform);
+                    takenObjects.Remove(obj);
+
+                    scoreManager?.UpdateScore(ScoreState.Collect);
+                }
             }
         }
         #endregion

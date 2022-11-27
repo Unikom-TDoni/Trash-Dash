@@ -4,8 +4,8 @@ using UnityEngine.UI;
 using Group8.TrashDash.Event;
 using Lnco.Unity.Module.Layout;
 using UnityEngine.EventSystems;
-using Lnco.Unity.Module.EventSystems;
 using Group8.TrashDash.TrashBin;
+using Lnco.Unity.Module.EventSystems;
 
 namespace Group8.TrashDash.Inventory
 {
@@ -45,9 +45,9 @@ namespace Group8.TrashDash.Inventory
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            trashBinLayoutController.dragTrash = true;
             if (eventData.button is not PointerEventData.InputButton.Left) return;
             if (eventData.pointerPressRaycast.gameObject != _imgIcon.gameObject) return;
+            trashBinLayoutController.dragTrash = true;
             _imgIcon.transform.SetParent(_topParent);
             _imgIcon.raycastTarget = default;
             _originalImageIconPosition = _imgIcon.rectTransform.anchoredPosition;
@@ -67,17 +67,21 @@ namespace Group8.TrashDash.Inventory
 
         public override void UpdateContent(TrashContentInfo content)
         {
-            _imgIcon.sprite = content.Sprite;
+            _imgIcon.enabled = content is not null && content.Sprite is not null;
+            _imgIcon.sprite = content is null ? default : content.Sprite;
             Data = new DropableData(content, this);
         }
 
-        private void SnapToPosition()
+        public void SnapToPosition()
         {
             if (_imgIcon.transform.parent == transform) return;
             _imgIcon.transform.SetParent(transform);
             _imgIcon.rectTransform.anchoredPosition = default;
             _originalImageIconPosition = default;
         }
+
+        public bool IsImageEnabled() =>
+            _imgIcon.enabled;
 
         private void MoveToTheOriginalPosition() =>
             _imgIcon.rectTransform.anchoredPosition = Vector2.MoveTowards(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition, _speed * Time.deltaTime);

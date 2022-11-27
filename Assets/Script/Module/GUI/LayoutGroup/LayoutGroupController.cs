@@ -40,16 +40,17 @@ namespace Lnco.Unity.Module.Layout
             GeneratedGroupItems.Clear();
         }
 
-        public bool TryRefreshContent(IEnumerable<TContent> content)
+        public void RefreshContent(IEnumerable<TContent> contents)
         {
             var index = 0;
-            foreach (var item in content)
+            foreach (var item in contents)
             {
-                if (index >= GeneratedGroupItems.Count) return false;
                 GeneratedGroupItems[index].UpdateContent(item);
                 index++;
             }
-            return true;
+
+            for (int i = index; i < GeneratedGroupItems.Count; i++)
+                GeneratedGroupItems[i].UpdateContent(default);
         }
 
         public bool TryUpdateContent(TContent content, int index)
@@ -62,7 +63,7 @@ namespace Lnco.Unity.Module.Layout
         public bool TryUpdateContent(TContent content, TGroupItem groupItem)
         {
             var instance = GeneratedGroupItems.FirstOrDefault((item) => item.Equals(groupItem));
-            if (instance is null) return false;
+            if (instance == null) return false;
             instance.UpdateContent(content);
             return true;
         }

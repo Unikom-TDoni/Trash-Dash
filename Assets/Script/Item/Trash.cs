@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group8.TrashDash.Item.Trash
@@ -7,42 +8,70 @@ namespace Group8.TrashDash.Item.Trash
     {
         public TrashContentInfo trashContentInfo;
         Rigidbody rb;
-        Transform player;
+        Transform target;
+        MeshRenderer meshRenderer;
         bool moveTowards;
-        Vector3 targetPosition;
         float initialDistance;
         private PlayerAction playerControls;
         bool secondPhase;
         bool secondJump;
         bool anotherJump;
 
+        Collider[] colliders;
+ 
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
-            player = GameObject.FindWithTag("Player").transform;
+            meshRenderer = GetComponent<MeshRenderer>();
             playerControls = InputManager.playerAction;
         }
 
-        public override void Release()
+        public void Initialize()
+        {
+            colliders = GetComponents<Collider>();
+            rb.isKinematic = false;
+            meshRenderer.enabled = true;
+            colliders[1].enabled = true;
+        }
+
+        public void MoveToTarget(Transform _target)
         {
             if (!moveTowards)
             {
-                initialDistance = Vector3.Distance(player.position, transform.position);
-                var collider = GetComponents<Collider>();
-                collider[0].enabled = false;
+                target = _target;
+                initialDistance = Vector3.Distance(target.position, transform.position);
+                colliders[0].enabled = false;
+                colliders[1].enabled = false;
                 transform.rotation = Quaternion.identity;
-                rb.AddForce(transform.up * Mathf.Clamp(Vector3.Distance(player.position, transform.position) * 150, 900, 10000));
+                rb.velocity = Vector3.zero;
+                rb.AddForce(transform.up * Mathf.Clamp(initialDistance * 150, 900, 10000));
                 moveTowards = true;
             }
         }
 
+        public override void Release()
+        {
+            Reset();
+            base.Release();
+        }
+
         void Update()
         {
+            if (transform.position.y < -10f) Debug.LogWarning("Trash Out of Bound");
             if (moveTowards)
             {
                 transform.rotation = Quaternion.identity;
-                targetPosition = player.position;
-                var distanceValue = Vector3.Distance(player.position, transform.position);
+
+                if (target == null)
+                {
+                    moveTowards = false;
+                    colliders[0].enabled = false;
+                    colliders[1].enabled = true;
+                    rb.velocity = Vector3.zero;
+                    return;
+                }
+
+                var distanceValue = Vector3.Distance(target.position, transform.position);
                 if (playerControls.Gameplay.Sprint.IsPressed())
                 {
                     distanceValue *= 2;
@@ -55,16 +84,14 @@ namespace Group8.TrashDash.Item.Trash
                 }
                 if (secondJump)
                 {
+                    colliders[0].enabled = true;
                     distanceValue *= 2;
                 }
 
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.x, transform.position.y, targetPosition.z), distanceValue * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, transform.position.y, target.position.z), distanceValue * Time.deltaTime);
 
                 if (secondPhase)
                 {
-                    var collider = GetComponents<Collider>();
-                    collider[0].enabled = true;
-                    collider[1].enabled = true;
                     anotherJump = true;
                     return;
                 }
@@ -81,14 +108,22 @@ namespace Group8.TrashDash.Item.Trash
         {
             if (other.gameObject.tag == "Player")
             {
-                base.Release();
-                rb.velocity = Vector3.zero;
-                transform.rotation = Quaternion.identity;
-                moveTowards = false;
-                secondPhase = false;
-                secondJump = false;
-                anotherJump = false;
+                Release();
             }
+        }
+
+        private void Reset()
+        {
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            transform.rotation = Quaternion.identity;
+            moveTowards = false;
+            secondPhase = false;
+            secondJump = false;
+            anotherJump = false;
+            colliders[0].enabled = false;
+            colliders[1].enabled = false;
+            meshRenderer.enabled = false;
         }
     }
 }

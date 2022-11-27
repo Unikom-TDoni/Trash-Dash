@@ -5,12 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using Group8.TrashDash.TimeManager;
+using System;
 
 public class PanelUIManager : MonoBehaviour
 {
-    float currentTime = 0f;
-    public float startingTime = 185f; //3menit
-
     [SerializeField] TMP_Text countdownText;
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject pausedPanel;
@@ -18,7 +17,8 @@ public class PanelUIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.playerAction.Gameplay.Pause.performed += OnPause;
+        if(InputManager.playerAction != null)
+            InputManager.playerAction.Gameplay.Pause.performed += OnPause;
     }
 
     private void OnDisable()
@@ -30,21 +30,24 @@ public class PanelUIManager : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         pausedPanel.SetActive(false);
-        currentTime = startingTime;
+
+        if (InputManager.playerAction != null)
+            InputManager.playerAction.Gameplay.Pause.performed += OnPause;
     }
-    void Update()
+
+    public void GameEnd()
     {
-        currentTime -= 1 * Time.deltaTime;
-        countdownText.text = currentTime.ToString("0");
-
-        if (currentTime > 0) return;
         if (gameOverPanel.activeSelf) return;
-
-        currentTime = 0;
-        // Game berhenti dan muncul game over panel
         Time.timeScale = 0;
         gameOverPanel.SetActive(true);
         pausedButton.SetActive(false);
+    }
+
+    public void OnTimeUpdate(float _time)
+    {
+        TimeSpan time = TimeSpan.FromSeconds(_time);
+        string displayTime = time.ToString(@"hh\:mm");
+        countdownText.text = displayTime;
     }
 
     private void OnPause(InputAction.CallbackContext context)

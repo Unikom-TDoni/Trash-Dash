@@ -2,79 +2,106 @@ using Random = UnityEngine.Random;
 using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Pool;
 
 namespace Group8.TrashDash.Module.Spawner
 {
-    public abstract class Spawner : MonoBehaviour
+    using Pool;
+
+    public class Spawner : MonoBehaviour
     {
         public Action<SpawnObject> OnRelease;
 
+        [SerializeField] private PoolManager poolManager;
         [SerializeField] private SpawnPrefab spawnPrefab;
-        [SerializeField] private Vector3 size;
-        [SerializeField] private Vector3 offset;
-        [SerializeField] private int amount = 3;
-        [SerializeField] private float interval = 5f;
-        [SerializeField] private int maxSpawnedObject = 1;
-        [SerializeField] private bool randomizeRotation;
-
-        private int countObject = 0;
 
         protected GameObject[] obj;
-        private void Start()
-        {
-            obj = new GameObject[amount];
-            OnRelease += Release;
-            PoolManager.Instance.Add(spawnPrefab.prefab);
 
-            StartCoroutine(Spawn());
+        protected virtual void Start()
+        {
+            OnRelease += Release;
+            poolManager.Add(spawnPrefab.prefab, spawnPrefab.maxObjectInPool);
         }
 
-        protected virtual IEnumerator Spawn()
+        public void InstantSpawn(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
         {
-            for (int i = 0; i < amount; i++)
-            {
-                if (countObject >= maxSpawnedObject) break;
-                if (PoolManager.Instance.pools[spawnPrefab.prefab].Count >= spawnPrefab.maxObjectInPool) break;
-                
-                Vector3 position = transform.position + offset + new Vector3(
-                    Random.Range(-size.x / 2, size.x / 2),
-                    Random.Range(-size.y / 2, size.y / 2),
-                    Random.Range(-size.z / 2, size.z / 2));
-                Quaternion rotation = (randomizeRotation) ? Random.rotation : Quaternion.identity;
+            StartCoroutine(InstantSpawnCoroutine(center, offset, amount, areaSize, randomizeRotation));
+        }
 
-                obj[i] = PoolManager.Instance.pools[spawnPrefab.prefab].Spawn(position, rotation);
-                //obj[i].transform.SetParent(transform);
-                obj[i].GetComponent<SpawnObject>().spawner = this;
+        public void RepeatSpawn(Transform center, float interval, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        {
+            StartCoroutine(RepeatSpawnCoroutine(center, interval, offset, amount, areaSize, randomizeRotation));
+        }
 
-                countObject++;
-            }
+        protected virtual IEnumerator InstantSpawnCoroutine(Transform center, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
+        {
+            SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
 
+            yield return new WaitForFixedUpdate();
+
+            AfterSpawn();
+        }
+
+        protected virtual IEnumerator RepeatSpawnCoroutine(Transform center, float interval, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
+        {
             yield return new WaitForSeconds(interval);
 
-            for (int i = 0; i < obj.Length; i++) obj[i] = null;
+            SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
 
-            StartCoroutine(Spawn());
+            yield return new WaitForFixedUpdate();
+
+            AfterSpawn();
+
+            StartCoroutine(RepeatSpawnCoroutine(center, interval, offset, amount, areaSize, randomizeRotation));
+        }
+
+        protected void SpawnObjects(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        {
+            if (center == null) return;
+
+            obj = new GameObject[amount];
+            for (int i = 0; i < amount; i++)
+            {
+                if (poolManager.pools[spawnPrefab.prefab].CountActive >= spawnPrefab.maxObjectInPool) break;
+
+                Vector3 position = center.position + offset + new Vector3(
+                    Random.Range(-areaSize.x / 2, areaSize.x / 2),
+                    Random.Range(-areaSize.y / 2, areaSize.y / 2),
+                    Random.Range(-areaSize.z / 2, areaSize.z / 2));
+                Quaternion rotation = (randomizeRotation) ? Random.rotation : Quaternion.identity;
+
+                obj[i] = poolManager.pools[spawnPrefab.prefab].Get();
+                obj[i].transform.position = position;
+                obj[i].transform.rotation = rotation;
+                //obj[i].SetActive(false);
+                //obj[i].transform.SetParent(transform);
+                obj[i].GetComponent<SpawnObject>().spawner = this;
+            }
+        }
+
+        protected virtual void AfterSpawn()
+        {
+            for (int i = 0; i < obj.Length; i++)
+            {
+                if (obj[i] == null) continue;
+
+                obj[i].SetActive(true);
+                obj[i] = null;
+            }
         }
 
         private void Release(SpawnObject obj)
         {
-            PoolManager.Instance.pools[spawnPrefab.prefab].Release(obj.gameObject);
-
-            countObject--;
+            if (obj == null) return;
+            poolManager.pools[spawnPrefab.prefab].Release(obj.gameObject);
         }
 
         private void OnDestroy()
         {
             OnRelease -= Release;
-            PoolManager.Instance.Remove(spawnPrefab.prefab);
+            poolManager.Remove(spawnPrefab.prefab);
 
             StopAllCoroutines();
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(transform.position + offset, size);
         }
     }
 }

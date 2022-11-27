@@ -1,58 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
-namespace Group8.TrashDash.Module.Spawner
+namespace Group8.TrashDash.Module.Pool
 {
     public class PoolManager : MonoBehaviour
     {
-        #region Singleton
-        private static PoolManager instance;
-        public static PoolManager Instance { get => instance; }
+        public Dictionary<GameObject, ObjectPool<GameObject>> pools = new Dictionary<GameObject, ObjectPool<GameObject>>();
 
-        private void Awake()
-        {
-            if (instance == null)
-            {
-                instance = this;
-                return;
-            }
-
-            Debug.Log("There is more than one PoolManager detected.");
-            Destroy(this);
-        }
-        #endregion
-
-        public Dictionary<GameObject, ObjectPool> pools = new Dictionary<GameObject, ObjectPool>();
-
-        public void Add(GameObject prefab)
+        public void Add(GameObject prefab, int maxObject)
         {
             if (pools.ContainsKey(prefab)) return;
 
-            pools.Add(prefab, new ObjectPool(prefab));
+            pools.Add(prefab, new ObjectPool<GameObject>(
+                createFunc: () => Instantiate(prefab),
+                actionOnGet: (obj) => obj.SetActive(true),
+                actionOnRelease: (obj) => obj.SetActive(false),
+                actionOnDestroy: (obj) => Destroy(obj),
+                collectionCheck: false,
+                maxSize: maxObject));
         }
 
         public void Remove(GameObject prefab)
         {
             if (!pools.ContainsKey(prefab)) return;
 
+            pools[prefab].Clear();
             pools.Remove(prefab);
-        }
-
-        private void OnEnable()
-        {
-            foreach(ObjectPool pool in pools.Values)
-            {
-                pool.enabled = true;
-            }
-        }
-
-        private void OnDisable()
-        {
-            foreach (ObjectPool pool in pools.Values)
-            {
-                pool.enabled = false;
-            }
         }
     }
 }
