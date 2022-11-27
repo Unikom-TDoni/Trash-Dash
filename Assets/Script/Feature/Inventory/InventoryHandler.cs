@@ -3,6 +3,7 @@ using Group8.TrashDash.Level;
 using UnityEngine.InputSystem;
 using Lnco.Unity.Module.Storage;
 using System.Collections.Generic;
+using Group8.TrashDash.Score;
 
 namespace Group8.TrashDash.Inventory
 {

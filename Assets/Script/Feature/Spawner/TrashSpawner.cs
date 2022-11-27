@@ -5,13 +5,54 @@ using UnityEngine;
 
 namespace Group8.TrashDash.Spawner
 {
+    using Group8.TrashDash.TrashBin;
     using Module.Spawner;
+    using System.Linq;
 
     public class TrashSpawner : Spawner
     {
         [SerializeField] private TrashContentInfo[] trashInformations;
 
-        protected override void AfterSpawn()
+        protected override void Start()
+        {
+            base.Start();
+            // Test Spawn
+            //RepeatSpawn(new TrashBinTypes[] { TrashBinTypes.Organic }, transform, .1f, amount: 3);
+        }
+
+        public void InstantSpawn(TrashBinTypes[] trashTypes, Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        {
+            StartCoroutine(InstantSpawnCoroutine(trashTypes, center, offset, amount, areaSize, randomizeRotation));
+        }
+
+        protected IEnumerator InstantSpawnCoroutine(TrashBinTypes[] trashTypes, Transform center, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
+        {
+            base.SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
+
+            yield return new WaitForFixedUpdate();
+
+            AfterSpawn(trashTypes);
+        }
+
+        public void RepeatSpawn(TrashBinTypes[] trashTypes, Transform center, float interval, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        {
+            StartCoroutine(RepeatSpawnCoroutine(trashTypes, center, interval, offset, amount, areaSize, randomizeRotation));
+        }
+
+        protected IEnumerator RepeatSpawnCoroutine(TrashBinTypes[] trashTypes, Transform center, float interval, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
+        {
+            yield return new WaitForSeconds(interval);
+
+            base.SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
+
+            yield return new WaitForFixedUpdate();
+
+            AfterSpawn(trashTypes);
+
+            StartCoroutine(RepeatSpawnCoroutine(trashTypes, center, interval, offset, amount, areaSize, randomizeRotation));
+        }
+
+        protected void AfterSpawn(TrashBinTypes[] trashTypes)
         {
             foreach (GameObject go in obj)
             {
@@ -22,7 +63,9 @@ namespace Group8.TrashDash.Spawner
                 if (trash == null)
                     trash = go.AddComponent<Trash>();
 
-                TrashContentInfo randomTrashInfo = trashInformations[Random.Range(0, trashInformations.Length)];
+                TrashContentInfo[] filterTrashInformations = trashInformations.Where((info) => trashTypes.Contains(info.TrashBinType)).ToArray();
+
+                TrashContentInfo randomTrashInfo = filterTrashInformations[Random.Range(0, filterTrashInformations.Length)];
 
                 if (trash.trashContentInfo == randomTrashInfo)
                 {

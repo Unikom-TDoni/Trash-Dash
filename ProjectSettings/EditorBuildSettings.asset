@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final Scenes/Gameplay.unity
     guid: 7dc826efc4c87374b9c0a7e3a6dd8a70
+  - enabled: 1
+    path: Assets/Scenes/Doni.unity
+    guid: 9ab5de46c63f9af4f9cacd56e9035941
   m_configObjects: {}

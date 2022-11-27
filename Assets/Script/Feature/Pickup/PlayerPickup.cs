@@ -75,7 +75,7 @@ namespace Group8.TrashDash.Player.Pickup
 
                 if (inventory.TryAddItem(trash.trashContentInfo))
                 {
-                    trash.Release();
+                    trash.MoveToTarget(transform);
                     takenObjects.Remove(obj);
 
                     scoreManager?.UpdateScore(ScoreState.Collect);

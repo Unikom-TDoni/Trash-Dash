@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Group8.TrashDash.Event;
+using Group8.TrashDash.Score;
 
 namespace Group8.TrashDash.TrashBin
 {

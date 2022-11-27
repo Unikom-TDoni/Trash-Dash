@@ -7,23 +7,6 @@ namespace Group8.TrashDash.Module.Pool
 {
     public class PoolManager : MonoBehaviour
     {
-        #region Singleton
-        private static PoolManager instance;
-        public static PoolManager Instance { get => instance; }
-
-        private void Awake()
-        {
-            if (instance == null)
-            {
-                instance = this;
-                return;
-            }
-
-            Debug.Log("There is more than one PoolManager detected.");
-            Destroy(this);
-        }
-        #endregion
-
         public Dictionary<GameObject, ObjectPool<GameObject>> pools = new Dictionary<GameObject, ObjectPool<GameObject>>();
 
         public void Add(GameObject prefab, int maxObject)
@@ -35,7 +18,7 @@ namespace Group8.TrashDash.Module.Pool
                 actionOnGet: (obj) => obj.SetActive(true),
                 actionOnRelease: (obj) => obj.SetActive(false),
                 actionOnDestroy: (obj) => Destroy(obj),
-                collectionCheck: true,
+                collectionCheck: false,
                 maxSize: maxObject));
         }
 
