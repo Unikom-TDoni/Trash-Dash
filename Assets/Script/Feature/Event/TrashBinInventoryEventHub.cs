@@ -4,6 +4,7 @@ using Group8.TrashDash.TrashBin;
 using Group8.TrashDash.Inventory;
 using Group8.TrashDash.Score;
 using UnityEngine.InputSystem;
+using Group8.TrashDash.Core;
 
 namespace Group8.TrashDash.Coordinator
 {
@@ -22,8 +23,8 @@ namespace Group8.TrashDash.Coordinator
 
         private void Awake()
         {
-            _trashBinHandler.Subscribe(OnDrop, OnInteract);
-            //Instantiate(GameManager.Instance.LevelInfo.Prefab, Vector3.zero, default);
+            GameManager.Instance.LevelHandler.SpawnLevel();
+            _trashBinHandler.OnAwake(OnDrop, OnInteract);
         }
 
         private void Start()

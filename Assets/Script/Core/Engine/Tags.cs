@@ -10,5 +10,10 @@ namespace Group8.TrashDash.Core
         [field:TagSelector]
         [field:SerializeField]
         public string Player { get; private set; }
+
+        [field: TagSelector]
+        [field: SerializeField]
+        public string TrashBin { get; private set; }
+
     }
 }

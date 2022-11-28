@@ -1,4 +1,3 @@
-using UnityEngine;
 using Group8.TrashDash.Core;
 using Lnco.Unity.Module.Layout;
 
@@ -11,7 +10,7 @@ namespace Group8.TrashDash.Level
             for (int i = 0; i < GameManager.Instance.LevelHandler.GetTotalAmmountOfLevel(); i++)
             {
                 Create();
-                GeneratedGroupItems[i].UpdateContent(i);
+                GeneratedGroupItems[i].UpdateContent(i+1);
             }
         }
 

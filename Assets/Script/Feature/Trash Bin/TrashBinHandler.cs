@@ -3,24 +3,26 @@ using UnityEngine;
 using Group8.TrashDash.Event;
 using Group8.TrashDash.Score;
 using System.Collections.Generic;
+using Group8.TrashDash.Core;
+using System.Linq;
 
 namespace Group8.TrashDash.TrashBin
 {
     public sealed class TrashBinHandler : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _trashBinObj = default;
+        private GameObject _trashBinLayout = default;
 
         [SerializeField]
         private TrashBinLayoutController _layoutController = default;
 
-        [SerializeField]
         private TrashBinController[] _activeTrashBins = default;
 
         public TrashBinTypes ActiveTrashBinType { get; private set; } = default;
 
-        public void Subscribe(Action<DropableData> onDrop, Action<TrashBinTypes> onInteract)
+        public void OnAwake(Action<DropableData> onDrop, Action<TrashBinTypes> onInteract)
         {
+            _activeTrashBins = GameObject.FindGameObjectsWithTag(GameManager.Instance.Tags.TrashBin).Select(item => item.GetComponent<TrashBinController>()).ToArray();
             _layoutController.OnDrop += onDrop;
             foreach (var item in _activeTrashBins)
             {
@@ -40,7 +42,7 @@ namespace Group8.TrashDash.TrashBin
         }
 
         public void SetActiveTrashBinLayout(bool value) =>
-            _trashBinObj.SetActive(value);
+            _trashBinLayout.SetActive(value);
 
         public TrashBinTypes[] GetActiveTrashBinTypes()
         {
