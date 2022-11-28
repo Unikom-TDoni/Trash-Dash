@@ -70,14 +70,19 @@ public class PowerUpHandler : MonoBehaviour
     }
 
     #region PowerUp Coroutines
-    Dictionary<string, Coroutine> powerUpCoroutines = new Dictionary<string, Coroutine>();
+    Dictionary<PowerUpSO, Coroutine> powerUpCoroutines = new Dictionary<PowerUpSO, Coroutine>();
 
-    public void StartPowerUp(string powerUpName, IEnumerator enumerator)
+    public void StartPowerUp(MultiplyPower powerUp)
     {
-        if (!powerUpCoroutines.ContainsKey(powerUpName)) powerUpCoroutines.Add(powerUpName, null);
-        if (powerUpCoroutines[powerUpName] != null) StopCoroutine(powerUpCoroutines[powerUpName]);
+        if (!powerUpCoroutines.ContainsKey(powerUp)) powerUpCoroutines.Add(powerUp, null);
+        if (powerUpCoroutines[powerUp] != null)
+        {
+            StopCoroutine(powerUpCoroutines[powerUp]);
+            if (powerUpVFXs.ContainsKey(powerUp.parameterName))
+                powerUpVFXs[powerUp.parameterName].GetComponent<ParticleSystem>().Stop();
+        }
 
-        powerUpCoroutines[powerUpName] = StartCoroutine(enumerator);
+        powerUpCoroutines[powerUp] = StartCoroutine(PowerUpMultiply(powerUp.parameterName, powerUp.multiplier, powerUp.duration, powerUp.VFX));
     }
     #endregion
 
@@ -89,8 +94,18 @@ public class PowerUpHandler : MonoBehaviour
     // Mencegah terubahnya value akibat StopCoroutine()
     private Dictionary<string, float> initialPowerUpValues = new Dictionary<string, float>();
 
-    public IEnumerator PowerUpMultiply(string parameterName, float multiplier, float duration)
+    private Dictionary<string, GameObject> powerUpVFXs = new Dictionary<string, GameObject>();
+
+    public IEnumerator PowerUpMultiply(string parameterName, float multiplier, float duration, GameObject vfx)
     {
+        if (vfx != null)
+        {
+            if (!powerUpVFXs.ContainsKey(parameterName))
+                powerUpVFXs.Add(parameterName, Instantiate(vfx, transform));
+
+            powerUpVFXs[parameterName].GetComponent<ParticleSystem>().Play();
+        }
+
         if (powerUpValues[parameterName] != multiplier)
         initialPowerUpValues[parameterName] = powerUpValues[parameterName];
 
@@ -99,6 +114,11 @@ public class PowerUpHandler : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         powerUpValues[parameterName] = initialPowerUpValues[parameterName];
+
+        if (vfx != null)
+        {
+            powerUpVFXs[parameterName].GetComponent<ParticleSystem>().Stop();
+        }
     }
 
     private void InitializePowerUpValues()

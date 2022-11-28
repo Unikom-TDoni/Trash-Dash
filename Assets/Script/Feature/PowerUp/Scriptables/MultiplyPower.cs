@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Multiplier", menuName = "PowerUp/Multiplier")]
 public class MultiplyPower : PowerUpSO
 {
-    [SerializeField] private string parameterName;
-    [SerializeField] private float multiplier;
+    public string parameterName;
+    public float multiplier;
 
     PowerUpHandler obj;
 
@@ -20,6 +20,6 @@ public class MultiplyPower : PowerUpSO
     public override void Use()
     {
         if (obj == null) return;
-        obj.StartPowerUp(name, obj.PowerUpMultiply(parameterName, multiplier, duration));
+        obj.StartPowerUp(this);
     }
 }
