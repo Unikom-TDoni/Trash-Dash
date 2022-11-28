@@ -1,16 +1,17 @@
+using UnityEngine;
+using Group8.TrashDash.Core;
 using Lnco.Unity.Module.Layout;
-using System.Collections.Generic;
 
 namespace Group8.TrashDash.Level
 {
-    public sealed class LevelLayoutGroupController : LayoutGroupController<LevelLayoutGroupItem, LevelScriptableObject>
+    public sealed class LevelLayoutGroupController : LayoutGroupController<LevelLayoutGroupItem, int>
     {
-        public void InitLayout(IEnumerable<LevelScriptableObject> data)
+        private void Awake()
         {
-            foreach (var item in data)
+            for (int i = 0; i < GameManager.Instance.LevelHandler.GetTotalAmmountOfLevel(); i++)
             {
                 Create();
-                GeneratedGroupItems[^1].UpdateContent(item);
+                GeneratedGroupItems[i].UpdateContent(i);
             }
         }
 

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Group8.TrashDash.Level
 {
-    public sealed class LevelLayoutGroupItem : LayoutGroupItem<LevelScriptableObject>, IPointerClickHandler
+    public sealed class LevelLayoutGroupItem : LayoutGroupItem<int>, IPointerClickHandler
     {
         [SerializeField]
         private Image[] _imgStars = default;
@@ -19,9 +19,9 @@ namespace Group8.TrashDash.Level
         [SerializeField]
         private Image _imgBackground = default;
 
-        private CanvasGroup _canvasGroup = default;
+        private int _itemLevelId = default;
 
-        private LevelScriptableObject _levelInfo = default;
+        private CanvasGroup _canvasGroup = default;
 
         private void Awake()
         {
@@ -31,17 +31,17 @@ namespace Group8.TrashDash.Level
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button is not PointerEventData.InputButton.Left) return;
-            GameManager.Instance.LevelInfo = _levelInfo;
+            GameManager.Instance.LevelHandler.SelectLevel(_itemLevelId);
             SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
         }
 
-        public override void UpdateContent(LevelScriptableObject content)
+        public override void UpdateContent(int content)
         {
-            var levelEntity = GameManager.Instance.GetLevelEntity(content.Level);
-            _txtLevel.text = content.Level.ToString();
-            UpdateStarLayout(content.ScoreStarLimit, levelEntity.HighScore);
-            UpdateLockedLayout(levelEntity.IsOpened);
-            _levelInfo = content;
+            _txtLevel.text = content.ToString();
+            var levelEntity = GameManager.Instance.LevelHandler.GetLevelEntity(_itemLevelId);
+            UpdateStarLayout(GameManager.Instance.LevelHandler.GetStarScoreLimit(content), levelEntity.HighScore);
+            UpdateLockedLayout(levelEntity.Level != default);
+            _itemLevelId = content;
         }
 
         private void UpdateStarLayout(float[] scoreStarLimit, float highScore)
