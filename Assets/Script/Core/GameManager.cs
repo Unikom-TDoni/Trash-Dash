@@ -14,22 +14,15 @@ namespace Group8.TrashDash.Core
         [field:SerializeField]
         public Scenes Scenes { get; private set; } = default;
 
-        public LevelScriptableObject LevelInfo { get; set; } = default;
-
-        private readonly LevelDataPersistence LevelDataPersistence = new();
+        [field: SerializeField]
+        public LevelHandler LevelHandler { get; private set; } = default;
 
         protected override void Awake()
         {
             base.Awake();
-            LevelDataPersistence.OnAwake();
+            LevelHandler.OnAwake();
             SceneManager.LoadScene("Doni");
             //SceneManager.LoadScene(Scenes.MainMenu);
         }
-
-        public void SaveCurrentLevelData(float score) =>
-            LevelDataPersistence.Save(LevelInfo.Level, score);
-
-        public LevelEntity GetLevelEntity(uint level) =>
-            LevelDataPersistence.GetEntity(level);
     }
 }

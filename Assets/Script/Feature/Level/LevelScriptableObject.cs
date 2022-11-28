@@ -7,7 +7,7 @@ namespace Group8.TrashDash.Level
     public sealed class LevelScriptableObject : ScriptableObject
     {
         [field: SerializeField]
-        public uint Level { get; private set; } = default;
+        public int Level { get; private set; } = default;
 
         [field:SerializeField]
         public GameObject Prefab { get; private set; } = default;

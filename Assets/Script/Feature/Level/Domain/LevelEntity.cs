@@ -2,13 +2,11 @@
 {
     public struct LevelEntity
     {
-        public readonly uint Level;
-
-        public readonly bool IsOpened;
+        public readonly int Level;
 
         public readonly float HighScore;
 
-        public LevelEntity(uint level, float highScore, bool isOpened) =>
-            (Level, HighScore, IsOpened) = (level, highScore, isOpened);
+        public LevelEntity(int level, float highScore) =>
+            (Level, HighScore) = (level, highScore);
     }
 }

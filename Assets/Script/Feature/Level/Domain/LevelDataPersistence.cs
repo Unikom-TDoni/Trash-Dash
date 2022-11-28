@@ -17,12 +17,12 @@ namespace Group8.TrashDash.Level
             Save(1, default);
         }
 
-        public void Save(uint level, float score)
+        public void Save(int level, float score)
         {
             var levelEntity = GetEntity(level);
             _persistenceData.Remove(levelEntity);
             if (score < levelEntity.HighScore) score = levelEntity.HighScore;
-            _persistenceData.Add(new LevelEntity(level, score, true));
+            _persistenceData.Add(new LevelEntity(level, score));
             PlayerPrefs.SetString(DataKey, JsonConvert.SerializeObject(_persistenceData, Formatting.Indented));
         }
 
@@ -33,7 +33,7 @@ namespace Group8.TrashDash.Level
             _persistenceData = JsonConvert.DeserializeObject<HashSet<LevelEntity>>(json);
         }
 
-        public LevelEntity GetEntity(uint level) =>
+        public LevelEntity GetEntity(int level) =>
             _persistenceData.FirstOrDefault(item => item.Level.Equals(level));
     }
 }
