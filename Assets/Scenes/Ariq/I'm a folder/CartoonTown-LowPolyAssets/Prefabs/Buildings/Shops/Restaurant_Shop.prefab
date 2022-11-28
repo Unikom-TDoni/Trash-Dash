@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 495410}
   - component: {fileID: 3390932}
   - component: {fileID: 2337084}
+  - component: {fileID: 2963610606316557413}
   m_Layer: 0
   m_Name: Sign-Door
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2963610606316557413
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105410}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: f373615a4d2834dbb94e03d1e2fda15a, type: 3}
 --- !u!1 &168920
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +143,7 @@ GameObject:
   - component: {fileID: 455460}
   - component: {fileID: 3364298}
   - component: {fileID: 2387418}
+  - component: {fileID: 6402981998284271949}
   m_Layer: 0
   m_Name: Sign-Front
   m_TagString: Untagged
@@ -200,6 +216,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6402981998284271949
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173432}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: f373615a4d2834dbb94e03d1e2fda15a, type: 3}
 --- !u!1 &193886
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +241,7 @@ GameObject:
   - component: {fileID: 481326}
   - component: {fileID: 3385642}
   - component: {fileID: 2361658}
+  - component: {fileID: 3021474875247840616}
   m_Layer: 0
   m_Name: Restaurant_Shop
   m_TagString: Untagged
@@ -283,3 +314,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3021474875247840616
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: f373615a4d2834dbb94e03d1e2fda15a, type: 3}

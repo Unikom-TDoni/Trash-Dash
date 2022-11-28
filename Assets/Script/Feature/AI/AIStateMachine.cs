@@ -9,12 +9,15 @@ public class AIStateMachine {
     AIState currentState;
     Dictionary<AIState, StateBehaviour> stateDictionary;
 
+    public System.Action<AIState> OnStateChange;
+
     public AIStateMachine(Transform transform) {
         stateDictionary = new Dictionary<AIState, StateBehaviour>() {
             {AIState.InQueue, new AIQueueingState()},
             {AIState.OrderingFood, new AIOrderingState()},
-            {AIState.MovingToSeat, new AIMovingToSeatState()},
+            {AIState.MovingToPoint, new AIMovingToPointState()},
             {AIState.Sitting, new AISittingState()},
+            {AIState.WalkingAway, new AIWalkingAwayState()},
         };
         foreach (KeyValuePair<AIState, StateBehaviour> state in stateDictionary) {
             state.Value.Start(transform);
@@ -47,6 +50,10 @@ public class AIStateMachine {
         currentState = aiState;
 
         currentStateBehaviour.OnStateEnter();
+
+        if (OnStateChange != null) {
+            OnStateChange(aiState);
+        }
     }
 
     public void OnGUI() {

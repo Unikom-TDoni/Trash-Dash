@@ -12,6 +12,7 @@ namespace Group8.TrashDash.Spawner
     public class TrashSpawner : Spawner
     {
         [SerializeField] private TrashContentInfo[] trashInformations;
+        [SerializeField] TrashBinHandler trashBinHandler;
 
         protected override void Start()
         {
@@ -20,9 +21,20 @@ namespace Group8.TrashDash.Spawner
             //RepeatSpawn(new TrashBinTypes[] { TrashBinTypes.Organic }, transform, .1f, amount: 3);
         }
 
-        public void InstantSpawn(TrashBinTypes[] trashTypes, Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        public override Coroutine InstantSpawn(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
         {
-            StartCoroutine(InstantSpawnCoroutine(trashTypes, center, offset, amount, areaSize, randomizeRotation));
+            return InstantSpawn(trashBinHandler.GetActiveTrashBinTypes(), center, offset, amount, areaSize, randomizeRotation);
+        }
+
+        public override Coroutine RepeatSpawn(Transform center, float minInterval, float maxInterval, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        {
+            return RepeatSpawn(trashBinHandler.GetActiveTrashBinTypes(), center, minInterval, maxInterval, offset, amount, areaSize, randomizeRotation);
+        }
+
+        public Coroutine InstantSpawn(TrashBinTypes[] trashTypes, Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        {
+            // Bug-able : when trashTypes sent didnt match sceneTrashTypes
+            return StartCoroutine(InstantSpawnCoroutine(trashTypes, center, offset, amount, areaSize, randomizeRotation));
         }
 
         protected IEnumerator InstantSpawnCoroutine(TrashBinTypes[] trashTypes, Transform center, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
@@ -34,22 +46,23 @@ namespace Group8.TrashDash.Spawner
             AfterSpawn(trashTypes);
         }
 
-        public void RepeatSpawn(TrashBinTypes[] trashTypes, Transform center, float interval, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
+        public Coroutine RepeatSpawn(TrashBinTypes[] trashTypes, Transform center, float minInterval, float maxInterval, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
         {
-            StartCoroutine(RepeatSpawnCoroutine(trashTypes, center, interval, offset, amount, areaSize, randomizeRotation));
+            // Bug-able : when trashTypes sent didnt match sceneTrashTypes
+            return StartCoroutine(RepeatSpawnCoroutine(trashTypes, center, minInterval, maxInterval, offset, amount, areaSize, randomizeRotation));
         }
 
-        protected IEnumerator RepeatSpawnCoroutine(TrashBinTypes[] trashTypes, Transform center, float interval, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
+        protected IEnumerator RepeatSpawnCoroutine(TrashBinTypes[] trashTypes, Transform center, float minInterval, float maxInterval, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
         {
-            yield return new WaitForSeconds(interval);
+            while (true) {
+                yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
 
-            base.SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
+                base.SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
 
-            yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
 
-            AfterSpawn(trashTypes);
-
-            StartCoroutine(RepeatSpawnCoroutine(trashTypes, center, interval, offset, amount, areaSize, randomizeRotation));
+                AfterSpawn(trashTypes);
+            }
         }
 
         protected void AfterSpawn(TrashBinTypes[] trashTypes)
