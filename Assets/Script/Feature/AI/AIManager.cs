@@ -21,7 +21,7 @@ public class AIManager : MonoBehaviour {
     public Vector3 exitPosition => exitPoint.position;
 
     public List<GameObject> pointList;
-    public TrashSpawner trashSpawner {get; private set;}
+    // public TrashSpawner trashSpawner {get; private set;}
 
     [field: SerializeField] public AIState[] trashSpawnState {get; private set;}
 
@@ -30,10 +30,10 @@ public class AIManager : MonoBehaviour {
             spawnConfig.InitializeQueue();
         }
 
-        trashSpawner = FindObjectOfType<TrashSpawner>();
-        if (!trashSpawner) {
-            Debug.LogError("No trash spawner found!");
-        }
+        // trashSpawner = FindObjectOfType<TrashSpawner>();
+        // if (!trashSpawner) {
+        //     Debug.LogError("No trash spawner found!");
+        // }
     }
 
     void Start() {
@@ -42,7 +42,7 @@ public class AIManager : MonoBehaviour {
 
     public void Spawn() {
         CustomerAI spawnedAI = Instantiate(prefab);
-        spawnedAI.trashSpawner = trashSpawner;
+        // spawnedAI.trashSpawner = trashSpawner;
         spawnedAI.aiManager = this;
     }
 

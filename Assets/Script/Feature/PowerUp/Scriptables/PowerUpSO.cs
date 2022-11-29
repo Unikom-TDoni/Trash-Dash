@@ -11,6 +11,7 @@ public abstract class PowerUpSO : ScriptableObject
     public Color Color;
     public Material[] Materials;
     public float duration;
+    public GameObject VFX;
 
     public virtual void Initialize(GameObject go) { }
     public abstract void Use();

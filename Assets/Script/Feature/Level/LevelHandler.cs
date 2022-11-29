@@ -1,7 +1,7 @@
-using Group8.TrashDash.Core;
 using System;
 using System.Linq;
 using UnityEngine;
+using Group8.TrashDash.Core;
 using UnityEngine.SceneManagement;
 
 namespace Group8.TrashDash.Level
@@ -35,7 +35,7 @@ namespace Group8.TrashDash.Level
             _levelScriptableObjects.First(item => item.Level.Equals(level)).ScoreStarLimit;
 
         public void SpawnLevel() =>
-            GameObject.Instantiate(_levelScriptableObjects[SelectedLevel].Prefab, default, Quaternion.identity);
+            UnityEngine.Object.Instantiate(_levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).Prefab, default, Quaternion.identity);
 
         public void GoToTheNextLevel()
         {

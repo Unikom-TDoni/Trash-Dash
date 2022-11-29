@@ -6,7 +6,7 @@ public class CustomerAI : MonoBehaviour {
     public AIStateMachine stateMachine {get; private set;}
     public SpawnConfiguration spawnConfiguration;
     public Transform targetPoint;
-    public TrashSpawner trashSpawner;
+    // public TrashSpawner trashSpawner;
     public AIManager aiManager;
 
     Coroutine spawnCoroutine;
@@ -25,7 +25,7 @@ public class CustomerAI : MonoBehaviour {
         if (spawnCoroutine != null)
             return;
         
-        spawnCoroutine = trashSpawner.RepeatSpawn(new TrashBinTypes[] { TrashBinTypes.Organic }, transform, .1f, 1f, areaSize: new Vector3(5, 1, 5));
+        // spawnCoroutine = trashSpawner.RepeatSpawn(new TrashBinTypes[] { TrashBinTypes.Organic }, transform, .1f, 1f, areaSize: new Vector3(5, 1, 5));
     }
 
     public void StopTrashCoroutine() {

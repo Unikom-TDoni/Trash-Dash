@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 /// TODO: Make sit in chair direction and not table.
 public class AISittingState : StateBehaviour {
@@ -6,7 +7,7 @@ public class AISittingState : StateBehaviour {
     Animator animator;
 
     float duration;
-    Transform lookAtTransform;
+    Transform chair;
 
     bool standingUp;
 
@@ -17,11 +18,12 @@ public class AISittingState : StateBehaviour {
 
     public override void OnStateEnter() {
         base.OnStateEnter();
-        lookAtTransform = null;
+        chair = null;
         Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
         foreach (var col in cols) {
-            if (col.CompareTag("Table")) {
-                lookAtTransform = col.gameObject.transform;
+            if (col.CompareTag("Chair")) {
+                chair = col.gameObject.transform;
+                transform.GetComponent<NavMeshAgent>().SetDestination(transform.position + chair.forward * .1f);
                 break;
             }
         }
@@ -36,8 +38,9 @@ public class AISittingState : StateBehaviour {
     public override void OnStateFixedUpdate() {
         base.OnStateFixedUpdate();
 
-        if (lookAtTransform) 
-            Utility.LerpLookTowardsTarget(transform, new Vector3(lookAtTransform.position.x, transform.position.y, lookAtTransform.position.z));
+        if (chair) {
+            Utility.LerpLookTowardsDirection(transform, chair.forward);
+        }
 
         if (!standingUp) {
             duration -= Time.fixedDeltaTime;

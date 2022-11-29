@@ -22,12 +22,18 @@ public class AIOrderingState : StateBehaviour {
     }
 
     public override void OnStateFixedUpdate() {
-        base.OnStateFixedUpdate();
+        if (orderTime <= 0) {
+            return;
+        }
 
         Utility.LerpLookTowardsTarget(transform, new Vector3(customerAI.spawnConfiguration.stallPosition.x, transform.position.y, customerAI.spawnConfiguration.stallPosition.z));
         orderTime -= Time.fixedDeltaTime;
 
-        if (orderTime <= 0 && manager.pointList.Count > 0) {
+        if (orderTime <= 0) {
+            if (manager.pointList.Count == 0) {
+                Debug.LogWarning("No more points!");
+                return;
+            }
             transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(ref manager.pointList));
             animator.CrossFade("Moving To Point", .25f);
         }

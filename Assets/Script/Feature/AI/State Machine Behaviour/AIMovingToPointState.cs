@@ -23,7 +23,7 @@ public class AIMovingToPointState : StateBehaviour {
         if (Vector3.SqrMagnitude(agent.destination - transform.position) <= Mathf.Epsilon) {
             Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
             foreach (var col in cols) {
-                if (col.CompareTag("Table")) {
+                if (col.CompareTag("Chair")) {
                     transform.GetComponent<Animator>().CrossFade("Sitting", .25f);
                     return;
                 }
@@ -35,5 +35,10 @@ public class AIMovingToPointState : StateBehaviour {
 
     public override void OnStateExit() {
         base.OnStateExit();
+    }
+
+    public override void OnDrawGizmos() {
+        base.OnDrawGizmos();
+        Gizmos.DrawLine(transform.position + Vector3.up, agent.destination + Vector3.up);
     }
 }

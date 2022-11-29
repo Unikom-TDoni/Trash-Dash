@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Group8.TrashDash.Level;
 using UnityEngine.SceneManagement;
@@ -21,8 +20,7 @@ namespace Group8.TrashDash.Core
         {
             base.Awake();
             LevelHandler.OnAwake();
-            SceneManager.LoadScene("Doni");
-            //SceneManager.LoadScene(Scenes.MainMenu);
+            SceneManager.LoadScene(Scenes.LevelSelector);
         }
     }
 }

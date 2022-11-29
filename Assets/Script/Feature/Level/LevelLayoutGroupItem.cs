@@ -32,13 +32,13 @@ namespace Group8.TrashDash.Level
         {
             if (eventData.button is not PointerEventData.InputButton.Left) return;
             GameManager.Instance.LevelHandler.SelectLevel(_itemLevelId);
-            SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
+            SceneManager.LoadScene("Brian");
         }
 
         public override void UpdateContent(int content)
         {
             _txtLevel.text = content.ToString();
-            var levelEntity = GameManager.Instance.LevelHandler.GetLevelEntity(_itemLevelId);
+            var levelEntity = GameManager.Instance.LevelHandler.GetLevelEntity(content);
             UpdateStarLayout(GameManager.Instance.LevelHandler.GetStarScoreLimit(content), levelEntity.HighScore);
             UpdateLockedLayout(levelEntity.Level != default);
             _itemLevelId = content;
