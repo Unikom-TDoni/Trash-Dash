@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Level.meta
 guid: 54cb9bbf6dd39084185e8737a58642e6
 folderAsset: yes
+========
+guid: a1944c6a3e462f041836e8ea2bbc325a
+>>>>>>>> 3b9673093dbc2178f6bdfa03be9fa7054a5b9b26:Assets/Scenes/Ariq/Sketchfab/Unused/Piranha in Pipe/piranha_in_pipe_-_mario.glb.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

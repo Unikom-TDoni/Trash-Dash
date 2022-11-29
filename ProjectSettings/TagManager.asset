@@ -4,15 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Table
   - Manager
   - AIPoint
   - Road
-<<<<<<< HEAD
-  - Chair
-=======
   - Seat
   - TrashBin
->>>>>>> 3b9673093dbc2178f6bdfa03be9fa7054a5b9b26
   layers:
   - Default
   - TransparentFX
