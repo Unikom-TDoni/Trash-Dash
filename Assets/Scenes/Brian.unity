@@ -355,6 +355,7 @@ MonoBehaviour:
   startingHour: 7
   endHour: 21
   panelUIManager: {fileID: 1878666259}
+  scoreManager: {fileID: 1085318960}
   updateUIMinute: 10
 --- !u!1 &113670299
 GameObject:
@@ -1024,19 +1025,10 @@ MonoBehaviour:
     prefab: {fileID: 2193157950502936516, guid: 3ecb7d42dc1b1524e90ade55b3760a53, type: 3}
     maxObjectInPool: 100
   trashInformations:
-  - {fileID: 11400000, guid: b093b05ac7e6e7f45af43e318c151a99, type: 2}
-  - {fileID: 11400000, guid: 758e9a78f93dc4549b0d342f03f7fec0, type: 2}
-  - {fileID: 11400000, guid: b7b75a37bc2c38a4e8a8c6f69a4bace5, type: 2}
-  - {fileID: 11400000, guid: e7816c64620988f4894fb5ec3c72662e, type: 2}
-  - {fileID: 11400000, guid: 8a7a9c4623b85984e8ce093612e936c5, type: 2}
-  - {fileID: 11400000, guid: b093b05ac7e6e7f45af43e318c151a99, type: 2}
-  - {fileID: 11400000, guid: b166151233016c94e9c6e65ee8fe4dd4, type: 2}
-  - {fileID: 11400000, guid: 705dd0d15c0b26843928aed41883bc8c, type: 2}
-  - {fileID: 11400000, guid: 70243e91d6bc6d84ab636aa9fbc2af58, type: 2}
-  - {fileID: 11400000, guid: cc688297ab2602140b7a1567aebff6e7, type: 2}
-  - {fileID: 11400000, guid: 8d2ada30c9bcef748ad5b53d2171a0bc, type: 2}
-  - {fileID: 11400000, guid: ed2a3372717e8834087f331e3828301a, type: 2}
-  trashBinHandler: {fileID: 0}
+  - {fileID: 11400000, guid: 17a80050e0a7162489befbec850e6687, type: 2}
+  - {fileID: 11400000, guid: eedf45bc69e966e4d83ef3592631bfb8, type: 2}
+  - {fileID: 11400000, guid: 8aa87baa907a4fc45b0087f677be26db, type: 2}
+  trashBinHandler: {fileID: 1225836470}
 --- !u!4 &550680064
 Transform:
   m_ObjectHideFlags: 0
@@ -1641,7 +1633,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 30
   m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -2895,6 +2887,7 @@ MonoBehaviour:
   correctScore: 20
   wrongScore: -20
   uncollectedScore: -10
+  trashSpawner: {fileID: 550680063}
 --- !u!4 &1085318961
 Transform:
   m_ObjectHideFlags: 0
@@ -4761,6 +4754,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1035306019488661905, guid: b65f7488c91368c4d841e7c9337ebc7d, type: 3}
+      propertyPath: Types
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2420094940529878436, guid: b65f7488c91368c4d841e7c9337ebc7d, type: 3}
       propertyPath: m_Name
       value: Trash Bin

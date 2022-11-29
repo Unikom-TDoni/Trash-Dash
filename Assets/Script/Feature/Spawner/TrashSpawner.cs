@@ -14,11 +14,13 @@ namespace Group8.TrashDash.Spawner
         [SerializeField] private TrashContentInfo[] trashInformations;
         [SerializeField] TrashBinHandler trashBinHandler;
 
+        TrashContentInfo[] filterTrashInformations;
+
         protected override void Start()
         {
             base.Start();
             // Test Spawn
-            //RepeatSpawn(new TrashBinTypes[] { TrashBinTypes.Organic }, transform, .1f, amount: 3);
+            RepeatSpawn(transform, .1f, .5f, amount: 3);
         }
 
         public override Coroutine InstantSpawn(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
@@ -39,6 +41,10 @@ namespace Group8.TrashDash.Spawner
 
         protected IEnumerator InstantSpawnCoroutine(TrashBinTypes[] trashTypes, Transform center, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
         {
+            filterTrashInformations = trashInformations.Where((info) => trashTypes.Contains(info.TrashBinType)).ToArray();
+
+            if (!SpawnCondition(trashTypes)) yield break;
+
             base.SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
 
             yield return new WaitForFixedUpdate();
@@ -54,7 +60,12 @@ namespace Group8.TrashDash.Spawner
 
         protected IEnumerator RepeatSpawnCoroutine(TrashBinTypes[] trashTypes, Transform center, float minInterval, float maxInterval, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
         {
-            while (true) {
+            filterTrashInformations = trashInformations.Where((info) => trashTypes.Contains(info.TrashBinType)).ToArray();
+
+            if (!SpawnCondition(trashTypes)) yield break;
+
+            while (true)
+            {
                 yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
 
                 base.SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
@@ -63,6 +74,12 @@ namespace Group8.TrashDash.Spawner
 
                 AfterSpawn(trashTypes);
             }
+        }
+
+        protected bool SpawnCondition(TrashBinTypes[] trashTypes)
+        {
+            if (filterTrashInformations.Length == 0) return false;
+            return true;
         }
 
         protected void AfterSpawn(TrashBinTypes[] trashTypes)
@@ -76,7 +93,11 @@ namespace Group8.TrashDash.Spawner
                 if (trash == null)
                     trash = go.AddComponent<Trash>();
 
-                TrashContentInfo[] filterTrashInformations = trashInformations.Where((info) => trashTypes.Contains(info.TrashBinType)).ToArray();
+                if(filterTrashInformations.Length == 0)
+                {
+                    trash.Release();
+                    continue;
+                }
 
                 TrashContentInfo randomTrashInfo = filterTrashInformations[Random.Range(0, filterTrashInformations.Length)];
 

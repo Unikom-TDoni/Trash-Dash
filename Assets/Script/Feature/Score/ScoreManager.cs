@@ -1,3 +1,6 @@
+using Group8.TrashDash.Item.Trash;
+using Group8.TrashDash.Module.Pool;
+using Group8.TrashDash.Spawner;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +28,9 @@ namespace Group8.TrashDash.Score
 
         private int currentScore = 0;
         private int currentCombo = 0;
+
+        [Header("References")]
+        [SerializeField] private TrashSpawner trashSpawner;
 
         public int Score { get => currentScore; }
         public int Combo { get => currentCombo; }
@@ -55,12 +61,6 @@ namespace Group8.TrashDash.Score
                         currentCombo = 0;
                         break;
                     }
-                case ScoreState.Uncollected:
-                    {
-                        // Calculate All Items and multiply score (mungkin lebih baik di calculate setelah game selesai)
-                        //currentScore += uncollectedScore;
-                        break;
-                    }
             }
 
             OnScoreChange?.Invoke();
@@ -74,6 +74,15 @@ namespace Group8.TrashDash.Score
         private void HandleCombo()
         {
             currentScore += currentCombo * correctScore;
+        }
+
+        public void GameEnd()
+        {
+            int uncollectedTrashCount = trashSpawner.GetActiveSpawnObject();
+            currentScore += uncollectedTrashCount * uncollectedScore;
+
+            // Set Game Over Panel Score UI to currentScore
+            OnScoreChange?.Invoke();
         }
     }
 }
