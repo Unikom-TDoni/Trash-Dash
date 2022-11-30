@@ -2,16 +2,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class AIWalkingAwayState : StateBehaviour {
-    Transform transform;
     Vector3 target;
 
-    public override void Start(Transform transform) {
-        this.transform = transform;
-    }
-
-    public override void OnStateEnter() {
-        base.OnStateEnter();
-
+    public override void OnStateEnter(Transform transform) {
         AIManager manager = GameObject.FindWithTag("Manager").GetComponent<AIManager>();
         target = manager.exitPosition;
 
@@ -21,8 +14,7 @@ public class AIWalkingAwayState : StateBehaviour {
         manager.pointList.Add(transform.GetComponent<CustomerAI>().targetPoint.gameObject);
     }
 
-    public override void OnStateFixedUpdate() {
-        base.OnStateFixedUpdate();
+    public override void OnStateFixedUpdate(Transform transform) {
 
         if (Vector3.SqrMagnitude(target - transform.position) <= 1f) {
             GameObject.Destroy(transform.gameObject);

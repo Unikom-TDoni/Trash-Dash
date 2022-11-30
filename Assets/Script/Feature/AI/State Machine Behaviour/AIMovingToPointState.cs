@@ -5,25 +5,17 @@ using UnityEngine.AI;
 public class AIMovingToPointState : StateBehaviour {
     AIManager manager;
     NavMeshAgent agent;
-    Transform transform;
 
     public override void Start(Transform transform) {
         manager = GameObject.FindObjectOfType<AIManager>();
         agent = transform.GetComponent<NavMeshAgent>();
-        this.transform = transform;
     }
 
-    public override void OnStateEnter() {
-        
-    }
-
-    public override void OnStateFixedUpdate() {
-        base.OnStateFixedUpdate();
-
+    public override void OnStateFixedUpdate(Transform transform) {
         if (Vector3.SqrMagnitude(agent.destination - transform.position) <= Mathf.Epsilon) {
             Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
             foreach (var col in cols) {
-                if (col.CompareTag("Chair")) {
+                if (col.CompareTag("Seat")) {
                     transform.GetComponent<Animator>().CrossFade("Sitting", .25f);
                     return;
                 }
@@ -33,12 +25,7 @@ public class AIMovingToPointState : StateBehaviour {
         }        
     }
 
-    public override void OnStateExit() {
-        base.OnStateExit();
-    }
-
-    public override void OnDrawGizmos() {
-        base.OnDrawGizmos();
+    public override void OnDrawGizmos(Transform transform) {
         Gizmos.DrawLine(transform.position + Vector3.up, agent.destination + Vector3.up);
     }
 }

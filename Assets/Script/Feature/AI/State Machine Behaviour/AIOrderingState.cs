@@ -3,25 +3,21 @@ using UnityEngine.AI;
 
 public class AIOrderingState : StateBehaviour {
     CustomerAI customerAI;
-    Transform transform;
     AIManager manager;
-    Animator animator;
 
     float orderTime;
 
     public override void Start(Transform transform) {
         base.Start(transform);
-        this.transform = transform;
         manager = GameObject.FindObjectOfType<AIManager>();
-        animator = transform.GetComponent<Animator>();
         customerAI = transform.GetComponent<CustomerAI>();
     }
 
-    public override void OnStateEnter() {
+    public override void OnStateEnter(Transform transform) {
         orderTime = 3f;
     }
 
-    public override void OnStateFixedUpdate() {
+    public override void OnStateFixedUpdate(Transform transform) {
         if (orderTime <= 0) {
             return;
         }
@@ -34,27 +30,24 @@ public class AIOrderingState : StateBehaviour {
                 Debug.LogWarning("No more points!");
                 return;
             }
-            transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(ref manager.pointList));
-            animator.CrossFade("Moving To Point", .25f);
+            transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(transform.GetComponent<CustomerAI>(), ref manager.pointList));
+            transform.GetComponent<Animator>().CrossFade("Moving To Point", .25f);
         }
     }
 
-    Vector3 GetPoint(ref System.Collections.Generic.List<GameObject> list) {
+    Vector3 GetPoint(CustomerAI customerAI, ref System.Collections.Generic.List<GameObject> list) {
         int index = Random.Range(0, list.Count);
         Transform point = list[index].transform;
         list.RemoveAt(index);
-        transform.GetComponent<CustomerAI>().targetPoint = point;
+        customerAI.targetPoint = point;
         return point.position;
     }
 
-    public override void OnStateExit() {
-        base.OnStateExit();
+    public override void OnStateExit(Transform transform, StateBehaviour newState) {
         customerAI.spawnConfiguration.customerQueue.RemoveAt(0);
     }
 
-    public override void OnGUI() {
-        base.OnGUI();
-
+    public override void OnGUI(Transform transform) {
         GUILayout.BeginArea(new Rect(0f, 200f, 1000, 1000));
         GUILayout.Label($"<color='white'><size=25>{"AI Ordering Time: " + orderTime}</size></color>");
         GUILayout.EndArea();

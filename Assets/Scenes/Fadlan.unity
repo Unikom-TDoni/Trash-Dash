@@ -2371,8 +2371,8 @@ MonoBehaviour:
     queueOffsetToStall: {x: 0, y: 0, z: 0}
     <customerQueue>k__BackingField: []
   exitPoint: {fileID: 1599462779}
+  trashSpawnStateList: 
   pointList: []
-  <trashSpawnState>k__BackingField: 
 --- !u!4 &1702894797
 Transform:
   m_ObjectHideFlags: 0

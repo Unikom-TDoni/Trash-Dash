@@ -10,30 +10,45 @@ public class AIManager : MonoBehaviour {
     [field: SerializeField] public float sittingDuration {get; private set;}
 
     [SerializeField] SpawnConfiguration[] spawnConfigurations;
-    [SerializeField] Transform exitPoint;
+    [SerializeField] Transform[] exitPoints;
 
-    int spawnIndex;
+    [Space]
+    [SerializeField] AIState[] trashSpawnStateList;
+
+    public HashSet<AIState> trashSpawnStateSet {get; private set;}
+
     public SpawnConfiguration GetSpawnConfiguration() {
         spawnIndex = (spawnIndex + 1) % spawnConfigurations.Length;
         return spawnConfigurations[spawnIndex];
     }
     
-    public Vector3 exitPosition => exitPoint.position;
+    public Vector3 exitPosition {
+        get {
+            exitIndex = (exitIndex + 1) % exitPoints.Length;
+            return exitPoints[exitIndex].position;
+        }
+    }
 
-    public List<GameObject> pointList;
-    // public TrashSpawner trashSpawner {get; private set;}
+    [HideInInspector] public List<GameObject> pointList;
+    public TrashSpawner trashSpawner {get; private set;}
 
-    [field: SerializeField] public AIState[] trashSpawnState {get; private set;}
+    int spawnIndex, exitIndex;
 
     void Awake() {
         foreach (var spawnConfig in spawnConfigurations) {
             spawnConfig.InitializeQueue();
         }
 
-        // trashSpawner = FindObjectOfType<TrashSpawner>();
-        // if (!trashSpawner) {
-        //     Debug.LogError("No trash spawner found!");
-        // }
+        trashSpawnStateSet = new HashSet<AIState>();
+        foreach (var item in trashSpawnStateList) {
+            trashSpawnStateSet.Add(item);
+        }
+        trashSpawnStateList = null; // return to GC
+
+        trashSpawner = FindObjectOfType<TrashSpawner>();
+        if (!trashSpawner) {
+            Debug.LogError("No trash spawner found!");
+        }
     }
 
     void Start() {
@@ -65,7 +80,7 @@ public class SpawnConfiguration {
     public Quaternion spawnRotation => spawnPoint.rotation;
     public Vector3 queuePosition => stallPoint.position + queueOffsetToStall;
     public Vector3 stallPosition => stallPoint.position;
-    [field: SerializeField] public List<CustomerAI> customerQueue {get; private set;}
+    public List<CustomerAI> customerQueue {get; private set;}
 
     public void InitializeQueue() {
         customerQueue = new List<CustomerAI>();

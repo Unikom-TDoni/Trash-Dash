@@ -3,32 +3,25 @@ using UnityEngine.AI;
 
 public class AIQueueingState : StateBehaviour {
     CustomerAI customerAI;
-    Transform transform;
-    AIManager aiManager;
     Transform lastQueue;
     NavMeshAgent agent;
 
     public override void Start(Transform transform) {
         base.Start(transform);
-        this.transform = transform;
         customerAI = transform.GetComponent<CustomerAI>();
-        aiManager = GameObject.FindObjectOfType<AIManager>();
         agent = transform.GetComponent<NavMeshAgent>();
 
-        customerAI.spawnConfiguration = aiManager.GetSpawnConfiguration();
+        customerAI.spawnConfiguration = GameObject.FindObjectOfType<AIManager>().GetSpawnConfiguration();
         transform.position = customerAI.spawnConfiguration.spawnPosition;
         transform.rotation = customerAI.spawnConfiguration.spawnRotation;
     }
 
-    public override void OnStateEnter() {
-        base.OnStateEnter();
+    public override void OnStateEnter(Transform transform) {
         lastQueue = customerAI.spawnConfiguration.customerQueue.Count == 0 ? null : customerAI.spawnConfiguration.customerQueue[customerAI.spawnConfiguration.customerQueue.Count - 1].transform;
         customerAI.spawnConfiguration.customerQueue.Add(customerAI);
     }
 
-    public override void OnStateFixedUpdate() {
-        base.OnStateFixedUpdate();
-
+    public override void OnStateFixedUpdate(Transform transform) {
         if (customerAI.spawnConfiguration.customerQueue[0] == customerAI) {
             agent.destination = customerAI.spawnConfiguration.queuePosition;
 

@@ -3,25 +3,15 @@ using UnityEngine.AI;
 
 /// TODO: Make sit in chair direction and not table.
 public class AISittingState : StateBehaviour {
-    Transform transform;
-    Animator animator;
-
     float duration;
     Transform chair;
-
     bool standingUp;
 
-    public override void Start(Transform transform) {
-        this.transform = transform;
-        animator = transform.GetComponent<Animator>();
-    }
-
-    public override void OnStateEnter() {
-        base.OnStateEnter();
+    public override void OnStateEnter(Transform transform) {
         chair = null;
         Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
         foreach (var col in cols) {
-            if (col.CompareTag("Chair")) {
+            if (col.CompareTag("Seat")) {
                 chair = col.gameObject.transform;
                 transform.GetComponent<NavMeshAgent>().SetDestination(transform.position + chair.forward * .1f);
                 break;
@@ -31,13 +21,11 @@ public class AISittingState : StateBehaviour {
         AIManager manager = GameObject.FindWithTag("Manager").GetComponent<AIManager>();
         duration = manager.sittingDuration;
 
-        animator.SetBool("Stand Up", false);
+        transform.GetComponent<Animator>().SetBool("Stand Up", false);
         standingUp = false;
     }
 
-    public override void OnStateFixedUpdate() {
-        base.OnStateFixedUpdate();
-
+    public override void OnStateFixedUpdate(Transform transform) {
         if (chair) {
             Utility.LerpLookTowardsDirection(transform, chair.forward);
         }
@@ -45,7 +33,7 @@ public class AISittingState : StateBehaviour {
         if (!standingUp) {
             duration -= Time.fixedDeltaTime;
             if (duration <= 0) {
-                animator.SetBool("Stand Up", true);
+                transform.GetComponent<Animator>().SetBool("Stand Up", true);
                 standingUp = true;
             }
         }

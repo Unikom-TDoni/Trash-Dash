@@ -4,53 +4,51 @@ using Group8.TrashDash.TrashBin;
 
 public class CustomerAI : MonoBehaviour {
     public AIStateMachine stateMachine {get; private set;}
-    public SpawnConfiguration spawnConfiguration;
     public Transform targetPoint;
-    // public TrashSpawner trashSpawner;
     public AIManager aiManager;
+    [HideInInspector] public SpawnConfiguration spawnConfiguration;
 
     Coroutine spawnCoroutine;
 
     void Start() {
         stateMachine = new AIStateMachine(transform);
         stateMachine.OnStateChange += OnStateChange;
-        StartTrashCoroutine();
     }
 
     void OnStateChange(AIState newState) {
-        // if (aiManager.trashSpawnState.)
+        SpawnTrashes(aiManager.trashSpawnStateSet.Contains(newState));
     }
 
-    public void StartTrashCoroutine() {
-        if (spawnCoroutine != null)
-            return;
-        
-        // spawnCoroutine = trashSpawner.RepeatSpawn(new TrashBinTypes[] { TrashBinTypes.Organic }, transform, .1f, 1f, areaSize: new Vector3(5, 1, 5));
-    }
-
-    public void StopTrashCoroutine() {
-        StopCoroutine(spawnCoroutine);
+    void SpawnTrashes(bool spawnTrashes) {
+        if (spawnTrashes && spawnCoroutine == null) {
+            spawnCoroutine = aiManager.trashSpawner.RepeatSpawn(transform, .1f, .2f, areaSize: new Vector3(5, 1, 5));
+            #if UNITY_EDITOR
+            Debug.Log("Calling repeat spawn!");
+            #endif
+        } else if (spawnCoroutine != null){
+            StopCoroutine(spawnCoroutine);
+        }
     }
 
     void Update() {
-        stateMachine.Update();
+        stateMachine.Update(transform);
     }
 
     void FixedUpdate() {
-        stateMachine.FixedUpdate();
+        stateMachine.FixedUpdate(transform);
     }
 
     void LateUpdate() {
-        stateMachine.LateUpdate();
+        stateMachine.LateUpdate(transform);
     }
 
     #if UNITY_EDITOR
     void OnDrawGizmos() {
-        stateMachine.OnDrawGizmos();
+        stateMachine.OnDrawGizmos(transform);
     }
     #endif
 
     void OnGUI() {
-        stateMachine.OnGUI();
+        stateMachine.OnGUI(transform);
     }
 }

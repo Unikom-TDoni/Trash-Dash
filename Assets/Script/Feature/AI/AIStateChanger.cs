@@ -9,6 +9,6 @@ public class AIStateChanger : StateMachineBehaviour {
         if (enemyStateMachine == null) {
             enemyStateMachine = animator.GetComponent<CustomerAI>().stateMachine;
         }
-        enemyStateMachine.ChangeState(targetState);
+        enemyStateMachine.ChangeState(animator.transform, targetState);
     }
 }

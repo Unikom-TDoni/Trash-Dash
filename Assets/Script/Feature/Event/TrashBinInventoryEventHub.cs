@@ -23,7 +23,7 @@ namespace Group8.TrashDash.Coordinator
 
         private void Awake()
         {
-            GameManager.Instance.LevelHandler.SpawnLevel();
+            // GameManager.Instance.LevelHandler.SpawnLevel();
             _trashBinHandler.OnAwake(OnDrop, OnInteract);
         }
 
