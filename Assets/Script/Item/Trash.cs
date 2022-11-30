@@ -121,9 +121,10 @@ namespace Group8.TrashDash.Item.Trash
             secondPhase = false;
             secondJump = false;
             anotherJump = false;
+            meshRenderer.enabled = false;
+            if (colliders == null) return;
             colliders[0].enabled = false;
             colliders[1].enabled = false;
-            meshRenderer.enabled = false;
         }
     }
 }

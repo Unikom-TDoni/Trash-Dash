@@ -12,10 +12,12 @@ namespace Group8.TrashDash.Module.Spawner
     {
         public Action<SpawnObject> OnRelease;
 
-        [SerializeField] private PoolManager poolManager;
+        [SerializeField] protected PoolManager poolManager;
         [SerializeField] private SpawnPrefab spawnPrefab;
 
         protected GameObject[] obj;
+
+        public int GetActiveSpawnObject() => poolManager.pools[spawnPrefab.prefab].CountActive;
 
         protected virtual void Start()
         {
@@ -35,6 +37,8 @@ namespace Group8.TrashDash.Module.Spawner
 
         protected virtual IEnumerator InstantSpawnCoroutine(Transform center, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
         {
+            if (!SpawnCondition()) yield break;
+
             SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
 
             yield return new WaitForFixedUpdate();
@@ -46,6 +50,8 @@ namespace Group8.TrashDash.Module.Spawner
         {
             while (true)
             {
+                if (!SpawnCondition()) yield break;
+
                 yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
 
                 SpawnObjects(center, offset, amount, areaSize, randomizeRotation);
@@ -80,13 +86,17 @@ namespace Group8.TrashDash.Module.Spawner
             }
         }
 
+        protected virtual bool SpawnCondition()
+        {
+            return true;
+        }
+
         protected virtual void AfterSpawn()
         {
             for (int i = 0; i < obj.Length; i++)
             {
                 if (obj[i] == null) continue;
-
-                obj[i].SetActive(true);
+                
                 obj[i] = null;
             }
         }

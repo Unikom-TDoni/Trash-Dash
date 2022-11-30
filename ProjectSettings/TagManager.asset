@@ -10,6 +10,7 @@ TagManager:
   - Road
   - Seat
   - TrashBin
+  - Car
   layers:
   - Default
   - TransparentFX

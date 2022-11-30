@@ -1,3 +1,4 @@
+using Group8.TrashDash.Score;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace Group8.TrashDash.TimeManager
 
         [Header("UI")]
         [SerializeField] private PanelUIManager panelUIManager;
+        [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private int updateUIMinute = 10;
 
         private void Start()
@@ -34,9 +36,13 @@ namespace Group8.TrashDash.TimeManager
         {
             if (currentDuration >= 1f)
             {
+                currentDuration = -1f;
                 panelUIManager.GameEnd();
+                scoreManager.GameEnd();
                 return;
             }
+
+            if (currentDuration == -1f) return;
 
             currentDuration += Time.deltaTime / stageDuration;
             currentTime = Mathf.Lerp(startingHour * 3600, endHour * 3600, currentDuration);
