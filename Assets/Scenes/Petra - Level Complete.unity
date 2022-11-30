@@ -1345,7 +1345,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77110140}
-  m_LocalRotation: {x: 0.28978413, y: -0.000000016468091, z: 0.0000000049861364, w: 0.95709205}
+  m_LocalRotation: {x: 0.28978413, y: 0.000000016468091, z: -0.0000000049861364, w: 0.95709205}
   m_LocalPosition: {x: -6, y: 13.07, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1580,6 +1580,7 @@ MonoBehaviour:
   pushForce: 5
   powerUpHandler: {fileID: 0}
   speedMultiplier: 1
+  _footStepsAudioClip: {fileID: 0}
 --- !u!95 &94734080
 Animator:
   serializedVersion: 4
@@ -40199,6 +40200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2092858372}
   - component: {fileID: 2092858371}
+  - component: {fileID: 2092858373}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -40251,7 +40253,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092858370}
-  m_LocalRotation: {x: 0.28978413, y: -0.000000016468091, z: 0.0000000049861364, w: 0.95709205}
+  m_LocalRotation: {x: 0.28978413, y: 0.000000016468091, z: -0.0000000049861364, w: 0.95709205}
   m_LocalPosition: {x: -6, y: 13.07, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -40260,6 +40262,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+--- !u!114 &2092858373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092858370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef88f000cd7b79449274b81e62bc9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 94734082}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  radius: 0.2
 --- !u!1001 &2099960091
 PrefabInstance:
   m_ObjectHideFlags: 0
