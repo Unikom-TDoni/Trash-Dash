@@ -19,7 +19,8 @@ public class AOEPower : PowerUpSO
 
     public override void Use()
     {
-        GameObject obj = Instantiate(prefab, player.transform.position + player.transform.forward, Quaternion.identity);
+        Vector3 spawnPos = player.transform.position + player.transform.forward - new Vector3(0f, 1f, 0f);
+        GameObject obj = Instantiate(prefab, spawnPos, Quaternion.identity);
         obj.GetComponent<AOEPowerUp>().aoePower = this;
     }
 }

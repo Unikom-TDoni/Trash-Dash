@@ -40277,7 +40277,7 @@ MonoBehaviour:
   target: {fileID: 94734082}
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 247
   radius: 0.2
 --- !u!1001 &2099960091
 PrefabInstance:

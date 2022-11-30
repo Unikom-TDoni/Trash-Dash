@@ -177,7 +177,7 @@ namespace Group8.TrashDash.Player.Controller
             if(transform.position.y < -5f)
             {
                 velocity = Vector3.zero;
-                transform.position = initialPos + Vector3.up;
+                transform.position = initialPos;
             }
         }
 
