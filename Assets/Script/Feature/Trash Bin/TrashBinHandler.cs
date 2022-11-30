@@ -1,10 +1,10 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using Group8.TrashDash.Event;
 using Group8.TrashDash.Score;
 using System.Collections.Generic;
 using Group8.TrashDash.Core;
-using System.Linq;
 
 namespace Group8.TrashDash.TrashBin
 {

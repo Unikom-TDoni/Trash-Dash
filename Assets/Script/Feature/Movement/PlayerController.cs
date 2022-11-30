@@ -38,6 +38,9 @@ namespace Group8.TrashDash.Player.Controller
         [SerializeField] private PowerUpHandler powerUpHandler;
         [Range(.1f, 10), SerializeField] float speedMultiplier = 1;
 
+        [SerializeField]
+        private AudioClip _footStepsAudioClip = default;
+
         void Awake()
         {
             controller = GetComponent<CharacterController>();
@@ -163,6 +166,11 @@ namespace Group8.TrashDash.Player.Controller
             {
                 rb.velocity = hit.moveDirection * pushForce * (speed / moveSpeed);
             }
+        }
+
+        public void PlayFootstepSound()
+        {
+            AudioSource.PlayClipAtPoint(_footStepsAudioClip, transform.position);
         }
     }
 }
