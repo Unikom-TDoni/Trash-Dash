@@ -63,8 +63,11 @@ namespace Group8.TrashDash.Player.Pickup
         {
             takenObjects = ColliderDetector.Find<GameObject>(transform.position, pickUpRadius, targetMask, transform.forward, pickUpAngle);
 
+            if (takenObjects.Count == 0 || inventory.IsFull())
+                return;
+
             foreach (GameObject obj in takenObjects.OrderBy(
-                    obj => (transform.position - obj.transform.position).sqrMagnitude).ToArray())
+                obj => (transform.position - obj.transform.position).sqrMagnitude).ToArray())
             {
                 Trash trash = obj.GetComponent<Trash>();
                 if (trash == null)
@@ -77,10 +80,11 @@ namespace Group8.TrashDash.Player.Pickup
                 {
                     trash.MoveToTarget(transform);
                     takenObjects.Remove(obj);
-
                     scoreManager?.UpdateScore(ScoreState.Collect);
                 }
             }
+
+            GetComponent<AudioSource>().Play();
         }
         #endregion
 

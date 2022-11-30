@@ -45,5 +45,9 @@ namespace Group8.TrashDash.Inventory
             _inventoryObj.SetActive(value);
             InputManager.ToggleActionMap(value ? InputManager.playerAction.Panel : InputManager.playerAction.Gameplay);
         }
+
+        public bool IsFull() =>
+            _inventory.IsFull();
+
     }
 }
