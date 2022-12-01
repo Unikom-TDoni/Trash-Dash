@@ -21,6 +21,7 @@ namespace Group8.TrashDash.Player.Controller
         Vector3 rawInputMovement = Vector3.zero;
         Vector3 velocity;
         Vector3 moveDirection;
+        Vector3 initialPos;
 
         // Movement Parameters
         float speed;
@@ -49,6 +50,7 @@ namespace Group8.TrashDash.Player.Controller
 
         void Start()
         {
+            initialPos = transform.position;
             speed = moveSpeed;
             playerControls = InputManager.playerAction;
             RegisterInputCallbacks();
@@ -79,6 +81,8 @@ namespace Group8.TrashDash.Player.Controller
 
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
+
+            CheckOutOfBound();
 
             animator.SetFloat("magnitude", Mathf.MoveTowards(animator.GetFloat("magnitude"), (speed / sprintSpeed) * moveDirection.magnitude, Time.deltaTime * transitionSpeed));
         }
@@ -165,6 +169,15 @@ namespace Group8.TrashDash.Player.Controller
             if (rb && !rb.isKinematic)
             {
                 rb.velocity = hit.moveDirection * pushForce * (speed / moveSpeed);
+            }
+        }
+
+        private void CheckOutOfBound()
+        {
+            if(transform.position.y < -5f)
+            {
+                velocity = Vector3.zero;
+                transform.position = initialPos;
             }
         }
 

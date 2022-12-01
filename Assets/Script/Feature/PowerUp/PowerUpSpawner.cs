@@ -5,6 +5,8 @@ using UnityEngine;
 namespace Group8.TrashDash.Spawner
 {
     using Module.Spawner;
+    using UnityEngine.AI;
+
     public class PowerUpSpawner : Spawner
     {
         [SerializeField] private float totalSpawnWeight;
@@ -31,6 +33,8 @@ namespace Group8.TrashDash.Spawner
             {
                 if (go == null) continue;
 
+                CheckPosition(go);
+
                 PowerUp powerUp = go.GetComponent<PowerUp>();
                 if (powerUp == null) go.AddComponent<PowerUp>();
 
@@ -45,6 +49,14 @@ namespace Group8.TrashDash.Spawner
             }
 
             base.AfterSpawn();
+        }
+
+        protected void CheckPosition(GameObject go)
+        {
+            if (NavMesh.SamplePosition(go.transform.position, out var hit, Mathf.Infinity, NavMesh.AllAreas))
+            {
+                go.transform.position = hit.position;
+            }
         }
 
         private void OnValidate()

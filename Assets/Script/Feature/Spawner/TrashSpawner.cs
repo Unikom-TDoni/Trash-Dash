@@ -20,7 +20,7 @@ namespace Group8.TrashDash.Spawner
         {
             base.Start();
             // Test Spawn
-            // RepeatSpawn(transform, .1f, .5f, amount: 3);
+            RepeatSpawn(transform, .1f, .5f, amount: 3);
         }
 
         public override Coroutine InstantSpawn(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
