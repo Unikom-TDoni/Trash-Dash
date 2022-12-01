@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using Group8.TrashDash.Player.Pickup;
 
 namespace Group8.TrashDash.Item.Trash
 {
@@ -18,12 +19,14 @@ namespace Group8.TrashDash.Item.Trash
         bool anotherJump;
 
         Collider[] colliders;
+        PlayerPickup pp;
  
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
             meshRenderer = GetComponent<MeshRenderer>();
             playerControls = InputManager.playerAction;
+            pp = GameObject.FindWithTag("Player").GetComponent<PlayerPickup>();
         }
 
         public void Initialize()
@@ -106,8 +109,9 @@ namespace Group8.TrashDash.Item.Trash
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerBin")
             {
+                pp.trashJumpingToBin--;
                 Release();
             }
         }

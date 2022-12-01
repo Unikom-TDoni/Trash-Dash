@@ -25,6 +25,10 @@ namespace Group8.TrashDash.Player.Pickup
         [SerializeField] ScoreManager scoreManager;
 
         Animator playerAnimator;
+        [SerializeField] Animator playerBinAnim_1, playerBinAnim_2;
+        bool binIsOpen = false;
+        public int trashJumpingToBin;
+        [SerializeField] Transform playerBinTransform;
 
         private void Awake()
         {
@@ -35,6 +39,22 @@ namespace Group8.TrashDash.Player.Pickup
         {
             playerControls = InputManager.playerAction;
             RegisterInputCallback();
+        }
+
+        private void Update()
+        {
+            if (binIsOpen)
+            {
+                if (trashJumpingToBin <= 0)
+                {
+                    if (playerBinAnim_1 != null && playerBinAnim_2 != null)
+                    {
+                        playerBinAnim_1.SetTrigger("trigClose");
+                        playerBinAnim_2.SetTrigger("trigClose");
+                    }
+                    binIsOpen = false;
+                }
+            }
         }
 
         private void OnEnable()
@@ -78,9 +98,28 @@ namespace Group8.TrashDash.Player.Pickup
 
                 if (inventory.TryAddItem(trash.trashContentInfo))
                 {
-                    trash.MoveToTarget(transform);
+                    if (playerBinTransform != null)
+                    {
+                        trash.MoveToTarget(playerBinTransform);
+                    }
+                    else
+                    {
+                        trash.MoveToTarget(transform);
+                    }
+
                     takenObjects.Remove(obj);
                     scoreManager?.UpdateScore(ScoreState.Collect);
+
+                    if (!binIsOpen)
+                    {
+                        binIsOpen = true;
+                        if (playerBinAnim_1 != null && playerBinAnim_2 != null)
+                        {
+                            playerBinAnim_1.SetTrigger("trigOpen");
+                            playerBinAnim_2.SetTrigger("trigOpen");
+                        }
+                    }
+                    trashJumpingToBin++;
                 }
             }
 

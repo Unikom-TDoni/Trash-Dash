@@ -18,6 +18,6 @@ MonoBehaviour:
   Color: {r: 0.45624778, g: 0.8859781, b: 0.9056604, a: 1}
   Materials: []
   duration: 5
-  VFX: {fileID: 3498120042602810878, guid: 66f1980ba58e02d429e0f3191f8b5742, type: 3}
+  VFX: {fileID: 3498120042602810878, guid: 5bbc63f24dd85804eab63a44837d713c, type: 3}
   parameterName: speed
-  multiplier: 1.5
+  multiplier: 2
