@@ -16,6 +16,11 @@ public class PowerUpHandler : MonoBehaviour
     private void Awake()
     {
         powerUpLayoutGroupController.InitLayout(maxSlot);
+        int i = 0;
+        foreach(var item in powerUpLayoutGroupController.GetGroupItems())
+        {
+            item.SetIndex(++i);
+        }
     }
 
     #region Input Callbacks

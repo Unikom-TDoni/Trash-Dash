@@ -63,6 +63,7 @@ namespace Group8.TrashDash.Inventory
         {
             if (_imgIcon.raycastTarget) return;
             _imgIcon.raycastTarget = true;
+            trashBinLayoutController.AnimClose();
         }
 
         public override void UpdateContent(TrashContentInfo content)

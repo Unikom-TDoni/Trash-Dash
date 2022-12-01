@@ -17,13 +17,16 @@ public class PanelUIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if(InputManager.playerAction != null)
-            InputManager.playerAction.Gameplay.Pause.performed += OnPause;
+        if (InputManager.playerAction == null) return;
+
+        InputManager.playerAction.Gameplay.Pause.performed += OnPause;
+        InputManager.playerAction.Panel.Cancel.performed += OnResume;
     }
 
     private void OnDisable()
     {
         InputManager.playerAction.Gameplay.Pause.performed -= OnPause;
+        InputManager.playerAction.Panel.Cancel.performed -= OnResume;
     }
 
     void Start()
@@ -31,8 +34,10 @@ public class PanelUIManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         pausedPanel.SetActive(false);
 
-        if (InputManager.playerAction != null)
-            InputManager.playerAction.Gameplay.Pause.performed += OnPause;
+        if (InputManager.playerAction == null) return;
+        
+        InputManager.playerAction.Gameplay.Pause.performed += OnPause;
+        InputManager.playerAction.Panel.Cancel.performed += OnResume;
     }
 
     public void GameEnd()
@@ -40,7 +45,7 @@ public class PanelUIManager : MonoBehaviour
         if (gameOverPanel.activeSelf) return;
         Time.timeScale = 0;
         gameOverPanel.SetActive(true);
-        pausedButton.SetActive(false);
+        //pausedButton.SetActive(false);
     }
 
     public void OnTimeUpdate(float _time)
@@ -54,7 +59,13 @@ public class PanelUIManager : MonoBehaviour
     {
         PauseGame();
         pausedPanel.SetActive(true);
-        pausedButton.SetActive(false);
+        //pausedButton.SetActive(false);
+    }
+    
+    private void OnResume(InputAction.CallbackContext context)
+    {
+        ResumeGame();
+        pausedPanel.SetActive(false);
     }
 
     public void PauseGame()

@@ -1,13 +1,18 @@
 using UnityEngine;
 using Group8.TrashDash.Score;
+using TMPro;
 
 public class ScoreUI : MonoBehaviour
 {
     private ScoreManager scoreManager;
 
+    [SerializeField]
+    private TMP_Text scoreText;
+
     private void Awake()
     {
         scoreManager = GetComponent<ScoreManager>();
+        UpdateUI();
     }
 
     private void OnEnable()
@@ -24,6 +29,6 @@ public class ScoreUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        Debug.Log("Current Score : " + scoreManager.Score);
+        scoreText.text = scoreManager.Score.ToString() + " P";
     }
 }

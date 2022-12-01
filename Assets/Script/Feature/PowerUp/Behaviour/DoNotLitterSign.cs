@@ -8,21 +8,38 @@ using Group8.TrashDash.Score;
 public class DoNotLitterSign : AOEPowerUp
 {
     ScoreManager scoreManager;
+
+    [SerializeField]
+    private Animator animator;
+
+    [SerializeField, Range(0, 1)]
+    private float animWait = .2f;
+
+    private float animWaitDuration;
+
     protected override void Start()
     {
         base.Start();
         scoreManager = FindObjectOfType<ScoreManager>();
+
+        animWaitDuration = animWait * aoePower.interval;
     }
 
     protected override IEnumerator DoEffect()
     {
-        yield return new WaitForSeconds(aoePower.interval);
+        AnimClose();
 
-        List<Trash> trashes = ColliderDetector.Find<Trash>(transform.position, aoePower.radius, LayerMask.GetMask("Pickup"));
+        while (true)
+        {
+            yield return new WaitForSeconds(aoePower.interval);
 
-        trashes.ForEach((trash) => trash.MoveToTarget(transform));
+            List<Trash> trashes = ColliderDetector.Find<Trash>(transform.position, aoePower.radius, LayerMask.GetMask("Pickup"));
 
-        StartCoroutine(DoEffect());
+            trashes.ForEach((trash) => trash.MoveToTarget(transform));
+
+            StopCoroutine(AnimOpenClose());
+            StartCoroutine(AnimOpenClose());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,5 +52,26 @@ public class DoNotLitterSign : AOEPowerUp
         if (!scoreManager) return;
         scoreManager.UpdateScore(ScoreState.Collect);
         scoreManager.UpdateScore(ScoreState.CorrectNoCombo);
+    }
+
+    private IEnumerator AnimOpenClose()
+    {
+        AnimOpen();
+        yield return new WaitForSeconds(animWaitDuration);
+        AnimClose();
+    }
+
+    public void AnimOpen()
+    {
+        if (animator == null) return;
+        animator.SetBool("isOpening", true);
+        animator.SetBool("isClosing", false);
+    }
+
+    public void AnimClose()
+    {
+        if (animator == null) return;
+        animator.SetBool("isClosing", true);
+        animator.SetBool("isOpening", false);
     }
 }
