@@ -10034,6 +10034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bench_01 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
+      propertyPath: m_TagString
+      value: AIPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 7132583309199457747, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_TagString
       value: Seat
@@ -10671,6 +10675,10 @@ PrefabInstance:
     - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_Name
       value: Bench_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
+      propertyPath: m_TagString
+      value: AIPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7132583309199457747, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_TagString
@@ -12256,6 +12264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bench_01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
+      propertyPath: m_TagString
+      value: AIPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 7132583309199457747, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_TagString
       value: Seat
@@ -13539,6 +13551,10 @@ PrefabInstance:
     - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_Name
       value: Bench_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
+      propertyPath: m_TagString
+      value: AIPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7132583309199457747, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_TagString
@@ -15736,6 +15752,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bench_01 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
+      propertyPath: m_TagString
+      value: AIPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 7132583309199457747, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_TagString
       value: Seat
@@ -15879,6 +15899,10 @@ PrefabInstance:
     - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_Name
       value: Bench_01 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
+      propertyPath: m_TagString
+      value: AIPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7132583309199457747, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_TagString
@@ -17824,6 +17848,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bench_01 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
+      propertyPath: m_TagString
+      value: AIPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 7132583309199457747, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_TagString
       value: Seat
@@ -18779,6 +18807,10 @@ PrefabInstance:
     - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_Name
       value: Bench_01 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122624724678533635, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
+      propertyPath: m_TagString
+      value: AIPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7132583309199457747, guid: d57d815e7d1cdb643bcd537314e37c99, type: 3}
       propertyPath: m_TagString
