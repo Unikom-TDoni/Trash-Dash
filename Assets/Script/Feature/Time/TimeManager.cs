@@ -8,6 +8,9 @@ namespace Group8.TrashDash.TimeManager
 {
     public class TimeManager : MonoBehaviour
     {
+        public Action OnDayTime;
+        public Action OnNightTime;
+
         const float timePerDay = 24 * 60 * 60;
 
         [Header("Level")]
@@ -27,9 +30,19 @@ namespace Group8.TrashDash.TimeManager
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private int updateUIMinute = 10;
 
+        [Header("Indicator")]
+        [SerializeField] private float dayTime = 6f;
+        [SerializeField] private float nightTime = 18f;
+
+        public bool isNightTime => (timeSpan.Hours >= nightTime) || (timeSpan.Hours <= dayTime);
+        private bool prevTimeCheck;
+
         private void Start()
         {
             currentTime = startingHour * 3600;
+            timeSpan = TimeSpan.FromSeconds(currentTime);
+
+            prevTimeCheck = !isNightTime;
         }
 
         private void Update()
@@ -51,6 +64,14 @@ namespace Group8.TrashDash.TimeManager
             if (timeSpan.Minutes % updateUIMinute == 0)
             {
                 panelUIManager.OnTimeUpdate(currentTime);
+            }
+
+            if (prevTimeCheck != isNightTime)
+            {
+                prevTimeCheck = isNightTime;
+
+                if (isNightTime) OnNightTime.Invoke();
+                else OnDayTime.Invoke();
             }
         }
     }

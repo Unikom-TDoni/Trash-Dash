@@ -23,11 +23,15 @@ namespace Group8.TrashDash.Score
         [Header("Scores")]
         [SerializeField] private int baseScore = 10;
         [SerializeField] private int correctScore = 20;
+        [SerializeField] private int comboScore = 5;
         [SerializeField] private int wrongScore = -20;
         [SerializeField] private int uncollectedScore = -10;
 
         private int currentScore = 0;
         private int currentCombo = 0;
+
+        [Header("Combo")]
+        [SerializeField] private bool multiplyScore = true;
 
         [Header("References")]
         [SerializeField] private TrashSpawner trashSpawner;
@@ -45,8 +49,7 @@ namespace Group8.TrashDash.Score
                 case ScoreState.Correct:
                     {
                         currentCombo++;
-                        currentScore += currentCombo * correctScore;
-                        //HandleCombo();
+                        HandleCombo();
                         break;
                     }
                 case ScoreState.CorrectNoCombo:
@@ -73,7 +76,7 @@ namespace Group8.TrashDash.Score
 
         private void HandleCombo()
         {
-            currentScore += currentCombo * correctScore;
+            currentScore += correctScore + comboScore * ((multiplyScore) ? currentCombo : 1);
         }
 
         public void GameEnd()
