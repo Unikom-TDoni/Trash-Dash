@@ -2,8 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Group8.TrashDash.Spawner;
+using UnityEngine.AI;
 
 public class AIManager : MonoBehaviour {
+    [SerializeField] NavMeshData data;
+
+    [Space]
     [SerializeField] CustomerAI prefab;
 
     [field: Header("Durations")]
@@ -52,6 +56,7 @@ public class AIManager : MonoBehaviour {
     }
 
     void Start() {
+        NavMesh.AddNavMeshData(data);
         pointList = GameObject.FindGameObjectsWithTag("AIPoint").ToList();
     }
 

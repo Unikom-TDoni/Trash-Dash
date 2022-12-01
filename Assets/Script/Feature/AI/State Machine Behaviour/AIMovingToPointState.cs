@@ -21,7 +21,11 @@ public class AIMovingToPointState : StateBehaviour {
                 }
             }
 
-            transform.GetComponent<Animator>().CrossFade("Sitting Down", .25f);
+            if (Random.Range(0, 2) == 0) {
+                transform.GetComponent<Animator>().CrossFade("Sitting Down", .25f);
+            } else {
+                transform.GetComponent<Animator>().CrossFade("Texting", .25f);
+            }
         }        
     }
 

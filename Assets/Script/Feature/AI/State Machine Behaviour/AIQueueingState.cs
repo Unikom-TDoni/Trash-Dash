@@ -5,6 +5,7 @@ public class AIQueueingState : StateBehaviour {
     CustomerAI customerAI;
     Transform lastQueue;
     NavMeshAgent agent;
+    Animator animator;
 
     public override void Start(Transform transform) {
         base.Start(transform);
@@ -14,6 +15,8 @@ public class AIQueueingState : StateBehaviour {
         customerAI.spawnConfiguration = GameObject.FindObjectOfType<AIManager>().GetSpawnConfiguration();
         transform.position = customerAI.spawnConfiguration.spawnPosition;
         transform.rotation = customerAI.spawnConfiguration.spawnRotation;
+
+        animator = transform.GetComponent<Animator>();
     }
 
     public override void OnStateEnter(Transform transform) {
@@ -23,15 +26,16 @@ public class AIQueueingState : StateBehaviour {
 
     public override void OnStateFixedUpdate(Transform transform) {
         if (customerAI.spawnConfiguration.customerQueue[0] == customerAI) {
-            agent.destination = customerAI.spawnConfiguration.queuePosition;
+            agent.destination = customerAI.spawnConfiguration.queuePosition; // EXPENSIVE, make duration
 
             Vector3 dir = customerAI.spawnConfiguration.queuePosition - transform.position;
             dir.y = 0;
             if (Vector3.SqrMagnitude(dir) <= 0.01f) {
-                transform.GetComponent<Animator>().CrossFade("Idle", .25f);
+                animator.CrossFade("Idle", .25f);
             }
         } else {
-            agent.destination = lastQueue.position - (lastQueue.position - transform.position).normalized * 2f;
+            agent.destination = lastQueue.position - (lastQueue.position - transform.position).normalized * 2f; // EXPENSIVE, make duration
         }
+        animator.SetFloat("Magnitude", (agent.destination - transform.position).magnitude); // EXPENSIVE, change only to when moving and stopped
     }
 }
