@@ -51,7 +51,7 @@ public class DoNotLitterSign : AOEPowerUp
 
         if (!scoreManager) return;
         scoreManager.UpdateScore(ScoreState.Collect);
-        scoreManager.UpdateScore(ScoreState.CorrectNoCombo);
+        //scoreManager.UpdateScore(ScoreState.CorrectNoCombo);
     }
 
     private IEnumerator AnimOpenClose()
