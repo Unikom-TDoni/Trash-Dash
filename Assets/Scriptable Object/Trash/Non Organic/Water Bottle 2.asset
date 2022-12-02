@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Water Bottle 2
   m_EditorClassIdentifier: 
   Name: Water Bottle 2
-  Sprite: {fileID: 0}
-  TrashBinType: 0
+  Sprite: {fileID: 21300000, guid: 64e9a25f15f308c47bcae5b75f40554c, type: 3}
+  TrashBinType: 1
   Mesh: {fileID: 2534964839176971238, guid: 76ffbf5856239594eac04222775de0f5, type: 3}
   Materials:
   - {fileID: -6478536213147159724, guid: 76ffbf5856239594eac04222775de0f5, type: 3}

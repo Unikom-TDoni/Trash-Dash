@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
-  m_Name: Cup
+  m_Name: Wine Bottle
   m_EditorClassIdentifier: 
-  Name: 
-  Sprite: {fileID: 0}
-  TrashBinType: 0
-  Mesh: {fileID: -8045394846146138048, guid: d8f11a2d122e66f44a01ccb23fe4fa9e, type: 3}
+  Name: Wine Bottle
+  Sprite: {fileID: 21300000, guid: ba667d994677eb844beb646e8c96cfe5, type: 3}
+  TrashBinType: 3
+  Mesh: {fileID: 6933939715142762413, guid: a3b2231e8db671b40a1d121d2f9b235a, type: 3}
   Materials:
-  - {fileID: -426416248341304542, guid: d8f11a2d122e66f44a01ccb23fe4fa9e, type: 3}
+  - {fileID: 2100000, guid: f7e507d640b41364f8f9c3c98ebd8567, type: 2}

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Box 1
   m_EditorClassIdentifier: 
   Name: Box 1
-  Sprite: {fileID: 0}
-  TrashBinType: 0
+  Sprite: {fileID: 21300000, guid: d7adeac67ee6db94aa6b78bf4a9b3170, type: 3}
+  TrashBinType: 2
   Mesh: {fileID: 8305047179698593187, guid: 7937f4f53ad17884dbb80c8c82bf269d, type: 3}
   Materials:
   - {fileID: -1494972012236529663, guid: 7937f4f53ad17884dbb80c8c82bf269d, type: 3}

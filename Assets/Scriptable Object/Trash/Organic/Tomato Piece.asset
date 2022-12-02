@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomato Piece
   m_EditorClassIdentifier: 
   Name: Tomato Piece
-  Sprite: {fileID: 21300000, guid: b5072793d25756246bf3a83d23a4cfd8, type: 3}
+  Sprite: {fileID: 21300000, guid: 4c04ae0a650b83943b0a53ecaf6aa077, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -2178972472164159098, guid: c3efed6caca157b498300aade43994b9, type: 3}
   Materials:
