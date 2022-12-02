@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276807, g: 0.21589197, b: 0.29782572, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589245, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,6 +153,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 610399109}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &10377930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 10377931}
+  m_Layer: 0
+  m_Name: AI Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &10377931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10377930}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &82159210
 GameObject:
@@ -1427,7 +1458,7 @@ Transform:
   m_Children:
   - {fileID: 1205933935}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!20 &411896510
 Camera:
@@ -3418,7 +3449,7 @@ Transform:
   m_Children:
   - {fileID: 356122747}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903906098
 GameObject:
@@ -5513,7 +5544,7 @@ RectTransform:
   - {fileID: 1489425770}
   - {fileID: 282600059}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6091,7 +6122,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1589369902
 GameObject:
@@ -6304,6 +6335,7 @@ MonoBehaviour:
   updateUIMinute: 10
   dayTime: 6
   nightTime: 18
+  WavePerHour: 1
 --- !u!4 &1765521127
 Transform:
   m_ObjectHideFlags: 0
@@ -6695,6 +6727,9 @@ MonoBehaviour:
   _gameOverAudioClip: {fileID: 8300000, guid: 1f696dc6b62c242419579cecc88d3b19, type: 3}
   _starAudioClip: {fileID: 0}
   _btnPauseToMainMenu: {fileID: 1434287129}
+  cineCam: {fileID: 0}
+  camFOVValue: 45
+  camChangeDuration: 5
 --- !u!4 &1833481366
 Transform:
   m_ObjectHideFlags: 0
@@ -6708,7 +6743,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1833481367
 AudioSource:
@@ -7173,11 +7208,13 @@ MonoBehaviour:
   spawnPrefab:
     prefab: {fileID: 2193157950502936516, guid: 678f3bced9784cb4c8f76a16c2ca76e1, type: 3}
     maxObjectInPool: 10
-  totalSpawnWeight: 3
+  totalSpawnWeight: 4
   powerUps:
   - Value: {fileID: 11400000, guid: 9b39c9446da01d54db9205c6b04b7ee2, type: 2}
     Weight: 2
   - Value: {fileID: 11400000, guid: 30aa2d214fec1bb49b31d462c8a88f5e, type: 2}
+    Weight: 1
+  - Value: {fileID: 11400000, guid: b3aa0c1bde3d61340940c1c42cf12ca7, type: 2}
     Weight: 1
   size: {x: 85, y: 0, z: 85}
   offset: {x: 0, y: 1, z: 0}
@@ -7310,10 +7347,13 @@ MonoBehaviour:
   powerUps: []
   maxSlot: 2
   powerUpLayoutGroupController: {fileID: 1181961624}
-  _playerAudioController: {fileID: 0}
+  _playerAudioController: {fileID: 1269382279}
+  indicatorPanel: {fileID: 1505442414}
   powerUpParameters:
   - name: speed
     value: 1
+  - name: trashIndicator
+    value: 0
 --- !u!1001 &2060044891
 PrefabInstance:
   m_ObjectHideFlags: 0

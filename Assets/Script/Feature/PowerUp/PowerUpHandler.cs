@@ -16,6 +16,9 @@ public class PowerUpHandler : MonoBehaviour
     [SerializeField]
     private PlayerAudioController _playerAudioController = default;
 
+    [SerializeField]
+    private GameObject indicatorPanel;
+
     private void Awake()
     {
         powerUpLayoutGroupController.InitLayout(maxSlot);
@@ -78,10 +81,16 @@ public class PowerUpHandler : MonoBehaviour
         return result;
     }
 
+    private void Update()
+    {
+        if(indicatorPanel.activeSelf != (powerUpValues["trashIndicator"] == 1))
+            indicatorPanel.SetActive((powerUpValues["trashIndicator"] == 1));
+    }
+
     #region PowerUp Coroutines
     Dictionary<PowerUpSO, Coroutine> powerUpCoroutines = new Dictionary<PowerUpSO, Coroutine>();
 
-    public void StartPowerUp(MultiplyPower powerUp)
+    public void StartPowerUp(ValuePower powerUp)
     {
         if (!powerUpCoroutines.ContainsKey(powerUp)) powerUpCoroutines.Add(powerUp, null);
         if (powerUpCoroutines[powerUp] != null)
@@ -91,7 +100,7 @@ public class PowerUpHandler : MonoBehaviour
                 powerUpVFXs[powerUp.parameterName].GetComponent<ParticleSystem>().Stop();
         }
 
-        powerUpCoroutines[powerUp] = StartCoroutine(PowerUpMultiply(powerUp.parameterName, powerUp.multiplier, powerUp.duration, powerUp.VFX));
+        powerUpCoroutines[powerUp] = StartCoroutine(PowerUpValue(powerUp.parameterName, powerUp.value, powerUp.duration, powerUp.VFX));
     }
     #endregion
 
@@ -105,7 +114,7 @@ public class PowerUpHandler : MonoBehaviour
 
     private Dictionary<string, GameObject> powerUpVFXs = new Dictionary<string, GameObject>();
 
-    public IEnumerator PowerUpMultiply(string parameterName, float multiplier, float duration, GameObject vfx)
+    public IEnumerator PowerUpValue(string parameterName, float value, float duration, GameObject vfx)
     {
         if (vfx != null)
         {
@@ -115,10 +124,10 @@ public class PowerUpHandler : MonoBehaviour
             powerUpVFXs[parameterName].GetComponent<ParticleSystem>().Play();
         }
 
-        if (powerUpValues[parameterName] != multiplier)
+        if (powerUpValues[parameterName] != value)
         initialPowerUpValues[parameterName] = powerUpValues[parameterName];
 
-        powerUpValues[parameterName] = multiplier;
+        powerUpValues[parameterName] = value;
 
         yield return new WaitForSeconds(duration);
 

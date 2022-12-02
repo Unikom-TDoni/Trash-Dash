@@ -51,8 +51,6 @@ namespace Group8.TrashDash.TrashBin
                 activeTrashBinTypes.Add(item.GetTrashBinType());
             }
 
-            Debug.Log(activeTrashBinTypes.Count);
-
             return activeTrashBinTypes.ToArray();
         }
 

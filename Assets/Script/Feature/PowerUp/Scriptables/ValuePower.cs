@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Multiplier", menuName = "PowerUp/Multiplier")]
-public class MultiplyPower : PowerUpSO
+[CreateAssetMenu(fileName = "Value", menuName = "PowerUp/Value")]
+public class ValuePower : PowerUpSO
 {
     public string parameterName;
-    public float multiplier;
+    public float value;
 
     PowerUpHandler obj;
 

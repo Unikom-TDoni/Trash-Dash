@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 using Group8.TrashDash.TimeManager;
 using System;
 using Group8.TrashDash.Core;
+using Cinemachine;
 
 public class PanelUIManager : MonoBehaviour
 {
@@ -26,6 +27,13 @@ public class PanelUIManager : MonoBehaviour
 
     [SerializeField]
     private Button _btnPauseToMainMenu = default;
+
+    [SerializeField]
+    private CinemachineVirtualCamera cineCam;
+    [SerializeField]
+    private float camFOVValue = 45;
+    [SerializeField]
+    private float camChangeDuration = 3f;
 
     private void OnEnable()
     {
@@ -61,9 +69,7 @@ public class PanelUIManager : MonoBehaviour
     public void GameEnd()
     {
         if (gameOverPanel.activeSelf) return;
-        Time.timeScale = 0;
-        gameOverPanel.SetActive(true);
-        PlayAudioClip(_gameOverAudioClip);
+        StartCoroutine(CamFOVChange());
         //pausedButton.SetActive(false);
     }
 
@@ -102,6 +108,28 @@ public class PanelUIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
+    }
+
+    private IEnumerator CamFOVChange()
+    {
+        float step = Mathf.Abs(cineCam.m_Lens.FieldOfView - camFOVValue) / camChangeDuration;
+        float t = 0;
+        while (t < camChangeDuration) {
+            t += Time.deltaTime;
+            cineCam.m_Lens.FieldOfView = Mathf.MoveTowards(cineCam.m_Lens.FieldOfView, camFOVValue, Time.deltaTime * step);
+            yield return new WaitForFixedUpdate();
+        }
+
+        cineCam.m_Lens.FieldOfView = camFOVValue;
+
+        AfterCam();
+    }
+
+    private void AfterCam()
+    {
+        Time.timeScale = 0;
+        gameOverPanel.SetActive(true);
+        PlayAudioClip(_gameOverAudioClip);
     }
 
     private void PlayAudioClip(AudioClip clip)

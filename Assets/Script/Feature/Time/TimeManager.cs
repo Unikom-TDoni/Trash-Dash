@@ -10,6 +10,7 @@ namespace Group8.TrashDash.TimeManager
     {
         public Action OnDayTime;
         public Action OnNightTime;
+        public Action OnWaveTick;
 
         const float timePerDay = 24 * 60 * 60;
 
@@ -37,12 +38,18 @@ namespace Group8.TrashDash.TimeManager
         public bool isNightTime => (timeSpan.Hours >= nightTime) || (timeSpan.Hours <= dayTime);
         private bool prevTimeCheck;
 
+        // AI Spawn
+        public int WavePerHour = 1;
+
+        private bool[] callOnce;
+
         private void Start()
         {
             currentTime = startingHour * 3600;
             timeSpan = TimeSpan.FromSeconds(currentTime);
 
             prevTimeCheck = !isNightTime;
+            callOnce = new bool[2] {true, true};
         }
 
         private void Update()
@@ -63,8 +70,21 @@ namespace Group8.TrashDash.TimeManager
             timeSpan = TimeSpan.FromSeconds(currentTime);
             if (timeSpan.Minutes % updateUIMinute == 0)
             {
-                panelUIManager.OnTimeUpdate(currentTime);
+                if (callOnce[0])
+                    panelUIManager.OnTimeUpdate(currentTime);
+
+                callOnce[0] = false;
             }
+            else callOnce[0] = true;
+
+            if (timeSpan.Minutes % (60 / WavePerHour) == 0)
+            {
+                if (callOnce[1])
+                    OnWaveTick?.Invoke();
+
+                callOnce[1] = false;
+            }
+            else callOnce[1] = true;
 
             if (prevTimeCheck != isNightTime)
             {

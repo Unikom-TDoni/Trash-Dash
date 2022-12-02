@@ -64,8 +64,6 @@ namespace Group8.TrashDash.Spawner
         {
             filterTrashInformations = trashInformations.Where((info) => trashTypes.Contains(info.TrashBinType)).ToArray();
 
-            Debug.Log(filterTrashInformations.Length);
-
             if (!SpawnCondition(trashTypes)) yield break;
 
             while (true)
