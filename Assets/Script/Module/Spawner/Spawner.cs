@@ -19,6 +19,11 @@ namespace Group8.TrashDash.Module.Spawner
 
         public int GetActiveSpawnObject() => poolManager.pools[spawnPrefab.prefab].CountActive;
 
+        private void Awake()
+        {
+            if (!poolManager) poolManager = FindObjectOfType<PoolManager>();
+        }
+
         protected virtual void Start()
         {
             OnRelease += Release;

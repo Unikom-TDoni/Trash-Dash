@@ -32,7 +32,7 @@ namespace Group8.TrashDash.Level
         {
             if (eventData.button is not PointerEventData.InputButton.Left) return;
             GameManager.Instance.LevelHandler.SelectLevel(_itemLevelId);
-            SceneManager.LoadScene("Brian");
+            SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
         }
 
         public override void UpdateContent(int content)

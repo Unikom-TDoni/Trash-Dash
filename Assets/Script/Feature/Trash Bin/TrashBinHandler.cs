@@ -22,7 +22,7 @@ namespace Group8.TrashDash.TrashBin
 
         public void OnAwake(Action<DropableData> onDrop, Action<TrashBinTypes> onInteract)
         {
-            _activeTrashBins = GameObject.FindGameObjectsWithTag("TrashBin").Select(item => item.GetComponent<TrashBinController>()).ToArray();
+            _activeTrashBins = GameObject.FindGameObjectsWithTag(GameManager.Instance.Tags.TrashBin).Select(item => item.GetComponent<TrashBinController>()).ToArray();
             _layoutController.OnDrop += onDrop;
             foreach (var item in _activeTrashBins)
             {
@@ -51,6 +51,8 @@ namespace Group8.TrashDash.TrashBin
             {
                 activeTrashBinTypes.Add(item.GetTrashBinType());
             }
+
+            Debug.Log(activeTrashBinTypes.Count);
 
             return activeTrashBinTypes.ToArray();
         }

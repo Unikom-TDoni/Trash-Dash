@@ -19,6 +19,9 @@ public class AIManager : MonoBehaviour {
     [Space]
     [SerializeField] AIState[] trashSpawnStateList;
 
+    public float trashSpawnMinInterval = 2f;
+    public float trashSpawnMaxInterval = 5f;
+
     public HashSet<AIState> trashSpawnStateSet {get; private set;}
 
     public SpawnConfiguration GetSpawnConfiguration() {
@@ -66,9 +69,11 @@ public class AIManager : MonoBehaviour {
         spawnedAI.aiManager = this;
     }
 
-    void OnGUI() {
+    void OnGUI()
+    {
         GUILayout.BeginArea(new Rect(0, 0, 500, 500));
-        if (GUILayout.Button("Spawn")) {
+        if (GUILayout.Button("Spawn"))
+        {
             Spawn();
         }
         GUILayout.EndArea();

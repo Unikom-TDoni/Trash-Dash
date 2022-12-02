@@ -70,8 +70,8 @@ namespace Group8.TrashDash.TimeManager
             {
                 prevTimeCheck = isNightTime;
 
-                if (isNightTime) OnNightTime.Invoke();
-                else OnDayTime.Invoke();
+                if (isNightTime) OnNightTime?.Invoke();
+                else OnDayTime?.Invoke();
             }
         }
     }

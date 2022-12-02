@@ -16,11 +16,13 @@ namespace Group8.TrashDash.Spawner
 
         TrashContentInfo[] filterTrashInformations;
 
+        [SerializeField] private bool spawnOnAwake = false;
+
         protected override void Start()
         {
             base.Start();
             // Test Spawn
-            RepeatSpawn(transform, .1f, .5f, amount: 3);
+            if(spawnOnAwake) RepeatSpawn(transform, .1f, .5f, amount: 3);
         }
 
         public override Coroutine InstantSpawn(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)
@@ -61,6 +63,8 @@ namespace Group8.TrashDash.Spawner
         protected IEnumerator RepeatSpawnCoroutine(TrashBinTypes[] trashTypes, Transform center, float minInterval, float maxInterval, Vector3 offset, int amount, Vector3 areaSize, bool randomizeRotation)
         {
             filterTrashInformations = trashInformations.Where((info) => trashTypes.Contains(info.TrashBinType)).ToArray();
+
+            Debug.Log(filterTrashInformations.Length);
 
             if (!SpawnCondition(trashTypes)) yield break;
 
