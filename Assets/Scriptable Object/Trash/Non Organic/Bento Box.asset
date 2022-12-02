@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bento Box
   m_EditorClassIdentifier: 
   Name: Bento Box
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 68de1acc16d02ed48b409088d8383390, type: 3}
   TrashBinType: 1
   Mesh: {fileID: 6004378210177301200, guid: dbf9af046c61afb418caf26b49c03811, type: 3}
   Materials:

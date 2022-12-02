@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Snack Package 1
   m_EditorClassIdentifier: 
   Name: Snack Package 1
-  Sprite: {fileID: 0}
-  TrashBinType: 0
+  Sprite: {fileID: 21300000, guid: bb65a9bf053368146bec1eac29010078, type: 3}
+  TrashBinType: 1
   Mesh: {fileID: -2600338223426009512, guid: db7e67d39c70e354d9397ede3656304c, type: 3}
   Materials:
   - {fileID: 6673242020923673356, guid: db7e67d39c70e354d9397ede3656304c, type: 3}

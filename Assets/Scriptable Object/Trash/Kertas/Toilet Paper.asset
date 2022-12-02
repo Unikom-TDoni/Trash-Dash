@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Toilet Paper
   m_EditorClassIdentifier: 
   Name: Toilet Paper
-  Sprite: {fileID: 0}
-  TrashBinType: 0
+  Sprite: {fileID: 21300000, guid: 0f79cac0f8d2a664d80129f12e28a5a4, type: 3}
+  TrashBinType: 2
   Mesh: {fileID: -1650477108518188073, guid: 1c141095a5cc6af4cb6341817d87010a, type: 3}
   Materials:
   - {fileID: 239378781582670930, guid: 1c141095a5cc6af4cb6341817d87010a, type: 3}

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Milk Box
   m_EditorClassIdentifier: 
   Name: Milk Box
-  Sprite: {fileID: 0}
-  TrashBinType: 0
+  Sprite: {fileID: 21300000, guid: 74cbf2b3e39d63947935f9e2ce27e9e1, type: 3}
+  TrashBinType: 2
   Mesh: {fileID: 3369316746193770658, guid: 4f99b082d9fca6246bf9a3c40bc6b847, type: 3}
   Materials:
   - {fileID: 0}
