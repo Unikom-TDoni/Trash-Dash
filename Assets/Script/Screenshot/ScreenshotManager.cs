@@ -7,15 +7,14 @@ public class ScreenshotManager : MonoBehaviour
 {
     ScreenshotMouseOrbit mouseOrbit;
 
-    [SerializeField] GameObject groupOrganic, groupAnorganic, groupB3, groupPaper, groupResidue;
+    [SerializeField] GameObject groupOrganic, groupAnorganic, groupB3, groupPaper;
 
     public GameObject[] objectOrganic;
     public GameObject[] objectAnorganic;
     public GameObject[] objectB3;
     public GameObject[] objectPaper;
-    public GameObject[] objectResidue;
 
-    int seqOrganic, seqAnorganic, seqB3, seqPaper, seqResidue;
+    int seqOrganic, seqAnorganic, seqB3, seqPaper;
 
     enum ActiveGroup
     {
@@ -23,7 +22,6 @@ public class ScreenshotManager : MonoBehaviour
         Anorganic,
         B3,
         Paper,
-        Residue,
     }
 
     ActiveGroup activeGroup = ActiveGroup.Organic;
@@ -32,7 +30,7 @@ public class ScreenshotManager : MonoBehaviour
 
     private void Start()
     {
-        seqOrganic = seqAnorganic = seqB3 = seqPaper = seqResidue = 0;
+        seqOrganic = seqAnorganic = seqB3 = seqPaper = 0;
     }
 
 
@@ -46,7 +44,6 @@ public class ScreenshotManager : MonoBehaviour
             groupAnorganic.SetActive(false);
             groupB3.SetActive(false);
             groupPaper.SetActive(false);
-            groupResidue.SetActive(false);
         }
         else if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
         {
@@ -55,7 +52,6 @@ public class ScreenshotManager : MonoBehaviour
             groupAnorganic.SetActive(true);
             groupB3.SetActive(false);
             groupPaper.SetActive(false);
-            groupResidue.SetActive(false);
         }
         else if (Keyboard.current[Key.Digit3].wasPressedThisFrame)
         {
@@ -64,7 +60,6 @@ public class ScreenshotManager : MonoBehaviour
             groupAnorganic.SetActive(false);
             groupB3.SetActive(true);
             groupPaper.SetActive(false);
-            groupResidue.SetActive(false);
         }
         else if (Keyboard.current[Key.Digit4].wasPressedThisFrame)
         {
@@ -73,16 +68,6 @@ public class ScreenshotManager : MonoBehaviour
             groupAnorganic.SetActive(false);
             groupB3.SetActive(false);
             groupPaper.SetActive(true);
-            groupResidue.SetActive(false);
-        }
-        else if (Keyboard.current[Key.Digit5].wasPressedThisFrame)
-        {
-            activeGroup = ActiveGroup.Residue;
-            groupOrganic.SetActive(false);
-            groupAnorganic.SetActive(false);
-            groupB3.SetActive(false);
-            groupPaper.SetActive(false);
-            groupResidue.SetActive(true);
         }
 
         if (Keyboard.current[Key.E].wasPressedThisFrame)
@@ -128,13 +113,6 @@ public class ScreenshotManager : MonoBehaviour
                 if (seqPaper < 0) seqPaper = objectPaper.Length - 1;
                 if (seqPaper >= objectPaper.Length) seqPaper = 0;
                 objectPaper[seqPaper].SetActive(true);
-                break;
-            case ActiveGroup.Residue:
-                objectResidue[seqResidue].SetActive(false);
-                seqResidue = next ? seqResidue += 1 : seqResidue -= 1;
-                if (seqResidue < 0) seqResidue = objectResidue.Length - 1;
-                if (seqResidue >= objectResidue.Length) seqResidue = 0;
-                objectResidue[seqResidue].SetActive(true);
                 break;
         }
     }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Wine Bottle
   Sprite: {fileID: 21300000, guid: ba667d994677eb844beb646e8c96cfe5, type: 3}
-  TrashBinType: 1
+  TrashBinType: 3
   Mesh: {fileID: 6933939715142762413, guid: a3b2231e8db671b40a1d121d2f9b235a, type: 3}
   Materials:
   - {fileID: 2100000, guid: f7e507d640b41364f8f9c3c98ebd8567, type: 2}
