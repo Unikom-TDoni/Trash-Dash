@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Group8.TrashDash.Core;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 namespace Group8.TrashDash.MainMenu
 {
@@ -39,7 +40,6 @@ namespace Group8.TrashDash.MainMenu
             _btnSetting.onClick.AddListener(() => _settingLayout.SetActive(true));
             _btnStart.onClick.AddListener(() => SceneManager.LoadScene(GameManager.Instance.Scenes.LevelSelector));
         }
-
         public void ShowQuitBox()
         {
             _mainMenuLayout.SetActive(false);

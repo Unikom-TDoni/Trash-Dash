@@ -10,20 +10,10 @@ namespace Group8.TrashDash.TrashBin
 
         [SerializeField]
         private TrashBinTypes Types = default;
-
-        private AudioSource _audioSource = default;
-
         public TrashBinTypes GetTrashBinType() => Types;
-
-        private void Awake()
-        {
-            _audioSource = GetComponent<AudioSource>();
-        }
-
         public void Interact()
         {
             OnInteract(Types);
-            _audioSource.Play();
         }
     }
 }
