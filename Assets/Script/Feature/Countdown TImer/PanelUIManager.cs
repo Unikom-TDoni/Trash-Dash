@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Group8.TrashDash.TimeManager;
 using System;
+using Group8.TrashDash.Core;
 
 public class PanelUIManager : MonoBehaviour
 {
@@ -14,6 +15,17 @@ public class PanelUIManager : MonoBehaviour
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject pausedPanel;
     [SerializeField] GameObject pausedButton;
+
+    private AudioSource _audioSource = default;
+
+    [SerializeField]
+    private AudioClip _gameOverAudioClip = default;
+
+    [SerializeField]
+    private AudioClip _starAudioClip = default;
+
+    [SerializeField]
+    private Button _btnPauseToMainMenu = default;
 
     private void OnEnable()
     {
@@ -27,6 +39,12 @@ public class PanelUIManager : MonoBehaviour
     {
         InputManager.playerAction.Gameplay.Pause.performed -= OnPause;
         InputManager.playerAction.Panel.Cancel.performed -= OnResume;
+    }
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        _btnPauseToMainMenu.onClick.AddListener(() => SceneManager.LoadScene(GameManager.Instance.Scenes.MainMenu));
     }
 
     void Start()
@@ -45,6 +63,7 @@ public class PanelUIManager : MonoBehaviour
         if (gameOverPanel.activeSelf) return;
         Time.timeScale = 0;
         gameOverPanel.SetActive(true);
+        PlayAudioClip(_gameOverAudioClip);
         //pausedButton.SetActive(false);
     }
 
@@ -83,5 +102,12 @@ public class PanelUIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
+    }
+
+    private void PlayAudioClip(AudioClip clip)
+    {
+        if (_audioSource.clip == clip) return;
+        _audioSource.clip = clip;
+        _audioSource.Play();
     }
 }

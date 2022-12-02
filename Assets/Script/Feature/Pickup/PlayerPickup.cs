@@ -9,6 +9,7 @@ namespace Group8.TrashDash.Player.Pickup
     using Item.Trash;
     using System.Linq;
     using Group8.TrashDash.Score;
+    using Group8.TrashDash.Item.Audio;
 
     public class PlayerPickup : MonoBehaviour
     {
@@ -29,6 +30,9 @@ namespace Group8.TrashDash.Player.Pickup
         bool binIsOpen = false;
         public int trashJumpingToBin;
         [SerializeField] Transform playerBinTransform;
+
+        [SerializeField]
+        private PlayerAudioController _playerAudioController = default;
 
         private void Awake()
         {
@@ -121,9 +125,9 @@ namespace Group8.TrashDash.Player.Pickup
                     }
                     trashJumpingToBin++;
                 }
-            }
 
-            GetComponent<AudioSource>().Play();
+                _playerAudioController.PlayPickupSfx();
+            }
         }
         #endregion
 

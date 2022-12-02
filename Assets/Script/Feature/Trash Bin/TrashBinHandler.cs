@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Group8.TrashDash.Event;
-using Group8.TrashDash.Score;
 using System.Collections.Generic;
 using Group8.TrashDash.Core;
 
@@ -62,5 +61,6 @@ namespace Group8.TrashDash.TrashBin
             ActiveTrashBinType = type;
             SetActiveTrashBinLayout(true);
         }
+
     }
 }

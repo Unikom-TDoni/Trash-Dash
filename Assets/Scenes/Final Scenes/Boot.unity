@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589245, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -191,3 +191,17 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 77783a07d27a8ef4890da9aaf16dc1e0, type: 2}
     - {fileID: 11400000, guid: a6866728a9186634b9047141cbc5ec84, type: 2}
     - {fileID: 11400000, guid: b542f795c17f2034783d0d4e23470cca, type: 2}
+  <SettingDataPersistence>k__BackingField:
+    _gameAudioMixer: {fileID: 24100000, guid: d07b73ef288572b4697837d57d7812ce, type: 2}
+    <DefaultResolutionOptions>k__BackingField:
+    - <Width>k__BackingField: 2560
+      <Height>k__BackingField: 1440
+    - <Width>k__BackingField: 1920
+      <Height>k__BackingField: 1080
+    - <Width>k__BackingField: 1440
+      <Height>k__BackingField: 800
+    - <Width>k__BackingField: 1280
+      <Height>k__BackingField: 720
+    - <Width>k__BackingField: 640
+      <Height>k__BackingField: 360
+    <DefaultDisplayModeOptions>k__BackingField: 010000000200000003000000
