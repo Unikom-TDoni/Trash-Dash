@@ -15,10 +15,14 @@ namespace Group8.TrashDash.TrashBin
         [SerializeField]
         private TrashBinLayoutController _layoutController = default;
 
+        [SerializeField]
+        private Texture[] _trashBinTextures = default;
+
+        [SerializeField]
+        private Material _trashBinMaterial = default;
+
         private TrashBinController[] _activeTrashBins = default;
-
         public TrashBinTypes ActiveTrashBinType { get; private set; } = default;
-
         public void OnAwake(Action<DropableData> onDrop, Action<TrashBinTypes> onInteract)
         {
             _activeTrashBins = GameObject.FindGameObjectsWithTag(GameManager.Instance.Tags.TrashBin).Select(item => item.GetComponent<TrashBinController>()).ToArray();
@@ -45,7 +49,7 @@ namespace Group8.TrashDash.TrashBin
 
         public TrashBinTypes[] GetActiveTrashBinTypes()
         {
-            List<TrashBinTypes> activeTrashBinTypes = new List<TrashBinTypes>();
+            var activeTrashBinTypes = new List<TrashBinTypes>();
             foreach (var item in _activeTrashBins)
             {
                 activeTrashBinTypes.Add(item.GetTrashBinType());
@@ -58,7 +62,26 @@ namespace Group8.TrashDash.TrashBin
         {
             ActiveTrashBinType = type;
             SetActiveTrashBinLayout(true);
+            ChangeMaterialTexture();
         }
 
+        private void ChangeMaterialTexture()
+        {
+            switch (ActiveTrashBinType)
+            {
+                case TrashBinTypes.B3:
+                    _trashBinMaterial.SetTexture("_MainTex", _trashBinTextures[default]);
+                    break;
+                case TrashBinTypes.Anorganik:
+                    _trashBinMaterial.SetTexture("_MainTex", _trashBinTextures[1]);
+                    break;
+                case TrashBinTypes.Organik:
+                    _trashBinMaterial.SetTexture("_MainTex", _trashBinTextures[2]);
+                    break;
+                case TrashBinTypes.Kertas:
+                    _trashBinMaterial.SetTexture("_MainTex", _trashBinTextures[3]);
+                    break;
+            }
+        }
     }
 }

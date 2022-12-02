@@ -87,7 +87,6 @@ namespace Group8.TrashDash.Score
 
             GameManager.Instance.LevelHandler.SaveCurrentLevelData(currentScore);
             // Set Game Over Panel Score UI to currentScore
-            OnScoreChange?.Invoke();
         }
     }
 }

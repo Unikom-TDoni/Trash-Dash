@@ -34,12 +34,17 @@ namespace Group8.TrashDash.TimeManager
         [Header("Indicator")]
         [SerializeField] private float dayTime = 6f;
         [SerializeField] private float nightTime = 18f;
+        [SerializeField] private int lastSecondsCoundown = 5;
 
         public bool isNightTime => (timeSpan.Hours >= nightTime) || (timeSpan.Hours <= dayTime);
         private bool prevTimeCheck;
 
         // AI Spawn
+        [Header("AI Spawn")]
         public int WavePerHour = 1;
+        [SerializeField] private int lastWaveSpawnTime = 19;
+
+        private Coroutine lastCountCoroutine;
 
         private bool[] callOnce;
 
@@ -79,12 +84,17 @@ namespace Group8.TrashDash.TimeManager
 
             if (timeSpan.Minutes % (60 / WavePerHour) == 0)
             {
-                if (callOnce[1])
+                if (callOnce[1] && timeSpan.Hours <= lastWaveSpawnTime)
                     OnWaveTick?.Invoke();
 
                 callOnce[1] = false;
             }
             else callOnce[1] = true;
+
+            if (currentDuration >= (stageDuration - lastSecondsCoundown) / stageDuration && lastCountCoroutine == null)
+            {
+                lastCountCoroutine = StartCoroutine(StartCountdown(lastSecondsCoundown));
+            }
 
             if (prevTimeCheck != isNightTime)
             {
@@ -92,6 +102,17 @@ namespace Group8.TrashDash.TimeManager
 
                 if (isNightTime) OnNightTime?.Invoke();
                 else OnDayTime?.Invoke();
+            }
+        }
+
+        private IEnumerator StartCountdown(int num)
+        {
+            int count = num;
+            while (count > 0)
+            {
+                Debug.Log(count);
+                yield return new WaitForSeconds(1);
+                count--;
             }
         }
     }

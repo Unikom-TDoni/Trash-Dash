@@ -69,6 +69,7 @@ public class PanelUIManager : MonoBehaviour
     public void GameEnd()
     {
         if (gameOverPanel.activeSelf) return;
+        InputManager.playerAction.Gameplay.Disable();
         StartCoroutine(CamFOVChange());
         //pausedButton.SetActive(false);
     }
