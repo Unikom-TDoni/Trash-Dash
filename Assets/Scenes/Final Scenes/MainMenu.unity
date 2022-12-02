@@ -2050,8 +2050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e6a516a45775d43afd1110aef35c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sliderSfx: {fileID: 952793159}
-  _sliderBgm: {fileID: 521236592}
+  _sliderSfx: {fileID: 521236592}
+  _sliderBgm: {fileID: 952793159}
   _toggleVsync: {fileID: 1262868547}
   _dropdownResolution: {fileID: 1377475601}
   _dropdownDisplayMode: {fileID: 2133687248}
@@ -3256,7 +3256,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3589,8 +3589,8 @@ RectTransform:
   m_Father: {fileID: 1398253228}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.0990991, y: 0}
-  m_AnchorMax: {x: 0.0990991, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 40, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3757,7 +3757,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.0990991, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4449,7 +4449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1102870343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5195,7 +5195,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 40, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
