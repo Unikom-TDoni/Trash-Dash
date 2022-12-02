@@ -304,6 +304,7 @@ MonoBehaviour:
   powerUps: []
   maxSlot: 2
   powerUpLayoutGroupController: {fileID: 747446466}
+  _playerAudioController: {fileID: 0}
   powerUpParameters:
   - name: speed
     value: 1
@@ -546,6 +547,7 @@ MonoBehaviour:
   playerBinAnim_2: {fileID: 2130495418}
   trashJumpingToBin: 0
   playerBinTransform: {fileID: 1411124598}
+  _playerAudioController: {fileID: 0}
 --- !u!114 &94734079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,7 +568,6 @@ MonoBehaviour:
   pushForce: 5
   powerUpHandler: {fileID: 8546647}
   speedMultiplier: 1
-  _footStepsAudioClip: {fileID: 8300000, guid: f551737f679c60d498cffefff28bae92, type: 3}
 --- !u!95 &94734080
 Animator:
   serializedVersion: 4
@@ -1335,6 +1336,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eedf45bc69e966e4d83ef3592631bfb8, type: 2}
   - {fileID: 11400000, guid: 8aa87baa907a4fc45b0087f677be26db, type: 2}
   trashBinHandler: {fileID: 1794215092}
+  spawnOnAwake: 0
 --- !u!4 &454653550
 Transform:
   m_ObjectHideFlags: 0
@@ -3621,6 +3623,7 @@ MonoBehaviour:
   scoreManager: {fileID: 0}
   _trashBinHandler: {fileID: 1794215092}
   _inventoryHandler: {fileID: 1090602510}
+  _playerAudioController: {fileID: 0}
 --- !u!4 &1249758732
 Transform:
   m_ObjectHideFlags: 0
@@ -3976,6 +3979,9 @@ MonoBehaviour:
   gameOverPanel: {fileID: 1853732322}
   pausedPanel: {fileID: 521953406}
   pausedButton: {fileID: 2041062090}
+  _gameOverAudioClip: {fileID: 0}
+  _starAudioClip: {fileID: 0}
+  _btnPauseToMainMenu: {fileID: 0}
 --- !u!4 &1370201247
 Transform:
   m_ObjectHideFlags: 0
@@ -5800,6 +5806,63 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2885112311006420744, guid: b641766b390586147a3d74a71d7e0b91, type: 3}
   m_PrefabInstance: {fileID: 642104138}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1877550476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5452982873712310505, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_Name
+      value: Butterfly Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
 --- !u!1 &1895131003
 GameObject:
   m_ObjectHideFlags: 0

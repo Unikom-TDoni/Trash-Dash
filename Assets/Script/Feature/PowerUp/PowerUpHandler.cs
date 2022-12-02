@@ -1,9 +1,8 @@
-using Group8.TrashDash.Level;
-using Lnco.Unity.Module.Storage;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using Group8.TrashDash.Item.Audio;
 
 public class PowerUpHandler : MonoBehaviour
 {
@@ -13,6 +12,10 @@ public class PowerUpHandler : MonoBehaviour
 
     [SerializeField]
     private PowerUpLayoutGroupController powerUpLayoutGroupController = default;
+
+    [SerializeField]
+    private PlayerAudioController _playerAudioController = default;
+
     private void Awake()
     {
         powerUpLayoutGroupController.InitLayout(maxSlot);
@@ -62,12 +65,13 @@ public class PowerUpHandler : MonoBehaviour
     {
         bool result = false;
 
-        for(int i = 0; i < maxSlot; i++)
+        for (int i = 0; i < maxSlot; i++)
         {
             if (powerUps[i] != null) continue;
             powerUps[i] = _powerUp;
             powerUpLayoutGroupController.TryUpdateContent(powerUps[i], i);
             result = true;
+            _playerAudioController.PlayPickupPowerupSfx();
             break;
         }
 
@@ -138,18 +142,22 @@ public class PowerUpHandler : MonoBehaviour
     #region Callbacks
     private void OnPowerUp1(InputAction.CallbackContext context)
     {
-        if (powerUps[0] == null) return;
-        powerUps[0].Use();
-        powerUps[0] = null;
-        powerUpLayoutGroupController.TryUpdateContent(powerUps[0], 0);
+        UsePowerUp(0);
     }
 
     private void OnPowerUp2(InputAction.CallbackContext context)
     {
-        if (powerUps[1] == null) return;
-        powerUps[1].Use();
-        powerUps[1] = null;
-        powerUpLayoutGroupController.TryUpdateContent(powerUps[1], 1);
+        UsePowerUp(1);
     }
     #endregion
+
+    private void UsePowerUp(int index)
+    {
+        if (powerUps[index] == null) return;
+        powerUps[index].Use();
+        powerUps[index] = null;
+        _playerAudioController.PlayUsePowerupSfx();
+        powerUpLayoutGroupController.TryUpdateContent(powerUps[index], index);
+    }
+
 }

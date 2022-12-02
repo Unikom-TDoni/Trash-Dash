@@ -1,3 +1,4 @@
+using Group8.TrashDash.Core;
 using Group8.TrashDash.Item.Trash;
 using Group8.TrashDash.Module.Pool;
 using Group8.TrashDash.Spawner;
@@ -84,6 +85,7 @@ namespace Group8.TrashDash.Score
             int uncollectedTrashCount = trashSpawner.GetActiveSpawnObject();
             currentScore += uncollectedTrashCount * uncollectedScore;
 
+            GameManager.Instance.LevelHandler.SaveCurrentLevelData(currentScore);
             // Set Game Over Panel Score UI to currentScore
             OnScoreChange?.Invoke();
         }

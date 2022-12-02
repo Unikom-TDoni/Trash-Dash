@@ -19,6 +19,12 @@ namespace Group8.TrashDash.Level
         [SerializeField]
         private Image _imgBackground = default;
 
+        [SerializeField]
+        private Image _imgLock = default;
+
+        [SerializeField]
+        private Sprite _activeStarSprite = default;
+
         private int _itemLevelId = default;
 
         private CanvasGroup _canvasGroup = default;
@@ -51,13 +57,17 @@ namespace Group8.TrashDash.Level
                 if (highScore >= item) starCount++;
                 else break;
             for (int i = 0; i < starCount; i++)
-                _imgStars[i].color = Color.yellow;
+                _imgStars[i].sprite = _activeStarSprite;
         }
 
         private void UpdateLockedLayout(bool isOpened)
         {
             _canvasGroup.blocksRaycasts = isOpened;
-            if (!isOpened) _imgBackground.color = Color.red;
+            if (isOpened) return;
+            foreach (var item in _imgStars)
+                item.enabled = default;
+            _imgLock.enabled = true;
+            _txtLevel.enabled = default;
         }
     }
 }

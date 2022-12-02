@@ -10,9 +10,7 @@ namespace Group8.TrashDash.TrashBin
 
         [SerializeField]
         private TrashBinTypes Types = default;
-
         public TrashBinTypes GetTrashBinType() => Types;
-
         public void Interact()
         {
             OnInteract(Types);

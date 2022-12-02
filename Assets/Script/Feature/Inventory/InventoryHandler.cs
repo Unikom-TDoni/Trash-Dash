@@ -48,6 +48,5 @@ namespace Group8.TrashDash.Inventory
 
         public bool IsFull() =>
             _inventory.IsFull();
-
     }
 }
