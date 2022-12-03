@@ -3,19 +3,16 @@ using UnityEngine.AI;
 
 /// TODO: Make sit in chair direction and not table.
 public class AISittingState : StateBehaviour {
+    public Transform chair;
     float duration;
-    Transform chair;
     bool standingUp;
+    Vector3 targetPos;
 
     public override void OnStateEnter(Transform transform) {
-        chair = null;
-        Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
-        foreach (var col in cols) {
-            if (col.CompareTag("Seat")) {
-                chair = col.gameObject.transform;
-                transform.GetComponent<NavMeshAgent>().SetDestination(transform.position + chair.forward * .1f);
-                break;
-            }
+        if (chair) {
+            targetPos = chair.position + chair.forward * .1f;
+            targetPos.y = transform.position.y;
+            transform.GetComponent<NavMeshAgent>().enabled = false;
         }
 
         AIManager manager = GameObject.FindWithTag("Manager").GetComponent<AIManager>();
@@ -28,6 +25,7 @@ public class AISittingState : StateBehaviour {
     public override void OnStateFixedUpdate(Transform transform) {
         if (chair) {
             Utility.LerpLookTowardsDirection(transform, chair.forward);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.fixedDeltaTime * 10f);
         }
 
         if (!standingUp) {
@@ -37,6 +35,11 @@ public class AISittingState : StateBehaviour {
                 standingUp = true;
             }
         }
-        
+    }
+
+    public override void OnStateExit(Transform transform, StateBehaviour newState) {
+        if (newState is AIStandingUpState) {
+            ((AIStandingUpState) newState).chair = chair;
+        }
     }
 }

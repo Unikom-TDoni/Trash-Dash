@@ -43,7 +43,7 @@ public class AIManager : MonoBehaviour {
         }
     }
 
-    [HideInInspector] public List<GameObject> pointList;
+    public List<GameObject> pointList;
     public TrashSpawner trashSpawner {get; private set;}
 
     int spawnIndex, exitIndex;
@@ -86,17 +86,21 @@ public class AIManager : MonoBehaviour {
         CustomerAI spawnedAI = Instantiate(prefab);
         // spawnedAI.trashSpawner = trashSpawner;
         spawnedAI.aiManager = this;
+        spawnedAI.spawnConfiguration = GetSpawnConfiguration();
+        spawnedAI.transform.position = spawnedAI.spawnConfiguration.spawnPosition;
+        spawnedAI.transform.rotation = spawnedAI.spawnConfiguration.spawnRotation;
+        spawnedAI.GetComponent<NavMeshAgent>().enabled = true;
     }
 
-    //void OnGUI()
-    //{
-    //    GUILayout.BeginArea(new Rect(0, 0, 500, 500));
-    //    if (GUILayout.Button("Spawn"))
-    //    {
-    //        Spawn();
-    //    }
-    //    GUILayout.EndArea();
-    //}
+    void OnGUI()
+    {
+       GUILayout.BeginArea(new Rect(0, 0, 500, 500));
+       if (GUILayout.Button("Spawn"))
+       {
+           Spawn();
+       }
+       GUILayout.EndArea();
+    }
 }
 
 [System.Serializable]

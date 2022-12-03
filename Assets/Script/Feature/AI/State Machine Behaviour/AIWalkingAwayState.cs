@@ -9,6 +9,7 @@ public class AIWalkingAwayState : StateBehaviour {
         target = manager.exitPosition;
 
         NavMeshAgent agent = transform.GetComponent<NavMeshAgent>();
+        agent.enabled = true;
         agent.SetDestination(target);
 
         manager.pointList.Add(transform.GetComponent<CustomerAI>().targetPoint.gameObject);

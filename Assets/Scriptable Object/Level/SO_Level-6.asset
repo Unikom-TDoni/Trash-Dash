@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160b3d370aa24e3498967bf31c371428, type: 3}
   m_Name: SO_Level-6
   m_EditorClassIdentifier: 
-  <Level>k__BackingField: 7
-  <Prefab>k__BackingField: {fileID: 0}
+  <Level>k__BackingField: 6
+  <Prefab>k__BackingField: {fileID: 1805890735193954345, guid: 41b198500171c4d89b29bf8898cb7408, type: 3}
   _scoreStarLimit:
   - 7
   - 10

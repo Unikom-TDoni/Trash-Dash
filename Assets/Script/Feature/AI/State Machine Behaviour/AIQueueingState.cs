@@ -12,10 +12,6 @@ public class AIQueueingState : StateBehaviour {
         customerAI = transform.GetComponent<CustomerAI>();
         agent = transform.GetComponent<NavMeshAgent>();
 
-        customerAI.spawnConfiguration = GameObject.FindObjectOfType<AIManager>().GetSpawnConfiguration();
-        transform.position = customerAI.spawnConfiguration.spawnPosition;
-        transform.rotation = customerAI.spawnConfiguration.spawnRotation;
-
         animator = transform.GetComponent<Animator>();
     }
 

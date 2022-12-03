@@ -176,7 +176,7 @@ MonoBehaviour:
       _name: MainMenu
       _asset: {fileID: 102900000, guid: 2ab818df99a520a44a8a322726fe7903, type: 3}
     <Gameplay>k__BackingField:
-      _index: 2
+      _index: 3
       _name: Gameplay
       _asset: {fileID: 102900000, guid: 7dc826efc4c87374b9c0a7e3a6dd8a70, type: 3}
   <LevelHandler>k__BackingField:

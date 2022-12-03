@@ -21,11 +21,11 @@ namespace Group8.TrashDash.Score
     public class ScoreManager : MonoBehaviour
     {
         [Header("Scores")]
-        [SerializeField] private int baseScore = 10;
-        [SerializeField] private int correctScore = 20;
-        [SerializeField] private int comboScore = 5;
-        [SerializeField] private int wrongScore = -20;
-        [SerializeField] private int uncollectedScore = -10;
+        public int baseScore = 10;
+        public int correctScore = 20;
+        public int comboScore = 5;
+        public int wrongScore = -20;
+        public int uncollectedScore = -10;
 
         private int currentScore = 0;
         private int currentCombo = 0;
@@ -87,6 +87,7 @@ namespace Group8.TrashDash.Score
         private void HandleCombo()
         {
             currentScore += correctScore + comboScore * ((multiplyScore) ? currentCombo : 1);
+            ResultData.SortedScore += correctScore + comboScore * ((multiplyScore) ? currentCombo : 1);
         }
 
         public void GameEnd()

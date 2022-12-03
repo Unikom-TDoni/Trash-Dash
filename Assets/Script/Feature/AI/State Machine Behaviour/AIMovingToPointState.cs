@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class AIMovingToPointState : StateBehaviour {
     AIManager manager;
     NavMeshAgent agent;
+    Transform chair;
 
     public override void Start(Transform transform) {
         manager = GameObject.FindObjectOfType<AIManager>();
@@ -16,6 +17,7 @@ public class AIMovingToPointState : StateBehaviour {
             Collider[] cols = Physics.OverlapSphere(transform.position, 2f);
             foreach (var col in cols) {
                 if (col.CompareTag("Seat")) {
+                    chair = col.transform;
                     transform.GetComponent<Animator>().CrossFade("Sitting", .25f);
                     return;
                 }
@@ -27,6 +29,11 @@ public class AIMovingToPointState : StateBehaviour {
                 transform.GetComponent<Animator>().CrossFade("Texting", .25f);
             }
         }        
+    }
+
+    public override void OnStateExit(Transform transform, StateBehaviour newState) {
+        base.OnStateExit(transform, newState);
+        ((AISittingState) newState).chair = chair;
     }
 
     public override void OnDrawGizmos(Transform transform) {

@@ -3,5 +3,6 @@ public enum AIState {
     OrderingFood,
     MovingToPoint,
     Sitting,
-    WalkingAway
+    WalkingAway,
+    StandingUp
 }
