@@ -3,27 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Group8.TrashDash.Player.Pickup;
+using Group8.TrashDash.TrashBin;
+using Group8.TrashDash.Spawner;
 
 public class TutorialManager : MonoBehaviour
 {
-    private PlayerAction playerControls;
-    private PlayerPickup playerPickup;
     [SerializeField] int sequence = 1;
     [SerializeField] GameObject[] tutorialText;
+    [SerializeField] Transform trashSpawnRef;
+    private PlayerAction playerControls;
+    private PlayerPickup playerPickup;
+    private TrashBinHandler trashBinHandler;
+    private GameObject inventoryText;
+    private PowerUpSpawner powerUpSpawner;
+    private PanelUIManager panelUIManager;
+    private TrashSpawner trashSpawner;
+    private Vector3 trashSpawnInitialPosition;
+    Coroutine spawnCoroutine;
 
     void Start()
     {
         playerControls = InputManager.playerAction;
-        playerPickup = GameObject.FindWithTag("Player").GetComponent<PlayerPickup>();
+        playerPickup = FindObjectOfType<PlayerPickup>();
         playerPickup.tutorialManager = this;
+        trashBinHandler = FindObjectOfType<TrashBinHandler>();
+        trashBinHandler.tutorialManager = this;
+        powerUpSpawner = FindObjectOfType<PowerUpSpawner>();
+        powerUpSpawner.enabled = false;
+        panelUIManager = FindObjectOfType<PanelUIManager>();
+        trashSpawner = FindObjectOfType<TrashSpawner>();
+        trashSpawnInitialPosition = trashSpawnRef.position;
     }
 
     void Update()
     {
         if (sequence > 11)
         {
-            // TEMPORARY : Kembali ke level select
-            Debug.Log("Kembali ke level select");
+            panelUIManager.BackToMainMenu();
         }
 
         if (Keyboard.current.enterKey.wasPressedThisFrame)
@@ -32,8 +48,7 @@ public class TutorialManager : MonoBehaviour
             {
                 if (sequence == 2)
                 {
-                    // TEMPORARY : Spawn beberapa sampah dari semua tipe
-                    Debug.Log("Spawn beberapa sampah dari semua tipe");
+                    StartCoroutine(SpawnSomeTrash());
                 }
                 NextSequence();
             }
@@ -47,7 +62,7 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
-        if (playerControls.Gameplay.Pause.WasPressedThisFrame())
+        if (playerControls.Panel.Cancel.WasPressedThisFrame())
         {
             if (sequence == 5 || sequence == 9)
             {
@@ -55,25 +70,14 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
-        if (playerControls.Gameplay.Interact.WasPressedThisFrame())
+        if (inventoryText == null)
         {
-            if (sequence == 8)
-            {
-                NextSequence();
-            }
+            inventoryText = GameObject.Find("InventoryTitle");
         }
-
-
-
-        // TEMPORARY (DELETE LATER) - START
-        if (playerControls.Gameplay.Pickup.WasPressedThisFrame())
+        else
         {
-            if (sequence == 3)
-            {
-                NextSequence();
-            }
+            inventoryText.SetActive(false);
         }
-        // TEMPORARY (DELETE LATER) - END
     }
 
     public void PickupTrash()
@@ -81,6 +85,32 @@ public class TutorialManager : MonoBehaviour
         if (sequence == 3)
         {
             NextSequence();
+        }
+    }
+
+    public void OpenTrashBin()
+    {
+        if (sequence == 8)
+        {
+            NextSequence();
+        }
+    }
+
+    IEnumerator SpawnSomeTrash()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if (i == 4)
+            {
+                trashSpawnRef.position = trashSpawnInitialPosition;
+                trashSpawnRef.position += Vector3.back * 2;
+            }
+
+            spawnCoroutine = trashSpawner.InstantSpawn(trashSpawnRef);
+
+            trashSpawnRef.position += Vector3.left * 2;
+
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

@@ -20,13 +20,15 @@ namespace Group8.TrashDash.Item.Trash
 
         Collider[] colliders;
         PlayerPickup pp;
- 
+        Target targetIndicator;
+
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
             meshRenderer = GetComponent<MeshRenderer>();
             playerControls = InputManager.playerAction;
             pp = GameObject.FindWithTag("Player").GetComponent<PlayerPickup>();
+            targetIndicator = GetComponent<Target>();
         }
 
         public void Initialize()
@@ -48,6 +50,7 @@ namespace Group8.TrashDash.Item.Trash
                 transform.rotation = Quaternion.identity;
                 rb.velocity = Vector3.zero;
                 rb.AddForce(transform.up * Mathf.Clamp(initialDistance * 150, 800, 1000));
+                targetIndicator.enabled = false;
                 moveTowards = true;
             }
         }
@@ -114,6 +117,7 @@ namespace Group8.TrashDash.Item.Trash
             if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerBin")
             {
                 pp.trashJumpingToBin--;
+                targetIndicator.enabled = true;
                 Release();
             }
         }
