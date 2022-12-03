@@ -6,6 +6,7 @@ using Group8.TrashDash.Score;
 using UnityEngine.InputSystem;
 using Group8.TrashDash.Core;
 using Group8.TrashDash.Item.Audio;
+using TMPro;
 
 namespace Group8.TrashDash.Coordinator
 {
@@ -21,6 +22,9 @@ namespace Group8.TrashDash.Coordinator
 
         [SerializeField]
         private InventoryHandler _inventoryHandler = default;
+
+        [SerializeField]
+        private TMP_Text _inventoryTitle = default;
 
         [SerializeField]
         private PlayerAudioController _playerAudioController = default;
@@ -58,6 +62,7 @@ namespace Group8.TrashDash.Coordinator
 
         private void OnInteract(TrashBinTypes args)
         {
+            _inventoryTitle.text = "Trash Bin";
             _inventoryHandler.SetActiveInventory(true);
             scoreManager.ResetCombo();
         }
@@ -70,6 +75,7 @@ namespace Group8.TrashDash.Coordinator
 
         private void OnInventoryPanel(InputAction.CallbackContext context)
         {
+            _inventoryTitle.text = "Inventory";
             _inventoryHandler.SetActiveInventory(default);
         }
 

@@ -1,3 +1,4 @@
+using Group8.TrashDash.Item.Audio;
 using Group8.TrashDash.Score;
 using System;
 using System.Collections;
@@ -28,6 +29,7 @@ namespace Group8.TrashDash.TimeManager
 
         [Header("UI")]
         [SerializeField] private PanelUIManager panelUIManager;
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private int updateUIMinute = 10;
 
@@ -110,7 +112,7 @@ namespace Group8.TrashDash.TimeManager
             int count = num;
             while (count > 0)
             {
-                Debug.Log(count);
+                audioSource.Play();
                 yield return new WaitForSeconds(1);
                 count--;
             }

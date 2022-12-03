@@ -2805,9 +2805,9 @@ MonoBehaviour:
   - {fileID: 5061474320820864372}
   trashSpawnStateList: 020000000400000003000000
   wavePerHour: 1
-  customerPerWave: 5
-  trashSpawnMinInterval: 2
-  trashSpawnMaxInterval: 5
+  customerPerWave: 1
+  trashSpawnMinInterval: 6
+  trashSpawnMaxInterval: 9
   pointList: []
 --- !u!1 &9193220362697574672
 GameObject:

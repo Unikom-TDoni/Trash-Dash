@@ -38,6 +38,9 @@ public class PanelUIManager : MonoBehaviour
     [SerializeField]
     private float camChangeDuration = 3f;
 
+    [SerializeField]
+    private GameObject _inventory;
+
     private void OnEnable()
     {
         if (InputManager.playerAction == null) return;
@@ -72,6 +75,8 @@ public class PanelUIManager : MonoBehaviour
     {
         if (gameOverPanel.activeSelf) return;
         InputManager.playerAction.Gameplay.Disable();
+        _inventory.SetActive(false);
+        InputManager.playerAction.Panel.Disable();
 
         trashSpawner.StopAllCoroutines();
         StartCoroutine(CamFOVChange());
@@ -154,7 +159,6 @@ public class PanelUIManager : MonoBehaviour
 
     private void PlayAudioClip(AudioClip clip)
     {
-        if (_audioSource.clip == clip) return;
         _audioSource.clip = clip;
         _audioSource.Play();
     }

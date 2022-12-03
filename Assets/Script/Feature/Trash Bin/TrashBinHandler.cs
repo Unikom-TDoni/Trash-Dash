@@ -4,6 +4,7 @@ using UnityEngine;
 using Group8.TrashDash.Event;
 using System.Collections.Generic;
 using Group8.TrashDash.Core;
+using TMPro;
 
 namespace Group8.TrashDash.TrashBin
 {
@@ -44,8 +45,10 @@ namespace Group8.TrashDash.TrashBin
             }
         }
 
-        public void SetActiveTrashBinLayout(bool value) =>
+        public void SetActiveTrashBinLayout(bool value)
+        {
             _trashBinLayout.SetActive(value);
+        }
 
         public TrashBinTypes[] GetActiveTrashBinTypes()
         {

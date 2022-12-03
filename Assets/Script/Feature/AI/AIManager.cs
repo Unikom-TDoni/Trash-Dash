@@ -73,6 +73,7 @@ public class AIManager : MonoBehaviour {
     }
 
     void Start() {
+        NavMesh.RemoveAllNavMeshData();
         NavMesh.AddNavMeshData(data);
         pointList = GameObject.FindGameObjectsWithTag("AIPoint").ToList();
     }
@@ -92,15 +93,15 @@ public class AIManager : MonoBehaviour {
         spawnedAI.GetComponent<NavMeshAgent>().enabled = true;
     }
 
-    void OnGUI()
-    {
-       GUILayout.BeginArea(new Rect(0, 0, 500, 500));
-       if (GUILayout.Button("Spawn"))
-       {
-           Spawn();
-       }
-       GUILayout.EndArea();
-    }
+    //void OnGUI()
+    //{
+    //   GUILayout.BeginArea(new Rect(0, 0, 500, 500));
+    //   if (GUILayout.Button("Spawn"))
+    //   {
+    //       Spawn();
+    //   }
+    //   GUILayout.EndArea();
+    //}
 }
 
 [System.Serializable]

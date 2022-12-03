@@ -43,7 +43,6 @@ namespace Group8.TrashDash.Item.Audio
 
         private void PlayAudioClip(AudioClip clip)
         {
-            if (_audioSource.clip == clip) return;
             _audioSource.clip = clip;
             _audioSource.Play();
         }
