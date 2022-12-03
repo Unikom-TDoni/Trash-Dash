@@ -109,6 +109,8 @@ namespace Group8.TrashDash.Item.Trash
 
         private void OnTriggerEnter(Collider other)
         {
+            if (!moveTowards) return;
+
             if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerBin")
             {
                 pp.trashJumpingToBin--;

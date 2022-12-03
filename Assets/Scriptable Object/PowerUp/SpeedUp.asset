@@ -17,7 +17,7 @@ MonoBehaviour:
   Mesh: {fileID: 0}
   Color: {r: 0.45624778, g: 0.8859781, b: 0.9056604, a: 1}
   Materials: []
-  duration: 5
+  duration: 7.5
   VFX: {fileID: 3498120042602810878, guid: 5bbc63f24dd85804eab63a44837d713c, type: 3}
   parameterName: speed
-  value: 2
+  value: 1.5

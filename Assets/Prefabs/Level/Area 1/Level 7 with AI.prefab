@@ -3096,7 +3096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c44400a1f288420c81db8c4533d7239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 23800000, guid: 7925fc0d8948e99499aab7d44b73f6a3, type: 2}
+  data: {fileID: 23800000, guid: 7de5c39b78f4f1a4a9245147be9f99a7, type: 2}
   prefab: {fileID: -7366238270790709541, guid: b375131ad3e1c4eeaaddd8123ae5a205, type: 3}
   <sittingDuration>k__BackingField: 5
   spawnConfigurations:
@@ -26802,9 +26802,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1392197353560746572, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158886381268359327, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362297659607773269, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3491427828390486515, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
       propertyPath: m_Name
       value: Dustbin B3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491427828390486515, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
@@ -29064,9 +29080,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1392197353560746572, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158886381268359327, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362297659607773269, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3491427828390486515, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
       propertyPath: m_Name
       value: Dustbin B3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491427828390486515, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4e8734a1cb18f84ab682ff37123f2ad, type: 3}

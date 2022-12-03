@@ -20,5 +20,5 @@ MonoBehaviour:
   duration: 15
   VFX: {fileID: 0}
   prefab: {fileID: 6621144291756869768, guid: 6ea4effa4975ddf4f8e80f423dc9268f, type: 3}
-  radius: 8
-  interval: 3
+  radius: 10
+  interval: 2
