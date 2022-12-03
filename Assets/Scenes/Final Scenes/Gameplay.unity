@@ -530,7 +530,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82159210}
-  m_LocalRotation: {x: 0.36990207, y: -0.00004287035, z: 0.000017068483, w: 0.9290708}
+  m_LocalRotation: {x: 0.3699021, y: -0.000042838383, z: 0.000017055758, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3445,7 +3445,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669092964}
-  m_LocalRotation: {x: 0.36990207, y: -0.00004287035, z: 0.000017068483, w: 0.9290708}
+  m_LocalRotation: {x: 0.3699021, y: -0.000042838383, z: 0.000017055758, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8521,7 +8521,7 @@ MonoBehaviour:
   _bgmAudioSource: {fileID: 570176291}
   _gameOverAudioClip: {fileID: 8300000, guid: 1f696dc6b62c242419579cecc88d3b19, type: 3}
   cineCam: {fileID: 669092965}
-  camFOVValue: 50
+  camFOVValue: 60
   camChangeDuration: 3
   _inventory: {fileID: 903906098}
 --- !u!4 &1833481366

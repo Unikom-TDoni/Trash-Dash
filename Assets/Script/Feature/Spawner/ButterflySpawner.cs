@@ -16,7 +16,7 @@ public class ButterflySpawner : MonoBehaviour
     {
         if (butterflyCount < maxSpawnLimit)
         {
-            int randomSpawner = Random.Range(0, maxSpawnLimit);
+            int randomSpawner = Random.Range(0, spawner.Length);
             var butterfly = Instantiate(butterflyPrefab, spawner[randomSpawner].transform.position, Quaternion.identity);
             var b = butterfly.GetComponent<ButterflyMovement>();
             b.butterflySpawner = this;
