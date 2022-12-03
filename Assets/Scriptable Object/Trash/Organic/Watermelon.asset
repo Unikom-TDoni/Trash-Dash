@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Watermelon
   m_EditorClassIdentifier: 
   Name: Watermelon
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 347fd48944928634882cb436728d551e, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -3500872997411817233, guid: a3b2231e8db671b40a1d121d2f9b235a, type: 3}
   Materials:

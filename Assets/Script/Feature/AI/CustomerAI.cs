@@ -21,10 +21,7 @@ public class CustomerAI : MonoBehaviour {
 
     void SpawnTrashes(bool spawnTrashes) {
         if (spawnTrashes && spawnCoroutine == null) {
-            spawnCoroutine = aiManager.trashSpawner.RepeatSpawn(transform, .1f, .2f, areaSize: new Vector3(5, 1, 5));
-            #if UNITY_EDITOR
-            Debug.Log("Calling repeat spawn!");
-            #endif
+            spawnCoroutine = aiManager.trashSpawner.RepeatSpawn(transform, aiManager.trashSpawnMinInterval, aiManager.trashSpawnMaxInterval, areaSize: new Vector3(5, 1, 5), offset: Vector3.up, randomizeRotation: true);
         } else if (spawnCoroutine != null){
             StopCoroutine(spawnCoroutine);
         }

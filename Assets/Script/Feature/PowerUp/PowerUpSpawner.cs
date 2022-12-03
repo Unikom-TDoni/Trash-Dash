@@ -4,8 +4,11 @@ using UnityEngine;
 
 namespace Group8.TrashDash.Spawner
 {
+    using Group8.TrashDash.Core;
     using Module.Spawner;
     using UnityEngine.AI;
+    using UnityEngine.InputSystem.HID;
+    using UnityEngine.UIElements;
 
     public class PowerUpSpawner : Spawner
     {
@@ -19,12 +22,16 @@ namespace Group8.TrashDash.Spawner
         [SerializeField] private float maxInterval = 5f;
         [SerializeField] private bool randomizeRotation;
 
+        private Bounds bounds;
+
         protected override void Start()
         {
             OnValidate();
 
             base.Start();
             RepeatSpawn(transform, minInterval, maxInterval, offset, amount, size, randomizeRotation);
+
+            bounds = new Bounds(transform.position + offset, size + Vector3.up * 2);
         }
 
         protected override void AfterSpawn()
@@ -53,10 +60,23 @@ namespace Group8.TrashDash.Spawner
 
         protected void CheckPosition(GameObject go)
         {
-            if (NavMesh.SamplePosition(go.transform.position, out var hit, Mathf.Infinity, NavMesh.AllAreas))
+            if (GameManager.Instance == null) return;
+
+            NavMeshHit hit;
+            while(!NavMesh.SamplePosition(go.transform.position, out hit, 5.0f, NavMesh.AllAreas) || !IsInBound(hit.position))
             {
-                go.transform.position = hit.position;
+                go.transform.position = RandomSpawnPosition(transform, offset, size);
             }
+
+            go.transform.position = hit.position;
+            //if true, is it in bound? if not random and check again
+            //if false, random and check again
+        }
+
+        protected bool IsInBound(Vector3 point)
+        {
+            if (point == Vector3.positiveInfinity) return false;
+            return bounds.Contains(point);
         }
 
         private void OnValidate()

@@ -16,11 +16,13 @@ namespace Group8.TrashDash.Spawner
 
         TrashContentInfo[] filterTrashInformations;
 
+        [SerializeField] private bool spawnOnAwake = false;
+
         protected override void Start()
         {
             base.Start();
             // Test Spawn
-            RepeatSpawn(transform, .1f, .5f, amount: 3);
+            if(spawnOnAwake) RepeatSpawn(transform, .1f, .5f, amount: 3);
         }
 
         public override Coroutine InstantSpawn(Transform center, Vector3 offset = default, int amount = 1, Vector3 areaSize = default, bool randomizeRotation = false)

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Paper
   m_EditorClassIdentifier: 
   Name: Paper
-  Sprite: {fileID: 0}
-  TrashBinType: 4
+  Sprite: {fileID: 21300000, guid: 2f160eb3935f583429598d0aead1b349, type: 3}
+  TrashBinType: 2
   Mesh: {fileID: 1050974422812936719, guid: ff258a1d1bea56141ab85a01a16adf48, type: 3}
   Materials:
   - {fileID: -4211473562492425, guid: ff258a1d1bea56141ab85a01a16adf48, type: 3}

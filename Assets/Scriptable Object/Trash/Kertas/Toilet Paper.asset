@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
+  m_Name: Toilet Paper
+  m_EditorClassIdentifier: 
+  Name: Toilet Paper
+  Sprite: {fileID: 21300000, guid: 0f79cac0f8d2a664d80129f12e28a5a4, type: 3}
+  TrashBinType: 2
+  Mesh: {fileID: -1650477108518188073, guid: 1c141095a5cc6af4cb6341817d87010a, type: 3}
+  Materials:
+  - {fileID: 239378781582670930, guid: 1c141095a5cc6af4cb6341817d87010a, type: 3}

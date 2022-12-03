@@ -19,6 +19,11 @@ namespace Group8.TrashDash.Module.Spawner
 
         public int GetActiveSpawnObject() => poolManager.pools[spawnPrefab.prefab].CountActive;
 
+        private void Awake()
+        {
+            if (!poolManager) poolManager = FindObjectOfType<PoolManager>();
+        }
+
         protected virtual void Start()
         {
             OnRelease += Release;
@@ -71,10 +76,7 @@ namespace Group8.TrashDash.Module.Spawner
             {
                 if (poolManager.pools[spawnPrefab.prefab].CountActive >= spawnPrefab.maxObjectInPool) break;
 
-                Vector3 position = center.position + offset + new Vector3(
-                    Random.Range(-areaSize.x / 2, areaSize.x / 2),
-                    Random.Range(-areaSize.y / 2, areaSize.y / 2),
-                    Random.Range(-areaSize.z / 2, areaSize.z / 2));
+                Vector3 position = RandomSpawnPosition(center, offset, areaSize);
                 Quaternion rotation = (randomizeRotation) ? Random.rotation : Quaternion.identity;
 
                 obj[i] = poolManager.pools[spawnPrefab.prefab].Get();
@@ -84,6 +86,14 @@ namespace Group8.TrashDash.Module.Spawner
                 //obj[i].transform.SetParent(transform);
                 obj[i].GetComponent<SpawnObject>().spawner = this;
             }
+        }
+
+        protected virtual Vector3 RandomSpawnPosition(Transform center, Vector3 offset, Vector3 areaSize)
+        {
+            return center.position + offset + new Vector3(
+                    Random.Range(-areaSize.x / 2, areaSize.x / 2),
+                    Random.Range(-areaSize.y / 2, areaSize.y / 2),
+                    Random.Range(-areaSize.z / 2, areaSize.z / 2));
         }
 
         protected virtual bool SpawnCondition()
@@ -96,7 +106,8 @@ namespace Group8.TrashDash.Module.Spawner
             for (int i = 0; i < obj.Length; i++)
             {
                 if (obj[i] == null) continue;
-                
+
+                obj[i].SetActive(true);
                 obj[i] = null;
             }
         }

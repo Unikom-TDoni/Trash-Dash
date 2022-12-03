@@ -19,20 +19,39 @@ namespace Group8.TrashDash.Level
         [SerializeField]
         private Image _imgBackground = default;
 
-        private int _itemLevelId = default;
+        [SerializeField]
+        private Image _imgBackgroundShade = default;
 
-        private CanvasGroup _canvasGroup = default;
+        [SerializeField]
+        private Image _imgLock = default;
+
+        [SerializeField]
+        private Sprite _activeStarSprite = default;
+
+        [SerializeField]
+        private Color _deactiveColor = default;
+
+        private Animator _lockAnimator = default;
+
+        private readonly int ShakeAnim = Animator.StringToHash("Shake");
+
+        private int _itemLevelId = default;
 
         private void Awake()
         {
-            _canvasGroup = GetComponent<CanvasGroup>();
+            _lockAnimator = _imgLock.GetComponent<Animator>();
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button is not PointerEventData.InputButton.Left) return;
+            if (_imgLock.enabled)
+            {
+                _lockAnimator.Play(ShakeAnim);
+                return;
+            }
             GameManager.Instance.LevelHandler.SelectLevel(_itemLevelId);
-            SceneManager.LoadScene("Brian");
+            SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
         }
 
         public override void UpdateContent(int content)
@@ -51,13 +70,18 @@ namespace Group8.TrashDash.Level
                 if (highScore >= item) starCount++;
                 else break;
             for (int i = 0; i < starCount; i++)
-                _imgStars[i].color = Color.yellow;
+                _imgStars[i].sprite = _activeStarSprite;
         }
 
         private void UpdateLockedLayout(bool isOpened)
         {
-            _canvasGroup.blocksRaycasts = isOpened;
-            if (!isOpened) _imgBackground.color = Color.red;
+            if (isOpened) return;
+            foreach (var item in _imgStars)
+                item.enabled = default;
+            _imgBackground.color = _deactiveColor;
+            _imgBackgroundShade.color = new Color(_deactiveColor.r, _deactiveColor.g, _deactiveColor.b, 160);
+            _imgLock.enabled = true;
+            _txtLevel.enabled = default;
         }
     }
 }

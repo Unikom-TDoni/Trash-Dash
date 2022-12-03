@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Group8.TrashDash.Spawner;
 using UnityEngine.AI;
+using Group8.TrashDash.TimeManager;
 
 public class AIManager : MonoBehaviour {
     [SerializeField] NavMeshData data;
@@ -18,6 +19,15 @@ public class AIManager : MonoBehaviour {
 
     [Space]
     [SerializeField] AIState[] trashSpawnStateList;
+
+    [Header("Spawn")]
+    private TimeManager timeManager;
+    [SerializeField] private int wavePerHour = 1;
+    [SerializeField] private int customerPerWave = 5;
+    
+    [Space]
+    public float trashSpawnMinInterval = 2f;
+    public float trashSpawnMaxInterval = 5f;
 
     public HashSet<AIState> trashSpawnStateSet {get; private set;}
 
@@ -53,11 +63,23 @@ public class AIManager : MonoBehaviour {
         if (!trashSpawner) {
             Debug.LogError("No trash spawner found!");
         }
+
+        timeManager = FindObjectOfType<TimeManager>();
+        if (timeManager)
+        {
+            timeManager.WavePerHour = wavePerHour;
+            timeManager.OnWaveTick += OnWaveSpawn;
+        }
     }
 
     void Start() {
         NavMesh.AddNavMeshData(data);
         pointList = GameObject.FindGameObjectsWithTag("AIPoint").ToList();
+    }
+
+    private void OnWaveSpawn()
+    {
+        for(int i = 0; i < customerPerWave; i++) Spawn();
     }
 
     public void Spawn() {
@@ -66,13 +88,15 @@ public class AIManager : MonoBehaviour {
         spawnedAI.aiManager = this;
     }
 
-    void OnGUI() {
-        GUILayout.BeginArea(new Rect(0, 0, 500, 500));
-        if (GUILayout.Button("Spawn")) {
-            Spawn();
-        }
-        GUILayout.EndArea();
-    }
+    //void OnGUI()
+    //{
+    //    GUILayout.BeginArea(new Rect(0, 0, 500, 500));
+    //    if (GUILayout.Button("Spawn"))
+    //    {
+    //        Spawn();
+    //    }
+    //    GUILayout.EndArea();
+    //}
 }
 
 [System.Serializable]

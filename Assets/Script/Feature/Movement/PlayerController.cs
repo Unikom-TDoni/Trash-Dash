@@ -39,13 +39,13 @@ namespace Group8.TrashDash.Player.Controller
         [SerializeField] private PowerUpHandler powerUpHandler;
         [Range(.1f, 10), SerializeField] float speedMultiplier = 1;
 
-        [SerializeField]
-        private AudioClip _footStepsAudioClip = default;
+        private AudioSource _audioSource = default;
 
         void Awake()
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         void Start()
@@ -181,9 +181,9 @@ namespace Group8.TrashDash.Player.Controller
             }
         }
 
-        public void PlayFootstepSound()
+        public void PlayFootStepSfx()
         {
-            AudioSource.PlayClipAtPoint(_footStepsAudioClip, transform.position);
+            _audioSource.Play();
         }
     }
 }

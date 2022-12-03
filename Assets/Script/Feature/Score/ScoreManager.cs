@@ -1,3 +1,4 @@
+using Group8.TrashDash.Core;
 using Group8.TrashDash.Item.Trash;
 using Group8.TrashDash.Module.Pool;
 using Group8.TrashDash.Spawner;
@@ -15,7 +16,6 @@ namespace Group8.TrashDash.Score
         Correct,
         CorrectNoCombo,
         Wrong,
-        Uncollected,
     }
 
     public class ScoreManager : MonoBehaviour
@@ -41,15 +41,24 @@ namespace Group8.TrashDash.Score
 
         public event Action OnScoreChange;
 
+        // Data
+        public LevelResultData ResultData = new LevelResultData();
+
         public void UpdateScore(ScoreState state)
         {
             switch (state)
             {
-                case ScoreState.Collect: currentScore += baseScore; break;
+                case ScoreState.Collect:
+                    {
+                        currentScore += baseScore;
+                        ResultData.Collected++;
+                        break;
+                    }
                 case ScoreState.Correct:
                     {
                         currentCombo++;
                         HandleCombo();
+                        ResultData.Sorted++;
                         break;
                     }
                 case ScoreState.CorrectNoCombo:
@@ -60,8 +69,8 @@ namespace Group8.TrashDash.Score
                 case ScoreState.Wrong:
                     {
                         currentScore += wrongScore;
-                        // Reset Combo
-                        currentCombo = 0;
+                        ResetCombo();
+                        ResultData.WrongSorted++;
                         break;
                     }
             }
@@ -71,6 +80,7 @@ namespace Group8.TrashDash.Score
 
         public void ResetCombo()
         {
+            ResultData.HighestCombo = (ResultData.HighestCombo < currentCombo) ? currentCombo : ResultData.HighestCombo;
             currentCombo = 0;
         }
 
@@ -83,9 +93,12 @@ namespace Group8.TrashDash.Score
         {
             int uncollectedTrashCount = trashSpawner.GetActiveSpawnObject();
             currentScore += uncollectedTrashCount * uncollectedScore;
+            ResultData.Uncollected = uncollectedTrashCount;
+            ResultData.TotalScore = currentScore;
 
+            ResetCombo();
+            GameManager.Instance.LevelHandler.SaveCurrentLevelData(currentScore);
             // Set Game Over Panel Score UI to currentScore
-            OnScoreChange?.Invoke();
         }
     }
 }

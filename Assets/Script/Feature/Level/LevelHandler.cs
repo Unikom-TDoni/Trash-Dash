@@ -31,6 +31,9 @@ namespace Group8.TrashDash.Level
         public void SaveCurrentLevelData(float score) =>
             LevelDataPersistence.Save(SelectedLevel, score);
 
+        public float[] GetStarScoreLimit() =>
+            _levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).ScoreStarLimit;
+
         public float[] GetStarScoreLimit(int level) =>
             _levelScriptableObjects.First(item => item.Level.Equals(level)).ScoreStarLimit;
 
