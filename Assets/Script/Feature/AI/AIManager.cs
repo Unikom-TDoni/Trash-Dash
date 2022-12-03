@@ -86,6 +86,10 @@ public class AIManager : MonoBehaviour {
         CustomerAI spawnedAI = Instantiate(prefab);
         // spawnedAI.trashSpawner = trashSpawner;
         spawnedAI.aiManager = this;
+        spawnedAI.spawnConfiguration = GetSpawnConfiguration();
+        spawnedAI.transform.position = spawnedAI.spawnConfiguration.spawnPosition;
+        spawnedAI.transform.rotation = spawnedAI.spawnConfiguration.spawnRotation;
+        spawnedAI.GetComponent<NavMeshAgent>().enabled = true;
     }
 
     void OnGUI()
