@@ -42,7 +42,12 @@ namespace Group8.TrashDash.Score
         public event Action OnScoreChange;
 
         // Data
-        public LevelResultData ResultData = new LevelResultData();
+        [HideInInspector] public LevelResultData ResultData;
+
+        private void Start()
+        {
+            ResultData = new LevelResultData();
+        }
 
         public void UpdateScore(ScoreState state)
         {

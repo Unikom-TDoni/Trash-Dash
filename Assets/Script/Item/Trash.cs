@@ -47,7 +47,7 @@ namespace Group8.TrashDash.Item.Trash
                 colliders[1].enabled = false;
                 transform.rotation = Quaternion.identity;
                 rb.velocity = Vector3.zero;
-                rb.AddForce(transform.up * Mathf.Clamp(initialDistance * 150, 900, 10000));
+                rb.AddForce(transform.up * Mathf.Clamp(initialDistance * 150, 800, 1000));
                 moveTowards = true;
             }
         }

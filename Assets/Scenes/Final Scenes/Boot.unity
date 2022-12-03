@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -181,13 +181,13 @@ MonoBehaviour:
       _asset: {fileID: 102900000, guid: 7dc826efc4c87374b9c0a7e3a6dd8a70, type: 3}
   <LevelHandler>k__BackingField:
     _levelScriptableObjects:
-    - {fileID: 11400000, guid: cc980f881d255094bbd99a5d01d26665, type: 2}
     - {fileID: 11400000, guid: 3efcca78115e52f4bb7681b860b1009f, type: 2}
     - {fileID: 11400000, guid: 1eeaf31654a021d4d89b9ba6673b75b4, type: 2}
     - {fileID: 11400000, guid: e0e32e0a5e69f764cbfd245953a81b23, type: 2}
     - {fileID: 11400000, guid: 77783a07d27a8ef4890da9aaf16dc1e0, type: 2}
     - {fileID: 11400000, guid: a6866728a9186634b9047141cbc5ec84, type: 2}
     - {fileID: 11400000, guid: b542f795c17f2034783d0d4e23470cca, type: 2}
+    - {fileID: 11400000, guid: 81ec8e03125fc0b46975df87115d28bd, type: 2}
   <SettingDataPersistence>k__BackingField:
     _gameAudioMixer: {fileID: 24100000, guid: d07b73ef288572b4697837d57d7812ce, type: 2}
     <DefaultResolutionOptions>k__BackingField:

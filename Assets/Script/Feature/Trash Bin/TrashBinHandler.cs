@@ -4,6 +4,7 @@ using UnityEngine;
 using Group8.TrashDash.Event;
 using System.Collections.Generic;
 using Group8.TrashDash.Core;
+using TMPro;
 
 namespace Group8.TrashDash.TrashBin
 {
@@ -25,7 +26,7 @@ namespace Group8.TrashDash.TrashBin
         public TrashBinTypes ActiveTrashBinType { get; private set; } = default;
         public void OnAwake(Action<DropableData> onDrop, Action<TrashBinTypes> onInteract)
         {
-            _activeTrashBins = GameObject.FindGameObjectsWithTag(GameManager.Instance.Tags.TrashBin).Select(item => item.GetComponent<TrashBinController>()).ToArray();
+            _activeTrashBins = GameObject.FindGameObjectsWithTag("TrashBin").Select(item => item.GetComponent<TrashBinController>()).ToArray();
             _layoutController.OnDrop += onDrop;
             foreach (var item in _activeTrashBins)
             {
@@ -44,8 +45,10 @@ namespace Group8.TrashDash.TrashBin
             }
         }
 
-        public void SetActiveTrashBinLayout(bool value) =>
+        public void SetActiveTrashBinLayout(bool value)
+        {
             _trashBinLayout.SetActive(value);
+        }
 
         public TrashBinTypes[] GetActiveTrashBinTypes()
         {

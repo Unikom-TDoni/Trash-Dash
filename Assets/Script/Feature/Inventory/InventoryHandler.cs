@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using Lnco.Unity.Module.Storage;
 using System.Collections.Generic;
 using Group8.TrashDash.Score;
+using TMPro;
 
 namespace Group8.TrashDash.Inventory
 {

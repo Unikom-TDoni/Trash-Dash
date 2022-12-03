@@ -16,15 +16,18 @@ public class AfterGameUI : MonoBehaviour
     [Space]
     [SerializeField] private TMP_Text collectedTitle;
     [SerializeField] private TMP_Text sortedTitle;
+    [SerializeField] private TMP_Text sortedWrongTitle;
     [SerializeField] private TMP_Text uncollectedTitle;
 
     [Space]
     [SerializeField] private TMP_Text collectedText;
     [SerializeField] private TMP_Text sortedText;
+    [SerializeField] private TMP_Text sortedWrongText;
     [SerializeField] private TMP_Text uncollectedText;
     [SerializeField] private TMP_Text totalScoreText;
 
     [SerializeField] private Sprite starLitSprite;
+    [SerializeField] private AudioClip _starAudioClip;
 
     [Header("Animated UI")]
     [SerializeField] private CanvasGroup canvasGroup;
@@ -45,6 +48,7 @@ public class AfterGameUI : MonoBehaviour
     [SerializeField] private float textDuration = 3f;
 
     private Vector3 initialPos;
+    private float[] scoreLimit;
 
     private void OnEnable()
     {
@@ -52,10 +56,14 @@ public class AfterGameUI : MonoBehaviour
         initialPos = rectTransform.localPosition;
         PanelFadeIn();
 
+        scoreLimit = GameManager.Instance.LevelHandler.GetStarScoreLimit();
+
         if (scoreManager.Score < GameManager.Instance.LevelHandler.GetStarScoreLimit()[0])
         {
             nextLevelButton.SetActive(false);
         }
+        else
+            GameManager.Instance.LevelHandler.SaveNextLevel();
     }
 
     private void SetResultUI(LevelResultData data)
@@ -66,6 +74,7 @@ public class AfterGameUI : MonoBehaviour
 
         StartCoroutine(TextCounter(collectedText, 0, data.Collected * scoreManager.baseScore, " P"));
         StartCoroutine(TextCounter(sortedText, 0, data.SortedScore, " P"));
+        StartCoroutine(TextCounter(sortedWrongText, 0, data.WrongSorted * scoreManager.wrongScore, " P"));
         StartCoroutine(TextCounter(uncollectedText, 0, data.Uncollected * scoreManager.uncollectedScore, " P"));
         StartCoroutine(TextCounter(totalScoreText, 0, data.TotalScore, " P"));
     }
@@ -107,10 +116,10 @@ public class AfterGameUI : MonoBehaviour
 
         for(int i = 0; i < items.Count; i++)
         {
-            if(scoreManager.Score > GameManager.Instance.LevelHandler.GetStarScoreLimit()[i])
+            if(scoreManager.Score >= scoreLimit[i])
             {
                 items[i].GetComponent<Image>().sprite = starLitSprite;
-                panelUIManager.PlayStarClip();
+                AudioSource.PlayClipAtPoint(_starAudioClip, transform.position);
             }
 
             items[i].transform.DOScale(1, itemTime).SetEase(Ease.OutBounce).SetUpdate(true);

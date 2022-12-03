@@ -17,6 +17,8 @@ namespace Group8.TrashDash.Module.Spawner
 
         protected GameObject[] obj;
 
+        [SerializeField] protected Vector3 spawnOffset;
+
         public int GetActiveSpawnObject() => poolManager.pools[spawnPrefab.prefab].CountActive;
 
         private void Awake()
@@ -80,7 +82,7 @@ namespace Group8.TrashDash.Module.Spawner
                 Quaternion rotation = (randomizeRotation) ? Random.rotation : Quaternion.identity;
 
                 obj[i] = poolManager.pools[spawnPrefab.prefab].Get();
-                obj[i].transform.position = position;
+                obj[i].transform.position = position + spawnOffset;
                 obj[i].transform.rotation = rotation;
                 //obj[i].SetActive(false);
                 //obj[i].transform.SetParent(transform);

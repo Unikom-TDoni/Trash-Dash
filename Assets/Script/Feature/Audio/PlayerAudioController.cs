@@ -33,7 +33,7 @@ namespace Group8.TrashDash.Item.Audio
             PlayAudioClip(_dropAudioClip);
 
         public void PlaySuccessOnDropSfx() =>
-            PlayAudioClip(_successDropAudioClip);
+            AudioSource.PlayClipAtPoint(_successDropAudioClip, transform.position);
 
         public void PlayUsePowerupSfx() =>
             PlayAudioClip(_usePowerUp);
@@ -43,7 +43,6 @@ namespace Group8.TrashDash.Item.Audio
 
         private void PlayAudioClip(AudioClip clip)
         {
-            if (_audioSource.clip == clip) return;
             _audioSource.clip = clip;
             _audioSource.Play();
         }

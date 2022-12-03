@@ -45,7 +45,7 @@ public class CustomerAI : MonoBehaviour {
     }
     #endif
 
-    void OnGUI() {
-        stateMachine.OnGUI(transform);
-    }
+    //void OnGUI() {
+    //    stateMachine.OnGUI(transform);
+    //}
 }

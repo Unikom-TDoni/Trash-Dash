@@ -27,6 +27,8 @@ namespace Group8.TrashDash.Player.Controller
         float speed;
         float turnSmoothVelocity;
 
+        public float Speed => speed;
+
         bool canMove = true;
 
         Animator animator;
