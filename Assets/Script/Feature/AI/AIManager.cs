@@ -88,15 +88,15 @@ public class AIManager : MonoBehaviour {
         spawnedAI.aiManager = this;
     }
 
-    //void OnGUI()
-    //{
-    //    GUILayout.BeginArea(new Rect(0, 0, 500, 500));
-    //    if (GUILayout.Button("Spawn"))
-    //    {
-    //        Spawn();
-    //    }
-    //    GUILayout.EndArea();
-    //}
+    void OnGUI()
+    {
+       GUILayout.BeginArea(new Rect(0, 0, 500, 500));
+       if (GUILayout.Button("Spawn"))
+       {
+           Spawn();
+       }
+       GUILayout.EndArea();
+    }
 }
 
 [System.Serializable]

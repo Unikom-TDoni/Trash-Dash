@@ -18,6 +18,7 @@ public class AIStateMachine {
             {AIState.MovingToPoint, new AIMovingToPointState()},
             {AIState.Sitting, new AISittingState()},
             {AIState.WalkingAway, new AIWalkingAwayState()},
+            {AIState.StandingUp, new AIStandingUpState()},
         };
         foreach (KeyValuePair<AIState, StateBehaviour> state in stateDictionary) {
             state.Value.Start(transform);
