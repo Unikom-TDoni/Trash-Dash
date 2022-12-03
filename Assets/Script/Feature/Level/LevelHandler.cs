@@ -34,6 +34,7 @@ namespace Group8.TrashDash.Level
         public void SaveNextLevel()
         {
             SelectedLevel++;
+            if (_levelScriptableObjects.Any(item => item.Level.Equals(SelectedLevel))) return;
             SaveCurrentLevelData(default);
         }
 
