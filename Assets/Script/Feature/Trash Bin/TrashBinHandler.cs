@@ -23,6 +23,9 @@ namespace Group8.TrashDash.TrashBin
         private Material _trashBinMaterial = default;
 
         private TrashBinController[] _activeTrashBins = default;
+
+        public TutorialManager tutorialManager;
+
         public TrashBinTypes ActiveTrashBinType { get; private set; } = default;
         public void OnAwake(Action<DropableData> onDrop, Action<TrashBinTypes> onInteract)
         {
@@ -48,6 +51,11 @@ namespace Group8.TrashDash.TrashBin
         public void SetActiveTrashBinLayout(bool value)
         {
             _trashBinLayout.SetActive(value);
+
+            if (tutorialManager != null && _trashBinLayout.activeInHierarchy)
+            {
+                tutorialManager.OpenTrashBin();
+            }
         }
 
         public TrashBinTypes[] GetActiveTrashBinTypes()

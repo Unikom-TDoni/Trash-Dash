@@ -27,7 +27,6 @@ public class ButterflySpawner : MonoBehaviour
             float randomFlyTime = Random.Range(minFlyTime, maxFlyTime);
             b.flyTime = randomFlyTime;
             butterflyCount++;
-            Debug.Log("butterfly spawned");
         }
     }
 }
