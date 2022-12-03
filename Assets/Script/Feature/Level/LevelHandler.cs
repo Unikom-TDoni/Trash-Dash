@@ -46,11 +46,5 @@ namespace Group8.TrashDash.Level
 
         public void SpawnLevel() =>
             UnityEngine.Object.Instantiate(_levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).Prefab, default, Quaternion.identity);
-
-        public void GoToTheNextLevel()
-        {
-            SaveNextLevel();
-            SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
-        }
     }
 }
