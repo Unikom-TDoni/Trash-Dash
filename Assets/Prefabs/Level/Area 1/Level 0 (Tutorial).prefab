@@ -3435,6 +3435,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd65f5f025f7134c8756a2195285d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequence: 1
+  tutorialText:
+  - {fileID: 3948193885504345768}
+  - {fileID: 8369326399917966586}
+  - {fileID: 8041857333449463399}
+  - {fileID: 4268438279062839167}
+  - {fileID: 7805373902566602069}
+  - {fileID: 3573540367579163477}
+  - {fileID: 1894436169670677768}
+  - {fileID: 4608947001159750336}
+  - {fileID: 2716806151474364971}
+  - {fileID: 1522927643517295056}
+  - {fileID: 3280178405328459067}
 --- !u!1 &3134281555861208101
 GameObject:
   m_ObjectHideFlags: 0
