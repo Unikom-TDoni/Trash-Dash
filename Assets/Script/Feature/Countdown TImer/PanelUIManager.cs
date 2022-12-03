@@ -9,6 +9,8 @@ using Group8.TrashDash.TimeManager;
 using System;
 using Group8.TrashDash.Core;
 using Cinemachine;
+using Group8.TrashDash.TrashBin;
+using Group8.TrashDash.Spawner;
 
 public class PanelUIManager : MonoBehaviour
 {
@@ -16,17 +18,18 @@ public class PanelUIManager : MonoBehaviour
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject pausedPanel;
     [SerializeField] GameObject pausedButton;
+    [SerializeField] TrashSpawner trashSpawner;
 
     private AudioSource _audioSource = default;
+
+    [SerializeField]
+    private AudioSource _bgmAudioSource = default;
 
     [SerializeField]
     private AudioClip _gameOverAudioClip = default;
 
     [SerializeField]
     private AudioClip _starAudioClip = default;
-
-    [SerializeField]
-    private Button _btnPauseToMainMenu = default;
 
     [SerializeField]
     private CinemachineVirtualCamera cineCam;
@@ -52,7 +55,6 @@ public class PanelUIManager : MonoBehaviour
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
-        _btnPauseToMainMenu.onClick.AddListener(() => SceneManager.LoadScene(GameManager.Instance.Scenes.MainMenu));
     }
 
     void Start()
@@ -70,8 +72,9 @@ public class PanelUIManager : MonoBehaviour
     {
         if (gameOverPanel.activeSelf) return;
         InputManager.playerAction.Gameplay.Disable();
+
+        trashSpawner.StopAllCoroutines();
         StartCoroutine(CamFOVChange());
-        //pausedButton.SetActive(false);
     }
 
     public void OnTimeUpdate(float _time)
@@ -85,7 +88,6 @@ public class PanelUIManager : MonoBehaviour
     {
         PauseGame();
         pausedPanel.SetActive(true);
-        //pausedButton.SetActive(false);
     }
     
     private void OnResume(InputAction.CallbackContext context)
@@ -111,6 +113,17 @@ public class PanelUIManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void NextLevel()
+    {
+        GameManager.Instance.LevelHandler.GoToTheNextLevel();
+    }
+
+    public void BackToMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(GameManager.Instance.Scenes.MainMenu);
+    }
+
     private IEnumerator CamFOVChange()
     {
         float step = Mathf.Abs(cineCam.m_Lens.FieldOfView - camFOVValue) / camChangeDuration;
@@ -130,7 +143,13 @@ public class PanelUIManager : MonoBehaviour
     {
         Time.timeScale = 0;
         gameOverPanel.SetActive(true);
+        _bgmAudioSource.Stop();
         PlayAudioClip(_gameOverAudioClip);
+    }
+
+    public void PlayStarClip()
+    {
+        PlayAudioClip(_starAudioClip);
     }
 
     private void PlayAudioClip(AudioClip clip)

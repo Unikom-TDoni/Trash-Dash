@@ -23,7 +23,7 @@ public class CustomerAI : MonoBehaviour {
         if (spawnTrashes && spawnCoroutine == null) {
             spawnCoroutine = aiManager.trashSpawner.RepeatSpawn(transform, aiManager.trashSpawnMinInterval, aiManager.trashSpawnMaxInterval, areaSize: new Vector3(5, 1, 5), offset: Vector3.up, randomizeRotation: true);
         } else if (spawnCoroutine != null){
-            StopCoroutine(spawnCoroutine);
+            aiManager.trashSpawner.StopCoroutine(spawnCoroutine);
         }
     }
 

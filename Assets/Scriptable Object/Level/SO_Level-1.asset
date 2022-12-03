@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Level-1
   m_EditorClassIdentifier: 
   <Level>k__BackingField: 1
-  <Prefab>k__BackingField: {fileID: 1805890735193954345, guid: 579facbe6260c4378bc0f5a0e25b060b, type: 3}
+  <Prefab>k__BackingField: {fileID: 1805890735193954345, guid: 5e78f3047dd63d04385e6eb2ac311f5f, type: 3}
   _scoreStarLimit:
   - 5
   - 10
