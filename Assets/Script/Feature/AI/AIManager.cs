@@ -33,7 +33,7 @@ public class AIManager : MonoBehaviour {
         }
     }
 
-    [HideInInspector] public List<GameObject> pointList;
+    public List<GameObject> pointList;
     public TrashSpawner trashSpawner {get; private set;}
 
     int spawnIndex, exitIndex;
