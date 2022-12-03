@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 8226
+  controlID: 46
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -86,7 +86,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 8227
+  controlID: 47
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 8228
+  controlID: 48
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,10 +223,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 201.20001}
-      m_SelectedIDs: 6022feff3423feffd422feff
-      m_LastClickedID: -122156
-      m_ExpandedIDs: 3e23feff4a4afeffb273feff3899feffbebefeff44e4feffd209ffffac15ffff36f4ffffe4fafffff03b01008c3c0100ba3c01000e5101007c520100dc520100
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 3caf0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 7cc4feffdec5feff70ebfeff92eefeff167bffff12fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -277,7 +277,7 @@ MonoBehaviour:
   - {fileID: 2}
   - {fileID: 9}
   m_Selected: 1
-  m_LastSelected: 1
+  m_LastSelected: 0
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -554,11 +554,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: -0, y: 0, z: -0, w: -1}
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 279.498
+    m_Target: 247.7768
     speed: 2
-    m_Value: 279.498
+    m_Value: 247.7768
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -766,22 +766,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/HONETi/mobile_cartoon_GUI/GUI Elements/Buttons
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/HONETi/mobile_cartoon_GUI/GUI Elements/Buttons
+  - Assets
   m_LastFoldersGridSize: 64
   m_LastProjectPath: C:\Users\Ariq\Documents\GitHub\Trash-Dash
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 271}
-    m_SelectedIDs: 863d0100
-    m_LastClickedID: 81286
-    m_ExpandedIDs: 000000000468000018680000803d0100823d010000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 36ae0000
+    m_LastClickedID: 44598
+    m_ExpandedIDs: 0000000036ae000078ae00007cae000082ae000000af000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -809,7 +809,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000468000000ca9a3b
+    m_ExpandedIDs: 0000000036ae0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -834,9 +834,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 6022feff3423feffd422feff
-    m_LastClickedInstanceID: -122272
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 3caf0000
+    m_LastClickedInstanceID: 44860
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 72d60000b0610000f061000034d600003ad80000e66100006a61000008420100a86100008e61000078610000ca610000886e0000244201007e630000aa630000c06a00008c6b0000aa700000f80f020072bc03007abc03009abc0300e46603005064000000000000be64000098660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -912,8 +912,8 @@ MonoBehaviour:
     y: 0
     width: 311.19995
     height: 722.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}

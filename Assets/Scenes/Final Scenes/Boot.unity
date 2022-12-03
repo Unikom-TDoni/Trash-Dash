@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -176,15 +176,12 @@ MonoBehaviour:
       _name: MainMenu
       _asset: {fileID: 102900000, guid: 2ab818df99a520a44a8a322726fe7903, type: 3}
     <Gameplay>k__BackingField:
-      _index: 3
+      _index: 2
       _name: Gameplay
       _asset: {fileID: 102900000, guid: 7dc826efc4c87374b9c0a7e3a6dd8a70, type: 3}
-    <LevelSelector>k__BackingField:
-      _index: 2
-      _name: LevelSelector
-      _asset: {fileID: 102900000, guid: 6c1fe96635c11ee42aa8ac76f717844b, type: 3}
   <LevelHandler>k__BackingField:
     _levelScriptableObjects:
+    - {fileID: 11400000, guid: cc980f881d255094bbd99a5d01d26665, type: 2}
     - {fileID: 11400000, guid: 3efcca78115e52f4bb7681b860b1009f, type: 2}
     - {fileID: 11400000, guid: 1eeaf31654a021d4d89b9ba6673b75b4, type: 2}
     - {fileID: 11400000, guid: e0e32e0a5e69f764cbfd245953a81b23, type: 2}
