@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Group8.TrashDash.Core;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 namespace Group8.TrashDash.MainMenu
 {
@@ -12,6 +11,9 @@ namespace Group8.TrashDash.MainMenu
 
         [SerializeField]
         private GameObject _mainMenuLayout = default;
+
+        [SerializeField]
+        private GameObject _levelSelectLayout = default;
 
         [SerializeField]
         private GameObject _settingLayout = default;
@@ -31,6 +33,27 @@ namespace Group8.TrashDash.MainMenu
         [SerializeField]
         private Button _btnCancel = default;
 
+        private PlayerAction _input;
+
+        private void OnEnable()
+        {
+            _input = new();
+            _input.Enable();
+            _input.Panel.Cancel.performed += PerformedEvent;
+        }
+
+        private void OnDisable()
+        {
+            _input.Disable();
+            _input.Panel.Cancel.performed -= PerformedEvent;
+        }
+
+        private void PerformedEvent(InputAction.CallbackContext context)
+        {
+           _mainMenuLayout.SetActive(true);
+            _levelSelectLayout.SetActive(default);
+        }
+
         private void Awake()
         {
             _btnConfirm.onClick.AddListener(() => Application.Quit());
@@ -47,7 +70,10 @@ namespace Group8.TrashDash.MainMenu
             });
 
             _btnSetting.onClick.AddListener(() => _settingLayout.SetActive(true));
-            _btnStart.onClick.AddListener(() => SceneManager.LoadScene(GameManager.Instance.Scenes.LevelSelector));
+            _btnStart.onClick.AddListener(() => {
+                _levelSelectLayout.SetActive(true);
+                _mainMenuLayout.SetActive(default);
+            });
         }
 
         private void OnDestroy()
