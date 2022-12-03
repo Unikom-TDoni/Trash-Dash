@@ -31,6 +31,12 @@ namespace Group8.TrashDash.Level
         public void SaveCurrentLevelData(float score) =>
             LevelDataPersistence.Save(SelectedLevel, score);
 
+        public void SaveNextLevel()
+        {
+            SelectedLevel++;
+            SaveCurrentLevelData(default);
+        }
+
         public float[] GetStarScoreLimit() =>
             _levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).ScoreStarLimit;
 
@@ -42,8 +48,7 @@ namespace Group8.TrashDash.Level
 
         public void GoToTheNextLevel()
         {
-            SelectedLevel++;
-            SaveCurrentLevelData(default);
+            SaveNextLevel();
             SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
         }
     }

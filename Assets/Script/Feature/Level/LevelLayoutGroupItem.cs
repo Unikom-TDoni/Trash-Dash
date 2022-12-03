@@ -47,7 +47,7 @@ namespace Group8.TrashDash.Level
             if (eventData.button is not PointerEventData.InputButton.Left) return;
             if (_imgLock.enabled)
             {
-                _lockAnimator.Play(ShakeAnim);
+                _lockAnimator.SetTrigger(ShakeAnim);
                 return;
             }
             GameManager.Instance.LevelHandler.SelectLevel(_itemLevelId);
