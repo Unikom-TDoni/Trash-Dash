@@ -17,6 +17,9 @@ public class PowerUpHandler : MonoBehaviour
     private PlayerAudioController _playerAudioController = default;
 
     [SerializeField]
+    private Transform playerBin;
+
+    [SerializeField]
     private GameObject indicatorPanel;
 
     private void Awake()
@@ -98,7 +101,12 @@ public class PowerUpHandler : MonoBehaviour
         {
             StopCoroutine(powerUpCoroutines[powerUp]);
             if (powerUpVFXs.ContainsKey(powerUp.parameterName))
-                powerUpVFXs[powerUp.parameterName].GetComponent<ParticleSystem>().Stop();
+            {
+                foreach (GameObject go in powerUpVFXs[powerUp.parameterName])
+                {
+                    go.GetComponent<ParticleSystem>().Stop();
+                }
+            }
         }
 
         powerUpCoroutines[powerUp] = StartCoroutine(PowerUpValue(powerUp.parameterName, powerUp.value, powerUp.duration, powerUp.VFX));
@@ -113,16 +121,23 @@ public class PowerUpHandler : MonoBehaviour
     // Mencegah terubahnya value akibat StopCoroutine()
     private Dictionary<string, float> initialPowerUpValues = new Dictionary<string, float>();
 
-    private Dictionary<string, GameObject> powerUpVFXs = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject[]> powerUpVFXs = new Dictionary<string, GameObject[]>();
 
     public IEnumerator PowerUpValue(string parameterName, float value, float duration, GameObject vfx)
     {
         if (vfx != null)
         {
             if (!powerUpVFXs.ContainsKey(parameterName))
-                powerUpVFXs.Add(parameterName, Instantiate(vfx, transform));
+            {
+                GameObject playerVfx = Instantiate(vfx, transform);
+                GameObject playerBinVfx = Instantiate(vfx, playerBin);
+                powerUpVFXs.Add(parameterName, new GameObject[] {playerVfx, playerBinVfx});
+            }
 
-            powerUpVFXs[parameterName].GetComponent<ParticleSystem>().Play();
+            foreach (GameObject go in powerUpVFXs[parameterName])
+            {
+                go.GetComponent<ParticleSystem>().Play();
+            }
         }
 
         if (powerUpValues[parameterName] != value)
@@ -136,7 +151,10 @@ public class PowerUpHandler : MonoBehaviour
 
         if (vfx != null)
         {
-            powerUpVFXs[parameterName].GetComponent<ParticleSystem>().Stop();
+            foreach (GameObject go in powerUpVFXs[parameterName])
+            {
+                go.GetComponent<ParticleSystem>().Stop();
+            }
         }
     }
 

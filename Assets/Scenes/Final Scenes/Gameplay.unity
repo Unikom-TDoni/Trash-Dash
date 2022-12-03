@@ -9101,7 +9101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 433252167}
   eventHub: {fileID: 861992327}
-  speedMultiplier: 0.8
+  speedMultiplier: 0.85
   stopDistance: 3
   rotateSpeed: 5
 --- !u!195 &1895656942
@@ -9509,6 +9509,7 @@ MonoBehaviour:
   maxSlot: 2
   powerUpLayoutGroupController: {fileID: 1181961624}
   _playerAudioController: {fileID: 1269382279}
+  playerBin: {fileID: 1895656940}
   indicatorPanel: {fileID: 1505442414}
   powerUpParameters:
   - name: speed
