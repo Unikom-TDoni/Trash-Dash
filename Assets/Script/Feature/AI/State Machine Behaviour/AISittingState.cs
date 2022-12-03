@@ -15,7 +15,7 @@ public class AISittingState : StateBehaviour {
             transform.GetComponent<NavMeshAgent>().enabled = false;
         }
 
-        AIManager manager = GameObject.FindWithTag("Manager").GetComponent<AIManager>();
+        AIManager manager = transform.GetComponent<CustomerAI>().aiManager;
         duration = manager.sittingDuration;
 
         transform.GetComponent<Animator>().SetBool("Stand Up", false);

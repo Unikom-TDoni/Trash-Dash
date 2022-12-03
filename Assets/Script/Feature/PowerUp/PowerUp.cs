@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUp : SpawnObject
 {
@@ -8,6 +9,9 @@ public class PowerUp : SpawnObject
 
     private Collider m_collider;
     private ParticleSystem[] m_particleSystem;
+
+    [SerializeField]
+    private Image _imgIcon = default;
 
     private void Awake()
     {
@@ -47,6 +51,8 @@ public class PowerUp : SpawnObject
                 });
             colorOverLifetime.color = grad;
         }
+
+        _imgIcon.sprite = powerUpInfo.Sprite;
     }
 
     public virtual void Use()

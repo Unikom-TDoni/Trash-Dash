@@ -5,7 +5,7 @@ public class AIWalkingAwayState : StateBehaviour {
     Vector3 target;
 
     public override void OnStateEnter(Transform transform) {
-        AIManager manager = GameObject.FindWithTag("Manager").GetComponent<AIManager>();
+        AIManager manager = transform.GetComponent<CustomerAI>().aiManager;
         target = manager.exitPosition;
 
         NavMeshAgent agent = transform.GetComponent<NavMeshAgent>();

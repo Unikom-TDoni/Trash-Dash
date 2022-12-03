@@ -68,7 +68,7 @@ namespace Group8.TrashDash.Spawner
                 go.transform.position = RandomSpawnPosition(transform, offset, size);
             }
 
-            go.transform.position = hit.position;
+            go.transform.position = hit.position + spawnOffset;
             //if true, is it in bound? if not random and check again
             //if false, random and check again
         }

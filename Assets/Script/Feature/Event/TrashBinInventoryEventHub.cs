@@ -6,6 +6,7 @@ using Group8.TrashDash.Score;
 using UnityEngine.InputSystem;
 using Group8.TrashDash.Core;
 using Group8.TrashDash.Item.Audio;
+using TMPro;
 
 namespace Group8.TrashDash.Coordinator
 {
@@ -23,10 +24,14 @@ namespace Group8.TrashDash.Coordinator
         private InventoryHandler _inventoryHandler = default;
 
         [SerializeField]
+        private TMP_Text _inventoryTitle = default;
+
+        [SerializeField]
         private PlayerAudioController _playerAudioController = default;
 
         private void Awake()
         {
+            if(GameManager.Instance)
             GameManager.Instance.LevelHandler.SpawnLevel();
             _trashBinHandler.OnAwake(OnDrop, OnInteract);
         }
@@ -45,12 +50,12 @@ namespace Group8.TrashDash.Coordinator
 
         private void OnDrop(DropableData args)
         {
+            _inventoryHandler.RemoveItem(args.TrashContentInfo, args.InventoryLayoutGroupItem);
             if (!_trashBinHandler.ActiveTrashBinType.Equals(args.TrashContentInfo.TrashBinType))
                 scoreManager.UpdateScore(ScoreState.Wrong);
             else
             {
                 scoreManager.UpdateScore(ScoreState.Correct);
-                _inventoryHandler.RemoveItem(args.TrashContentInfo, args.InventoryLayoutGroupItem);
                 _playerAudioController.PlaySuccessOnDropSfx();
             }
             _playerAudioController.PlayOnDropSfx();
@@ -58,12 +63,14 @@ namespace Group8.TrashDash.Coordinator
 
         private void OnInteract(TrashBinTypes args)
         {
+            _inventoryTitle.text = "Trash Bin";
             _inventoryHandler.SetActiveInventory(true);
             scoreManager.ResetCombo();
         }
 
-        private void OnInventory(InputAction.CallbackContext context)
+        public void OnInventory(InputAction.CallbackContext context)
         {
+            _inventoryTitle.text = "Inventory";
             _inventoryHandler.SetActiveInventory(true);
             _trashBinHandler.SetActiveTrashBinLayout(default);
         }

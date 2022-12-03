@@ -29,14 +29,14 @@ public class PanelUIManager : MonoBehaviour
     private AudioClip _gameOverAudioClip = default;
 
     [SerializeField]
-    private AudioClip _starAudioClip = default;
-
-    [SerializeField]
     private CinemachineVirtualCamera cineCam;
     [SerializeField]
     private float camFOVValue = 45;
     [SerializeField]
     private float camChangeDuration = 3f;
+
+    [SerializeField]
+    private GameObject _inventory;
 
     private void OnEnable()
     {
@@ -72,6 +72,8 @@ public class PanelUIManager : MonoBehaviour
     {
         if (gameOverPanel.activeSelf) return;
         InputManager.playerAction.Gameplay.Disable();
+        _inventory.SetActive(false);
+        InputManager.playerAction.Panel.Disable();
 
         trashSpawner.StopAllCoroutines();
         StartCoroutine(CamFOVChange());
@@ -115,7 +117,8 @@ public class PanelUIManager : MonoBehaviour
 
     public void NextLevel()
     {
-        GameManager.Instance.LevelHandler.GoToTheNextLevel();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //GameManager.Instance.LevelHandler.GoToTheNextLevel();
     }
 
     public void BackToMainMenu()
@@ -147,14 +150,8 @@ public class PanelUIManager : MonoBehaviour
         PlayAudioClip(_gameOverAudioClip);
     }
 
-    public void PlayStarClip()
-    {
-        PlayAudioClip(_starAudioClip);
-    }
-
     private void PlayAudioClip(AudioClip clip)
     {
-        if (_audioSource.clip == clip) return;
         _audioSource.clip = clip;
         _audioSource.Play();
     }

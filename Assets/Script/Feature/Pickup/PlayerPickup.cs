@@ -34,6 +34,8 @@ namespace Group8.TrashDash.Player.Pickup
         [SerializeField]
         private PlayerAudioController _playerAudioController = default;
 
+        public TutorialManager tutorialManager;
+
         private void Awake()
         {
             playerAnimator = GetComponent<Animator>();
@@ -124,6 +126,11 @@ namespace Group8.TrashDash.Player.Pickup
                         }
                     }
                     trashJumpingToBin++;
+
+                    if (tutorialManager != null)
+                    {
+                        tutorialManager.PickupTrash();
+                    }
                 }
 
                 _playerAudioController.PlayPickupSfx();

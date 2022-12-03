@@ -31,6 +31,13 @@ namespace Group8.TrashDash.Level
         public void SaveCurrentLevelData(float score) =>
             LevelDataPersistence.Save(SelectedLevel, score);
 
+        public void SaveNextLevel()
+        {
+            if (_levelScriptableObjects.Max(item => item.Level) < SelectedLevel + 1) return;
+            SelectedLevel++;
+            SaveCurrentLevelData(default);
+        }
+
         public float[] GetStarScoreLimit() =>
             _levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).ScoreStarLimit;
 
@@ -39,12 +46,5 @@ namespace Group8.TrashDash.Level
 
         public void SpawnLevel() =>
             UnityEngine.Object.Instantiate(_levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).Prefab, default, Quaternion.identity);
-
-        public void GoToTheNextLevel()
-        {
-            SelectedLevel++;
-            SaveCurrentLevelData(default);
-            SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
-        }
     }
 }

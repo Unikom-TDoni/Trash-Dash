@@ -15,6 +15,6 @@ MonoBehaviour:
   <Level>k__BackingField: 1
   <Prefab>k__BackingField: {fileID: 1805890735193954345, guid: 5e78f3047dd63d04385e6eb2ac311f5f, type: 3}
   _scoreStarLimit:
-  - 5
-  - 10
-  - 30
+  - 120
+  - 180
+  - 250
