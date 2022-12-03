@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Group8.TrashDash.Core;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 
 namespace Group8.TrashDash.MainMenu
 {
@@ -35,20 +34,29 @@ namespace Group8.TrashDash.MainMenu
         private void Awake()
         {
             _btnConfirm.onClick.AddListener(() => Application.Quit());
-            _btnExit.onClick.AddListener(() => _quitConfirmLayout.SetActive(true));
-            _btnCancel.onClick.AddListener(() => _quitConfirmLayout.SetActive(default));
+            _btnExit.onClick.AddListener(() =>
+            {
+                _mainMenuLayout.SetActive(default);
+                _quitConfirmLayout.SetActive(true);
+            });
+
+            _btnCancel.onClick.AddListener(() =>
+            {
+                _mainMenuLayout.SetActive(true);
+                _quitConfirmLayout.SetActive(default);
+            });
+
             _btnSetting.onClick.AddListener(() => _settingLayout.SetActive(true));
             _btnStart.onClick.AddListener(() => SceneManager.LoadScene(GameManager.Instance.Scenes.LevelSelector));
         }
-        public void ShowQuitBox()
-        {
-            _mainMenuLayout.SetActive(false);
-            _quitConfirmLayout.SetActive(true);
-        }
 
-        public void QuitGame()
+        private void OnDestroy()
         {
-            Application.Quit();
+            _btnExit.onClick.RemoveAllListeners();
+            _btnStart.onClick.RemoveAllListeners();
+            _btnCancel.onClick.RemoveAllListeners();
+            _btnSetting.onClick.RemoveAllListeners();
+            _btnConfirm.onClick.RemoveAllListeners();
         }
     }
 }

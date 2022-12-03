@@ -1531,7 +1531,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -8081637852539257093, guid: d07b73ef288572b4697837d57d7812ce, type: 2}
   m_audioClip: {fileID: 8300000, guid: f551737f679c60d498cffefff28bae92, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2047,9 +2047,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -6289765437016317643, guid: d07b73ef288572b4697837d57d7812ce, type: 2}
   m_audioClip: {fileID: 8300000, guid: 05c91574792a46a4f9c90c8a350083f2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5006,6 +5006,13 @@ MonoBehaviour:
   uncollectedScore: -10
   multiplyScore: 0
   trashSpawner: {fileID: 1092956856}
+  ResultData:
+    TotalScore: 0
+    Collected: 0
+    Sorted: 0
+    WrongSorted: 0
+    Uncollected: 0
+    HighestCombo: 0
 --- !u!114 &1468655745
 MonoBehaviour:
   m_ObjectHideFlags: 0
