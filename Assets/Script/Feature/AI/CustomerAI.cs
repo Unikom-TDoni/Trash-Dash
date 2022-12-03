@@ -4,8 +4,8 @@ using Group8.TrashDash.TrashBin;
 
 public class CustomerAI : MonoBehaviour {
     public AIStateMachine stateMachine {get; private set;}
-    public Transform targetPoint;
-    public AIManager aiManager;
+    [HideInInspector] public Transform targetPoint;
+    [HideInInspector] public AIManager aiManager;
     [HideInInspector] public SpawnConfiguration spawnConfiguration;
 
     Coroutine spawnCoroutine;
