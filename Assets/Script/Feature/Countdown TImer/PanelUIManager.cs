@@ -120,7 +120,7 @@ public class PanelUIManager : MonoBehaviour
 
     public void NextLevel()
     {
-        GameManager.Instance.LevelHandler.GoToTheNextLevel();
+        //GameManager.Instance.LevelHandler.GoToTheNextLevel();
     }
 
     public void BackToMainMenu()
