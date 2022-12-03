@@ -31,6 +31,7 @@ namespace Group8.TrashDash.Coordinator
 
         private void Awake()
         {
+            if(GameManager.Instance)
             GameManager.Instance.LevelHandler.SpawnLevel();
             _trashBinHandler.OnAwake(OnDrop, OnInteract);
         }
@@ -49,12 +50,12 @@ namespace Group8.TrashDash.Coordinator
 
         private void OnDrop(DropableData args)
         {
+            _inventoryHandler.RemoveItem(args.TrashContentInfo, args.InventoryLayoutGroupItem);
             if (!_trashBinHandler.ActiveTrashBinType.Equals(args.TrashContentInfo.TrashBinType))
                 scoreManager.UpdateScore(ScoreState.Wrong);
             else
             {
                 scoreManager.UpdateScore(ScoreState.Correct);
-                _inventoryHandler.RemoveItem(args.TrashContentInfo, args.InventoryLayoutGroupItem);
                 _playerAudioController.PlaySuccessOnDropSfx();
             }
             _playerAudioController.PlayOnDropSfx();
@@ -67,15 +68,15 @@ namespace Group8.TrashDash.Coordinator
             scoreManager.ResetCombo();
         }
 
-        private void OnInventory(InputAction.CallbackContext context)
+        public void OnInventory(InputAction.CallbackContext context)
         {
+            _inventoryTitle.text = "Inventory";
             _inventoryHandler.SetActiveInventory(true);
             _trashBinHandler.SetActiveTrashBinLayout(default);
         }
 
         private void OnInventoryPanel(InputAction.CallbackContext context)
         {
-            _inventoryTitle.text = "Inventory";
             _inventoryHandler.SetActiveInventory(default);
         }
 

@@ -83,6 +83,7 @@ public class PowerUpHandler : MonoBehaviour
 
     private void Update()
     {
+        if (indicatorPanel == null) return;
         if(indicatorPanel.activeSelf != (powerUpValues["trashIndicator"] == 1))
             indicatorPanel.SetActive((powerUpValues["trashIndicator"] == 1));
     }

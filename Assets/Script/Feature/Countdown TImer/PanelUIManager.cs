@@ -29,9 +29,6 @@ public class PanelUIManager : MonoBehaviour
     private AudioClip _gameOverAudioClip = default;
 
     [SerializeField]
-    private AudioClip _starAudioClip = default;
-
-    [SerializeField]
     private CinemachineVirtualCamera cineCam;
     [SerializeField]
     private float camFOVValue = 45;
@@ -120,6 +117,7 @@ public class PanelUIManager : MonoBehaviour
 
     public void NextLevel()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //GameManager.Instance.LevelHandler.GoToTheNextLevel();
     }
 
@@ -150,11 +148,6 @@ public class PanelUIManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         _bgmAudioSource.Stop();
         PlayAudioClip(_gameOverAudioClip);
-    }
-
-    public void PlayStarClip()
-    {
-        PlayAudioClip(_starAudioClip);
     }
 
     private void PlayAudioClip(AudioClip clip)
