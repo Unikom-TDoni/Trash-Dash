@@ -20,23 +20,36 @@ namespace Group8.TrashDash.Level
         private Image _imgBackground = default;
 
         [SerializeField]
+        private Image _imgBackgroundShade = default;
+
+        [SerializeField]
         private Image _imgLock = default;
 
         [SerializeField]
         private Sprite _activeStarSprite = default;
 
-        private int _itemLevelId = default;
+        [SerializeField]
+        private Color _deactiveColor = default;
 
-        private CanvasGroup _canvasGroup = default;
+        private Animator _lockAnimator = default;
+
+        private readonly int ShakeAnim = Animator.StringToHash("Shake");
+
+        private int _itemLevelId = default;
 
         private void Awake()
         {
-            _canvasGroup = GetComponent<CanvasGroup>();
+            _lockAnimator = _imgLock.GetComponent<Animator>();
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button is not PointerEventData.InputButton.Left) return;
+            if (_imgLock.enabled)
+            {
+                _lockAnimator.Play(ShakeAnim);
+                return;
+            }
             GameManager.Instance.LevelHandler.SelectLevel(_itemLevelId);
             SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
         }
@@ -62,10 +75,11 @@ namespace Group8.TrashDash.Level
 
         private void UpdateLockedLayout(bool isOpened)
         {
-            _canvasGroup.blocksRaycasts = isOpened;
             if (isOpened) return;
             foreach (var item in _imgStars)
                 item.enabled = default;
+            _imgBackground.color = _deactiveColor;
+            _imgBackgroundShade.color = new Color(_deactiveColor.r, _deactiveColor.g, _deactiveColor.b, 160);
             _imgLock.enabled = true;
             _txtLevel.enabled = default;
         }
