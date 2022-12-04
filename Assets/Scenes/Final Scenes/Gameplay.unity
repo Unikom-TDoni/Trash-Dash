@@ -531,7 +531,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82159210}
-  m_LocalRotation: {x: 0.36990207, y: -0.00004287035, z: 0.000017068483, w: 0.9290708}
+  m_LocalRotation: {x: 0.3699021, y: -0.000042838383, z: 0.000017055758, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3506,7 +3506,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669092964}
-  m_LocalRotation: {x: 0.36990207, y: -0.00004287035, z: 0.000017068483, w: 0.9290708}
+  m_LocalRotation: {x: 0.3699021, y: -0.000042838383, z: 0.000017055758, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8476,7 +8476,7 @@ MonoBehaviour:
   updateUIMinute: 10
   dayTime: 6
   nightTime: 18
-  lastSecondsCoundown: 15
+  lastSecondsCoundown: 10
   WavePerHour: 1
   lastWaveSpawnTime: 19
 --- !u!4 &1765521127

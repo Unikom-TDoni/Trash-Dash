@@ -14498,7 +14498,7 @@ PrefabInstance:
     - target: {fileID: 2336156426457762423, guid: d25aaac2a74790d44bcdea4f6d7b0201, type: 3}
       propertyPath: data
       value: 
-      objectReference: {fileID: 23800000, guid: f708c3642ee4742afa3497a4601e4912, type: 2}
+      objectReference: {fileID: 23800000, guid: 07cc76a8bcf5f714cad337610ccdcd45, type: 2}
     - target: {fileID: 2336156426457762423, guid: d25aaac2a74790d44bcdea4f6d7b0201, type: 3}
       propertyPath: wavePerHour
       value: 3
