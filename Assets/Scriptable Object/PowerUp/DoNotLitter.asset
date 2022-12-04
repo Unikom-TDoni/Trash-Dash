@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DoNotLitter
   m_EditorClassIdentifier: 
   name: Do Not Litter!
-  Sprite: {fileID: 21300000, guid: 5fa76b98b901f16429937e2bcc296839, type: 3}
+  Sprite: {fileID: 21300000, guid: 234ce81b8df9d2a4984009bee719f510, type: 3}
   Mesh: {fileID: 0}
   Color: {r: 0.6560673, g: 0.9622642, b: 0.557387, a: 1}
   Materials: []

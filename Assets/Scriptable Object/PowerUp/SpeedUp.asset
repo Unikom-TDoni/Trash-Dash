@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpeedUp
   m_EditorClassIdentifier: 
   name: Speed Up!
-  Sprite: {fileID: 21300000, guid: 7188dd1aa5e8d6146bd03734a6c6566c, type: 3}
+  Sprite: {fileID: 21300000, guid: 6a0f69f029f192e4b859483e0951858b, type: 3}
   Mesh: {fileID: 0}
   Color: {r: 0.45624778, g: 0.8859781, b: 0.9056604, a: 1}
   Materials: []
