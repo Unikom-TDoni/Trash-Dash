@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 82724
+  controlID: 83047
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -85,7 +85,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 82725
+  controlID: 83048
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 82726
+  controlID: 83049
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 82727
+  controlID: 83050
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,8 +249,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1e2b2600
-      m_LastClickedID: 2501406
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: 60b7d6ffaaafd7ffe8ced7ff0037d8ff2e91daff20c4daff2ac4daff06c5daffe6e8dafff2eadafff6eadafffaeadaff50ecdaffc2d6ddffbed9ddff02e8ddff28a1deff96abdeffd243dfff4e4bdfff28f8dfff60a2e0ffd25be1fff8fce1ffb040e2ffd853e2ffe8cde2ff7ecbe3ff4019e5ff94a9e5ff60b6e6ff0824e8ff821deaff5c1feaff601feaff641feaffa420eafff846ecff0447ecff0847ecff0c47ecff1e46edff02d1efff3a1bf2ff322df2ff9630f2fff438f2ff144ef2ff9a53f2ffeeccf2ffd02ff4ff4a55f4ffa875f4ff80c1f4ff84b0f5ff86b0f5ff9ad7f8ffe4b7f9ff34bef9ff38bef9ff3cbef9ff60e1f9ffe4faffffe6fafffff4ffffff2466000078950300e296030078980300dc9903004e9a03006aaf03002ab0030056b003002ab1030062b1030084b20300b8ee13008ccf1400d66c1800de6c1800326e18003cfc18009efc1800dcfe180014ff1800642c1900d42c1900602f19006a2f1900e0321b0050331b00a6331b00dc351b00923d1e00de3d1e00f43d1e006a401e0074401e00cce5200056732100c6732100527621005c762100f8b4230068b523006eb62300f4b7230000e6230070e6230076e72300fce8230006e92300c29c2500
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.1277938, y: -0.092138015, z: 0.011909202, w: -0.9874548}
     speed: 2
-    m_Value: {x: -0.1277938, y: -0.09213802, z: 0.011909203, w: -0.98745483}
+    m_Value: {x: -0.12779193, y: -0.092136666, z: 0.011909028, w: -0.9874403}
   m_Size:
     m_Target: 10
     speed: 2
@@ -733,8 +733,8 @@ MonoBehaviour:
     y: 464.8
     width: 1226.4
     height: 258
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 519}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 76ee1900
     m_LastClickedID: 1699446
     m_ExpandedIDs: 00000000c8ba0000caba0000ccba0000ceba0000d0ba0000d2ba0000d4ba0000d6ba0000d8ba0000daba0000dcba0000deba0000e0ba0000e2ba0000e4ba0000e6ba0000e8ba0000eaba0000ecba0000eeba0000f0ba000062bb0000e2d1010000ca9a3b
@@ -851,9 +851,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 1e2b2600
-    m_LastClickedInstanceID: 2501406
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: d853e2ff
+    m_LastClickedInstanceID: -1944616
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000686500003809010038d500000000000056660200
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1105,8 +1105,8 @@ MonoBehaviour:
     y: 0
     width: 309.59998
     height: 722.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
