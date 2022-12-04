@@ -51,31 +51,30 @@ namespace Group8.TrashDash.Setting
         private void InitUiEvent()
         {
             Coroutine coroutine = default;
-            var persistenceData = GameManager.Instance.SettingDataPersistence.PersistenceData;
 
             _sliderSfx.onValueChanged.AddListener(value =>
             {
                 if(coroutine is not null) StopCoroutine(coroutine);
                 coroutine = StartCoroutine(CheckSound(value));
-                ChangeApplyTextButton(!value.Equals(persistenceData.SfxVolume));
+                ChangeApplyTextButton(!value.Equals(GameManager.Instance.SettingDataPersistence.PersistenceData.SfxVolume));
             });
 
             _sliderBgm.onValueChanged.AddListener(value =>
             {
-                ChangeApplyTextButton(!value.Equals(persistenceData.BgmVolume));
+                ChangeApplyTextButton(!value.Equals(GameManager.Instance.SettingDataPersistence.PersistenceData.BgmVolume));
                 GameManager.Instance.SettingDataPersistence.ChangeAudioMixerBgm(value);
             });
 
             _dropdownDisplayMode.onValueChanged.AddListener(value =>
-                ChangeApplyTextButton(!value.Equals(persistenceData.DisplayMode))
+                ChangeApplyTextButton(!value.Equals(GameManager.Instance.SettingDataPersistence.PersistenceData.DisplayMode))
             );
 
             _dropdownResolution.onValueChanged.AddListener(value =>
-                ChangeApplyTextButton(!value.Equals(persistenceData.Resolution))
+                ChangeApplyTextButton(!value.Equals(GameManager.Instance.SettingDataPersistence.PersistenceData.Resolution))
             );
 
             _toggleVsync.onValueChanged.AddListener(value =>
-                ChangeApplyTextButton(!value.Equals(persistenceData.IsVsyncOn))
+                ChangeApplyTextButton(!value.Equals(GameManager.Instance.SettingDataPersistence.PersistenceData.IsVsyncOn))
             );
 
             _btnApplySetting.onClick.AddListener(ApplySetting);
