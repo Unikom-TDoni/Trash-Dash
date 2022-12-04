@@ -11,7 +11,6 @@ public class AIQueueingState : StateBehaviour {
         base.Start(transform);
         customerAI = transform.GetComponent<CustomerAI>();
         agent = transform.GetComponent<NavMeshAgent>();
-
         animator = transform.GetComponent<Animator>();
     }
 

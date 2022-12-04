@@ -11,11 +11,10 @@ public class AISittingState : StateBehaviour {
     public override void OnStateEnter(Transform transform) {
         if (chair) {
             targetPos = chair.position + chair.forward * .1f;
-            targetPos.y = transform.position.y;
             transform.GetComponent<NavMeshAgent>().enabled = false;
         }
 
-        AIManager manager = GameObject.FindWithTag("Manager").GetComponent<AIManager>();
+        AIManager manager = transform.GetComponent<CustomerAI>().aiManager;
         duration = manager.sittingDuration;
 
         transform.GetComponent<Animator>().SetBool("Stand Up", false);

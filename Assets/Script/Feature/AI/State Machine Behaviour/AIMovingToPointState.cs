@@ -3,12 +3,10 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class AIMovingToPointState : StateBehaviour {
-    AIManager manager;
     NavMeshAgent agent;
     Transform chair;
 
     public override void Start(Transform transform) {
-        manager = GameObject.FindObjectOfType<AIManager>();
         agent = transform.GetComponent<NavMeshAgent>();
     }
 

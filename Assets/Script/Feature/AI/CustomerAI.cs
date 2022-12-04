@@ -16,7 +16,7 @@ public class CustomerAI : MonoBehaviour {
     }
 
     void OnStateChange(AIState newState) {
-        SpawnTrashes(aiManager.trashSpawnStateSet.Contains(newState));
+        SpawnTrashes(AIConfiguration.trashSpawnStateSet.Contains(newState));
     }
 
     void SpawnTrashes(bool spawnTrashes) {
