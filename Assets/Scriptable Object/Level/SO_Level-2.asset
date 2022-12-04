@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Level>k__BackingField: 2
   <Prefab>k__BackingField: {fileID: 1805890735193954345, guid: cf0ef8de3dc964e39b58c6a12071aeae, type: 3}
-  <Duration>k__BackingField: 0
+  <Duration>k__BackingField: 180
   _scoreStarLimit:
   - 300
   - 380
