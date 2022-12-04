@@ -17,9 +17,6 @@ public class AIManager : MonoBehaviour {
     [SerializeField] SpawnConfiguration[] spawnConfigurations;
     [SerializeField] Transform[] exitPoints;
 
-    [Space]
-    [SerializeField] AIState[] trashSpawnStateList;
-
     [Header("Spawn")]
     private TimeManager timeManager;
     [SerializeField] private int wavePerHour = 1;
@@ -52,12 +49,6 @@ public class AIManager : MonoBehaviour {
         foreach (var spawnConfig in spawnConfigurations) {
             spawnConfig.InitializeQueue();
         }
-
-        trashSpawnStateSet = new HashSet<AIState>();
-        foreach (var item in trashSpawnStateList) {
-            trashSpawnStateSet.Add(item);
-        }
-        trashSpawnStateList = null; // return to GC
 
         trashSpawner = FindObjectOfType<TrashSpawner>();
         if (!trashSpawner) {

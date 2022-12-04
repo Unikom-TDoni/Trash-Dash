@@ -20,7 +20,20 @@ public class CustomerAI : MonoBehaviour {
     }
 
     void OnStateChange(AIState newState) {
-        SpawnTrashes(AIConfiguration.trashSpawnStateSet.Contains(newState));
+        // SpawnTrashes(AIConfiguration.instantSpawnStateSet.Contains(newState));
+
+        if (AIConfiguration.coroutineSpawnState.Contains(newState)) {
+            if (spawnCoroutine == null) {
+                spawnCoroutine = aiManager.trashSpawner.RepeatSpawn(transform, aiManager.trashSpawnMinInterval, aiManager.trashSpawnMaxInterval, areaSize: new Vector3(2f, 1f, 2f), offset: Vector3.up, randomizeRotation: true);
+            }
+        } 
+        
+        if (AIConfiguration.instantSpawnStateSet.Contains(newState)) {
+            if (spawnCoroutine != null) {
+                StopCoroutine(spawnCoroutine);
+            }
+            // TODO: instant spawn
+        }
     }
 
     void SpawnTrashes(bool spawnTrashes) {
