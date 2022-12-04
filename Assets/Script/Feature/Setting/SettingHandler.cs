@@ -84,7 +84,6 @@ namespace Group8.TrashDash.Setting
         {
             _settingLayoutObj.SetActive(default);
             _mainMenuLayoutObj.SetActive(true);
-            _bgmAudioSource.volume = GameManager.Instance.SettingDataPersistence.PersistenceData.BgmVolume;
             if (_txtApplySettingDesc.text.Equals("CLOSE")) return;
             GameManager.Instance.SettingDataPersistence.Save(new(
                 _toggleVsync.isOn,
