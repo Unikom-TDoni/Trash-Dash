@@ -8476,7 +8476,7 @@ MonoBehaviour:
   updateUIMinute: 10
   dayTime: 6
   nightTime: 18
-  lastSecondsCoundown: 15
+  lastSecondsCoundown: 10
   WavePerHour: 1
   lastWaveSpawnTime: 19
 --- !u!4 &1765521127
