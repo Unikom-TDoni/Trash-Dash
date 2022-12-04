@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 0.6
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: de1d342af0dd84906b6f1fe52f32b95b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7a2875577e24d48cc9f05873ff0f8c53, type: 2}
 --- !u!1001 &3331872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1565,6 +1565,7 @@ MonoBehaviour:
   trashJumpingToBin: 0
   playerBinTransform: {fileID: 0}
   _playerAudioController: {fileID: 0}
+  tutorialManager: {fileID: 0}
 --- !u!114 &94734079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19587,6 +19588,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level_2
       objectReference: {fileID: 0}
+    - target: {fileID: 2921960813456650236, guid: eed2924fc2232fa4089039b2ace7c8a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2921960813456650237, guid: eed2924fc2232fa4089039b2ace7c8a9, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -19714,6 +19719,63 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1cdd74442d42f466aa064636ed9e8d3e, type: 3}
+--- !u!1001 &1056895174
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4386501237954211264, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_Name
+      value: Level_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386501237954211265, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3df868c70e4d2e49af233ca67875b99, type: 3}
 --- !u!1001 &1059185802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25446,10 +25508,10 @@ MonoBehaviour:
   trashSpawner: {fileID: 0}
   _bgmAudioSource: {fileID: 0}
   _gameOverAudioClip: {fileID: 0}
-  _starAudioClip: {fileID: 0}
   cineCam: {fileID: 0}
   camFOVValue: 45
   camChangeDuration: 3
+  _inventory: {fileID: 0}
 --- !u!4 &1370201247
 Transform:
   m_ObjectHideFlags: 0
@@ -29435,6 +29497,7 @@ MonoBehaviour:
   spawnPrefab:
     prefab: {fileID: 0}
     maxObjectInPool: 100
+  spawnOffset: {x: 0, y: 0, z: 0}
   trashInformations:
   - {fileID: 11400000, guid: 5742fdf56d5aeb7499240ea3417b99e3, type: 2}
   - {fileID: 11400000, guid: 9a260e18b7177b347b2f0e09e2f1c334, type: 2}
