@@ -12,6 +12,9 @@ namespace Group8.TrashDash.Level
         [field:SerializeField]
         public GameObject Prefab { get; private set; } = default;
 
+        [field: SerializeField]
+        public int Duration { get; private set; } = default;
+
         [SerializeField]
         private float[] _scoreStarLimit = default;
 

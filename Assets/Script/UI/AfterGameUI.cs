@@ -70,6 +70,7 @@ public class AfterGameUI : MonoBehaviour
     {
         collectedTitle.text += " (" + data.Collected + ")";
         sortedTitle.text += " (" + data.Sorted + ")";
+        sortedWrongTitle.text += " (" + data.WrongSorted + ")";
         uncollectedTitle.text += " (" + data.Uncollected + ")";
 
         StartCoroutine(TextCounter(collectedText, 0, data.Collected * scoreManager.baseScore, " P"));

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sanitizer
   m_EditorClassIdentifier: 
   Name: Sanitizer
-  Sprite: {fileID: 21300000, guid: 71db99c85f49a514695620c25050f2d5, type: 3}
+  Sprite: {fileID: 21300000, guid: b2910b8238bfeb74aa19a9b0d5e2e732, type: 3}
   TrashBinType: 3
   Mesh: {fileID: -4821300124380478740, guid: ae2cd48d5ec5e0345a304a42b9aa86df, type: 3}
   Materials:

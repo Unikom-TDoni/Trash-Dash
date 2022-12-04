@@ -17,4 +17,4 @@ MonoBehaviour:
   TrashBinType: 2
   Mesh: {fileID: 1050974422812936719, guid: ff258a1d1bea56141ab85a01a16adf48, type: 3}
   Materials:
-  - {fileID: -4211473562492425, guid: ff258a1d1bea56141ab85a01a16adf48, type: 3}
+  - {fileID: 2100000, guid: 20b3c79ced68f934389b8a15d094b2da, type: 2}

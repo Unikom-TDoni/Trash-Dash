@@ -505,7 +505,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -530,7 +530,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82159210}
-  m_LocalRotation: {x: 0.3698807, y: -0.00000001598609, z: 0.000000006364308, w: 0.9290793}
+  m_LocalRotation: {x: 0.3699021, y: -0.000042838383, z: 0.000017055758, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -851,7 +851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6126671321369295036, guid: 3cfc0119a4b5b7b4faebe57dc9b3c336, type: 3}
       propertyPath: m_Name
-      value: Title
+      value: InventoryTitle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cfc0119a4b5b7b4faebe57dc9b3c336, type: 3}
@@ -1564,6 +1564,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: ac4dd28e64f8bc94b87e54a244d0b961, type: 3}
   - {fileID: 2800000, guid: 951113418ff9f4842b8bc384b7878438, type: 3}
   _trashBinMaterial: {fileID: 2100000, guid: a4b13de9bbe9f2c4e886b1ea3f30a842, type: 2}
+  tutorialManager: {fileID: 0}
 --- !u!4 &356122747
 Transform:
   m_ObjectHideFlags: 0
@@ -2441,7 +2442,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433252162}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 10, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2452,7 +2453,7 @@ Transform:
   - {fileID: 1269382277}
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!82 &433252164
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2594,6 +2595,7 @@ MonoBehaviour:
   trashJumpingToBin: 0
   playerBinTransform: {fileID: 315505096}
   _playerAudioController: {fileID: 1269382279}
+  tutorialManager: {fileID: 0}
 --- !u!114 &433252167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3419,7 +3421,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 610399109}
   m_Follow: {fileID: 433252163}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -3443,7 +3445,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669092964}
-  m_LocalRotation: {x: 0.3698807, y: -0.00000001598609, z: 0.000000006364308, w: 0.9290793}
+  m_LocalRotation: {x: 0.3699021, y: -0.000042838383, z: 0.000017055758, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5705,29 +5707,37 @@ MonoBehaviour:
     maxObjectInPool: 100
   spawnOffset: {x: 0, y: 0, z: 0}
   trashInformations:
-  - {fileID: 11400000, guid: 758e9a78f93dc4549b0d342f03f7fec0, type: 2}
-  - {fileID: 11400000, guid: 70243e91d6bc6d84ab636aa9fbc2af58, type: 2}
-  - {fileID: 11400000, guid: cc688297ab2602140b7a1567aebff6e7, type: 2}
   - {fileID: 11400000, guid: b7b75a37bc2c38a4e8a8c6f69a4bace5, type: 2}
-  - {fileID: 11400000, guid: e7816c64620988f4894fb5ec3c72662e, type: 2}
-  - {fileID: 11400000, guid: 705dd0d15c0b26843928aed41883bc8c, type: 2}
   - {fileID: 11400000, guid: ed2a3372717e8834087f331e3828301a, type: 2}
+  - {fileID: 11400000, guid: e7816c64620988f4894fb5ec3c72662e, type: 2}
+  - {fileID: 11400000, guid: 758e9a78f93dc4549b0d342f03f7fec0, type: 2}
+  - {fileID: 11400000, guid: 705dd0d15c0b26843928aed41883bc8c, type: 2}
   - {fileID: 11400000, guid: 8d2ada30c9bcef748ad5b53d2171a0bc, type: 2}
+  - {fileID: 11400000, guid: cc688297ab2602140b7a1567aebff6e7, type: 2}
+  - {fileID: 11400000, guid: 70243e91d6bc6d84ab636aa9fbc2af58, type: 2}
   - {fileID: 11400000, guid: deb6e541dd746f34e895a339ece4cb00, type: 2}
   - {fileID: 11400000, guid: c56981ce8b8445d42825c4cfcd83789e, type: 2}
-  - {fileID: 11400000, guid: fe386e5ab19bc0e458ed7a0003d17254, type: 2}
-  - {fileID: 11400000, guid: 1963b4c4f93a61347b2aa4aca23467ad, type: 2}
+  - {fileID: 11400000, guid: ac45ac62b1a4f4a4bbf6fd6aaf66661c, type: 2}
   - {fileID: 11400000, guid: eb2199b009d9f4c4994c15af1c246a7e, type: 2}
   - {fileID: 11400000, guid: ac05ea1ecbafd5a42a42ca58b0e31d97, type: 2}
-  - {fileID: 11400000, guid: ac45ac62b1a4f4a4bbf6fd6aaf66661c, type: 2}
-  - {fileID: 11400000, guid: c56981ce8b8445d42825c4cfcd83789e, type: 2}
+  - {fileID: 11400000, guid: b166151233016c94e9c6e65ee8fe4dd4, type: 2}
   - {fileID: 11400000, guid: b093b05ac7e6e7f45af43e318c151a99, type: 2}
   - {fileID: 11400000, guid: 5502acbfdd380a54da4ca5fa46d834df, type: 2}
-  - {fileID: 11400000, guid: b166151233016c94e9c6e65ee8fe4dd4, type: 2}
-  - {fileID: 11400000, guid: ba0493cca133fe049baf38da6fb9aee6, type: 2}
+  - {fileID: 11400000, guid: 1963b4c4f93a61347b2aa4aca23467ad, type: 2}
+  - {fileID: 11400000, guid: fe386e5ab19bc0e458ed7a0003d17254, type: 2}
+  - {fileID: 11400000, guid: db4288e6cf306054aa6a4863d8ad074f, type: 2}
+  - {fileID: 11400000, guid: 3034c10e9e0de1b48bbe6def2b31fdb5, type: 2}
+  - {fileID: 11400000, guid: 8a7a9c4623b85984e8ce093612e936c5, type: 2}
+  - {fileID: 11400000, guid: 8805b4af469514043963a731a8cf7717, type: 2}
+  - {fileID: 11400000, guid: f317ee78ecf705e44834d7d2a2b7790e, type: 2}
+  - {fileID: 11400000, guid: a10c9c4f3367c664db04c77b0c794ece, type: 2}
+  - {fileID: 11400000, guid: 3412fb13da6746c48968a862ff1c42db, type: 2}
+  - {fileID: 11400000, guid: 45b02fffeec0fd842b92c1fcc4bda0c5, type: 2}
+  - {fileID: 11400000, guid: 31dded0996688a145b649d3220284af1, type: 2}
   - {fileID: 11400000, guid: 17a80050e0a7162489befbec850e6687, type: 2}
   - {fileID: 11400000, guid: 8aa87baa907a4fc45b0087f677be26db, type: 2}
   - {fileID: 11400000, guid: eedf45bc69e966e4d83ef3592631bfb8, type: 2}
+  - {fileID: 11400000, guid: ba0493cca133fe049baf38da6fb9aee6, type: 2}
   trashBinHandler: {fileID: 356122746}
   spawnOnAwake: 0
 --- !u!4 &1092956857
@@ -7038,6 +7048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1147837651}
+  textDuration: 0.5
 --- !u!4 &1468655746
 Transform:
   m_ObjectHideFlags: 0
@@ -8251,8 +8262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5976dd41ea705f341b5d62b4f27fa41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageDuration: 240
-  startingHour: 6
+  stageDuration: 300
+  startingHour: 5
   endHour: 22
   panelUIManager: {fileID: 1833481365}
   audioSource: {fileID: 669092967}
@@ -8278,6 +8289,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1766743274
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5452982873712310505, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_Name
+      value: Butterfly Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452982873712310506, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ad9bcd4d56f8124da9289e76da02ef8, type: 3}
 --- !u!1 &1792023636
 GameObject:
   m_ObjectHideFlags: 0
@@ -8453,7 +8521,7 @@ MonoBehaviour:
   _bgmAudioSource: {fileID: 570176291}
   _gameOverAudioClip: {fileID: 8300000, guid: 1f696dc6b62c242419579cecc88d3b19, type: 3}
   cineCam: {fileID: 669092965}
-  camFOVValue: 50
+  camFOVValue: 60
   camChangeDuration: 3
   _inventory: {fileID: 903906098}
 --- !u!4 &1833481366
@@ -9067,8 +9135,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895656939}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 3, z: -2.25}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 12, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9076,7 +9144,7 @@ Transform:
   - {fileID: 1082160148}
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1895656941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9091,7 +9159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 433252167}
   eventHub: {fileID: 861992327}
-  speedMultiplier: 0.8
+  speedMultiplier: 0.85
   stopDistance: 3
   rotateSpeed: 5
 --- !u!195 &1895656942
@@ -9499,6 +9567,7 @@ MonoBehaviour:
   maxSlot: 2
   powerUpLayoutGroupController: {fileID: 1181961624}
   _playerAudioController: {fileID: 1269382279}
+  playerBin: {fileID: 1895656940}
   indicatorPanel: {fileID: 1505442414}
   powerUpParameters:
   - name: speed

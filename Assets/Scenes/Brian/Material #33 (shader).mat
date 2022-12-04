@@ -13,6 +13,7 @@ Material:
   - _FADE_NONE
   - _LIGHTMAP_ON
   - _MIXCOLOR_ON
+  - _TEXTUREENABLED_ON
   - _UV_SPACE_WORLD
   m_InvalidKeywords:
   - _ALPHAPREMULTIPLY_ON
@@ -32,7 +33,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 22fa643c384b4aa44bf1ff7d02b95284, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -57,7 +58,7 @@ Material:
     - _LeftColorRotation: 0
     - _LightmapPower: 1
     - _MixColor: 1
-    - _MixColorPower: 0.5
+    - _MixColorPower: 0.465
     - _RIGHT_COLOR: 0
     - _RightColorPosition3: 0
     - _RightColorRotation: 0
@@ -66,7 +67,7 @@ Material:
     - _Shininess: 0.7
     - _Specular: 0
     - _TOP_COLOR: 1
-    - _TextureEnabled: 0
+    - _TextureEnabled: 1
     - _TopColorPosition3: 0
     - _TopColorRotation: 0
     - _UVSec: 0
@@ -84,7 +85,7 @@ Material:
     - _BottomColor2: {r: 0.28999996, g: 0.8, b: 0.19999996, a: 1}
     - _BottomColor3: {r: 0.28999996, g: 0.8, b: 0.19999996, a: 1}
     - _BottomColorPosition: {r: 0, g: 1, b: 0, a: 1}
-    - _DefaultColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _DefaultColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 0.6}
     - _DiffuseColor: {r: 1, g: 1, b: 1, a: 1}
     - _FadeColor: {r: 0, g: 0, b: 0, a: 1}
     - _FadePower: {r: 0, g: 1, b: 0, a: 1}

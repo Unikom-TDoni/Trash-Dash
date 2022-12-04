@@ -46,7 +46,7 @@ public class PlayerBin : MonoBehaviour, IInteractable
     {
         if(target != null)
         {
-            agent.speed = target.Speed * speedMultiplier;
+            agent.speed = target.Speed * target.SpeedMultiplier * speedMultiplier;
 
             agent.SetDestination(target.transform.position);
 

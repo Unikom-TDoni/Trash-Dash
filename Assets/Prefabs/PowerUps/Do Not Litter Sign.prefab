@@ -244,10 +244,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2421632205400614513, guid: d2c424e410e80834687f07e03ef42764, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e53171ba8b08d8d46962ef6fe8700d15, type: 2}
     - target: {fileID: 919132149155446097, guid: d2c424e410e80834687f07e03ef42764, type: 3}
       propertyPath: m_Name
       value: Dustbin
       objectReference: {fileID: 0}
+    - target: {fileID: 7418098771544918504, guid: d2c424e410e80834687f07e03ef42764, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e53171ba8b08d8d46962ef6fe8700d15, type: 2}
+    - target: {fileID: 7418098771544918504, guid: d2c424e410e80834687f07e03ef42764, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e53171ba8b08d8d46962ef6fe8700d15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2c424e410e80834687f07e03ef42764, type: 3}
 --- !u!4 &8643455828431558001 stripped

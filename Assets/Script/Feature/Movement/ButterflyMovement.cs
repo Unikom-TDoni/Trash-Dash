@@ -47,7 +47,6 @@ public class ButterflyMovement : MonoBehaviour
             if (transform.position.y >= maxHeight.y)
             {
                 butterflySpawner.butterflyCount--;
-                Debug.Log("butterfly destroyed");
                 Destroy(gameObject);
             }
         }

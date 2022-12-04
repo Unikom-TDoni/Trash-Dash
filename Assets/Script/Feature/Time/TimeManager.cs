@@ -54,6 +54,7 @@ namespace Group8.TrashDash.TimeManager
         {
             currentTime = startingHour * 3600;
             timeSpan = TimeSpan.FromSeconds(currentTime);
+            panelUIManager.OnTimeUpdate(currentTime);
 
             prevTimeCheck = !isNightTime;
             callOnce = new bool[2] {true, true};

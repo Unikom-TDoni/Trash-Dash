@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using Group8.TrashDash.Core;
-using UnityEngine.SceneManagement;
 
 namespace Group8.TrashDash.Level
 {
@@ -30,6 +28,9 @@ namespace Group8.TrashDash.Level
 
         public void SaveCurrentLevelData(float score) =>
             LevelDataPersistence.Save(SelectedLevel, score);
+
+        public void GetMaxLevel() =>
+            _levelScriptableObjects.Max(item => item.Level);
 
         public void SaveNextLevel()
         {
