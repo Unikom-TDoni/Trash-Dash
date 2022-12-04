@@ -30,14 +30,13 @@ namespace Group8.TrashDash.Level
             LevelDataPersistence.Save(SelectedLevel, score);
 
         public bool IsMaxLevel() =>
-            SelectedLevel >= GetMaxLevel();
+            SelectedLevel >= _levelScriptableObjects.Max(item => item.Level);
 
-        public int GetMaxLevel() =>
-            _levelScriptableObjects.Max(item => item.Level);
+        public bool IsNextLevelUnlocked() =>
+            LevelDataPersistence.GetEntity(SelectedLevel + 1).Equals(default(LevelEntity));
 
         public void SaveNextLevel()
         {
-            if (_levelScriptableObjects.Max(item => item.Level) < SelectedLevel + 1) return;
             SelectedLevel++;
             SaveCurrentLevelData(default);
         }
