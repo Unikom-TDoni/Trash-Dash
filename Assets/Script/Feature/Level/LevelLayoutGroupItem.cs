@@ -20,9 +20,6 @@ namespace Group8.TrashDash.Level
         private Image _imgBackground = default;
 
         [SerializeField]
-        private Image _imgBackgroundShade = default;
-
-        [SerializeField]
         private Image _imgLock = default;
 
         [SerializeField]
@@ -79,7 +76,6 @@ namespace Group8.TrashDash.Level
             foreach (var item in _imgStars)
                 item.enabled = default;
             _imgBackground.color = _deactiveColor;
-            _imgBackgroundShade.color = new Color(_deactiveColor.r, _deactiveColor.g, _deactiveColor.b, 160);
             _imgLock.enabled = true;
             _txtLevel.enabled = default;
         }

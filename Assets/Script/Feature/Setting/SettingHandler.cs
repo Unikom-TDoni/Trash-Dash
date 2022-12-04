@@ -62,8 +62,8 @@ namespace Group8.TrashDash.Setting
 
             _sliderBgm.onValueChanged.AddListener(value =>
             {
-                _bgmAudioSource.volume = value;
                 ChangeApplyTextButton(!value.Equals(persistenceData.BgmVolume));
+                GameManager.Instance.SettingDataPersistence.ChangeAudioMixerBgm(value);
             });
 
             _dropdownDisplayMode.onValueChanged.AddListener(value =>

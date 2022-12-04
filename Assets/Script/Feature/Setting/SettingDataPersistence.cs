@@ -20,7 +20,7 @@ namespace Group8.TrashDash.Setting
         [field: SerializeField]
         public FullScreenMode[] DefaultDisplayModeOptions { get; private set; } = default;
 
-        public SettingEntity PersistenceData { get; private set; } = new SettingEntity(true, .5f, .5f, 2, default);
+        public SettingEntity PersistenceData { get; private set; } = new SettingEntity(true, 1, 1, 2, default);
 
         public void OnStart()
         {
@@ -46,9 +46,12 @@ namespace Group8.TrashDash.Setting
 
         private void ApplyAudioMixerSetting()
         {
-            _gameAudioMixer.SetFloat("BGM", Mathf.Log10(PersistenceData.BgmVolume) * 20);
+            ChangeAudioMixerBgm(PersistenceData.BgmVolume);
             _gameAudioMixer.SetFloat("SFX", Mathf.Log10(PersistenceData.SfxVolume) * 20);
         }
+
+        public void ChangeAudioMixerBgm(float value) =>
+            _gameAudioMixer.SetFloat("BGM", Mathf.Log10(value) * 20);
 
         private void Load()
         {
