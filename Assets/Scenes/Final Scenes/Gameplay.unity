@@ -5703,7 +5703,7 @@ MonoBehaviour:
   poolManager: {fileID: 822941894}
   spawnPrefab:
     prefab: {fileID: 2193157950502936516, guid: 3ecb7d42dc1b1524e90ade55b3760a53, type: 3}
-    maxObjectInPool: 100
+    maxObjectInPool: 200
   spawnOffset: {x: 0, y: 0, z: 0}
   trashInformations:
   - {fileID: 11400000, guid: b7b75a37bc2c38a4e8a8c6f69a4bace5, type: 2}
@@ -8366,7 +8366,7 @@ MonoBehaviour:
   updateUIMinute: 10
   dayTime: 6
   nightTime: 18
-  lastSecondsCoundown: 5
+  lastSecondsCoundown: 15
   WavePerHour: 1
   lastWaveSpawnTime: 19
 --- !u!4 &1765521127
@@ -9352,7 +9352,7 @@ MonoBehaviour:
   target: {fileID: 433252167}
   eventHub: {fileID: 861992327}
   speedMultiplier: 0.85
-  stopDistance: 3
+  stopDistance: 5
   rotateSpeed: 5
 --- !u!195 &1895656942
 NavMeshAgent:
@@ -9421,7 +9421,7 @@ MonoBehaviour:
   poolManager: {fileID: 822941894}
   spawnPrefab:
     prefab: {fileID: 2193157950502936516, guid: 678f3bced9784cb4c8f76a16c2ca76e1, type: 3}
-    maxObjectInPool: 2
+    maxObjectInPool: 3
   spawnOffset: {x: 0, y: 1, z: 0}
   totalSpawnWeight: 3
   powerUps:
@@ -9434,8 +9434,8 @@ MonoBehaviour:
   size: {x: 85, y: 0, z: 85}
   offset: {x: 0, y: 1, z: 0}
   amount: 1
-  minInterval: 15
-  maxInterval: 20
+  minInterval: 12
+  maxInterval: 15
   randomizeRotation: 0
 --- !u!4 &1966410532
 Transform:
