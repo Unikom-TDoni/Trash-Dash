@@ -75,6 +75,8 @@ namespace Group8.TrashDash.Player.Interaction
 
         private void OnInteract(InputAction.CallbackContext context)
         {
+            if (!playerControls.Gameplay.Interact.enabled) return;
+
             detectedInteractables = ColliderDetector.Find<GameObject>(transform.position, interactRadius, targetMask, transform.forward, interactAngle);
             nearestInteractable = null;
 

@@ -17,7 +17,6 @@ public class TutorialManager : MonoBehaviour
     private PlayerPickup playerPickup;
     private TrashBinHandler trashBinHandler;
     private GameObject inventoryText;
-    private PowerUpSpawner powerUpSpawner;
     private PanelUIManager panelUIManager;
     private TrashSpawner trashSpawner;
     private TimeManager timeManager;
@@ -32,12 +31,12 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         playerControls = InputManager.playerAction;
+        playerControls.Gameplay.Disable();
+
         playerPickup = FindObjectOfType<PlayerPickup>();
         playerPickup.tutorialManager = this;
         trashBinHandler = FindObjectOfType<TrashBinHandler>();
         trashBinHandler.tutorialManager = this;
-        powerUpSpawner = FindObjectOfType<PowerUpSpawner>();
-        powerUpSpawner.enabled = false;
         panelUIManager = FindObjectOfType<PanelUIManager>();
         trashSpawner = FindObjectOfType<TrashSpawner>();
         trashSpawnInitialPosition = trashSpawnRef.position;
@@ -71,9 +70,19 @@ public class TutorialManager : MonoBehaviour
         {
             if (sequence == 1 || sequence == 2 || sequence == 6 || sequence == 7 || sequence == 10 || sequence == 11)
             {
+                if (sequence == 1)
+                {
+                    playerControls.Gameplay.Move.Enable();
+                    playerControls.Gameplay.Sprint.Enable();
+                }
                 if (sequence == 2)
                 {
+                    playerControls.Gameplay.Pickup.Enable();
                     StartCoroutine(SpawnSomeTrash());
+                }
+                if(sequence == 7)
+                {
+                    playerControls.Gameplay.Interact.Enable();
                 }
                 NextSequence();
             }
@@ -89,9 +98,30 @@ public class TutorialManager : MonoBehaviour
 
         if (playerControls.Panel.Cancel.WasPressedThisFrame())
         {
-            if (sequence == 5 || sequence == 9)
+            if (sequence <= 7)
             {
+                playerControls.Gameplay.PowerUp1.Disable();
+                playerControls.Gameplay.PowerUp2.Disable();
+                playerControls.Gameplay.Interact.Disable();
+            }
+            
+            if(sequence <= 9)
+            {
+                playerControls.Gameplay.PowerUp1.Disable();
+                playerControls.Gameplay.PowerUp2.Disable();
+            }
+
+            if (sequence == 5)
+            {
+                InputManager.ToggleActionMap(playerControls.Gameplay);
                 NextSequence();
+            }
+            if(sequence == 9)
+            {
+                InputManager.ToggleActionMap(playerControls.Gameplay);
+                NextSequence();
+                playerControls.Gameplay.PowerUp1.Enable();
+                playerControls.Gameplay.PowerUp2.Enable();
             }
         }
 
@@ -109,6 +139,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (sequence == 3)
         {
+            playerControls.Gameplay.Inventory.Enable();
             NextSequence();
         }
     }
@@ -143,6 +174,7 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialText[sequence - 1].SetActive(false);
         sequence++;
+        if (sequence > tutorialText.Length) return;
         tutorialText[sequence - 1].SetActive(true);
     }
 }

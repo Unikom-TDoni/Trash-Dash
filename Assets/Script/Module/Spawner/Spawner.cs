@@ -13,7 +13,7 @@ namespace Group8.TrashDash.Module.Spawner
         public Action<SpawnObject> OnRelease;
 
         [SerializeField] protected PoolManager poolManager;
-        [SerializeField] private SpawnPrefab spawnPrefab;
+        [SerializeField] protected SpawnPrefab spawnPrefab;
 
         protected GameObject[] obj;
 

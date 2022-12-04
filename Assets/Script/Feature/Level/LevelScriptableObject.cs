@@ -19,7 +19,7 @@ namespace Group8.TrashDash.Level
         private float[] _scoreStarLimit = default;
 
         [field: SerializeField]
-        public int MaxAmmountPowerUpSpawn { get; private set; } = default;
+        public int MaxAmountPowerUpSpawn { get; private set; } = default;
 
         public float[] ScoreStarLimit => _scoreStarLimit;
 

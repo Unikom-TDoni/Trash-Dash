@@ -6,6 +6,7 @@ namespace Group8.TrashDash.Spawner
 {
     using Group8.TrashDash.Core;
     using Module.Spawner;
+    using System;
     using UnityEngine.AI;
     using UnityEngine.InputSystem.HID;
     using UnityEngine.UIElements;
@@ -27,6 +28,8 @@ namespace Group8.TrashDash.Spawner
         protected override void Start()
         {
             OnValidate();
+             
+            spawnPrefab.maxObjectInPool = GameManager.Instance.LevelHandler.GetMaxAmountPowerUpSpawn();
 
             base.Start();
             RepeatSpawn(transform, minInterval, maxInterval, offset, amount, size, randomizeRotation);
@@ -91,7 +94,7 @@ namespace Group8.TrashDash.Spawner
         private PowerUpSO GetRandomPowerUp()
         {
             int index = 0;
-            float pick = Random.value * totalSpawnWeight;
+            float pick = UnityEngine.Random.value * totalSpawnWeight;
             float cumulativeWeight = powerUps[0].Weight;
 
             while (pick > cumulativeWeight && index < powerUps.Length - 1)
