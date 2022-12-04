@@ -41,7 +41,10 @@ namespace Group8.TrashDash.Level
         public LevelEntity GetEntity(int level) =>
             _persistenceData.FirstOrDefault(item => item.Level.Equals(level));
 
-        public void EnablePlayMode() =>
+        public void EnablePlayMode()
+        {
+            IsPlayModeEnable = true;
             PlayerPrefs.SetInt(DataKeyTutorial, 1);
+        }
     }
 }

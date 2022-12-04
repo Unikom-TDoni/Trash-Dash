@@ -15,6 +15,9 @@ namespace Group8.TrashDash.MainMenu
         private GameObject _mainMenuLayout = default;
 
         [SerializeField]
+        private GameObject _creditLayout = default;
+
+        [SerializeField]
         private GameObject _levelSelectLayout = default;
 
         [SerializeField]
@@ -37,6 +40,12 @@ namespace Group8.TrashDash.MainMenu
 
         [SerializeField]
         private Button _btnTutorial = default;
+
+        [SerializeField]
+        private Button _btnCredit = default;
+
+        [SerializeField]
+        private Button _btnCloseCredit = default;
 
         private PlayerAction _input;
 
@@ -84,6 +93,17 @@ namespace Group8.TrashDash.MainMenu
             {
                 GameManager.Instance.LevelHandler.SelectLevel(default);
                 SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
+            });
+
+            _btnCredit.onClick.AddListener(() => {
+                _mainMenuLayout.SetActive(default);
+                _creditLayout.SetActive(true);
+            });
+
+            _btnCloseCredit.onClick.AddListener(() =>
+            {
+                _mainMenuLayout.SetActive(true);
+                _creditLayout.SetActive(default);
             });
 
             _btnStart.interactable = GameManager.Instance.LevelHandler.IsPlayModeEnable();
