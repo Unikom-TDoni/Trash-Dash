@@ -16,14 +16,17 @@ namespace Group8.TrashDash.Item.Audio
         [SerializeField]
         private AudioClip _dropAudioClip = default;
 
-        [SerializeField]
-        private AudioClip _successDropAudioClip = default;
-
         private AudioSource _audioSource = default;
+
+        private AudioSource _audioSourceSuccess = default;
 
         private void Awake()
         {
-            _audioSource = GetComponent<AudioSource>();
+            foreach (var item in GetComponents<AudioSource>())
+            {
+                if (item.clip is null) _audioSource = item;
+                else _audioSourceSuccess = item;
+            }
         }
 
         public void PlayPickupSfx() =>
@@ -33,7 +36,7 @@ namespace Group8.TrashDash.Item.Audio
             PlayAudioClip(_dropAudioClip);
 
         public void PlaySuccessOnDropSfx() =>
-            AudioSource.PlayClipAtPoint(_successDropAudioClip, transform.position);
+            _audioSourceSuccess.Play();
 
         public void PlayUsePowerupSfx() =>
             PlayAudioClip(_usePowerUp);

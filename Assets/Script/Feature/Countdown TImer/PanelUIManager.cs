@@ -21,6 +21,7 @@ public class PanelUIManager : MonoBehaviour
     [SerializeField] TrashSpawner trashSpawner;
 
     private AudioSource _audioSource = default;
+    private AudioSource _audioSourceStar = default;
 
     [SerializeField]
     private AudioSource _bgmAudioSource = default;
@@ -54,7 +55,11 @@ public class PanelUIManager : MonoBehaviour
 
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
+        foreach (var item in GetComponents<AudioSource>())
+        {
+            if (item.clip is null) _audioSource = item;
+            else _audioSourceStar = item;
+        }
     }
 
     void Start()
@@ -142,6 +147,9 @@ public class PanelUIManager : MonoBehaviour
 
         AfterCam();
     }
+
+    public void PlayStarAudio() =>
+        _audioSourceStar.Play();
 
     private void AfterCam()
     {
