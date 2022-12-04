@@ -7,7 +7,7 @@ namespace Group8.TrashDash.Level
     {
         private void Awake()
         {
-            for (int i = 0; i < GameManager.Instance.LevelHandler.GetTotalAmmountOfLevel(); i++)
+            for (int i = 0; i < GameManager.Instance.LevelHandler.GetTotalAmmountOfLevel()-1; i++)
             {
                 Create();
                 GeneratedGroupItems[i].UpdateContent(i+1);

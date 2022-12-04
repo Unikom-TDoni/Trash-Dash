@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Group8.TrashDash.Core;
+using UnityEngine.SceneManagement;
 
 namespace Group8.TrashDash.MainMenu
 {
@@ -32,6 +34,9 @@ namespace Group8.TrashDash.MainMenu
 
         [SerializeField]
         private Button _btnCancel = default;
+
+        [SerializeField]
+        private Button _btnTutorial = default;
 
         private PlayerAction _input;
 
@@ -73,6 +78,12 @@ namespace Group8.TrashDash.MainMenu
             _btnStart.onClick.AddListener(() => {
                 _levelSelectLayout.SetActive(true);
                 _mainMenuLayout.SetActive(default);
+            });
+
+            _btnTutorial.onClick.AddListener(() =>
+            {
+                GameManager.Instance.LevelHandler.SelectLevel(default);
+                SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
             });
         }
 

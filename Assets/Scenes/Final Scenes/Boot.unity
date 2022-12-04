@@ -181,6 +181,7 @@ MonoBehaviour:
       _asset: {fileID: 102900000, guid: 7dc826efc4c87374b9c0a7e3a6dd8a70, type: 3}
   <LevelHandler>k__BackingField:
     _levelScriptableObjects:
+    - {fileID: 11400000, guid: cc980f881d255094bbd99a5d01d26665, type: 2}
     - {fileID: 11400000, guid: 3efcca78115e52f4bb7681b860b1009f, type: 2}
     - {fileID: 11400000, guid: 1eeaf31654a021d4d89b9ba6673b75b4, type: 2}
     - {fileID: 11400000, guid: e0e32e0a5e69f764cbfd245953a81b23, type: 2}
