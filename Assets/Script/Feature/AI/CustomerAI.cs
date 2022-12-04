@@ -5,9 +5,9 @@ using TMPro;
 
 public class CustomerAI : MonoBehaviour {
     public AIStateMachine stateMachine {get; private set;}
-    #if UNITY_EDITOR
-    [SerializeField] TextMeshPro stateText;
-    #endif
+    //#if UNITY_EDITOR
+    //[SerializeField] TextMeshPro stateText;
+    //#endif
     [HideInInspector] public Transform targetPoint;
     [HideInInspector] public AIManager aiManager;
     [HideInInspector] public SpawnConfiguration spawnConfiguration;
