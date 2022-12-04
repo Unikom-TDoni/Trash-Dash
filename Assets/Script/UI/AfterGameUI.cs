@@ -58,7 +58,7 @@ public class AfterGameUI : MonoBehaviour
 
         scoreLimit = GameManager.Instance.LevelHandler.GetStarScoreLimit();
 
-        if (scoreManager.Score < GameManager.Instance.LevelHandler.GetStarScoreLimit()[0] || GameManager.Instance.LevelHandler.IsMaxLevel())
+        if ((scoreManager.Score < GameManager.Instance.LevelHandler.GetStarScoreLimit()[0] && GameManager.Instance.LevelHandler.IsNextLevelLocked()) || GameManager.Instance.LevelHandler.IsMaxLevel())
         {
             nextLevelButton.SetActive(false);
         }

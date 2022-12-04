@@ -1,3 +1,4 @@
+using Group8.TrashDash.Core;
 using Group8.TrashDash.Item.Audio;
 using Group8.TrashDash.Score;
 using System;
@@ -52,6 +53,9 @@ namespace Group8.TrashDash.TimeManager
 
         private void Start()
         {
+            if (GameManager.Instance)
+                stageDuration = GameManager.Instance.LevelHandler.GetLevelDuration();
+
             currentTime = startingHour * 3600;
             timeSpan = TimeSpan.FromSeconds(currentTime);
             panelUIManager.OnTimeUpdate(currentTime);
