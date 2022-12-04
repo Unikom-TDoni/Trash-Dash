@@ -7,6 +7,7 @@ using Group8.TrashDash.TrashBin;
 using Group8.TrashDash.Spawner;
 using Group8.TrashDash.TimeManager;
 using TMPro;
+using Group8.TrashDash.Core;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -63,6 +64,7 @@ public class TutorialManager : MonoBehaviour
 
         if (sequence > 11)
         {
+            GameManager.Instance.LevelHandler.EnablePlayMode();
             panelUIManager.BackToMainMenu();
         }
 
