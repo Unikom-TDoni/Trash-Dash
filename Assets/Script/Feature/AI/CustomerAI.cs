@@ -16,7 +16,7 @@ public class CustomerAI : MonoBehaviour {
 
     public void StopTrashing() {
         if (spawnCoroutine != null) {
-            StopCoroutine(spawnCoroutine);
+            aiManager.trashSpawner.StopCoroutine(spawnCoroutine);
         }
     }
 
@@ -55,9 +55,9 @@ public class CustomerAI : MonoBehaviour {
     void Update() {
         stateMachine.Update(transform);
         
-        #if UNITY_EDITOR
-        stateText.text = "spawning trash: " + (spawnCoroutine != null) + ". State: " + stateMachine.currentState;
-        #endif
+        //#if UNITY_EDITOR
+        //stateText.text = "spawning trash: " + (spawnCoroutine != null) + ". State: " + stateMachine.currentState;
+        //#endif
     }
 
     void FixedUpdate() {
@@ -68,11 +68,11 @@ public class CustomerAI : MonoBehaviour {
         stateMachine.LateUpdate(transform);
     }
 
-    #if UNITY_EDITOR
-    void OnDrawGizmos() {
-        stateMachine.OnDrawGizmos(transform);
-    }
-    #endif
+    //#if UNITY_EDITOR
+    //void OnDrawGizmos() {
+    //    stateMachine.OnDrawGizmos(transform);
+    //}
+    //#endif
 
     //void OnGUI() {
     //    stateMachine.OnGUI(transform);
