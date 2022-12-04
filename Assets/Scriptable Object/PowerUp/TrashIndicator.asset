@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TrashIndicator
   m_EditorClassIdentifier: 
   name: TrashIndicator
-  Sprite: {fileID: 21300000, guid: 2795af5592c9c3f47b334c509aca9fed, type: 3}
+  Sprite: {fileID: 21300000, guid: ac6f1139239197844b5ad3818d630e30, type: 3}
   Mesh: {fileID: 0}
   Color: {r: 0.8584906, g: 0.23810963, b: 0.23810963, a: 1}
   Materials: []
