@@ -30,9 +30,9 @@ public class CustomerAI : MonoBehaviour {
         
         if (AIConfiguration.instantSpawnStateSet.Contains(newState)) {
             if (spawnCoroutine != null) {
-                StopCoroutine(spawnCoroutine);
+                aiManager.trashSpawner.StopCoroutine(spawnCoroutine);
             }
-            // TODO: instant spawn
+            aiManager.trashSpawner.InstantSpawn(transform, areaSize: new Vector3(2f, 1f, 2f), offset: Vector3.up, randomizeRotation: true);
         }
     }
 

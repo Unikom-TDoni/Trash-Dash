@@ -3612,6 +3612,7 @@ MonoBehaviour:
   - {fileID: 1522927643517295056}
   - {fileID: 3280178405328459067}
   trashSpawnRef: {fileID: 407983327419207870}
+  lightningPreset: {fileID: 11400000, guid: 82607c9b7c24a2b43b172fc641d13eb0, type: 2}
 --- !u!1 &3134281555861208101
 GameObject:
   m_ObjectHideFlags: 0
