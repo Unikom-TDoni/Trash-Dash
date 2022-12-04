@@ -45,6 +45,9 @@ namespace Group8.TrashDash.Level
         public float[] GetStarScoreLimit(int level) =>
             _levelScriptableObjects.First(item => item.Level.Equals(level)).ScoreStarLimit;
 
+        public int GetLevelDuration() =>
+            _levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).Duration;
+
         public void SpawnLevel() =>
             UnityEngine.Object.Instantiate(_levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).Prefab, default, Quaternion.identity);
     }
