@@ -14,6 +14,12 @@ public class CustomerAI : MonoBehaviour {
 
     Coroutine spawnCoroutine;
 
+    public void StopTrashing() {
+        if (spawnCoroutine != null) {
+            StopCoroutine(spawnCoroutine);
+        }
+    }
+
     void Start() {
         stateMachine = new AIStateMachine(transform);
         stateMachine.OnStateChange += OnStateChange;
@@ -31,6 +37,7 @@ public class CustomerAI : MonoBehaviour {
         if (AIConfiguration.instantSpawnStateSet.Contains(newState)) {
             if (spawnCoroutine != null) {
                 aiManager.trashSpawner.StopCoroutine(spawnCoroutine);
+                spawnCoroutine = null;
             }
             aiManager.trashSpawner.InstantSpawn(transform, areaSize: new Vector3(2f, 1f, 2f), offset: Vector3.up, randomizeRotation: true);
         }
@@ -41,6 +48,7 @@ public class CustomerAI : MonoBehaviour {
             spawnCoroutine = aiManager.trashSpawner.RepeatSpawn(transform, aiManager.trashSpawnMinInterval, aiManager.trashSpawnMaxInterval, areaSize: new Vector3(2f, 1f, 2f), offset: Vector3.up, randomizeRotation: true);
         } else if (spawnCoroutine != null){
             aiManager.trashSpawner.StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
         }
     }
 
