@@ -85,6 +85,8 @@ namespace Group8.TrashDash.MainMenu
                 GameManager.Instance.LevelHandler.SelectLevel(default);
                 SceneManager.LoadScene(GameManager.Instance.Scenes.Gameplay);
             });
+
+            _btnStart.interactable = GameManager.Instance.LevelHandler.IsPlayModeEnable();
         }
 
         private void OnDestroy()
