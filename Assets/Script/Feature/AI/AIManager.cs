@@ -84,15 +84,15 @@ public class AIManager : MonoBehaviour {
         spawnedAI.GetComponent<NavMeshAgent>().enabled = true;
     }
 
-    void OnGUI()
-    {
+    #if UNITY_EDITOR
+    void OnGUI() {
       GUILayout.BeginArea(new Rect(0, 0, 500, 500));
-      if (GUILayout.Button("Spawn"))
-      {
+      if (GUILayout.Button("Spawn")) {
           Spawn();
       }
       GUILayout.EndArea();
     }
+    #endif
 }
 
 [System.Serializable]
