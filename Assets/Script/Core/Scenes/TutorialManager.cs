@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 using Group8.TrashDash.Player.Pickup;
 using Group8.TrashDash.TrashBin;
 using Group8.TrashDash.Spawner;
+using Group8.TrashDash.TimeManager;
+using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -18,6 +20,12 @@ public class TutorialManager : MonoBehaviour
     private PowerUpSpawner powerUpSpawner;
     private PanelUIManager panelUIManager;
     private TrashSpawner trashSpawner;
+    private TimeManager timeManager;
+    private LightingManager lightingManager;
+    private Light directionalLight;
+    [SerializeField] private LightingPreset lightningPreset;
+    private TMP_Text countdownTimerText;
+
     private Vector3 trashSpawnInitialPosition;
     Coroutine spawnCoroutine;
 
@@ -33,10 +41,27 @@ public class TutorialManager : MonoBehaviour
         panelUIManager = FindObjectOfType<PanelUIManager>();
         trashSpawner = FindObjectOfType<TrashSpawner>();
         trashSpawnInitialPosition = trashSpawnRef.position;
+
+        timeManager = FindObjectOfType<TimeManager>();
+        timeManager.enabled = false;
+        lightingManager = FindObjectOfType<LightingManager>();
+        lightingManager.enabled = false;
+        directionalLight = GameObject.Find("Sun").GetComponent<Light>();
+        countdownTimerText = GameObject.Find("Countdown Timer Text").GetComponent<TMP_Text>();
+        countdownTimerText.text = "08:00";
+        var currentTime = 8 * 3600;
+        var timeOfDay = (currentTime / timeManager.TimePerDay) % timeManager.TimePerDay;
+        RenderSettings.ambientLight = lightningPreset.AmbientColor.Evaluate(timeOfDay);
+        RenderSettings.fogColor = lightningPreset.FogColor.Evaluate(timeOfDay);
+        if (directionalLight == null) return;
+        directionalLight.color = lightningPreset.DirectionalColor.Evaluate(timeOfDay);
+        directionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timeOfDay * 360f) - 90f, 170f, 0f));
     }
 
     void Update()
     {
+        
+
         if (sequence > 11)
         {
             panelUIManager.BackToMainMenu();
