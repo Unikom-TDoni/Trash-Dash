@@ -5407,7 +5407,7 @@ GameObject:
   m_Name: Playground_Large (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7580884500874137289
@@ -9422,7 +9422,7 @@ PrefabInstance:
     - target: {fileID: 5061247492184209968, guid: 5f047461cbc4d0741a4a4adc8f90a848, type: 3}
       propertyPath: data
       value: 
-      objectReference: {fileID: 23800000, guid: 0d2221f5a2b407445886f9fbd758a997, type: 2}
+      objectReference: {fileID: 23800000, guid: 7d18adf60fd61ae409794fab76e9db58, type: 2}
     - target: {fileID: 5061247492184209968, guid: 5f047461cbc4d0741a4a4adc8f90a848, type: 3}
       propertyPath: wavePerHour
       value: 3
