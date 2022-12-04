@@ -30,6 +30,7 @@ public class AIOrderingState : StateBehaviour {
             }
             transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(transform.GetComponent<CustomerAI>(), ref manager.pointList));
             transform.GetComponent<Animator>().CrossFade("Moving To Point", .25f);
+            havePoint = true;
         } else {
             orderTime -= Time.fixedDeltaTime;
             Utility.LerpLookTowardsTarget(transform, new Vector3(customerAI.spawnConfiguration.stallPosition.x, transform.position.y, customerAI.spawnConfiguration.stallPosition.z));
