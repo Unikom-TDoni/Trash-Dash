@@ -27,7 +27,6 @@ public class AfterGameUI : MonoBehaviour
     [SerializeField] private TMP_Text totalScoreText;
 
     [SerializeField] private Sprite starLitSprite;
-    [SerializeField] private AudioClip _starAudioClip;
 
     [Header("Animated UI")]
     [SerializeField] private CanvasGroup canvasGroup;
@@ -122,7 +121,7 @@ public class AfterGameUI : MonoBehaviour
             if(scoreManager.Score >= scoreLimit[i])
             {
                 items[i].GetComponent<Image>().sprite = starLitSprite;
-                AudioSource.PlayClipAtPoint(_starAudioClip, transform.position);
+                panelUIManager.PlayStarAudio();
             }
 
             items[i].transform.DOScale(1, itemTime).SetEase(Ease.OutBounce).SetUpdate(true);
