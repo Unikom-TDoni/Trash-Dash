@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using Group8.TrashDash.Player.Pickup;
+using Group8.TrashDash.Player.Controller;
 
 namespace Group8.TrashDash.Item.Trash
 {
@@ -20,6 +21,7 @@ namespace Group8.TrashDash.Item.Trash
 
         Collider[] colliders;
         PlayerPickup pp;
+        PlayerController pc;
         Target targetIndicator;
 
         void Awake()
@@ -27,7 +29,11 @@ namespace Group8.TrashDash.Item.Trash
             rb = GetComponent<Rigidbody>();
             meshRenderer = GetComponent<MeshRenderer>();
             playerControls = InputManager.playerAction;
-            pp = GameObject.FindWithTag("Player").GetComponent<PlayerPickup>();
+            GameObject player = GameObject.FindWithTag("Player");
+            pp = player.GetComponent<PlayerPickup>();
+
+            pc = player.GetComponent<PlayerController>();
+
             targetIndicator = GetComponent<Target>();
         }
 
@@ -78,9 +84,9 @@ namespace Group8.TrashDash.Item.Trash
                 }
 
                 var distanceValue = Vector3.Distance(target.position, transform.position);
-                if (playerControls.Gameplay.Sprint.IsPressed())
+                if (playerControls.Gameplay.Move.IsPressed())
                 {
-                    distanceValue *= 2;
+                    distanceValue *= 2 * pc.SpeedMultiplier;
                 }
                 if (secondPhase && anotherJump && transform.position.y < 1)
                 {

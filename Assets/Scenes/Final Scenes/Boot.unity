@@ -190,6 +190,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 81ec8e03125fc0b46975df87115d28bd, type: 2}
     - {fileID: 11400000, guid: dd4454dd9789c2843bf7c4985ea1f838, type: 2}
     - {fileID: 11400000, guid: 4b3105822dba2c0419b124ffc9f45060, type: 2}
+    - {fileID: 11400000, guid: 061245a9ef73dd245bdeff6a836dbc40, type: 2}
+    - {fileID: 11400000, guid: fa9974da7e655f34bb2c23c93f80d827, type: 2}
+    - {fileID: 11400000, guid: b12a3b6ab633d5744b47175bc44f02bf, type: 2}
+    - {fileID: 11400000, guid: 446c1df92907329479be041302629cee, type: 2}
   <SettingDataPersistence>k__BackingField:
     _gameAudioMixer: {fileID: 24100000, guid: d07b73ef288572b4697837d57d7812ce, type: 2}
     <DefaultResolutionOptions>k__BackingField:
