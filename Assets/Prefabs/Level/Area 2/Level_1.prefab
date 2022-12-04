@@ -636,9 +636,9 @@ MonoBehaviour:
   - {fileID: 765708935938504843}
   trashSpawnStateList: 020000000400000003000000
   wavePerHour: 1
-  customerPerWave: 5
-  trashSpawnMinInterval: 2
-  trashSpawnMaxInterval: 5
+  customerPerWave: 2
+  trashSpawnMinInterval: 5
+  trashSpawnMaxInterval: 8
   pointList: []
 --- !u!1 &8342441345522489367
 GameObject:
@@ -4797,24 +4797,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a93671e36760fd45a6ab1f5bae940ab, type: 3}
---- !u!1 &6293735880536114390 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 599882198602382723, guid: 9a93671e36760fd45a6ab1f5bae940ab, type: 3}
-  m_PrefabInstance: {fileID: 6846846778360871253}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &6711341528082690815
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6293735880536114390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &6993121177412220613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4469941886463807376, guid: 9a93671e36760fd45a6ab1f5bae940ab, type: 3}

@@ -54,7 +54,7 @@ namespace Group8.TrashDash.Player.Controller
         void Start()
         {
             initialPos = transform.position;
-            speed = moveSpeed;
+            speed = sprintSpeed;
             playerControls = InputManager.playerAction;
             RegisterInputCallbacks();
         }
@@ -88,10 +88,6 @@ namespace Group8.TrashDash.Player.Controller
             CheckOutOfBound();
 
             animator.SetFloat("magnitude", Mathf.MoveTowards(animator.GetFloat("magnitude"), (speed / sprintSpeed) * moveDirection.magnitude, Time.deltaTime * transitionSpeed));
-
-            // Auto sprint
-            if (!controller.isGrounded) return;
-            speed = sprintSpeed;
         }
 
         #region Callbacks
@@ -154,14 +150,12 @@ namespace Group8.TrashDash.Player.Controller
 
         public void OnSprint(InputAction.CallbackContext context)
         {
-            if (!controller.isGrounded) return;
-
-            speed = sprintSpeed;
+            speed = moveSpeed;
         }
 
         public void OnSprintCanceled(InputAction.CallbackContext context)
         {
-            speed = moveSpeed;
+            speed = sprintSpeed;
         }
 
         public void OnInteract(InputAction.CallbackContext context)
