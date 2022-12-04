@@ -6,6 +6,7 @@ public class AIOrderingState : StateBehaviour {
     AIManager manager;
 
     float orderTime;
+    bool havePoint;
 
     public override void Start(Transform transform) {
         base.Start(transform);
@@ -15,16 +16,13 @@ public class AIOrderingState : StateBehaviour {
 
     public override void OnStateEnter(Transform transform) {
         orderTime = 3f;
+        havePoint = false;
     }
 
     public override void OnStateFixedUpdate(Transform transform) {
-        if (orderTime <= 0) {
+        if (havePoint)
             return;
-        }
-
-        Utility.LerpLookTowardsTarget(transform, new Vector3(customerAI.spawnConfiguration.stallPosition.x, transform.position.y, customerAI.spawnConfiguration.stallPosition.z));
-        orderTime -= Time.fixedDeltaTime;
-
+        
         if (orderTime <= 0) {
             if (manager.pointList.Count == 0) {
                 Debug.LogWarning("No more points!");
@@ -32,6 +30,9 @@ public class AIOrderingState : StateBehaviour {
             }
             transform.GetComponent<NavMeshAgent>().SetDestination(GetPoint(transform.GetComponent<CustomerAI>(), ref manager.pointList));
             transform.GetComponent<Animator>().CrossFade("Moving To Point", .25f);
+        } else {
+            orderTime -= Time.fixedDeltaTime;
+            Utility.LerpLookTowardsTarget(transform, new Vector3(customerAI.spawnConfiguration.stallPosition.x, transform.position.y, customerAI.spawnConfiguration.stallPosition.z));
         }
     }
 
