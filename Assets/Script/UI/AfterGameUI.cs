@@ -51,11 +51,11 @@ public class AfterGameUI : MonoBehaviour
 
     private void OnEnable()
     {
+        scoreLimit = GameManager.Instance.LevelHandler.GetStarScoreLimit();
+
         SetResultUI(scoreManager.ResultData);
         initialPos = rectTransform.localPosition;
         PanelFadeIn();
-
-        scoreLimit = GameManager.Instance.LevelHandler.GetStarScoreLimit();
 
         if ((scoreManager.Score < GameManager.Instance.LevelHandler.GetStarScoreLimit()[0] && GameManager.Instance.LevelHandler.IsNextLevelLocked()) || GameManager.Instance.LevelHandler.IsMaxLevel())
         {
@@ -78,7 +78,20 @@ public class AfterGameUI : MonoBehaviour
         StartCoroutine(TextCounter(sortedText, 0, data.SortedScore, " P"));
         StartCoroutine(TextCounter(sortedWrongText, 0, data.WrongSorted * scoreManager.wrongScore, " P"));
         StartCoroutine(TextCounter(uncollectedText, 0, data.Uncollected * scoreManager.uncollectedScore, " P"));
-        StartCoroutine(TextCounter(totalScoreText, 0, data.TotalScore, " P"));
+
+        string totalScore = " / " + GameManager.Instance.LevelHandler.GetStarScoreLimit()[2].ToString();
+
+        foreach (int starScore in scoreLimit)
+        {
+            if(starScore > data.TotalScore)
+            {
+                totalScore = " / " + starScore.ToString();
+                break;
+            }
+        }
+
+        totalScore += " P";
+        StartCoroutine(TextCounter(totalScoreText, 0, data.TotalScore, totalScore));
     }
 
     #region Animation

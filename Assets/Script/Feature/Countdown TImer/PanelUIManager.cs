@@ -124,7 +124,7 @@ public class PanelUIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
-        //GameManager.Instance.LevelHandler.GoToTheNextLevel();
+        GameManager.Instance.LevelHandler.IncreaseLevel();
     }
 
     public void BackToMainMenu()

@@ -20,6 +20,9 @@ namespace Group8.TrashDash.Level
         public void SelectLevel(int level) =>
             SelectedLevel = level;
 
+        public void IncreaseLevel() =>
+            SelectedLevel++;
+
         public int GetTotalAmmountOfLevel() =>
             _levelScriptableObjects.Count();
 
@@ -39,6 +42,7 @@ namespace Group8.TrashDash.Level
         {
             SelectedLevel++;
             SaveCurrentLevelData(default);
+            SelectedLevel--;
         }
 
         public float[] GetStarScoreLimit() =>
