@@ -1,9 +1,13 @@
 using UnityEngine;
 using Group8.TrashDash.Spawner;
 using Group8.TrashDash.TrashBin;
+using TMPro;
 
 public class CustomerAI : MonoBehaviour {
     public AIStateMachine stateMachine {get; private set;}
+    #if UNITY_EDITOR
+    [SerializeField] TextMeshPro stateText;
+    #endif
     [HideInInspector] public Transform targetPoint;
     [HideInInspector] public AIManager aiManager;
     [HideInInspector] public SpawnConfiguration spawnConfiguration;
@@ -29,6 +33,10 @@ public class CustomerAI : MonoBehaviour {
 
     void Update() {
         stateMachine.Update(transform);
+        
+        #if UNITY_EDITOR
+        stateText.text = "spawning trash: " + (spawnCoroutine != null) + ". State: " + stateMachine.currentState;
+        #endif
     }
 
     void FixedUpdate() {
