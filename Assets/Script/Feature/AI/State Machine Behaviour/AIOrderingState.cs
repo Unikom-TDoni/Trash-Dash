@@ -9,8 +9,8 @@ public class AIOrderingState : StateBehaviour {
 
     public override void Start(Transform transform) {
         base.Start(transform);
-        manager = GameObject.FindObjectOfType<AIManager>();
         customerAI = transform.GetComponent<CustomerAI>();
+        manager = customerAI.aiManager;
     }
 
     public override void OnStateEnter(Transform transform) {

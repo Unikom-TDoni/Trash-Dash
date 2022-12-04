@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6122624724678442531}
   m_Layer: 0
   m_Name: Bench_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: AIPoint
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -29,9 +29,55 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7617792686057514857}
+  - {fileID: 7536686575563478236}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &8163629918195330229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7536686575563478236}
+  - component: {fileID: 3781097046427494345}
+  m_Layer: 0
+  m_Name: Seat
+  m_TagString: Seat
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7536686575563478236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163629918195330229}
+  m_LocalRotation: {x: -0, y: -0.0000004768371, z: -0, w: -1}
+  m_LocalPosition: {x: 0, y: 0.13085714, z: 0.2373333}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6122624724678442531}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!65 &3781097046427494345
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163629918195330229}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: -0.275}
 --- !u!1001 &7943627823904424066
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class AIStandingUpState : StateBehaviour {
 
     public override void OnStateEnter(Transform transform) {
         targetPos = chair.position + chair.forward;
-        targetPos.y = transform.position.y;
+        targetPos.y = 0f;
     }
 
     public override void OnStateFixedUpdate(Transform transform) {

@@ -25,7 +25,7 @@ namespace Group8.TrashDash.Player.Controller
 
         // Movement Parameters
         float speed;
-        float turnSmoothVelocity;
+        float turnSmoothVelocity = 0;
 
         public float Speed => speed;
         public float SpeedMultiplier => speedMultiplier;
