@@ -88,6 +88,10 @@ namespace Group8.TrashDash.Player.Controller
             CheckOutOfBound();
 
             animator.SetFloat("magnitude", Mathf.MoveTowards(animator.GetFloat("magnitude"), (speed / sprintSpeed) * moveDirection.magnitude, Time.deltaTime * transitionSpeed));
+
+            // Auto sprint
+            if (!controller.isGrounded) return;
+            speed = sprintSpeed;
         }
 
         #region Callbacks
