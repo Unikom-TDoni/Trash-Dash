@@ -50,6 +50,9 @@ namespace Group8.TrashDash.Level
         public int GetLevelDuration() =>
             _levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).Duration;
 
+        public int GetMaxAmmountPowerUpSpawn() =>
+            _levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).MaxAmmountPowerUpSpawn;
+
         public void SpawnLevel() =>
             UnityEngine.Object.Instantiate(_levelScriptableObjects.First(item => item.Level.Equals(SelectedLevel)).Prefab, default, Quaternion.identity);
     }
