@@ -11,7 +11,6 @@ public class AISittingState : StateBehaviour {
     public override void OnStateEnter(Transform transform) {
         if (chair) {
             targetPos = chair.position + chair.forward * .1f;
-            targetPos.y = transform.position.y;
             transform.GetComponent<NavMeshAgent>().enabled = false;
         }
 
