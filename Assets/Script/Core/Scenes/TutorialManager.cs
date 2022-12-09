@@ -33,6 +33,7 @@ public class TutorialManager : MonoBehaviour
     {
         playerControls = InputManager.playerAction;
         playerControls.Gameplay.Disable();
+        playerControls.Gameplay.Pause.Enable();
 
         playerPickup = FindObjectOfType<PlayerPickup>();
         playerPickup.tutorialManager = this;
@@ -60,7 +61,7 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (Time.timeScale == 0) return;
 
         if (sequence > 11)
         {

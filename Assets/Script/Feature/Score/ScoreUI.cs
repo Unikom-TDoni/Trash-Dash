@@ -16,6 +16,8 @@ public class ScoreUI : MonoBehaviour
     [SerializeField]
     private float textDuration = .5f;
 
+    private Tween textTween;
+
     private void Awake()
     {
         scoreManager = GetComponent<ScoreManager>();
@@ -37,6 +39,8 @@ public class ScoreUI : MonoBehaviour
 
     private void UpdateUI()
     {
+        textTween.Kill();
+        scoreText.color = Color.white;
         StopAllCoroutines();
         StartCoroutine(TextCounter(scoreText, prevScore, scoreManager.Score, " P"));
         prevScore = scoreManager.Score;
@@ -57,7 +61,7 @@ public class ScoreUI : MonoBehaviour
 
         text.text = value.ToString() + additionalText;
 
-        text.DOColor(condition ? Color.red : Color.green, textDuration / 2).SetEase(Ease.InOutFlash).SetLoops(2, LoopType.Yoyo);
+        textTween = text.DOColor(condition ? Color.red : Color.green, textDuration / 2).SetEase(Ease.InOutFlash).SetLoops(2, LoopType.Yoyo);
 
         while (condition ? (endValue < value) : (value < endValue))
         {
