@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Group8.TrashDash.Core;
 using Group8.TrashDash.Item.Audio;
 using Group8.TrashDash.Score;
@@ -115,6 +116,7 @@ namespace Group8.TrashDash.TimeManager
         private IEnumerator StartCountdown(int num)
         {
             int count = num;
+            panelUIManager.countdownText.DOColor(Color.red, .5f).SetEase(Ease.InOutFlash).SetLoops(-1, LoopType.Yoyo);
             while (count > 0)
             {
                 audioSource.Play();

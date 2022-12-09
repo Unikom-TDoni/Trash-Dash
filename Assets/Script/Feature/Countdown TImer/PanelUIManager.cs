@@ -14,7 +14,7 @@ using Group8.TrashDash.Spawner;
 
 public class PanelUIManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text countdownText;
+    public TMP_Text countdownText;
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject pausedPanel;
     [SerializeField] GameObject pausedButton;
