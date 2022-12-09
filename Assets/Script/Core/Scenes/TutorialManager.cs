@@ -12,6 +12,7 @@ using Group8.TrashDash.Core;
 public class TutorialManager : MonoBehaviour
 {
     [SerializeField] int sequence = 1;
+    [SerializeField] Canvas tutorialCanvas;
     [SerializeField] GameObject[] tutorialText;
     [SerializeField] Transform trashSpawnRef;
     private PlayerAction playerControls;
@@ -27,7 +28,6 @@ public class TutorialManager : MonoBehaviour
     private TMP_Text countdownTimerText;
 
     private Vector3 trashSpawnInitialPosition;
-    Coroutine spawnCoroutine;
 
     void Start()
     {
@@ -165,7 +165,7 @@ public class TutorialManager : MonoBehaviour
                 trashSpawnRef.position += Vector3.back * 2;
             }
 
-            spawnCoroutine = trashSpawner.InstantSpawn(trashSpawnRef);
+            trashSpawner.InstantSpawn(trashSpawnRef);
 
             trashSpawnRef.position += Vector3.left * 2;
 
