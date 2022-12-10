@@ -17,7 +17,7 @@ public class TrashBinAnimator : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
         playerTransform = player.transform;
-        openDistance = player.GetComponent<PlayerInteraction>().interactRadius + 1f;
+        openDistance = player.GetComponent<PlayerInteraction>().interactRadius + 1.2f;
     }
 
     private void Update()

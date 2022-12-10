@@ -531,7 +531,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82159210}
-  m_LocalRotation: {x: 0.3699021, y: -0.000042838383, z: 0.000017055758, w: 0.9290708}
+  m_LocalRotation: {x: 0.36990207, y: -0.00004287035, z: 0.000017068483, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2656,6 +2656,7 @@ MonoBehaviour:
   trashJumpingToBin: 0
   playerBinTransform: {fileID: 315505096}
   _playerAudioController: {fileID: 1269382279}
+  TrashCount: 0
   tutorialManager: {fileID: 0}
 --- !u!114 &433252167
 MonoBehaviour:
@@ -3506,7 +3507,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669092964}
-  m_LocalRotation: {x: 0.3699021, y: -0.000042838383, z: 0.000017055758, w: 0.9290708}
+  m_LocalRotation: {x: 0.36990207, y: -0.00004287035, z: 0.000017068483, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7333,6 +7334,7 @@ MonoBehaviour:
   uncollectedScore: -5
   multiplyScore: 0
   trashSpawner: {fileID: 1092956856}
+  playerPickup: {fileID: 433252166}
   ResultData:
     TotalScore: 300
     Collected: 11

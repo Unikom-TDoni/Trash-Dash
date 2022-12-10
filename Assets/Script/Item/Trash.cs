@@ -49,6 +49,7 @@ namespace Group8.TrashDash.Item.Trash
         {
             if (!moveTowards)
             {
+                pp.TrashCount++;
                 target = _target;
                 initialDistance = Vector3.Distance(target.position, transform.position);
                 colliders[0].enabled = false;
@@ -64,6 +65,7 @@ namespace Group8.TrashDash.Item.Trash
         public override void Release()
         {
             Reset();
+            pp.TrashCount--;
             base.Release();
         }
 

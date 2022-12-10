@@ -1,6 +1,7 @@
 using Group8.TrashDash.Core;
 using Group8.TrashDash.Item.Trash;
 using Group8.TrashDash.Module.Pool;
+using Group8.TrashDash.Player.Pickup;
 using Group8.TrashDash.Spawner;
 using System;
 using System.Collections;
@@ -35,6 +36,7 @@ namespace Group8.TrashDash.Score
 
         [Header("References")]
         [SerializeField] private TrashSpawner trashSpawner;
+        [SerializeField] private PlayerPickup playerPickup;
 
         public int Score { get => currentScore; }
         public int Combo { get => currentCombo; }
@@ -97,7 +99,7 @@ namespace Group8.TrashDash.Score
 
         public void GameEnd()
         {
-            int uncollectedTrashCount = trashSpawner.GetActiveSpawnObject();
+            int uncollectedTrashCount = trashSpawner.GetActiveSpawnObject() - playerPickup.TrashCount;
             currentScore += uncollectedTrashCount * uncollectedScore;
             ResultData.Uncollected = uncollectedTrashCount;
             ResultData.TotalScore = currentScore;

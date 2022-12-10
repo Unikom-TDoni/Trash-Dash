@@ -34,6 +34,8 @@ namespace Group8.TrashDash.Player.Pickup
         [SerializeField]
         private PlayerAudioController _playerAudioController = default;
 
+        public int TrashCount = 0;
+
         public TutorialManager tutorialManager;
 
         private void Awake()
@@ -87,7 +89,7 @@ namespace Group8.TrashDash.Player.Pickup
 
         private void OnPickup(InputAction.CallbackContext context)
         {
-            takenObjects = ColliderDetector.Find<GameObject>(transform.position, pickUpRadius, targetMask, transform.forward, pickUpAngle);
+            takenObjects = ColliderDetector.Find<GameObject>(transform.position - transform.forward, pickUpRadius + transform.forward.magnitude, targetMask, transform.forward, pickUpAngle);
 
             if (takenObjects.Count == 0 || inventory.IsFull())
                 return;
