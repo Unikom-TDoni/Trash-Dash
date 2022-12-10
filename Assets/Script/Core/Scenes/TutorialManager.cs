@@ -18,7 +18,6 @@ public class TutorialManager : MonoBehaviour
     private PlayerAction playerControls;
     private PlayerPickup playerPickup;
     private TrashBinHandler trashBinHandler;
-    private GameObject inventoryText;
     private PanelUIManager panelUIManager;
     private TrashSpawner trashSpawner;
     private TimeManager timeManager;
@@ -33,6 +32,7 @@ public class TutorialManager : MonoBehaviour
     {
         playerControls = InputManager.playerAction;
         playerControls.Gameplay.Disable();
+        playerControls.Gameplay.Confirm.Enable();
         playerControls.Gameplay.Pause.Enable();
 
         playerPickup = FindObjectOfType<PlayerPickup>();
@@ -69,7 +69,7 @@ public class TutorialManager : MonoBehaviour
             panelUIManager.BackToMainMenu();
         }
 
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        if (playerControls.Gameplay.Confirm.IsPressed())
         {
             if (sequence == 1 || sequence == 2 || sequence == 6 || sequence == 7 || sequence == 10 || sequence == 11)
             {
@@ -95,6 +95,7 @@ public class TutorialManager : MonoBehaviour
         {
             if (sequence == 4)
             {
+                tutorialCanvas.sortingOrder = 1;
                 NextSequence();
             }
         }
@@ -103,6 +104,7 @@ public class TutorialManager : MonoBehaviour
         {
             if (sequence <= 7)
             {
+                tutorialCanvas.sortingOrder = 0;
                 playerControls.Gameplay.PowerUp1.Disable();
                 playerControls.Gameplay.PowerUp2.Disable();
                 playerControls.Gameplay.Interact.Disable();
@@ -110,6 +112,7 @@ public class TutorialManager : MonoBehaviour
             
             if(sequence <= 9)
             {
+                tutorialCanvas.sortingOrder = 0;
                 playerControls.Gameplay.PowerUp1.Disable();
                 playerControls.Gameplay.PowerUp2.Disable();
             }
@@ -127,15 +130,6 @@ public class TutorialManager : MonoBehaviour
                 playerControls.Gameplay.PowerUp2.Enable();
             }
         }
-
-        if (inventoryText == null)
-        {
-            inventoryText = GameObject.Find("InventoryTitle");
-        }
-        else
-        {
-            inventoryText.SetActive(false);
-        }
     }
 
     public void PickupTrash()
@@ -151,6 +145,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (sequence == 8)
         {
+            tutorialCanvas.sortingOrder = 1;
             NextSequence();
         }
     }

@@ -98,6 +98,15 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""53aa6853-7fb9-4504-8509-bae798ad222c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,7 +256,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e874b813-aa68-414d-92f5-d7f5acbfcc1a"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -373,6 +382,28 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""PowerUp2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e15cbb5f-5d22-475e-9d5d-7774e055227b"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80463946-38af-41b2-a7fe-8f897c5c5f5f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -595,6 +626,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_PowerUp1 = m_Gameplay.FindAction("PowerUp1", throwIfNotFound: true);
         m_Gameplay_PowerUp2 = m_Gameplay.FindAction("PowerUp2", throwIfNotFound: true);
+        m_Gameplay_Confirm = m_Gameplay.FindAction("Confirm", throwIfNotFound: true);
         // Panel
         m_Panel = asset.FindActionMap("Panel", throwIfNotFound: true);
         m_Panel_Navigate = m_Panel.FindAction("Navigate", throwIfNotFound: true);
@@ -668,6 +700,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_PowerUp1;
     private readonly InputAction m_Gameplay_PowerUp2;
+    private readonly InputAction m_Gameplay_Confirm;
     public struct GameplayActions
     {
         private @PlayerAction m_Wrapper;
@@ -680,6 +713,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @PowerUp1 => m_Wrapper.m_Gameplay_PowerUp1;
         public InputAction @PowerUp2 => m_Wrapper.m_Gameplay_PowerUp2;
+        public InputAction @Confirm => m_Wrapper.m_Gameplay_Confirm;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -713,6 +747,9 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @PowerUp2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPowerUp2;
                 @PowerUp2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPowerUp2;
                 @PowerUp2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPowerUp2;
+                @Confirm.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnConfirm;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -741,6 +778,9 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @PowerUp2.started += instance.OnPowerUp2;
                 @PowerUp2.performed += instance.OnPowerUp2;
                 @PowerUp2.canceled += instance.OnPowerUp2;
+                @Confirm.started += instance.OnConfirm;
+                @Confirm.performed += instance.OnConfirm;
+                @Confirm.canceled += instance.OnConfirm;
             }
         }
     }
@@ -830,6 +870,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnPowerUp1(InputAction.CallbackContext context);
         void OnPowerUp2(InputAction.CallbackContext context);
+        void OnConfirm(InputAction.CallbackContext context);
     }
     public interface IPanelActions
     {
