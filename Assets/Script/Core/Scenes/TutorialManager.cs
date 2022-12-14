@@ -69,7 +69,7 @@ public class TutorialManager : MonoBehaviour
             panelUIManager.BackToMainMenu();
         }
 
-        if (playerControls.Gameplay.Confirm.IsPressed())
+        if (playerControls.Gameplay.Confirm.triggered)
         {
             if (sequence == 1 || sequence == 2 || sequence == 6 || sequence == 7 || sequence == 10 || sequence == 11)
             {

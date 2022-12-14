@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Screenshot : MonoBehaviour
 {
+    [SerializeField] bool transparentBackground = true;
     private void Start()
     {
         if (!Directory.Exists("Assets/Screenshots"))
@@ -25,7 +26,7 @@ public class Screenshot : MonoBehaviour
         }
     }
 
-    public static void TakeTransparentScreenshot(Camera cam, int width, int height, string savePath)
+    public void TakeTransparentScreenshot(Camera cam, int width, int height, string savePath)
     {
         // Depending on your render pipeline, this may not work.
         var bak_cam_targetTexture = cam.targetTexture;
@@ -39,10 +40,10 @@ public class Screenshot : MonoBehaviour
 
         RenderTexture.active = render_texture;
         cam.targetTexture = render_texture;
-        cam.clearFlags = CameraClearFlags.SolidColor;
+        if (transparentBackground) cam.clearFlags = CameraClearFlags.SolidColor;
 
         // Simple: use a clear background
-        cam.backgroundColor = Color.clear;
+        if(transparentBackground) cam.backgroundColor = Color.clear;
         cam.Render();
         tex_transparent.ReadPixels(grab_area, 0, 0);
         tex_transparent.Apply();
