@@ -2415,7 +2415,6 @@ MonoBehaviour:
   exitPoints:
   - {fileID: 256717503712822770}
   - {fileID: 4750354501001734554}
-  trashSpawnStateList: 020000000400000003000000
   wavePerHour: 2
   customerPerWave: 3
   trashSpawnMinInterval: 6
@@ -30293,6 +30292,10 @@ PrefabInstance:
     - target: {fileID: 952803098625429025, guid: 98ec7629e609d9e4d942a8599e462bd4, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001248402390950012, guid: 98ec7629e609d9e4d942a8599e462bd4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 6682076025641772523, guid: 98ec7629e609d9e4d942a8599e462bd4, type: 3}
       propertyPath: m_StaticEditorFlags
