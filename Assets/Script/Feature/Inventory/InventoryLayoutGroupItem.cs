@@ -12,7 +12,7 @@ namespace Group8.TrashDash.Inventory
     public sealed class InventoryLayoutGroupItem : LayoutGroupItem<TrashContentInfo>, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropable<DropableData>
     {
         [SerializeField]
-        [Range(100, 1000)]
+        [Range(100, 10000)]
         private float _speed = default;
 
         [SerializeField]
