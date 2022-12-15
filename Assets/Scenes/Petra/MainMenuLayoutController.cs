@@ -108,6 +108,7 @@ namespace Group8.TrashDash.MainMenu
             {
                 _settingLayout.SetActive(true);
                 _mainMenuLayout.SetActive(default);
+                _settingHandler.LastBgmVolume = GameManager.Instance.SettingDataPersistence.PersistenceData.BgmVolume;
             });
 
             _btnStart.onClick.AddListener(() => 

@@ -40,7 +40,7 @@ namespace Group8.TrashDash.Setting
 
         private AudioSource _audioSource = default;
 
-        private float _lastBgmVolume = default;
+        public float LastBgmVolume = default;
 
         private void Awake()
         {
@@ -64,7 +64,6 @@ namespace Group8.TrashDash.Setting
             _sliderBgm.onValueChanged.AddListener(value =>
             {
                 ChangeApplyTextButton(!value.Equals(GameManager.Instance.SettingDataPersistence.PersistenceData.BgmVolume));
-                _lastBgmVolume = value;
                 GameManager.Instance.SettingDataPersistence.ChangeAudioMixerBgm(value);
             });
 
@@ -111,12 +110,12 @@ namespace Group8.TrashDash.Setting
         {
             var persistenceData = GameManager.Instance.SettingDataPersistence.PersistenceData;
             ChangeApplyTextButton(default);
+            _sliderBgm.value = LastBgmVolume;
             _sliderSfx.value = persistenceData.SfxVolume;
-            _sliderBgm.value = persistenceData.BgmVolume;
             _toggleVsync.isOn = persistenceData.IsVsyncOn;
             _dropdownResolution.value = persistenceData.Resolution;
             _dropdownDisplayMode.value = persistenceData.DisplayMode;
-            GameManager.Instance.SettingDataPersistence.ChangeAudioMixerBgm(_lastBgmVolume);
+            GameManager.Instance.SettingDataPersistence.ChangeAudioMixerBgm(LastBgmVolume);
         }
 
         private void InitDropdownOptions()
