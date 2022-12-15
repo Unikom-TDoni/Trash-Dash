@@ -104,8 +104,14 @@ namespace Group8.TrashDash.MainMenu
                 _quitConfirmLayout.SetActive(default);
             });
 
-            _btnSetting.onClick.AddListener(() => _settingLayout.SetActive(true));
-            _btnStart.onClick.AddListener(() => {
+            _btnSetting.onClick.AddListener(() =>
+            {
+                _settingLayout.SetActive(true);
+                _mainMenuLayout.SetActive(default);
+            });
+
+            _btnStart.onClick.AddListener(() => 
+            {
                 _levelSelectLayout.SetActive(true);
                 _mainMenuLayout.SetActive(default);
             });
