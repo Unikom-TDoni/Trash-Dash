@@ -50,6 +50,8 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void Update()
     {
+        thisSprite = gameObject.transform.Find("IMG_Icon").GetComponent<Image>().sprite;
+
         if (!cursorInside)
             return;
 
