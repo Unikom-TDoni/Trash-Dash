@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 6947666495214541873}
   - component: {fileID: -2076711508304249554}
   - component: {fileID: 1423399152380636576}
+  - component: {fileID: -3900748693913723150}
   m_Layer: 5
   m_Name: Item_Inventory-Slot
   m_TagString: Untagged
@@ -171,6 +172,85 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1800
   _imgIcon: {fileID: 1535043165474440623}
+--- !u!114 &-3900748693913723150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6947666495214541874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99634edca86565b4a96a0b7b261787f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simpleTooltipStyle: {fileID: 11400000, guid: 56f9af34edbab84468913f56708a075b, type: 2}
+  infoLeft: '-'
+  infoRight: 
+  trashSprite:
+  - {fileID: 21300000, guid: e047ea123bfeafc4584b4fd43c49640a, type: 3}
+  - {fileID: 21300000, guid: 6b9084d3f76305444b65e1eb990c7ef4, type: 3}
+  - {fileID: 21300000, guid: 6f89901d8fe8e4f45be5a5f782ba56cf, type: 3}
+  - {fileID: 21300000, guid: 74a982dac70827e479c9a50c550c204e, type: 3}
+  - {fileID: 21300000, guid: c7ca547ca4927dd4aa5f946326c9d3ba, type: 3}
+  - {fileID: 21300000, guid: 296fda3164aaae24b93b7a563b69447b, type: 3}
+  - {fileID: 21300000, guid: 22839484a63f4da47b554d6ba6705e99, type: 3}
+  - {fileID: 21300000, guid: 22839484a63f4da47b554d6ba6705e99, type: 3}
+  - {fileID: 21300000, guid: 347fd48944928634882cb436728d551e, type: 3}
+  - {fileID: 21300000, guid: 68de1acc16d02ed48b409088d8383390, type: 3}
+  - {fileID: 21300000, guid: bb65a9bf053368146bec1eac29010078, type: 3}
+  - {fileID: 21300000, guid: 5f41ae035a6e4cb43902e714d9d199a0, type: 3}
+  - {fileID: 21300000, guid: 599b99f48b3a6794eb43232d89f98da1, type: 3}
+  - {fileID: 21300000, guid: 3341d0cc123dd6c42a20a32072fd3cb5, type: 3}
+  - {fileID: 21300000, guid: ee85dc5705a559b479bab4e8196f7d33, type: 3}
+  - {fileID: 21300000, guid: ad5f55490bdc5294f9828f4d1971c1bd, type: 3}
+  - {fileID: 21300000, guid: 5a9a6fa7b6d57e444bddea1cae82925f, type: 3}
+  - {fileID: 21300000, guid: 64e9a25f15f308c47bcae5b75f40554c, type: 3}
+  - {fileID: 21300000, guid: b2910b8238bfeb74aa19a9b0d5e2e732, type: 3}
+  - {fileID: 21300000, guid: dda89a460d83d454c992116aa6f1179c, type: 3}
+  - {fileID: 21300000, guid: 175ee5b6389c53644bd3e1dbc35a481b, type: 3}
+  - {fileID: 21300000, guid: ba667d994677eb844beb646e8c96cfe5, type: 3}
+  - {fileID: 21300000, guid: d7adeac67ee6db94aa6b78bf4a9b3170, type: 3}
+  - {fileID: 21300000, guid: da781bd9ccc04d140bde8d24d5151c24, type: 3}
+  - {fileID: 21300000, guid: afb4902cdec8153488566147c2e0d994, type: 3}
+  - {fileID: 21300000, guid: 3b654d34cf882304e807db340c2e5734, type: 3}
+  - {fileID: 21300000, guid: 6f52a1b1112b7d044a8c1ac49700b005, type: 3}
+  - {fileID: 21300000, guid: 74cbf2b3e39d63947935f9e2ce27e9e1, type: 3}
+  - {fileID: 21300000, guid: d4e521053cded7c49bc6cd5722b014f3, type: 3}
+  - {fileID: 21300000, guid: 2f160eb3935f583429598d0aead1b349, type: 3}
+  - {fileID: 21300000, guid: 0f79cac0f8d2a664d80129f12e28a5a4, type: 3}
+  trashName:
+  - Sisa kue
+  - Sisa kue
+  - Tulang ikan
+  - Sisa melon
+  - Sisa pizza
+  - Sisa sosis
+  - Sisa tomat
+  - Sisa tomat
+  - Sisa semangka
+  - Wadah plastik
+  - Kemasan snack
+  - Kemasan snack
+  - Kemasan snack
+  - Botol bekas
+  - Kaleng bekas
+  - Kaleng bekas
+  - Botol bekas
+  - Botol bekas
+  - Sanitizer
+  - Semprotan baju
+  - Semprotan baju
+  - Pecahan botol kaca
+  - Kotak kardus
+  - Kotak kardus
+  - Cangkir kopi kertas
+  - Cangkir kertas
+  - Cangkir kertas
+  - Kardus susu bekas
+  - Gumpalan kertas
+  - Kertas kusut
+  - Tisu toilet
 --- !u!1 &8496133764576365884
 GameObject:
   m_ObjectHideFlags: 0

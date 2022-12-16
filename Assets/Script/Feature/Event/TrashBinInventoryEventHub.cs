@@ -29,6 +29,9 @@ namespace Group8.TrashDash.Coordinator
         [SerializeField]
         private PlayerAudioController _playerAudioController = default;
 
+        [SerializeField]
+        private GameObject correctWrongPrefab;
+
         private void Awake()
         {
             if(GameManager.Instance)
@@ -51,12 +54,17 @@ namespace Group8.TrashDash.Coordinator
         private void OnDrop(DropableData args)
         {
             _inventoryHandler.RemoveItem(args.TrashContentInfo, args.InventoryLayoutGroupItem);
+            var resultText = Instantiate(correctWrongPrefab);
             if (!_trashBinHandler.ActiveTrashBinType.Equals(args.TrashContentInfo.TrashBinType))
+            {
                 scoreManager.UpdateScore(ScoreState.Wrong);
+                resultText.GetComponent<FloatingFadingText>().wrong.SetActive(true);
+            }
             else
             {
                 scoreManager.UpdateScore(ScoreState.Correct);
                 _playerAudioController.PlaySuccessOnDropSfx();
+                resultText.GetComponent<FloatingFadingText>().correct.SetActive(true);
             }
             _playerAudioController.PlayOnDropSfx();
         }

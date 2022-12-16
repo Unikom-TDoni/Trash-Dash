@@ -531,7 +531,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82159210}
-  m_LocalRotation: {x: 0.3699021, y: -0.000042870357, z: 0.000017068489, w: 0.9290708}
+  m_LocalRotation: {x: 0.36990207, y: -0.000042838383, z: 0.00001705576, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3546,7 +3546,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669092964}
-  m_LocalRotation: {x: 0.3699021, y: -0.000042870357, z: 0.000017068489, w: 0.9290708}
+  m_LocalRotation: {x: 0.36990207, y: -0.000042838383, z: 0.00001705576, w: 0.9290708}
   m_LocalPosition: {x: 10, y: 18, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5078,6 +5078,7 @@ MonoBehaviour:
   _inventoryHandler: {fileID: 1597512551}
   _inventoryTitle: {fileID: 150389351}
   _playerAudioController: {fileID: 1269382279}
+  correctWrongPrefab: {fileID: 7608834583697810223, guid: 1bdc458c3f4cb384fa54453fa016212a, type: 3}
 --- !u!4 &861992328
 Transform:
   m_ObjectHideFlags: 0
@@ -9788,6 +9789,7 @@ MonoBehaviour:
   minInterval: 12
   maxInterval: 15
   randomizeRotation: 0
+  tutorialManager: {fileID: 0}
 --- !u!4 &1966410532
 Transform:
   m_ObjectHideFlags: 0

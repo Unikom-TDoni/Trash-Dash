@@ -15,18 +15,25 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] Canvas tutorialCanvas;
     [SerializeField] GameObject[] tutorialText;
     [SerializeField] Transform trashSpawnRef;
+    [SerializeField] Transform powerUpSpawnRef1, 
+                               powerUpSpawnRef2, 
+                               powerUpSpawnRef3;
     private PlayerAction playerControls;
     private PlayerPickup playerPickup;
     private TrashBinHandler trashBinHandler;
     private PanelUIManager panelUIManager;
     private TrashSpawner trashSpawner;
+    private PowerUpSpawner powerUpSpawner;
     private TimeManager timeManager;
     private LightingManager lightingManager;
     private Light directionalLight;
     [SerializeField] private LightingPreset lightningPreset;
     private TMP_Text countdownTimerText;
+    private GameObject inventoryText;
 
     private Vector3 trashSpawnInitialPosition;
+
+    public int powerUpIndex = 0;
 
     void Start()
     {
@@ -42,6 +49,8 @@ public class TutorialManager : MonoBehaviour
         panelUIManager = FindObjectOfType<PanelUIManager>();
         trashSpawner = FindObjectOfType<TrashSpawner>();
         trashSpawnInitialPosition = trashSpawnRef.position;
+        powerUpSpawner = FindObjectOfType<PowerUpSpawner>();
+        powerUpSpawner.tutorialManager = this;
 
         timeManager = FindObjectOfType<TimeManager>();
         timeManager.enabled = false;
@@ -63,45 +72,60 @@ public class TutorialManager : MonoBehaviour
     {
         if (Time.timeScale == 0) return;
 
-        if (sequence > 11)
+        if (tutorialCanvas.gameObject.activeInHierarchy)
         {
-            GameManager.Instance.LevelHandler.EnablePlayMode();
-            panelUIManager.BackToMainMenu();
-        }
-
-        if (playerControls.Gameplay.Confirm.triggered)
-        {
-            if (sequence == 1 || sequence == 2 || sequence == 6 || sequence == 7 || sequence == 10 || sequence == 11)
+            if (sequence > 11)
             {
-                if (sequence == 1)
-                {
-                    playerControls.Gameplay.Move.Enable();
-                    playerControls.Gameplay.Sprint.Enable();
-                }
-                if (sequence == 2)
-                {
-                    playerControls.Gameplay.Pickup.Enable();
-                    StartCoroutine(SpawnSomeTrash());
-                }
-                if(sequence == 7)
-                {
-                    playerControls.Gameplay.Interact.Enable();
-                }
-                NextSequence();
+                GameManager.Instance.LevelHandler.EnablePlayMode();
+                panelUIManager.BackToMainMenu();
             }
-        }
 
-        if (playerControls.Gameplay.Inventory.WasPressedThisFrame())
-        {
-            if (sequence == 4)
+            if (playerControls.Gameplay.Confirm.triggered)
             {
-                tutorialCanvas.sortingOrder = 1;
-                NextSequence();
+                if (sequence == 1 || sequence == 2 || sequence == 6 || sequence == 7 || sequence == 10 || sequence == 11)
+                {
+                    if (sequence == 1)
+                    {
+                        playerControls.Gameplay.Move.Enable();
+                        playerControls.Gameplay.Sprint.Enable();
+                    }
+                    if (sequence == 2)
+                    {
+                        playerControls.Gameplay.Pickup.Enable();
+                        StartCoroutine(SpawnSomeTrash());
+                    }
+                    if (sequence == 7)
+                    {
+                        playerControls.Gameplay.Interact.Enable();
+                    }
+                    NextSequence();
+                }
+            }
+
+            if (playerControls.Gameplay.Inventory.WasPressedThisFrame())
+            {
+                if (sequence == 4)
+                {
+                    if (inventoryText == null)
+                    {
+                        inventoryText = GameObject.Find("InventoryTitle");
+                    }
+                    inventoryText.SetActive(false);
+                    tutorialCanvas.sortingOrder = 1;
+                    NextSequence();
+                }
+                else
+                {
+                    inventoryText.SetActive(true);
+                    tutorialCanvas.gameObject.SetActive(false);
+                }
             }
         }
 
         if (playerControls.Panel.Cancel.WasPressedThisFrame())
         {
+            tutorialCanvas.gameObject.SetActive(true);
+
             if (sequence <= 7)
             {
                 tutorialCanvas.sortingOrder = 0;
@@ -109,8 +133,8 @@ public class TutorialManager : MonoBehaviour
                 playerControls.Gameplay.PowerUp2.Disable();
                 playerControls.Gameplay.Interact.Disable();
             }
-            
-            if(sequence <= 9)
+
+            if (sequence <= 9)
             {
                 tutorialCanvas.sortingOrder = 0;
                 playerControls.Gameplay.PowerUp1.Disable();
@@ -122,12 +146,13 @@ public class TutorialManager : MonoBehaviour
                 InputManager.ToggleActionMap(playerControls.Gameplay);
                 NextSequence();
             }
-            if(sequence == 9)
+            if (sequence == 9)
             {
                 InputManager.ToggleActionMap(playerControls.Gameplay);
                 NextSequence();
                 playerControls.Gameplay.PowerUp1.Enable();
                 playerControls.Gameplay.PowerUp2.Enable();
+                StartCoroutine(SpawnPowerUps());
             }
         }
     }
@@ -145,8 +170,14 @@ public class TutorialManager : MonoBehaviour
     {
         if (sequence == 8)
         {
+            inventoryText.SetActive(false);
             tutorialCanvas.sortingOrder = 1;
             NextSequence();
+        }
+        else
+        {
+            inventoryText.SetActive(true);
+            tutorialCanvas.gameObject.SetActive(false);
         }
     }
 
@@ -166,6 +197,20 @@ public class TutorialManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    IEnumerator SpawnPowerUps()
+    {
+        powerUpIndex = 0;
+        powerUpSpawner.InstantSpawn(powerUpSpawnRef1);
+        yield return new WaitForSeconds(0.1f);
+        powerUpIndex = 1;
+        powerUpSpawner.InstantSpawn(powerUpSpawnRef2);
+        yield return new WaitForSeconds(0.1f);
+        powerUpIndex = 2;
+        powerUpSpawner.InstantSpawn(powerUpSpawnRef3);
+
+        yield return new WaitForSeconds(1f);
     }
 
     private void NextSequence()
