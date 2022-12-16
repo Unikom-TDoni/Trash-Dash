@@ -5968,7 +5968,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &1092956855
 GameObject:
@@ -7660,7 +7660,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7747,7 +7747,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6126671321369295034, guid: 3cfc0119a4b5b7b4faebe57dc9b3c336, type: 3}
       propertyPath: m_fontSize
-      value: 54
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126671321369295034, guid: 3cfc0119a4b5b7b4faebe57dc9b3c336, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6126671321369295034, guid: 3cfc0119a4b5b7b4faebe57dc9b3c336, type: 3}
       propertyPath: m_fontColor.b
@@ -7763,7 +7767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6126671321369295034, guid: 3cfc0119a4b5b7b4faebe57dc9b3c336, type: 3}
       propertyPath: m_fontSizeBase
-      value: 54
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 6126671321369295034, guid: 3cfc0119a4b5b7b4faebe57dc9b3c336, type: 3}
       propertyPath: m_characterSpacing
