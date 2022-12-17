@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Pizza Slice
   m_EditorClassIdentifier: 
-  Name: Pizza Slice
+  Name: Sisa pizza
   Sprite: {fileID: 21300000, guid: c7ca547ca4927dd4aa5f946326c9d3ba, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -147083155359850734, guid: 7bede346f9d49684085855be768a2b03, type: 3}

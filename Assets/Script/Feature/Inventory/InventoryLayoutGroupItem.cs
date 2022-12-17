@@ -9,7 +9,7 @@ using Lnco.Unity.Module.EventSystems;
 
 namespace Group8.TrashDash.Inventory
 {
-    public sealed class InventoryLayoutGroupItem : LayoutGroupItem<TrashContentInfo>, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropable<DropableData>
+    public sealed class InventoryLayoutGroupItem : LayoutGroupItem<TrashContentInfo>, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropable<DropableData>, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField]
         [Range(100, 10000)]
@@ -17,6 +17,9 @@ namespace Group8.TrashDash.Inventory
 
         [SerializeField]
         private Image _imgIcon = default;
+
+        [SerializeField]
+        private Image _imgBackground = default;
 
         private Transform _topParent = default;
 
@@ -64,6 +67,19 @@ namespace Group8.TrashDash.Inventory
             if (_imgIcon.raycastTarget) return;
             _imgIcon.raycastTarget = true;
             trashBinLayoutController.AnimClose();
+            CheckBackgroundColor();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (IsImageEnabled())
+                _imgBackground.color = new Color32(255, 255, 200, 255);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (IsImageEnabled())
+                _imgBackground.color = new Color32(255, 255, 255, 255);
         }
 
         public override void UpdateContent(TrashContentInfo content)
@@ -86,5 +102,15 @@ namespace Group8.TrashDash.Inventory
 
         private void MoveToTheOriginalPosition() =>
             _imgIcon.rectTransform.anchoredPosition = Vector2.MoveTowards(_imgIcon.rectTransform.anchoredPosition, _originalImageIconPosition, _speed * Time.deltaTime);
+
+        private void OnEnable()
+        {
+            CheckBackgroundColor();
+        }
+
+        private void CheckBackgroundColor()
+        {
+            _imgBackground.color = IsImageEnabled() ? new Color32(255, 255, 255, 255) : new Color32(255, 255, 255, 26);
+        }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Coffee Cup
   m_EditorClassIdentifier: 
-  Name: Coffee Cup
+  Name: Cangkir kopi kertas
   Sprite: {fileID: 21300000, guid: afb4902cdec8153488566147c2e0d994, type: 3}
   TrashBinType: 2
   Mesh: {fileID: 3291351167468450691, guid: 3c258662faa56ed4e90c2bf720e6f136, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Spray
   m_EditorClassIdentifier: 
-  Name: Spray
+  Name: Semprotan baju
   Sprite: {fileID: 21300000, guid: 175ee5b6389c53644bd3e1dbc35a481b, type: 3}
   TrashBinType: 3
   Mesh: {fileID: 3005466122748568217, guid: 43b244b03d5846143aa5eafc4002030f, type: 3}

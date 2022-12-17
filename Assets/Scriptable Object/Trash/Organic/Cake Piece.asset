@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Cake Piece
   m_EditorClassIdentifier: 
-  Name: Cake Piece
+  Name: Sisa kue
   Sprite: {fileID: 21300000, guid: e047ea123bfeafc4584b4fd43c49640a, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -2820822047222203195, guid: 170013b156b2fec4aa4c3361eb197783, type: 3}

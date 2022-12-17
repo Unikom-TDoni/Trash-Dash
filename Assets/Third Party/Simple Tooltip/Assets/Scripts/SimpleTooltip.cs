@@ -78,13 +78,25 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         var trashContentInfo = _inventoryLayoutGroupItem.Data.TrashContentInfo;
 
-        var lenght = trashContentInfo.Name.Length;
-        if (lenght > 7 && lenght <= 10)
-            lenght--;
-        else if (lenght > 10)
-            lenght -= 2;
+        var length = trashContentInfo.Name.Length;
+        if (length > 7 && length <= 10)
+            length--;
+        else if (length > 10)
+            length -= 2;
 
-        stcPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 22f * lenght);
+        // TEMPORARY
+        if (length == 12)
+            stcPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 20 * length);
+        else if (length <= 13 || length > 18)
+            stcPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 22 * length);
+        else if (length == 18)
+            stcPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 23 * length);
+        else if (length == 17 || length == 14)
+            stcPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 17 * length);
+        else if (length == 16 || length == 15)
+            stcPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 20 * length);
+        else
+            stcPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 15 * length);
 
         tooltipController.SetCustomStyledText(trashContentInfo.Name, simpleTooltipStyle, STController.TextAlign.Left);
 

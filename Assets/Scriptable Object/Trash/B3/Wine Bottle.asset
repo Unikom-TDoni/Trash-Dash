@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Wine Bottle
   m_EditorClassIdentifier: 
-  Name: Wine Bottle
+  Name: Pecahan botol kaca
   Sprite: {fileID: 21300000, guid: ba667d994677eb844beb646e8c96cfe5, type: 3}
   TrashBinType: 3
   Mesh: {fileID: 6933939715142762413, guid: a3b2231e8db671b40a1d121d2f9b235a, type: 3}

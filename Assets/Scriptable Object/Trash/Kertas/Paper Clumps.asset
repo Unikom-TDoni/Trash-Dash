@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Paper Clumps
   m_EditorClassIdentifier: 
-  Name: Paper Clumps
+  Name: Gumpalan kertas
   Sprite: {fileID: 21300000, guid: d4e521053cded7c49bc6cd5722b014f3, type: 3}
   TrashBinType: 2
   Mesh: {fileID: -2432090755550338912, guid: 2ea0fa982ce182b429bb8e8fc6d1b6d4, type: 3}
