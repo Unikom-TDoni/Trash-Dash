@@ -16,7 +16,6 @@ public class STDynamicExample : MonoBehaviour
         var tooltip = GetComponent<SimpleTooltip>();
         if (tooltip)
         {
-            tooltip.infoLeft = "You can also change the text after. Remember that ~tags `still !work";
 
             // Forces to start showing instead of waiting for the mouse to enter the collider
             tooltip.ShowTooltip(); 
@@ -26,7 +25,6 @@ public class STDynamicExample : MonoBehaviour
         else
         {
             tooltip = gameObject.AddComponent<SimpleTooltip>();
-            tooltip.infoLeft = tooltipText;
             tooltip.ShowTooltip(); // Force
 
             // If you wish, you may also change the style too, or else it will use the default one

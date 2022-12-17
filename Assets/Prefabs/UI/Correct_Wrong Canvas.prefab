@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Benar!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9b360ecf65337e4ab89f9bd18b6f0ba, type: 2}
   m_sharedMaterial: {fileID: -4336076232895317693, guid: a9b360ecf65337e4ab89f9bd18b6f0ba, type: 2}
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 72
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Salah...
+  m_text: Incorrect
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9b360ecf65337e4ab89f9bd18b6f0ba, type: 2}
   m_sharedMaterial: {fileID: -4336076232895317693, guid: a9b360ecf65337e4ab89f9bd18b6f0ba, type: 2}
@@ -368,8 +368,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 72
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

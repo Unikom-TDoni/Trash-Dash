@@ -11,7 +11,6 @@ public class STController : MonoBehaviour
 
     private Image panel;
     private TextMeshProUGUI toolTipTextLeft;
-    private TextMeshProUGUI toolTipTextRight;
     private RectTransform rect;
     private int showInFrames = -1;
     private bool showNow = false;
@@ -24,9 +23,6 @@ public class STController : MonoBehaviour
         {
             if (tmps[i].name == "_left")
                 toolTipTextLeft = tmps[i];
-
-            if (tmps[i].name == "_right")
-                toolTipTextRight = tmps[i];
         }
 
         // Keep a reference for the panel image and transform
@@ -48,9 +44,6 @@ public class STController : MonoBehaviour
         // Find the biggest height between both text layers
         var bounds = toolTipTextLeft.textBounds;
         float biggestY = toolTipTextLeft.textBounds.size.y;
-        float rightY = toolTipTextRight.textBounds.size.y;
-        if (rightY > biggestY)
-            biggestY = rightY;
 
         // Dont forget to add the margins
         var margins = toolTipTextLeft.margin.y * 2;
@@ -68,9 +61,7 @@ public class STController : MonoBehaviour
             showNow = true;
 
         if (showNow)
-        {
-            rect.anchoredPosition = Mouse.current.position.ReadValue();
-        }
+            rect.position = Mouse.current.position.ReadValue();
 
         showInFrames -= 1;
     }
@@ -80,8 +71,6 @@ public class STController : MonoBehaviour
         // Doesn't change style, just the text
         if(align == TextAlign.Left)
             toolTipTextLeft.text = text;
-        if (align == TextAlign.Right)
-            toolTipTextRight.text = text;
         ResizeToMatchText();
     }
 
@@ -94,8 +83,6 @@ public class STController : MonoBehaviour
         // Update the font asset, size and default color
         toolTipTextLeft.font = style.fontAsset;
         toolTipTextLeft.color = style.defaultColor;
-        toolTipTextRight.font = style.fontAsset;
-        toolTipTextRight.color = style.defaultColor;
 
         // Convert all tags to TMPro markup
         var styles = style.fontStyles;
@@ -111,8 +98,6 @@ public class STController : MonoBehaviour
         }
         if (align == TextAlign.Left)
             toolTipTextLeft.text = text;
-        if (align == TextAlign.Right)
-            toolTipTextRight.text = text;
         ResizeToMatchText();
     }
 

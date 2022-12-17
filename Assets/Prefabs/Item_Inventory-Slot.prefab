@@ -246,11 +246,11 @@ MonoBehaviour:
   - Kotak kardus
   - Cangkir kopi kertas
   - Cangkir kertas
-  - Cangkir kertas
-  - Kardus susu bekas
-  - Gumpalan kertas
-  - Kertas kusut
-  - Tisu toilet
+  - Cangkir Kertas
+  - Kardus Susu Bekas
+  - Gumpalan Kertas
+  - Kertas Kusut
+  - Tisu Toilet
 --- !u!1 &8496133764576365884
 GameObject:
   m_ObjectHideFlags: 0

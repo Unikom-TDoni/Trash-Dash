@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Spray 2
   m_EditorClassIdentifier: 
-  Name: Spray 2
+  Name: Spray
   Sprite: {fileID: 21300000, guid: dda89a460d83d454c992116aa6f1179c, type: 3}
   TrashBinType: 3
   Mesh: {fileID: 6121590469811200223, guid: 78424eb7846bd024aab38276940a1959, type: 3}

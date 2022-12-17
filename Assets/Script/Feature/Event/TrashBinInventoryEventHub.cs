@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 using Group8.TrashDash.Core;
 using Group8.TrashDash.Item.Audio;
 using TMPro;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Group8.TrashDash.Coordinator
 {
@@ -32,9 +34,10 @@ namespace Group8.TrashDash.Coordinator
         [SerializeField]
         private GameObject correctWrongPrefab;
 
+        private List<FloatingFadingText> _activeTextStatusObj = new();
+
         private void Awake()
         {
-            if(GameManager.Instance)
             GameManager.Instance.LevelHandler.SpawnLevel();
             _trashBinHandler.OnAwake(OnDrop, OnInteract);
         }
@@ -54,18 +57,29 @@ namespace Group8.TrashDash.Coordinator
         private void OnDrop(DropableData args)
         {
             _inventoryHandler.RemoveItem(args.TrashContentInfo, args.InventoryLayoutGroupItem);
-            var resultText = Instantiate(correctWrongPrefab);
+
+            var obj = _activeTextStatusObj.FirstOrDefault(item => !item.gameObject.activeInHierarchy);
+
+            if (obj is null)
+            {
+                obj = Instantiate(correctWrongPrefab).GetComponent<FloatingFadingText>();
+                _activeTextStatusObj.Add(obj);
+            }
+            else
+                obj.gameObject.SetActive(true);
+
             if (!_trashBinHandler.ActiveTrashBinType.Equals(args.TrashContentInfo.TrashBinType))
             {
                 scoreManager.UpdateScore(ScoreState.Wrong);
-                resultText.GetComponent<FloatingFadingText>().wrong.SetActive(true);
+                obj.wrong.SetActive(true);
             }
             else
             {
                 scoreManager.UpdateScore(ScoreState.Correct);
                 _playerAudioController.PlaySuccessOnDropSfx();
-                resultText.GetComponent<FloatingFadingText>().correct.SetActive(true);
+                obj.correct.SetActive(true);
             }
+
             _playerAudioController.PlayOnDropSfx();
         }
 

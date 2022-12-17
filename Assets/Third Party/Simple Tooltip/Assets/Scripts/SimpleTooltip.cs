@@ -4,99 +4,65 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Group8.TrashDash.Inventory;
 
 [DisallowMultipleComponent]
 public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler
 {
     public SimpleTooltipStyle simpleTooltipStyle;
-    [TextArea] public string infoLeft = "Hello";
-    [TextArea] public string infoRight = "";
     private STController tooltipController;
     private EventSystem eventSystem;
     private bool cursorInside = false;
-    private bool isUIObject = false;
     private bool showing = false;
     private RectTransform stcPanel;
-    [SerializeField] private Sprite[] trashSprite;
-    [SerializeField] private string[] trashName;
-    private Sprite thisSprite;
+
+    private InventoryLayoutGroupItem _inventoryLayoutGroupItem = default;
 
     private void Awake()
     {
         eventSystem = FindObjectOfType<EventSystem>();
         tooltipController = FindObjectOfType<STController>();
 
-        // Add a new tooltip prefab if one does not exist yet
-        if (!tooltipController)
-        {
-            tooltipController = AddTooltipPrefabToScene();
-        }
-        stcPanel = FindObjectOfType<STController>().GetComponent<RectTransform>();
-        if (!tooltipController)
-        {
-            Debug.LogWarning("Could not find the Tooltip prefab");
-            Debug.LogWarning("Make sure you don't have any other prefabs named `SimpleTooltip`");
-        }
+        if (!tooltipController) tooltipController = Instantiate(Resources.Load<GameObject>("SimpleTooltip")).GetComponentInChildren<STController>();
+        stcPanel = tooltipController.GetComponent<RectTransform>();
 
-        if (GetComponent<RectTransform>())
-            isUIObject = true;
-
-        // Always make sure there's a style loaded
         if (!simpleTooltipStyle)
             simpleTooltipStyle = Resources.Load<SimpleTooltipStyle>("STDefault");
 
-        thisSprite = gameObject.transform.Find("IMG_Icon").GetComponent<Image>().sprite;
+        _inventoryLayoutGroupItem = GetComponent<InventoryLayoutGroupItem>();
     }
 
     private void Update()
     {
-        thisSprite = gameObject.transform.Find("IMG_Icon").GetComponent<Image>().sprite;
-
         if (!cursorInside)
             return;
 
         tooltipController.ShowTooltip();
     }
 
-    public static STController AddTooltipPrefabToScene()
-    {
-        return Instantiate(Resources.Load<GameObject>("SimpleTooltip")).GetComponentInChildren<STController>();
-    }
-
     private void OnMouseOver()
     {
-        if (isUIObject)
-            return;
-
         if (eventSystem)
         {
-            if (eventSystem.IsPointerOverGameObject())
-            {
-                HideTooltip();
-                return;
-            }
+            if (!eventSystem.IsPointerOverGameObject()) return;
+            HideTooltip();
+            return;
         }
         ShowTooltip();
     }
 
     private void OnMouseExit()
     {
-        if (isUIObject)
-            return;
         HideTooltip();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!isUIObject)
-            return;
         ShowTooltip();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!isUIObject)
-            return;
         HideTooltip();
     }
 
@@ -110,26 +76,18 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         showing = true;
         cursorInside = true;
 
-        // 
-        string thisName = "-";
-        int i = 0;
-        foreach (Sprite s in trashSprite)
-        {
-            if (thisSprite == s)
-            {
-                thisName = trashName[i];
-                break;
-            }
-            i++;
-        }
-        stcPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 30 + (15 * thisName.Length - 15));
-        infoLeft = "<cspace=0.05em>" + thisName + "</cspace>";
+        var trashContentInfo = _inventoryLayoutGroupItem.Data.TrashContentInfo;
 
-        // Update the text for both layers
-        tooltipController.SetCustomStyledText(infoLeft, simpleTooltipStyle, STController.TextAlign.Left);
-        tooltipController.SetCustomStyledText(infoRight, simpleTooltipStyle, STController.TextAlign.Right);
+        var lenght = trashContentInfo.Name.Length;
+        if (lenght > 7 && lenght <= 10)
+            lenght--;
+        else if (lenght > 10)
+            lenght -= 2;
 
-        // Then tell the controller to show it
+        stcPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 22f * lenght);
+
+        tooltipController.SetCustomStyledText(trashContentInfo.Name, simpleTooltipStyle, STController.TextAlign.Left);
+
         tooltipController.ShowTooltip();
     }
 
@@ -169,6 +127,6 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void OnDisable()
     {
-        tooltipController.HideTooltip();
+        HideTooltip();
     }
 }

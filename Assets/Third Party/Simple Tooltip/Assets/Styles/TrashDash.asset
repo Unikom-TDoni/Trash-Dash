@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slicedSprite: {fileID: 21300000, guid: 0273a74c0378e274fb30f03732239cb7, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
-  fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  fontAsset: {fileID: 11400000, guid: 7c57b03b5a1b5fd46a6bf74fbbef524c, type: 2}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   fontStyles:
   - tag: '`'

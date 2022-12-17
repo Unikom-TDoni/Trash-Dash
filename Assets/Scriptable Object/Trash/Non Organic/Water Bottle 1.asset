@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Water Bottle 1
   m_EditorClassIdentifier: 
-  Name: Water Bottle 1
+  Name: Water Bottle
   Sprite: {fileID: 21300000, guid: 5a9a6fa7b6d57e444bddea1cae82925f, type: 3}
   TrashBinType: 1
   Mesh: {fileID: 2685422785042298724, guid: a3b2231e8db671b40a1d121d2f9b235a, type: 3}

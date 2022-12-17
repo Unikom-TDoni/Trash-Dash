@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Cup 1
   m_EditorClassIdentifier: 
-  Name: Cup 1
+  Name: Papper Cup
   Sprite: {fileID: 21300000, guid: 3b654d34cf882304e807db340c2e5734, type: 3}
   TrashBinType: 2
   Mesh: {fileID: -6703830587202572708, guid: 258d94c38e1ebc745bd061d13c2675e7, type: 3}
