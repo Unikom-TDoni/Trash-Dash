@@ -23,7 +23,7 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         eventSystem = FindObjectOfType<EventSystem>();
         tooltipController = FindObjectOfType<STController>();
 
-        if (!tooltipController) tooltipController = Instantiate(Resources.Load<GameObject>("SimpleTooltip")).GetComponentInChildren<STController>();
+        if (!tooltipController) tooltipController = Instantiate(Resources.Load<GameObject>("SimpleTooltip"), new Vector3(0,-1000000, 0), Quaternion.identity).GetComponentInChildren<STController>();
         stcPanel = tooltipController.GetComponent<RectTransform>();
 
         if (!simpleTooltipStyle)
