@@ -8820,7 +8820,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Are You Sure Want
 
-    to Quit ?'
+    To Quit ?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c57b03b5a1b5fd46a6bf74fbbef524c, type: 2}
   m_sharedMaterial: {fileID: 7098085810802745742, guid: 7c57b03b5a1b5fd46a6bf74fbbef524c, type: 2}
