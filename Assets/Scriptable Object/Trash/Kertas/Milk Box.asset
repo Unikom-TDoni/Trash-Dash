@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Milk Box
   m_EditorClassIdentifier: 
-  Name: Milk Box
+  Name: Kardus Susu
   Sprite: {fileID: 21300000, guid: 74cbf2b3e39d63947935f9e2ce27e9e1, type: 3}
   TrashBinType: 2
   Mesh: {fileID: 3369316746193770658, guid: 4f99b082d9fca6246bf9a3c40bc6b847, type: 3}

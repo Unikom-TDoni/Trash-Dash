@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Melon Piece
   m_EditorClassIdentifier: 
-  Name: Melon Piece
+  Name: Sisa Melon
   Sprite: {fileID: 21300000, guid: 74a982dac70827e479c9a50c550c204e, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -4140346793173904311, guid: ed63170978d948f4ebf8c96d68285176, type: 3}

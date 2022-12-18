@@ -17,9 +17,7 @@ public class LightingManager : MonoBehaviour
         if (lightningPreset == null) return;
 
         if (Application.isPlaying)
-        {
             timeOfDay = (timeManager.CurrentTime / timeManager.TimePerDay) % timeManager.TimePerDay;
-        }
         UpdateLighting(timeOfDay);
     }
 

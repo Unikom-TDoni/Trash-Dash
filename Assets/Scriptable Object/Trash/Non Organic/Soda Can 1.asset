@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Soda Can 1
   m_EditorClassIdentifier: 
-  Name: Soda Can
+  Name: Kaleng Bekas
   Sprite: {fileID: 21300000, guid: ee85dc5705a559b479bab4e8196f7d33, type: 3}
   TrashBinType: 1
   Mesh: {fileID: -6755275361685167172, guid: d6c698db7cb0ec24fb918fe80eec208d, type: 3}

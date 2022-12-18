@@ -25,6 +25,8 @@ namespace Group8.TrashDash.Spawner
 
         private Bounds bounds;
 
+        public TutorialManager tutorialManager;
+
         protected override void Start()
         {
             OnValidate();
@@ -33,7 +35,9 @@ namespace Group8.TrashDash.Spawner
                 spawnPrefab.maxObjectInPool = GameManager.Instance.LevelHandler.GetMaxAmountPowerUpSpawn();
 
             base.Start();
-            RepeatSpawn(transform, minInterval, maxInterval, offset, amount, size, randomizeRotation);
+
+            if (tutorialManager == null)
+                RepeatSpawn(transform, minInterval, maxInterval, offset, amount, size, randomizeRotation);
 
             bounds = new Bounds(transform.position + offset, size + Vector3.up * 2);
         }
@@ -104,7 +108,14 @@ namespace Group8.TrashDash.Spawner
                 cumulativeWeight += powerUps[index].Weight;
             }
 
-            return powerUps[index].Value;
+            if (tutorialManager != null)
+            {
+                return powerUps[tutorialManager.powerUpIndex].Value;
+            }
+            else
+            {
+                return powerUps[index].Value;
+            }
         }
 
         private void OnDrawGizmos()

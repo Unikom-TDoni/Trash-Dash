@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Soda Bottle
   m_EditorClassIdentifier: 
-  Name: Soda Bottle
+  Name: Botol Plastik Bekas
   Sprite: {fileID: 21300000, guid: 3341d0cc123dd6c42a20a32072fd3cb5, type: 3}
   TrashBinType: 1
   Mesh: {fileID: 3358834430557160241, guid: 4f17a825b234ea040991e5b97178515a, type: 3}

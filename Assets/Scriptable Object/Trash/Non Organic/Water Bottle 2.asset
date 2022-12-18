@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Water Bottle 2
   m_EditorClassIdentifier: 
-  Name: Water Bottle 2
+  Name: Botol Plastik Bekas
   Sprite: {fileID: 21300000, guid: 64e9a25f15f308c47bcae5b75f40554c, type: 3}
   TrashBinType: 1
   Mesh: {fileID: 2534964839176971238, guid: 76ffbf5856239594eac04222775de0f5, type: 3}

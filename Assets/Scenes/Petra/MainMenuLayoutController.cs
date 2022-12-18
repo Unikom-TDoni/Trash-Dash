@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Group8.TrashDash.Core;
 using UnityEngine.SceneManagement;
+using Group8.TrashDash.Setting;
 
 namespace Group8.TrashDash.MainMenu
 {
@@ -47,7 +48,13 @@ namespace Group8.TrashDash.MainMenu
         [SerializeField]
         private Button _btnCloseCredit = default;
 
-        private PlayerAction _input;
+        [SerializeField]
+        private SettingHandler _settingHandler = default;
+
+        [SerializeField]
+        private Button _btnExitLevel = default;
+
+        private PlayerAction _input = default;
 
         private void OnEnable()
         {
@@ -64,8 +71,22 @@ namespace Group8.TrashDash.MainMenu
 
         private void PerformedEvent(InputAction.CallbackContext context)
         {
+            if (_mainMenuLayout.activeInHierarchy)
+            {
+                _quitConfirmLayout.SetActive(true);
+                _mainMenuLayout.SetActive(false);
+                return;
+            }
+
            _mainMenuLayout.SetActive(true);
+            _creditLayout.SetActive(default);
             _levelSelectLayout.SetActive(default);
+            _quitConfirmLayout.SetActive(default);
+            if (_settingLayout.activeInHierarchy)
+            {
+                _settingHandler.ResetValue();
+                _settingLayout.SetActive(default);
+            }
         }
 
         private void Awake()
@@ -83,8 +104,15 @@ namespace Group8.TrashDash.MainMenu
                 _quitConfirmLayout.SetActive(default);
             });
 
-            _btnSetting.onClick.AddListener(() => _settingLayout.SetActive(true));
-            _btnStart.onClick.AddListener(() => {
+            _btnSetting.onClick.AddListener(() =>
+            {
+                _settingLayout.SetActive(true);
+                _mainMenuLayout.SetActive(default);
+                _settingHandler.LastBgmVolume = GameManager.Instance.SettingDataPersistence.PersistenceData.BgmVolume;
+            });
+
+            _btnStart.onClick.AddListener(() => 
+            {
                 _levelSelectLayout.SetActive(true);
                 _mainMenuLayout.SetActive(default);
             });
@@ -106,6 +134,12 @@ namespace Group8.TrashDash.MainMenu
                 _creditLayout.SetActive(default);
             });
 
+            _btnExitLevel.onClick.AddListener(() =>
+            {
+                _mainMenuLayout.SetActive(true);
+                _levelSelectLayout.SetActive(default);
+            });
+
             _btnStart.interactable = GameManager.Instance.LevelHandler.IsPlayModeEnable();
         }
 
@@ -116,6 +150,7 @@ namespace Group8.TrashDash.MainMenu
             _btnCancel.onClick.RemoveAllListeners();
             _btnSetting.onClick.RemoveAllListeners();
             _btnConfirm.onClick.RemoveAllListeners();
+            _btnExitLevel.onClick.RemoveAllListeners();
         }
     }
 }
