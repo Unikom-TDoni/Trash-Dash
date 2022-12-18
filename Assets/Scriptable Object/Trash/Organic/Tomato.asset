@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
-  Name: Sisa tomat
+  Name: Tomat
   Sprite: {fileID: 21300000, guid: 22839484a63f4da47b554d6ba6705e99, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -1340541719380434750, guid: c945b3fa736b40940a696ec897b85013, type: 3}

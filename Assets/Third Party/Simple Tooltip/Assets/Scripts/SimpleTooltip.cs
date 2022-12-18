@@ -79,10 +79,8 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         var trashContentInfo = _inventoryLayoutGroupItem.Data.TrashContentInfo;
 
         var length = trashContentInfo.Name.Length;
-        if (length > 7 && length <= 10)
-            length--;
-        else if (length > 10)
-            length -= 2;
+        if (length > 7 && length < 10) length--;
+        else if (length >= 10) length -= 2;
 
         // TEMPORARY
         if (length == 12)

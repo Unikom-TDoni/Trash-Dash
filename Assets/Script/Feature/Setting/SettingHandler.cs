@@ -84,9 +84,10 @@ namespace Group8.TrashDash.Setting
 
         private void ApplySetting()
         {
-            _settingLayoutObj.SetActive(default);
             _mainMenuLayoutObj.SetActive(true);
+            _settingLayoutObj.SetActive(default);
             if (_txtApplySettingDesc.text.Equals("CLOSE")) return;
+            ChangeApplyTextButton(default);
             GameManager.Instance.SettingDataPersistence.Save(new(
                 _toggleVsync.isOn,
                 _sliderSfx.value,

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Paper
   m_EditorClassIdentifier: 
-  Name: Kertas kusut
+  Name: Kertas Kusut
   Sprite: {fileID: 21300000, guid: 2f160eb3935f583429598d0aead1b349, type: 3}
   TrashBinType: 2
   Mesh: {fileID: 1050974422812936719, guid: ff258a1d1bea56141ab85a01a16adf48, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Box 2
   m_EditorClassIdentifier: 
-  Name: Kotak kardus
+  Name: Kotak Kardus
   Sprite: {fileID: 21300000, guid: da781bd9ccc04d140bde8d24d5151c24, type: 3}
   TrashBinType: 2
   Mesh: {fileID: 287463641966594561, guid: 7b083b55a16483f4495353a093c69545, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
   m_Name: Salami Cut
   m_EditorClassIdentifier: 
-  Name: Sisa sosis
+  Name: Sisa Sosis
   Sprite: {fileID: 21300000, guid: 296fda3164aaae24b93b7a563b69447b, type: 3}
   TrashBinType: 0
   Mesh: {fileID: -6480228251646151280, guid: 601422f08d730974ba9474adf89a2fd5, type: 3}
