@@ -93,6 +93,7 @@ namespace Group8.TrashDash.Inventory
         {
             if (_imgIcon.transform.parent == transform) return;
             _imgIcon.transform.SetParent(transform);
+            _imgIcon.raycastTarget = true;
             _imgIcon.rectTransform.anchoredPosition = default;
             _originalImageIconPosition = default;
         }
