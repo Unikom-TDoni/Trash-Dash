@@ -28,8 +28,9 @@ namespace Group8.TrashDash.Spawner
         protected override void Start()
         {
             OnValidate();
-             
-            spawnPrefab.maxObjectInPool = GameManager.Instance.LevelHandler.GetMaxAmountPowerUpSpawn();
+
+            if (GameManager.Instance != null)
+                spawnPrefab.maxObjectInPool = GameManager.Instance.LevelHandler.GetMaxAmountPowerUpSpawn();
 
             base.Start();
             RepeatSpawn(transform, minInterval, maxInterval, offset, amount, size, randomizeRotation);
