@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
+  m_Name: Box 2
+  m_EditorClassIdentifier: 
+  Name: Kotak Kardus
+  Sprite: {fileID: 21300000, guid: da781bd9ccc04d140bde8d24d5151c24, type: 3}
+  TrashBinType: 2
+  Mesh: {fileID: 287463641966594561, guid: 7b083b55a16483f4495353a093c69545, type: 3}
+  Materials:
+  - {fileID: -1494972012236529663, guid: 7937f4f53ad17884dbb80c8c82bf269d, type: 3}

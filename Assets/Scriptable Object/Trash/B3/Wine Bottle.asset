@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e82322991114c54dac4c5daeabb2626, type: 3}
+  m_Name: Wine Bottle
+  m_EditorClassIdentifier: 
+  Name: Pecahan Botol Kaca
+  Sprite: {fileID: 21300000, guid: ba667d994677eb844beb646e8c96cfe5, type: 3}
+  TrashBinType: 3
+  Mesh: {fileID: 6933939715142762413, guid: a3b2231e8db671b40a1d121d2f9b235a, type: 3}
+  Materials:
+  - {fileID: 2100000, guid: f7e507d640b41364f8f9c3c98ebd8567, type: 2}

@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Table
+  - Manager
+  - AIPoint
+  - Road
+  - Seat
+  - TrashBin
+  - Car
+  - PlayerBin
   layers:
   - Default
   - TransparentFX
@@ -11,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Pickup
+  - Interactable
+  - CanvasRender
   - 
   - 
   - 
